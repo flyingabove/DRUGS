@@ -180,17 +180,46 @@ for selecting patients likely to respond to CXCR4 inhibitors. Higher-risk, more 
 plausibly run measurably "hotter" on CXCR4 than baseline — the same expression gradient the ADC study
 above exploited to spare normal HSCs.
 
-**Two concrete design directions:**
+### Reframing the goal: chemosensitization in place, not eviction
 
-1. **CXCR4 as the homing beacon** (what MB1707 already does): a CXCR4-binding molecule delivers a
-   kill payload, exploiting LSCs' typically elevated CXCR4 density directly.
-2. **A different marker as the homing beacon, CXCR4-blockade as the payload** (this is this project's
-   own synthesis — no direct precedent found for this specific direction, flagged honestly as
-   speculative): use CLL-1 (Idea 1) as the targeting arm, and deliver the CXCR4-antagonist *effect*
-   only where it binds. Instead of free plerixafor evicting every CXCR4+ cell in the body, only cells
-   already flagged as LSCs get evicted. This would directly close the cross-cutting caveat rather than
-   just working around it — Plerixafor's mechanism would stop being access-only and start solving
-   selectivity too.
+An earlier version of this section framed the second design direction as "eviction" — get the LSC
+physically out of the marrow, then kill it once accessible. Pushed further (prompted by asking
+whether we actually want healthy marrow entering the bloodstream at all — we don't): **eviction and
+exposure aren't the same goal, and eviction isn't required to achieve the one we actually want.**
+
+**Why full separation of "expose" from "evict" isn't clean, mechanically:** the bone marrow niche
+holds cells in place through two linked systems — CXCR4/CXCL12 (the survival-signaling docking
+system discussed throughout this doc) and a second, physically separate adhesion system called
+**VLA-4/VCAM-1**. These aren't independent: **CXCL12 binding CXCR4 is what switches VLA-4 into its
+"sticky," high-affinity grip on the marrow in the first place.** So blocking CXCR4 doesn't just
+silence the survival signal — it also weakens the physical grip, since the grip depends on that same
+signal being active. There's no way to cleanly guarantee "signal disrupted, zero detachment" with
+CXCR4 blockade alone.
+
+**But that turns out not to matter, because the actual mechanism that matters is already
+demonstrated and doesn't require eviction to succeed:** leukemia cells in contact with marrow stroma
+get a **survival boost** — stromal contact activates an NF-κB signaling program in the leukemia cell
+that protects it from chemotherapy-induced death. This is a documented, real mechanism of
+chemoresistance, separate from the physical hiding/access problem. **Blocking CXCR4 with plerixafor
+has been shown to "diminish stromal protection and confer chemosensitivity"** — meaning the cell's
+local chemoresistance shield goes down, making it vulnerable to a drug that's already reaching the
+marrow through ordinary blood flow, whether or not the cell has actually left the niche. Whether a
+given cell technically counts as "evicted" or just "weakly attached and unprotected" doesn't matter —
+the functional outcome (it becomes killable in place) is what's been shown to happen, in leukemia-
+stroma co-culture studies. A related real drug: **Dociparstat Sodium (CX-01)**, currently in an AML
+trial combined with standard induction therapy, blocks several stroma-interaction pathways at once
+toward this same goal.
+
+**Revised concrete proposal:** deliver the CXCR4-blocking effect only to CLL-1-flagged cells (Idea 1
+as the targeting arm, riding the same logic as the ADC/MB1707 precedent above), aiming to strip
+stromal chemoresistance protection specifically from LSCs — not to force them into the bloodstream,
+and not relying on normal HSCs ever losing their protection at all. The killing step then comes from
+whatever is already reaching the marrow at baseline (a circulating drug) or has its own active
+homing mechanism into the niche (e.g., CAR-T, discussed in Idea 1). This sidesteps the access problem
+entirely rather than trading it for a mobilization/hyperleukocytosis risk — no need to solve "how do
+we safely move LSCs into blood" if the kill can happen without moving them at all. Still this
+project's own synthesis, with no direct precedent found for the CLL-1-gated version specifically —
+flagged as speculative, same as before.
 
 ---
 
@@ -289,9 +318,13 @@ niche disruption.
 - Test whether the sustained/repeated dosing this project's combinations need (vs. plerixafor's
   approved short-course use) introduces the ROS/HSC-exhaustion harm flagged in the risk check —
   plerixafor has not been safety-tested at that dosing pattern.
-- Design and test the targeted CXCR4-antagonist-delivery concept (CLL-1-guided eviction) — currently
-  a speculative synthesis with no direct precedent, unlike the CXCR4-as-homing-beacon direction (ADC,
-  MB1707), which has real precedent already.
+- Design and test the targeted CXCR4-antagonist-delivery concept (CLL-1-gated chemosensitization
+  in place) — currently a speculative synthesis with no direct precedent, unlike the
+  CXCR4-as-homing-beacon direction (ADC, MB1707) and the general chemosensitization mechanism
+  (plerixafor, CX-01), both of which have real precedent already.
+- Confirm whether the chemosensitization effect (stromal NF-κB protection loss) is itself selective
+  enough on its own — i.e., whether it disproportionately protects normal HSCs vs. LSCs even without
+  CLL-1-gating, or whether gating is strictly necessary.
 - Confirm whether persister-state LSCs specifically (not just LSCs generally) show the
   ferritinophagy/ferroptosis vulnerability now proposed for the revised Idea 6.
 - Explore the autograft-purging application (Idea 1 or 5 as a purging agent) as a smaller, nearer-term
@@ -308,6 +341,9 @@ niche disruption.
 - [Outcomes of Allogeneic HSCT in Adult AML: A Systematic Review](https://pmc.ncbi.nlm.nih.gov/articles/PMC12533790/)
 - [Oxidative stress and hypoxia in normal and leukemic stem cells](https://www.exphem.org/article/S0301-472X(16)30116-3/fulltext)
 - [CXCR4/CXCL12 axis counteracts HSC exhaustion through selective protection against oxidative stress](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5122894/)
+- [Reciprocal leukemia-stroma VCAM-1/VLA-4-dependent activation of NF-κB mediates chemoresistance](https://ashpublications.org/blood/article/123/17/2691/32560/Reciprocal-leukemia-stroma-VCAM-1-VLA-4-dependent)
+- [Plerixafor as a chemosensitizing agent in pediatric ALL](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4253409/)
+- [Dociparstat Sodium (CX-01) Combined With Standard Induction Therapy for AML](https://cdn.clinicaltrials.gov/large-docs/38/NCT02873338/Prot_000.pdf)
 - [Oxidative resistance of leukemic stem cells and oxidative damage to HSCs under pro-oxidative therapy](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7184730/)
 - [Ferritinophagy is a Druggable Vulnerability of Quiescent Leukemic Stem Cells](https://www.biorxiv.org/content/10.1101/2023.12.18.572101.full.pdf)
 - [Optimal design, anti-tumour efficacy and tolerability of anti-CXCR4 antibody drug conjugates](https://www.nature.com/articles/s41598-019-38745-x)
