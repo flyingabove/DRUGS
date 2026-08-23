@@ -60,3 +60,33 @@ The podcast presents a compelling personal narrative using real molecular-biolog
 
 - Pull the actual podcast audio/transcript for direct quotes.
 - Confirm whether the Cureus submission was ever formally accepted/published (not just profile-listed).
+
+## Relevance to the AML/LSC Project (2026-08-22)
+
+Assessed whether any of Malone's ideas could help with the [AML LSC drug discovery
+project](../aml-lsc-drug-discovery-plan.md), specifically for eliminating lingering
+post-treatment LSCs.
+
+**His specific protocol/company are not usable as a basis for anything here** — same red flags as
+above apply regardless of disease context: n=1 self-administered/self-reported, no peer review, no
+independent replication, biologically implausible specifics (e.g., TP53 mutant allele burden halving
+in two weeks with "zero toxicity" doesn't match how any known effective anticancer agent behaves).
+Also worth naming directly: he describes applying an unvalidated version of this to his own son, who
+has profound autism/cognitive disability and cannot consent — an ethical red flag independent of the
+scientific evidence question.
+
+**But the pathway categories he references are legitimate, independently-established science**, not
+fabricated — he's using accurate vocabulary for real active research areas:
+
+- **Hedgehog-GLI2 signaling** — real AML LSC dormancy/self-renewal pathway, already has an FDA-approved
+  drug (glasdegib). This became [Idea 3](../brainstorm.md#idea-3-hedgehoggli2-pathway-dormancyself-renewal-target)
+  in the brainstorm doc.
+- **Epigenetic silencing/reactivation** — already the mechanism behind azacitidine/decitabine, already
+  part of standard AML care (see brainstorm Idea 2 / combination section).
+- **Metabolic modulation (PI3K-mTOR, glycolysis/glutaminolysis)** — connects to the same OXPHOS
+  dependency biology behind venetoclax's success.
+
+**Conclusion:** nothing about Malone himself or his company is being used; the value of looking into
+him was recognizing that his framework's vocabulary happens to overlap with real oncology research,
+which pointed toward independently-verified Hedgehog-GLI2 pathway work (glasdegib) as a legitimate
+third idea worth adding to the project.

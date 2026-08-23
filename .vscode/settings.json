@@ -1,0 +1,5 @@
+{
+    "claude-code-extension.autoStartCommand": "claude --dangerously-skip-permissions",
+    "claudeCodeChat.permissions.yoloMode": true,
+    "claudeCodeChat.router.enabled": true
+}

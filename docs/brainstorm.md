@@ -113,6 +113,32 @@ research problem with the toxicity issue not yet solved, and would be a much hig
 
 ---
 
+## Idea 3: Hedgehog–GLI2 Pathway (Dormancy/Self-Renewal Target)
+
+**Where this came from:** prompted by looking into Marc Malone (see
+[research/marc_malone.md](research/marc_malone.md)) and asking whether any of his ideas could help.
+His specific protocol isn't credible (n=1, self-administered, no peer review — full assessment in
+that file), but one of the pathway categories he references — Hedgehog-GLI2 signaling — is real,
+independently-established AML biology with an actual approved drug behind it. This idea is grounded
+in that independent evidence, not in his claims.
+
+**What it is:** Hedgehog is a signaling pathway (GLI2 is one of its downstream effectors) that helps
+keep LSCs in a dormant, self-renewing state — the exact "lingering, quiescent" behavior that lets
+LSCs hide from chemo (see [problem-definition.md](problem-definition.md)). Blocking the pathway
+pushes LSCs out of dormancy and can resensitize them to chemotherapy.
+
+**Precedent — already approved:** **glasdegib** (Daurismo), an SMO inhibitor that blocks Hedgehog
+signaling upstream of GLI2, was FDA-approved in 2018 in combination with low-dose cytarabine for AML
+patients unfit for intensive chemo.
+
+**Open question for our project:** glasdegib is currently used at diagnosis/induction, alongside
+chemo — not specifically tested against the post-remission, already-quiescent MRD-state LSCs this
+project is targeting. Whether Hedgehog blockade works the same way against *already-dormant*
+persister LSCs (vs. LSCs at diagnosis) is an open question worth checking in Phase 0 data, and a
+plausible third combination arm alongside CLL-1 + BCL-2.
+
+---
+
 ## Combination Idea: CLL-1 + BCL-2 Together
 
 Prompted by: "why don't people try CLL-1 and BCL-2/MCL-1 together?"
