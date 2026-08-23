@@ -56,6 +56,142 @@ both share the CXCR4-CXCL12 machinery, so it mobilizes and de-brakes both indisc
 solves the **access** problem, not the **selectivity** problem — whatever it's paired with still has
 to do the job of telling LSCs apart from normal cells.
 
+## What Plerixafor Is Actually Approved For
+
+It's worth being precise about plerixafor's real-world use, since it reframes how risky the drug
+actually is in practice — and where the risk specifically comes from.
+
+**FDA-approved use (since 2008):** given together with G-CSF (another mobilizing drug) to patients
+with **non-Hodgkin's lymphoma or multiple myeloma** who are about to undergo an **autologous stem
+cell transplant** — a procedure where doctors:
+
+1. **Harvest** the patient's own healthy stem cells from their blood (mobilized out of the marrow
+   with G-CSF ± plerixafor, then collected via apheresis).
+2. **Freeze** them for storage.
+3. Give the patient **very high-dose ("myeloablative") chemo/radiation** — a dose so aggressive it
+   also permanently destroys their bone marrow, which is otherwise fatal within days to weeks.
+4. **Thaw and reinfuse** the stored cells, which travel back to the marrow (via the same CXCR4-CXCL12
+   docking signal discussed above) and rebuild the patient's entire blood system — called
+   **engraftment**.
+
+This lets doctors use a far more aggressive, otherwise-lethal dose of cancer treatment, because
+there's a rescue plan to rebuild the blood system afterward.
+
+**Dosing pattern in the approved use — short and one-time:** up to 4 consecutive days, timed right
+before each collection session, not an ongoing therapy.
+
+**Is autologous transplant actually used for AML specifically? Mostly no.** Allogeneic transplant
+(donor cells) is standard of care for AML instead, and autologous is "rarely used." The reason is the
+**graft-versus-leukemia effect** — donor immune cells actively hunt down and kill residual leukemia
+cells post-transplant, an effect autologous transplant doesn't have. One exception: in **acute
+promyelocytic leukemia (APL)**, a specific AML subtype that responds very well to differentiation
+therapy (ATRA), autologous actually *outperforms* allogeneic in second remission (82.4% vs 64.3%
+two-year survival) — contamination risk is lower there because the disease responds so well to its
+own targeted drug.
+
+**Why this matters for our project's proposed use of plerixafor:** the approved use exposes cells to
+CXCR4 blockade briefly and once, before immediately collecting and freezing them. Our proposed use
+(see the Idea sections below, and the plerixafor+decitabine AML trial) would need **days 1–5 dosing,
+repeated across multiple monthly cycles** — a materially different, more sustained exposure pattern
+than what plerixafor is actually approved and safety-tested for. See the risk check below.
+
+## Real-World Application: Autograft Purging
+
+The harvest-and-freeze process above has a known failure mode directly relevant to this project:
+**graft contamination.** If the harvested/frozen product contains residual LSCs (since it's drawn
+from the patient's own blood, which may still harbor hidden leukemia), reinfusing it after the
+conditioning chemo doesn't just rebuild the blood system — it can re-seed the leukemia directly into
+a freshly wiped-clean marrow, contributing to relapse. This is a major reason allogeneic transplant
+became preferred for AML in the first place, rather than an edge case.
+
+**How it's currently handled:**
+
+- **Mostly avoided by not using autologous transplant for AML at all** — the main real-world
+  solution today.
+- **Ex vivo "purging"** — treating the harvested product in the lab before freezing, trying to kill
+  or remove contaminating cancer cells (chemo exposure, antibody-based separation, magnetic bead
+  sorting). Historically mixed results — reduced contamination without reliably improving survival,
+  so it fell out of routine use in many settings.
+- **Screening** — sensitive tests (flow cytometry, PCR) can check the harvested product for residual
+  disease markers before use.
+
+**Concrete near-term application for this project's ideas:** a genuinely LSC-selective agent — Idea 1
+(CLL-1 CAR-T/ADC/bispecific) or Idea 5 (differentiation therapy) in particular — could function as a
+substantially better *purging* tool than historical non-selective methods, potentially making
+autologous transplant viable for AML again by directly solving the contamination problem. This is a
+smaller, more tractable near-term use case than the project's main goal (a standalone post-remission
+therapy) and could be a useful earlier proof-of-concept for any target/modality chosen.
+
+## Risk Check: Oxidative Stress and Normal HSC Exhaustion
+
+An earlier version of the Idea 6 pairing below proposed using plerixafor-induced reoxygenation
+(moving LSCs from the low-oxygen niche into normal-oxygen blood) as a metabolic "primer" — on the
+assumption that this stress would hit LSCs harder than normal cells. **That assumption turned out to
+be backwards.**
+
+- **Hypoxia is protective for normal HSCs, not incidental.** Normal HSCs specifically reside in the
+  low-oxygen niche because higher oxygen exposure is known to *harm* them — it elevates ROS, which
+  activates a stress pathway (p38 MAPK/mTOR) that drives **HSC exhaustion**: reduced self-renewal
+  capacity after serial transplantation.
+- **Directly relevant to plerixafor specifically:** disrupting CXCR4 — exactly what plerixafor does —
+  has been shown to directly increase ROS in normal HSCs, triggering that same p38 pathway, DNA
+  double-strand breaks, and apoptosis.
+- **LSCs, meanwhile, tend to show oxidative *resistance*, not vulnerability** — one paper's title says
+  it directly: "Oxidative resistance of leukemic stem cells and oxidative damage to hematopoietic
+  stem cells under pro-oxidative therapy." Cancer cells often build up antioxidant defenses precisely
+  because they already run hot on baseline ROS from dysregulated metabolism.
+
+**Net effect:** pushing oxidative stress via mobilization would likely harm the normal HSCs we're
+trying to protect *more* than the LSCs we're trying to eliminate — the opposite of a selectivity
+mechanism. This is also probably why some researchers propose pairing CXCR4 antagonists **with
+antioxidants**, to protect against this exact mobilization-associated damage, rather than trying to
+exploit it.
+
+**How this reconciles with plerixafor being a safe, approved drug:** the ROS/exhaustion mechanism is
+real, but clinical safety data for the *approved, short-course* use (mild adverse events, no new
+safety concerns even in pediatric re-mobilization studies) suggests it doesn't translate into serious
+clinical harm over a brief few-day exposure. It becomes a much more open question under the
+**sustained, repeated dosing** our project's proposed combinations would need — a pattern plerixafor
+has not actually been safety-tested for.
+
+## Fixing the Selectivity Gap: Targeted CXCR4-Antagonist Delivery
+
+The risk check above and the cross-cutting caveat (Plerixafor solves access, not selectivity — see
+[challenges.md](challenges.md)) both point at the same underlying issue: **free, systemic plerixafor
+can't tell LSCs from normal HSCs.** But that's a property of giving it systemically, not a hard limit
+of the CXCR4-blockade mechanism itself — real precedent exists for making CXCR4-targeting selective.
+
+**Real precedent found:**
+
+- An **anti-CXCR4 antibody-drug conjugate** (antibody arm binds CXCR4, toxin payload attached) was
+  shown to selectively kill CXCR4-overexpressing cancer cells in solid tumors **while sparing normal
+  hematopoietic stem cells** — direct evidence this kind of selectivity is achievable on CXCR4 itself.
+- **MB1707**, currently in a Phase 1 human trial: a CXCR4-antagonist peptide conjugated to paclitaxel
+  — the CXCR4-binding piece acts as a homing device, delivering the kill payload specifically to
+  CXCR4-overexpressing cells.
+- A 2025 review explicitly names combining CXCR4-targeting with *other* stemness markers together
+  (e.g., our CLL-1) as the field's forward direction for precision and for handling heterogeneity.
+
+**Why this works despite CXCR4 being on both cell types — it's a matter of degree, not presence or
+absence.** CXCR4 overexpression is a well-established, quantified poor-prognosis biomarker in
+AML — patients with high CXCR4 expression have significantly worse survival (12.8 months) than
+low-expression patients (24.3 months), and CXCR4 expression level is itself proposed as a biomarker
+for selecting patients likely to respond to CXCR4 inhibitors. Higher-risk, more chemoresistant LSCs
+plausibly run measurably "hotter" on CXCR4 than baseline — the same expression gradient the ADC study
+above exploited to spare normal HSCs.
+
+**Two concrete design directions:**
+
+1. **CXCR4 as the homing beacon** (what MB1707 already does): a CXCR4-binding molecule delivers a
+   kill payload, exploiting LSCs' typically elevated CXCR4 density directly.
+2. **A different marker as the homing beacon, CXCR4-blockade as the payload** (this is this project's
+   own synthesis — no direct precedent found for this specific direction, flagged honestly as
+   speculative): use CLL-1 (Idea 1) as the targeting arm, and deliver the CXCR4-antagonist *effect*
+   only where it binds. Instead of free plerixafor evicting every CXCR4+ cell in the body, only cells
+   already flagged as LSCs get evicted. This would directly close the cross-cutting caveat rather than
+   just working around it — Plerixafor's mechanism would stop being access-only and start solving
+   selectivity too.
+
 ---
 
 ## + Idea 4 (Wake and Kill)
@@ -99,24 +235,28 @@ aimed specifically at the persister-silenced genes Phase 0 data would identify �
 off-target effects on the normal HSCs that get mobilized alongside LSCs (see the selectivity
 limitation above).
 
-## + Idea 6 (Metabolic Priming)
+## + Idea 6 (Metabolic Priming) — revised after the risk check above
 
-The hypoxic niche is itself already a metabolic regulator of LSC behavior. Moving a cell from the
-hypoxic endosteal niche into normoxic peripheral blood is itself a metabolic shock, potentially doing
-part of the "priming" work Idea 6 proposes to engineer deliberately.
+**An earlier version of this section proposed using plerixafor-induced reoxygenation (moving LSCs
+from the hypoxic niche into normoxic blood) as the metabolic "primer" itself.** The risk check above
+shows that assumption was backwards — normal HSCs are the ones known to be harmed by increased
+oxygen exposure (via ROS/p38-driven exhaustion), while LSCs tend to show oxidative *resistance*. That
+version of Idea 6 is retracted.
 
-**Proposed angle:** use plerixafor-induced reoxygenation as a first-stage primer, then layer a
-smaller, more targeted metabolic agent on top to complete the shift toward a BCL-2-dependent
-vulnerable state — potentially allowing a lower dose of the metabolic drug than would be needed
-alone, which matters given Idea 6's toxicity-threshold concerns (MCL-1/OXPHOS precedent).
+**Better-grounded replacement: ferritinophagy/ferroptosis, not reoxygenation.** Real, established
+research shows LSCs — specifically the *quiescent* subset, which is exactly this project's population
+of interest — have a genuine iron/lipid-metabolism vulnerability distinct from generic oxidative
+stress: elevated basal ROS, altered iron handling, and dependence on a pathway called ferritinophagy,
+making them exploitable via ferroptosis (an iron-dependent cell death pathway) in a way that's
+mechanistically different from — and better supported than — the retracted reoxygenation idea.
 
-**Caution — this is the combination most exposed to the selectivity limitation above.** Since
-plerixafor mobilizes normal HSCs too, and pushes them toward cycling as well, hitting the newly
-mobilized, newly-cycling population with a metabolic agent carries real risk of the same
-shared-toxicity failure mode that broke standalone MCL-1/OXPHOS approaches — unless the metabolic
-agent (or a co-administered agent) has strong LSC selectivity on its own. Pairing plerixafor with a
-selective agent (e.g., Idea 1's CLL-1 CAR-T) may be the safer combination in practice than pairing it
-with a broad metabolic hit.
+**Revised proposed angle:** pair plerixafor (eviction + wake, per Idea 4) with a ferroptosis-inducing
+agent targeting the ferritinophagy dependency specifically, rather than a generic OXPHOS/metabolic
+hit. This still needs the same caution as before — plerixafor doesn't add selectivity on its own (see
+the Fixing the Selectivity Gap section above) — but the *payload* itself now rests on a real LSC-vs
+-normal-cell biological difference (iron/lipid metabolism) rather than a disproven oxygen-tension
+mechanism, and pairing it with a targeted-delivery approach (see above) rather than free ferroptosis
+induction would address the selectivity gap more directly than the original version of this idea did.
 
 ## + Idea 7 (Drug Repurposing)
 
@@ -146,11 +286,30 @@ niche disruption.
   killing agent (e.g., CAR-T) rather than the slower decitabine it's been trialed with so far.
 - Work out realistic dosing/timing windows for the simplified plerixafor → kill sequence proposed
   under Idea 4.
-- Decide whether the Idea 6 pairing should be de-prioritized in favor of pairing plerixafor with a
-  more inherently selective agent (Idea 1 or 5), given its exposure to the selectivity limitation.
+- Test whether the sustained/repeated dosing this project's combinations need (vs. plerixafor's
+  approved short-course use) introduces the ROS/HSC-exhaustion harm flagged in the risk check —
+  plerixafor has not been safety-tested at that dosing pattern.
+- Design and test the targeted CXCR4-antagonist-delivery concept (CLL-1-guided eviction) — currently
+  a speculative synthesis with no direct precedent, unlike the CXCR4-as-homing-beacon direction (ADC,
+  MB1707), which has real precedent already.
+- Confirm whether persister-state LSCs specifically (not just LSCs generally) show the
+  ferritinophagy/ferroptosis vulnerability now proposed for the revised Idea 6.
+- Explore the autograft-purging application (Idea 1 or 5 as a purging agent) as a smaller, nearer-term
+  proof-of-concept separate from the project's main post-remission-therapy goal.
 
 ## Sources
 
 - [CXCR4 is required for the quiescence of primitive hematopoietic cells (J Exp Med)](https://dx.doi.org/10.1084/jem.20072513)
 - [Phase I trial of plerixafor combined with decitabine in newly diagnosed older AML patients (Haematologica)](https://haematologica.org/article/view/8552)
 - [CXCR4 Antagonists as Stem Cell Mobilizers and Therapy Sensitizers for AML and Glioblastoma](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7168055/)
+- [MOZOBIL (plerixafor) FDA label](https://www.accessdata.fda.gov/drugsatfda_docs/label/2017/022311s018lbl.pdf)
+- [Stem Cell Transplant for AML — American Cancer Society](https://www.cancer.org/cancer/types/acute-myeloid-leukemia/treating/bone-marrow-stem-cell-transplant.html)
+- [The Graft-Versus-Leukemia Effect in AML](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6877747/)
+- [Outcomes of Allogeneic HSCT in Adult AML: A Systematic Review](https://pmc.ncbi.nlm.nih.gov/articles/PMC12533790/)
+- [Oxidative stress and hypoxia in normal and leukemic stem cells](https://www.exphem.org/article/S0301-472X(16)30116-3/fulltext)
+- [CXCR4/CXCL12 axis counteracts HSC exhaustion through selective protection against oxidative stress](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5122894/)
+- [Oxidative resistance of leukemic stem cells and oxidative damage to HSCs under pro-oxidative therapy](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7184730/)
+- [Ferritinophagy is a Druggable Vulnerability of Quiescent Leukemic Stem Cells](https://www.biorxiv.org/content/10.1101/2023.12.18.572101.full.pdf)
+- [Optimal design, anti-tumour efficacy and tolerability of anti-CXCR4 antibody drug conjugates](https://www.nature.com/articles/s41598-019-38745-x)
+- [Phase 1 Study of MB1707 (Paclitaxel-Conjugated CXCR4 Antagonist)](https://clinicaltrials.gov/study/NCT05465590)
+- [CXCR4 is a prognostic marker in acute myelogenous leukemia](https://ashpublications.org/blood/article/109/2/786/23534/CXCR4-is-a-prognostic-marker-in-acute-myelogenous)
