@@ -83,3 +83,38 @@ combination — consistent with the heterogeneity problem already flagged in
 first, then a mouse model that's treated with induction chemo first to actually create a real
 persister population, then dosed with the combination — matching Phase 4/5 of the main plan doc
 rather than skipping straight to testing on untreated disease.
+
+## Part 3: Identifying the Strong-Holders (the Grip Score)
+
+Everything above assumes we can find the toughest cells in a sample. Here's how.
+
+**Step 1 — Score each cell on all four traits at once.** Use flow cytometry (a lab technique that
+tags each protein with a different colored fluorescent marker, then reads each individual cell's
+color signature one at a time) to measure, per cell: how much CXCR4 it carries, how much CD44 it
+carries, how active its Wnt signaling is, and whether Notch is silenced in it. Combine the four
+readings into one number per cell — a **Grip Score**.
+
+**Step 2 — Sort the sample by score.** High-Grip-Score cells are the predicted strong-holders —
+tightly anchored, self-renewal-heavy, likely to survive standard chemo. Low-score cells are more
+exposed and more likely to die to chemo anyway.
+
+**Step 3 — Prove the score actually predicts survival.** Run the chemo-selection dish experiment
+from Part 2, Step 1. Score cells *before* exposing them to chemo, then check whether the ones that
+survive are the ones that had high Grip Scores going in. If yes, the score is validated as a real
+predictor, not just a theory.
+
+**Step 4 — Once a cell is flagged, match the response to its specific profile:**
+
+- **Sever the grip, then kill with a different drug.** Cut both grappling hooks (targeted CXCR4
+  disruption + the Wnt inhibitor's CD44 effect) on flagged cells specifically, then hit with a
+  separate killer (BCL-2 inhibitor or CLL-1 CAR-T) once exposed.
+- **Kill directly.** For flagged cells where severing isn't worth the extra step, go straight to
+  whichever killer matches what's actually driving that cell's score (Wnt-heavy → Wnt inhibitor;
+  survival-signal-heavy → BCL-2 inhibitor).
+- **Cause them to mature instead.** For cells flagged specifically for silenced Notch, skip killing
+  and use Notch reactivation to push them toward finally maturing and retiring instead of forcing a
+  fight.
+
+The point of this step: right now, every idea in this project gets applied to all LSCs uniformly.
+The Grip Score flips that — identify which specific cells are actually the dangerous survivors
+first, then match the response to what that cell's own profile says it needs.
