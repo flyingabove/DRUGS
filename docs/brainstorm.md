@@ -3,6 +3,12 @@
 Informal running notes from the planning conversation, organized as one idea per section. See
 [aml-lsc-drug-discovery-plan.md](aml-lsc-drug-discovery-plan.md) for the structured plan this feeds into.
 
+Ideas tagged **[Malone-Inspired]** originated from reviewing Marc Malone's framework
+(see [research/marc_malone.md](research/marc_malone.md) for the full credibility assessment — his
+specific protocol/claims are not credible). Each such idea is grounded independently in established,
+peer-reviewed science, not in his claims — the tag marks where the idea came from, not its evidence
+basis.
+
 ## Background: The Problem
 
 Standard AML treatment gets most patients into remission, but a small population of chemo-resistant
@@ -113,7 +119,7 @@ research problem with the toxicity issue not yet solved, and would be a much hig
 
 ---
 
-## Idea 3: Hedgehog–GLI2 Pathway (Dormancy/Self-Renewal Target)
+## Idea 3: Hedgehog–GLI2 Pathway (Dormancy/Self-Renewal Target) [Malone-Inspired]
 
 **Where this came from:** prompted by looking into Marc Malone (see
 [research/marc_malone.md](research/marc_malone.md)) and asking whether any of his ideas could help.
@@ -161,7 +167,7 @@ and a small molecule against BCL-2, developed/tested in parallel.
 
 ---
 
-## Idea 4: "Wake and Kill" — Sequenced Dormancy-Breaking + Killing Hit
+## Idea 4: "Wake and Kill" — Sequenced Dormancy-Breaking + Killing Hit [Malone-Inspired]
 
 **Where this came from:** digging deeper into Marc Malone's framework (not his credibility, which is
 separately assessed in [research/marc_malone.md](research/marc_malone.md)) — specifically the pattern
@@ -186,7 +192,7 @@ work) we don't have yet.
 
 ---
 
-## Idea 5: Differentiation Therapy — Make LSCs "Grow Up" Instead of Killing Them
+## Idea 5: Differentiation Therapy — Make LSCs "Grow Up" Instead of Killing Them [Malone-Inspired]
 
 **Where this came from:** Malone's "reactivate a silenced gene to fix the cell" logic. His specific
 genes (ESR1, PGR — estrogen/progesterone receptors) are breast-cancer-specific and don't transfer to
@@ -214,7 +220,7 @@ work, comparing persister LSCs to both diagnosis LSCs and normal HSCs.
 
 ---
 
-## Idea 6: Metabolic "Priming" Instead of Metabolic Killing
+## Idea 6: Metabolic "Priming" Instead of Metabolic Killing [Malone-Inspired]
 
 **Where this came from:** Malone's metabolic axis claims (glycolysis/glutaminolysis shifts,
 "decoupling" PI3K-mTOR). As a standalone killing mechanism this class of approach has already failed
@@ -240,7 +246,7 @@ meaningfully sensitize LSCs.
 
 ---
 
-## Idea 7: Drug Repurposing — Re-Engineered Analogs of Approved Drugs
+## Idea 7: Drug Repurposing — Re-Engineered Analogs of Approved Drugs [Malone-Inspired]
 
 **Where this came from:** the one part of Malone's framework that's a legitimate R&D strategy
 independent of his credibility — his claimed delivery method via "re-engineered analog formulations
