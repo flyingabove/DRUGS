@@ -1,105 +1,85 @@
-# Did Surviving Chemo Make Persister Cells More Wnt-Dependent?
+# Wnt/Notch/Grip Hypothesis — Logic Chain and Plan
 
-A dedicated brainstorm on one specific open question: whether the small population of LSCs that
-survives chemotherapy is *more* dependent on Wnt signaling than LSCs were at diagnosis — and if so,
-what to do about it. See [brainstorm-topics.md](brainstorm-topics.md) (Idea 9: Wnt/β-Catenin
-Blockade) for background on the pathway itself, and
-[problem-definition.md](problem-definition.md) for the core project problem.
+## Part 1: The Logic Chain — How Chemo Selects for the Strong Ones
 
-## The Question, in Plain Terms
+**Step 1 — At diagnosis, the leukemia isn't one uniform enemy, it's a mixed crowd.** A patient's AML
+at diagnosis contains many LSCs, and they're not identical clones. Some grip the marrow tighter than
+others (via CXCR4 and CD44 — two separate "grappling hooks," covered below). Some have stronger
+internal self-renewal machinery (Wnt) than others. Some have more thoroughly shut down their
+"time to mature" switch (Notch) than others. It's a spectrum, not a single type.
 
-**Wnt signaling** is one of the body's "keep dividing, stay young, don't mature yet" switches — see
-[brainstorm-topics.md](brainstorm-topics.md) for the full mechanism. LSCs lean on it to keep
-self-renewing instead of maturing into harmless, finished blood cells.
+**Step 2 — What each of these proteins actually does:**
 
-Chemotherapy doesn't kill leukemia cells randomly. It disproportionately kills actively-dividing
-cells and spares cells with strong internal survival/self-renewal machinery. **If having powerful
-Wnt-driven self-renewal happens to be one of the traits that helps a cell weather chemo, then the
-small population that survives treatment might not be a random, smaller-scale copy of the original
-leukemia — it could be specifically enriched for cells that leaned hardest on Wnt to begin with.**
+- **CXCR4** — a dock on the LSC's surface that grabs a signal thrown by the marrow, physically
+  anchoring the cell in its hiding spot and sending it a "stay quiet, don't divide" signal.
+- **CD44** — a second, separate dock doing a similar anchoring job, independent of CXCR4. Two hooks,
+  not one.
+- **Wnt** — an internal switch that tells the cell "keep copying yourself, don't mature yet." The
+  engine behind self-renewal.
+- **Notch** — normally the opposite kind of switch, "okay, stop copying yourself and grow into a
+  finished cell." In AML specifically, this switch has been silenced — so a cell that's better at
+  keeping it silenced stays stuck in dangerous, immature, self-copying mode longer.
 
-This is a **selection pressure / survivorship bias** effect, the same underlying logic as antibiotic
-resistance: treatment doesn't create the trait, it filters for cells that already had it, so the
-survivors look different from the starting population as a group — not because anything new evolved,
-but because the vulnerable members of the group are gone.
+**Step 3 — Chemo doesn't kill cells randomly, it kills a specific type.** Most chemo drugs work by
+damaging the machinery a cell uses to copy its DNA — which only matters while a cell is actively
+dividing. A cell that's quiet (not dividing) or well-protected is much harder for chemo to reach or
+kill.
 
-**Why this hasn't already been answered:** every existing study measuring Wnt-dependence in LSCs was
-done on cells *at diagnosis*, before any treatment — the full original population, not the specific
-survivors. Nobody has directly compared Wnt-pathway activity between diagnosis-stage LSCs and the
-post-treatment persister cells from the same patients.
+**Step 4 — This turns chemo into a filter, not an eraser.** Cells that happen to grip the marrow
+tighter (more CXCR4/CD44), lean harder on self-renewal (more Wnt), or have Notch more completely
+shut off are, on average, better protected from this specific kind of attack. Chemo doesn't "choose"
+these cells on purpose — it just kills the weaker-gripping, more exposed, more Notch-active cells
+first, leaving the toughest ones standing. It's natural selection compressed into a few weeks instead
+of generations.
 
-## Why It Matters
+**Step 5 — The result: the survivors aren't a smaller copy of the original leukemia, they're a
+skewed sample.** The population left after treatment (what causes MRD and eventual relapse) is
+disproportionately made up of the tightest-gripping, most Wnt-addicted, most Notch-silenced cells —
+because those are exactly the traits that got them through.
 
-If confirmed, this would be a meaningful upgrade to Idea 9 (Wnt/β-Catenin Blockade): a Wnt-blocking
-drug could work *better* against the exact population this whole project cares about (post-remission
-persisters) than existing diagnosis-stage data would predict, because that population would already
-be pre-filtered toward cells that specifically need Wnt to survive. It would also strengthen the
-project's overall target-prioritization case — Wnt already has the cleanest selectivity story found
-so far (LSC-required, apparently not needed by normal adult HSCs); persister-specific enrichment
-would make it stronger still.
+**Step 6 — It might be worse than pure filtering — the survivors' own machinery may get cranked up
+further.** Real evidence (found in related cancers) shows chemo stress itself can actively push Wnt
+signaling higher in the cells that survive it — not just filtering for cells that already had high
+Wnt, but turning the dial up further as a stress response. Two effects stacking: the weak ones die
+(selection), and the ones that live come out even stronger on these exact traits (induction).
 
-## How to Test This
+**Step 7 — Why this matters:** if the persister population really is disproportionately dependent on
+tight CXCR4/CD44 grip, high Wnt, and silenced Notch — more so than the original diagnosis-time
+population — then a therapy built to strip away exactly those traits should hit this specific
+population harder than generic diagnosis-stage data would predict. We'd be targeting the precise
+thing that made them survivors in the first place.
 
-### Direct approach — needs data we don't have yet
+## Part 2: What We Propose
 
-Compare Wnt-pathway activity (Wnt target gene expression, beta-catenin protein levels) between
-diagnosis-stage LSCs and true post-treatment/MRD-state persister LSCs, from the same patients. This
-runs into the same missing-data problem flagged throughout this project (main plan-doc Decision #3):
-true MRD-state cells are rare and hard to isolate in enough quantity for this kind of comparison.
+**Step 1 — Confirm the hypothesis first.** Test whether relapse/persister cells actually show
+tighter CXCR4/CD44 grip, higher Wnt activity, and more silenced Notch than diagnosis-time cells from
+the same patients — via a relapse-sample proxy comparison (relapse descends from the persister
+population and is far easier to sample than true MRD-state cells) and a dish-based chemo-selection
+experiment (expose cells to chemo, check whether the survivors were the high-scoring cells before
+treatment).
 
-### Practical proxy — achievable with more available data
+**Step 2 — If confirmed, build a combination that attacks all three traits at once, not one at a
+time:**
 
-Compare diagnosis-stage LSCs to **relapsed-disease** LSCs from the same patient. Relapsed disease
-descends directly from the persister cells that survived treatment and regrew, and relapse samples
-are far more available in existing biobanks than true low-abundance MRD-state samples (relapse
-produces a full new tumor burden that's easy to biopsy; residual disease right after remission is a
-handful of hard-to-find cells). If relapsed LSCs show higher Wnt-pathway activity than the original
-diagnosis LSCs from the same patient, that's real, if indirect, supporting evidence.
+- **Cut both grappling hooks** — a CXCR4-blocking effect targeted specifically at LSCs (not free,
+  systemic Plerixafor, which would also hit normal HSCs' CXCR4 grip) plus a Wnt inhibitor, which
+  also weakens CD44 as a side effect. Together, the cell can't hang on either rope.
+- **Kill the self-renewal engine** — the same Wnt inhibitor also removes the "keep copying yourself"
+  signal directly.
+- **Force the "grow up" switch back on** — a Notch-reactivating agent, pushing the cell toward
+  finally maturing instead of staying stuck.
 
-### Controlled experimental approach — doesn't need rare human samples at all
+**Step 3 — Time it deliberately.** Give this as post-remission consolidation therapy (matching this
+project's whole framing — cleaning up what's left after standard treatment), and separately consider
+giving the Wnt component during the first round of chemo, to prevent the tough-survivor population
+from ever being enriched in the first place.
 
-Take LSCs in a lab dish (or a mouse model), expose them to chemotherapy to create an artificial
-"surviving population," then directly measure whether the survivors show elevated Wnt-pathway
-activity compared to the pre-treatment population. This tests the selection-pressure mechanism
-directly and doesn't depend on sourcing scarce human MRD samples first.
+**Step 4 — Use it as a biomarker-selected therapy, not universal.** Test a patient's residual disease
+for how tightly-gripped and Wnt-dependent it actually is before committing to this specific
+combination — consistent with the heterogeneity problem already flagged in
+[challenges.md](challenges.md).
 
-A more precise version: use a live **Wnt-activity reporter** (a molecular tool that lights up or
-signals in real time based on how active Wnt signaling is inside a given cell) combined with chemo
-exposure in a dish, to directly watch whether high-Wnt cells are the ones preferentially surviving as
-the population gets treated — turning the hypothesis into something observable in real time rather
-than inferred after the fact.
-
-## What to Do If Confirmed
-
-- **Position a Wnt inhibitor specifically as post-remission/consolidation therapy** — matches this
-  project's whole framing (a therapy given after standard treatment, aimed at what's left), rather
-  than as a frontline drug competing with existing induction regimens.
-- **Consider giving it *during* induction chemo, not only after** — if chemo itself is what enriches
-  for Wnt-dependent survivors, adding a Wnt blocker alongside the first round of chemo could kill off
-  the very cells that would otherwise become the resistant persister population, preventing the
-  enrichment from happening in the first place rather than reacting to it afterward.
-- **Use Wnt-pathway activity as a biomarker for patient/consolidation-therapy selection** — test a
-  patient's residual disease for Wnt activity to decide whether this specific therapy is a good fit
-  for them (see the heterogeneity challenge in [challenges.md](challenges.md) — this is the kind of
-  biomarker-selection approach that challenge points toward).
-- **Combine with other ideas** — e.g., Idea 8 (adhesion-axis disruption: Plerixafor + a Wnt inhibitor
-  hitting both CXCR4 and CD44), since a Wnt inhibitor may already be doing double duty as both a
-  self-renewal blocker and a niche-adhesion disruptor.
-
-## What to Do If Not Confirmed
-
-Wnt blockade still stands on its own as a reasonable strategy based on existing diagnosis-stage
-data — the "LSCs need it, normal HSCs largely don't" selectivity story doesn't depend on the
-persister-enrichment hypothesis being true. Without confirmation, though, we'd need to look
-elsewhere for what specifically distinguishes persister cells from the general LSC population, since
-the assumption that diagnosis-stage biology simply transfers to the persister state would need to be
-checked pathway-by-pathway rather than assumed.
-
-## Open Threads
-
-- Identify which existing biobanks/datasets have matched diagnosis-vs-relapse samples suitable for
-  the proxy comparison above.
-- Design the chemo-selection dish experiment (agent, dose, timepoint) needed for the controlled
-  approach.
-- Check whether a validated Wnt-activity reporter system already exists for primary AML cells, or
-  would need to be built.
+**Step 5 — Validate in the same staged order as the rest of the project's plan.** Dish experiments
+first, then a mouse model that's treated with induction chemo first to actually create a real
+persister population, then dosed with the combination — matching Phase 4/5 of the main plan doc
+rather than skipping straight to testing on untreated disease.
