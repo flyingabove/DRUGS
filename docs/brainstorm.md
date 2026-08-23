@@ -161,6 +161,111 @@ and a small molecule against BCL-2, developed/tested in parallel.
 
 ---
 
+## Idea 4: "Wake and Kill" — Sequenced Dormancy-Breaking + Killing Hit
+
+**Where this came from:** digging deeper into Marc Malone's framework (not his credibility, which is
+separately assessed in [research/marc_malone.md](research/marc_malone.md)) — specifically the pattern
+of treating epigenetic reactivation and pathway suppression as happening together, in a coordinated
+way, rather than as isolated single-drug interventions.
+
+**What it is:** quiescent (dormant) LSCs are largely invisible to most therapies because they aren't
+actively dividing — most chemo and many targeted drugs work by disrupting active cell division.
+Instead of using a dormancy-breaking drug (e.g., **glasdegib**, from Idea 3) as a standalone therapy,
+deliberately sequence it as a **first-strike "wake-up" agent** — forcing dormant persister LSCs back
+into active cell cycle — immediately followed by a **second-strike killing agent** (a BCL-2 inhibitor
+from Idea 2, or CLL-1 CAR-T from Idea 1) timed to hit them while briefly vulnerable and dividing.
+
+**What's actually new here:** Hedgehog blockade and BCL-2/CLL-1 targeting already exist and are
+already studied in combination — but as roughly simultaneous or parallel regimens, not as a
+deliberately **timed, two-step choreography** aimed specifically at forcing the dormant MRD-state
+population into a killable window. That sequencing/timing structure is the differentiated part.
+
+**Open question:** how long after the "wake-up" dose does the killing-window vulnerability last, and
+does timing this against real persister LSC cell-cycle kinetics require new data (Phase 0/Phase 4
+work) we don't have yet.
+
+---
+
+## Idea 5: Differentiation Therapy — Make LSCs "Grow Up" Instead of Killing Them
+
+**Where this came from:** Malone's "reactivate a silenced gene to fix the cell" logic. His specific
+genes (ESR1, PGR — estrogen/progesterone receptors) are breast-cancer-specific and don't transfer to
+AML. But the pattern — restoring a silenced gene to correct cell behavior rather than killing the
+cell outright — maps onto a real, already-established AML concept: **differentiation therapy**.
+Notably, his mention of **RARB** (a retinoic acid receptor) is mechanistically adjacent to
+**ATRA (all-trans retinoic acid)**, which already cures a related leukemia subtype (APL) by forcing
+leukemic cells to mature into normal, harmless blood cells instead of killing them.
+
+**What it is:** rather than trying to kill post-treatment LSCs directly (which risks killing normal
+HSCs too, since they closely resemble each other — the core problem from
+[problem-definition.md](problem-definition.md)), identify which specific "stemness-maintaining"
+genes are epigenetically silenced in the *persister* LSC state, then use existing epigenetic drugs
+(HDAC/DNMT inhibitors — the same drug class behind azacitidine) to force those genes back on. This
+pushes LSCs to differentiate into mature, functionally harmless cells rather than requiring the drug
+to distinguish and selectively kill them.
+
+**Why this sidesteps the hardest problem in the project:** it doesn't need a selectivity window
+between LSC-killing and HSC-killing at all — it doesn't kill anything. It removes "stemness" instead,
+which is the property that makes the cell dangerous in the first place.
+
+**Open question:** whether the specific silenced genes driving *persister-state* dormancy (post
+chemo) are known/identifiable yet — this would need to come out of Phase 0 differential expression
+work, comparing persister LSCs to both diagnosis LSCs and normal HSCs.
+
+---
+
+## Idea 6: Metabolic "Priming" Instead of Metabolic Killing
+
+**Where this came from:** Malone's metabolic axis claims (glycolysis/glutaminolysis shifts,
+"decoupling" PI3K-mTOR). As a standalone killing mechanism this class of approach has already failed
+in real trials — OXPHOS inhibitors have shown narrow therapeutic windows (see plan-doc Section 7
+risks). The useful pattern isn't "block metabolism to kill," it's using a metabolic hit as a setup
+move for something else.
+
+**What it is:** use a **low, sub-lethal dose** of a metabolic modulator not to kill LSCs directly, but
+to push their metabolism into a more fragile, BCL-2-dependent state right before hitting them with a
+BCL-2 inhibitor (venetoclax or a next-gen equivalent from Idea 2) — a metabolic **primer**, not a
+weapon in its own right.
+
+**Why this isn't pure speculation:** this is actually part of *why* venetoclax + azacitidine already
+works clinically — azacitidine's epigenetic effects also shift LSC metabolism toward OXPHOS
+dependency, priming cells for BCL-2 blockade. The creative step here is treating that priming effect
+as the deliberate design goal of the first drug, rather than a side effect, and asking whether a
+purpose-built low-dose metabolic primer (timed and dosed specifically for priming, not killing) could
+outperform azacitidine's incidental version of the same effect.
+
+**Open question:** whether a metabolic primer could be dosed low enough to avoid the cardiac/toxicity
+issues that killed standalone OXPHOS/MCL-1 approaches (Idea 2), while still being high enough to
+meaningfully sensitize LSCs.
+
+---
+
+## Idea 7: Drug Repurposing — Re-Engineered Analogs of Approved Drugs
+
+**Where this came from:** the one part of Malone's framework that's a legitimate R&D strategy
+independent of his credibility — his claimed delivery method via "re-engineered analog formulations
+of existing FDA-approved compounds." This is a real, established field (drug repurposing/
+repositioning), not something he invented.
+
+**What it is:** instead of (or alongside) generative AI designing brand-new molecules from scratch
+against CLL-1/BCL-2/Hedgehog, constrain the generative search specifically to **analogs of drugs
+already approved for other conditions**. The generative model proposes structural variants of
+existing, human-safety-tested compounds, re-optimized to hit our chosen LSC targets, instead of
+exploring the full unconstrained chemical space.
+
+**Why this matters practically:** it's a much faster, cheaper, lower-risk path than de novo design,
+because an analog of an already-approved drug inherits a substantial amount of existing human safety
+data — potentially shrinking the path from Phase 3 (virtual screening) to Phase 4 (in vitro) in the
+main plan significantly, since toxicity/ADMET risk is partially de-risked before synthesis even
+starts.
+
+**How this would actually plug into the main plan:** as an alternate or parallel track within Phase 2
+(Generative Candidate Design) — run the generative model with an added constraint/reward term for
+structural similarity to known-approved compounds, rather than (or in addition to) the unconstrained
+version described there.
+
+---
+
 ## Biology Primer (reference)
 
 - **Protein** — a molecule made of a chain of amino acids that folds into a specific 3D shape; that
@@ -188,3 +293,11 @@ and a small molecule against BCL-2, developed/tested in parallel.
   different design problem than the small-molecule/docking pipeline in the main plan.
 - Still need Decision #3 from the main plan: which post-treatment/MRD dataset anchors the
   "persister" biology.
+- Idea 4 (wake and kill): need real persister-LSC cell-cycle kinetics data to design the timing
+  window between the wake-up and killing doses.
+- Idea 5 (differentiation therapy): need Phase 0 differential expression to identify which specific
+  stemness-maintaining genes are epigenetically silenced in the persister state.
+- Idea 6 (metabolic priming): need to check whether a sub-lethal priming dose can be found that
+  avoids the toxicity thresholds that broke standalone MCL-1/OXPHOS approaches.
+- Idea 7 (repurposed analogs): decide whether this becomes the primary Phase 2 strategy or a parallel
+  track alongside unconstrained de novo generative design.
