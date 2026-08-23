@@ -79,7 +79,7 @@ scientific evidence question.
 fabricated — he's using accurate vocabulary for real active research areas:
 
 - **Hedgehog-GLI2 signaling** — real AML LSC dormancy/self-renewal pathway, already has an FDA-approved
-  drug (glasdegib). This became [Idea 3](../brainstorm.md#idea-3-hedgehoggli2-pathway-dormancyself-renewal-target)
+  drug (glasdegib). This became [Idea 3](../brainstorm-topics.md#idea-3-hedgehoggli2-pathway-dormancyself-renewal-target)
   in the brainstorm doc.
 - **Epigenetic silencing/reactivation** — already the mechanism behind azacitidine/decitabine, already
   part of standard AML care (see brainstorm Idea 2 / combination section).

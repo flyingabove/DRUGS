@@ -4,7 +4,7 @@ Dedicated doc for what's actually working against us — the general challenges 
 challenges specific to our ideas, and a brainstorm on using **Plerixafor** (bone marrow niche
 disruption) alongside the four Malone-inspired ideas. See
 [problem-definition.md](problem-definition.md) for the core problem statement and
-[brainstorm.md](brainstorm.md) for the full idea list this responds to.
+[brainstorm-topics.md](brainstorm-topics.md) for the full idea list this responds to.
 
 ## General Challenges to the Problem
 

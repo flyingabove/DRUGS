@@ -50,5 +50,5 @@ cells.
 
 - [aml-lsc-drug-discovery-plan.md](aml-lsc-drug-discovery-plan.md) — the structured, phase-by-phase
   execution plan.
-- [brainstorm.md](brainstorm.md) — informal notes on candidate ideas (CLL-1, BCL-2/MCL-1,
+- [brainstorm-topics.md](brainstorm-topics.md) — informal notes on candidate ideas (CLL-1, BCL-2/MCL-1,
   Hedgehog-GLI2, combination strategies).
