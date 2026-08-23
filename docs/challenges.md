@@ -55,18 +55,6 @@ project keeps landing on *combinations* rather than a single silver-bullet drug.
   needs a companion biomarker test to select which patients it applies to, rather than being
   universal.
 
-### 5. The missing data gap — we haven't confirmed any of this in the actual population we care about
-
-- **In plain terms:** this whole project is about *post-treatment, lingering* LSCs — the ones that
-  survive remission and cause relapse. Almost everything we know about LSC biology (CLL-1 expression,
-  which genes are silenced, Hedgehog dependence) comes from studies of LSCs *at diagnosis*, not from
-  the specific persister cells left behind after treatment.
-- **Why it's this hard:** paired diagnosis-vs-post-treatment-residual-disease data, from the same
-  patients, is scarce. Without it we're assuming diagnosis-stage LSC biology transfers to the
-  persister state — a reasonable starting assumption, but an unconfirmed one.
-- **Status:** open, and blocking. This is plan-doc Decision #3, and nearly every other open question
-  in this project traces back to it.
-
 ## Cross-Cutting Caveat: Solving Access Doesn't Solve Selectivity
 
 This is easy to miss, so it gets its own section: **Plerixafor mobilizes normal HSCs exactly as
@@ -90,21 +78,21 @@ which inherits the same shared-toxicity risk that already broke MCL-1 inhibitors
 
 ✓ = solves it directly · ~ = partially / conditionally · ✗ = does not solve it (open or inherited)
 
-| Idea | 1. Selectivity | 2. Access | 3. Dormancy | 4. Heterogeneity | 5. Confirmed in persister state |
-|---|---|---|---|---|---|
-| 1: CLL-1 | ~ | ~ (CAR-T can actively migrate to the niche) | ~ (immune killing doesn't require the cell to be dividing) | ~ (only patients with CLL-1+ LSCs) | ✗ |
-| 2: BCL-2/MCL-1 | ~ (BCL-2 safer than MCL-1, still imperfect) | ✗ | ~ (BCL-2 blockade doesn't require active division either) | ~ | ✗ |
-| 3: Hedgehog-GLI2 | ✗ (shared with normal hematopoiesis) | ✗ | ✓ (this is its whole mechanism) | ✗ | ✗ |
-| 4: Wake and Kill | ✗ (inherited from whichever killer is paired) | ~ | ✓ | ✗ | ✗ |
-| 5: Differentiation Therapy | ~ (sidesteps the need to kill at all, but risks normal dormant HSCs too) | ✗ | ~ | ✗ | ✗ |
-| 6: Metabolic Priming | ✗ (most exposed idea — see caveat above) | ✗ | ~ | ✗ | ✗ |
-| 7: Drug Repurposing | ✗ (inherits whatever the underlying target has) | ✗ | ✗ | ✗ | ✗ |
-| Plerixafor / niche disruption | ✗ (see caveat above) | ✓ | ~ | ✗ | ✗ |
+| Idea | 1. Selectivity | 2. Access | 3. Dormancy | 4. Heterogeneity |
+|---|---|---|---|---|
+| 1: CLL-1 | ~ | ~ (CAR-T can actively migrate to the niche) | ~ (immune killing doesn't require the cell to be dividing) | ~ (only patients with CLL-1+ LSCs) |
+| 2: BCL-2/MCL-1 | ~ (BCL-2 safer than MCL-1, still imperfect) | ✗ | ~ (BCL-2 blockade doesn't require active division either) | ~ |
+| 3: Hedgehog-GLI2 | ✗ (shared with normal hematopoiesis) | ✗ | ✓ (this is its whole mechanism) | ✗ |
+| 4: Wake and Kill | ✗ (inherited from whichever killer is paired) | ~ | ✓ | ✗ |
+| 5: Differentiation Therapy | ~ (sidesteps the need to kill at all, but risks normal dormant HSCs too) | ✗ | ~ | ✗ |
+| 6: Metabolic Priming | ✗ (most exposed idea — see caveat above) | ✗ | ~ | ✗ |
+| 7: Drug Repurposing | ✗ (inherits whatever the underlying target has) | ✗ | ✗ | ✗ |
+| Plerixafor / niche disruption | ✗ (see caveat above) | ✓ | ~ | ✗ |
 
-**Reading this table honestly: nothing solves everything, and nothing except the missing-data gap
-(#5) is fully unaddressed by every single idea.** That last column being all ✗ is the clearest
-argument for why sourcing the post-treatment/MRD dataset is the most urgent next step — every other
-gap in this table has at least one idea partially covering it; that one doesn't.
+**Reading this table honestly: nothing solves everything.** Challenge #4 (heterogeneity) is the
+column with the least coverage — every idea is at best partial there, since each target only applies
+to patients whose LSCs actually depend on it. That's the strongest argument for treating the eventual
+therapy as biomarker-selected rather than universal.
 
 ## Per-Idea Challenge Recap (short form)
 
