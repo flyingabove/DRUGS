@@ -272,6 +272,39 @@ version described there.
 
 ---
 
+## Idea 8: Two-Stage Identification — Track, Then Map [Malone-Inspired]
+
+From Malone's mutation-burden claims (real technique: ctDNA/VAF tracking, already clinical standard
+for AML MRD) + his "SIN3-HDAC repressor release" claim (real technique: ChIP/CUT&Tag, maps where a
+repressor complex sits on the genome).
+
+**Stage 1 — track:** serial blood draws, watch which clone's mutation VAF survives/regrows after
+treatment. Empirical — finds *who* survived without guessing the mechanism.
+
+**Stage 2 — map:** ChIP/CUT&Tag on that specific clone, find which genes are epigenetically locked
+shut. Finds *why* it's resistant.
+
+Better than a fixed marker panel (CXCR4/CD44/Wnt/Notch) since it doesn't assume the mechanism in
+advance — works per-patient, addresses heterogeneity (Challenge #4). Both techniques are real and
+established; combining them this way for AML persister ID is this project's own synthesis, not
+precedented.
+
+## Idea 9: Mark, Don't Kill — Flag Strong-Grippers for Immune Attack
+
+Instead of a toxin or engineered killer, use a **naked CLL-1 antibody** (no payload) — antibody
+coating alone flags a cell for immune destruction via ADCC/ADCP (immune cells naturally attack
+antibody-coated targets). Combine with **targeted CD47 blockade** (removes the "don't eat me" signal
+that stops macrophages from attacking) delivered only to CLL-1+ cells — free/systemic CD47 blockade
+already causes red blood cell and platelet toxicity, so this must ride the same CLL-1-gated delivery
+used elsewhere in this doc.
+
+Also covers weaken-grip (sever CXCR4/CD44) and force-maturation (Notch reactivation) as alternate
+"don't kill directly" options — see [wnt-persister-hypothesis.md](wnt-persister-hypothesis.md) Part 3.
+
+**Hard constraint on all of this:** any payload must be CLL-1-gated. Free/systemic delivery of any
+of these effects risks maturing or destroying normal HSCs too — which is fatal (bone marrow failure,
+no blood cell reserve left). Not optional.
+
 ## Biology Primer (reference)
 
 - **Protein** — a molecule made of a chain of amino acids that folds into a specific 3D shape; that
