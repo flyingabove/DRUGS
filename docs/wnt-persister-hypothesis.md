@@ -132,3 +132,24 @@ first, then match the response to what that cell's own profile says it needs.
 Matches the selection hypothesis: each failed round leaves tougher survivors. Caveat: other factors
 (TP53 mutations, complex karyotype, secondary AML) also predict both induction failure and poor
 survival, so this isn't proof of the specific grip/Wnt mechanism — just supportive population data.
+
+## Part 4: Not Killing the Healthy HSCs
+
+**The question:** we want to mark the strong-grippers as suspicious for immune attack, weaken their
+grip, or force them to mature — but any of these effects given free/systemic would hit normal HSCs
+too. Maturing or destroying all normal HSCs is fatal (bone marrow failure — no stem reserve left to
+replenish blood). So how do we do it without that?
+
+### Option Class A: Make the drug selective
+
+- **A1. Single gate (CLL-1)** — payload rides a CLL-1 antibody; normal HSCs are CLL-1-negative so
+  they never see it. Simplest, but relies entirely on one marker being clean.
+- **A2. AND-gate** — payload fires only if *two* markers are present (CLL-1 AND CD123, or CLL-1 AND
+  high CXCR4). Real: split/logic-gated CAR designs. Tighter than single-marker.
+- **A3. NOT-gate (inhibitory receptor)** — attack unless an HSC-specific marker is seen, then abort.
+  Protects by veto rather than by targeting.
+- **A4. Masked antibody** — antibody wears a blocking peptide "mask" cleaved only by proteases in the
+  leukemic niche. Inert everywhere else.
+
+Other option classes (make healthy cells invulnerable; move them out of the line of fire) are
+tracked in [brainstorm-topics.md](brainstorm-topics.md).
