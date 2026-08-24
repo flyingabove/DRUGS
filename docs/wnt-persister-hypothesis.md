@@ -118,3 +118,17 @@ predictor, not just a theory.
 The point of this step: right now, every idea in this project gets applied to all LSCs uniformly.
 The Grip Score flips that — identify which specific cells are actually the dangerous survivors
 first, then match the response to what that cell's own profile says it needs.
+
+## Real-World Support
+
+5-year outcomes by cycles needed to reach remission:
+
+| Cycles to CR | 5yr LFS | 5yr OS | 5yr Relapse |
+|---|---|---|---|
+| 1 | 41.7% | 53.3% | 52.3% |
+| 2 | 26.6% | 36.2% | 67.2% |
+| Never (primary refractory) | — | ~8-9% | — |
+
+Matches the selection hypothesis: each failed round leaves tougher survivors. Caveat: other factors
+(TP53 mutations, complex karyotype, secondary AML) also predict both induction failure and poor
+survival, so this isn't proof of the specific grip/Wnt mechanism — just supportive population data.
