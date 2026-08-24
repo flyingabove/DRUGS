@@ -3,8 +3,8 @@
 Two fundamentally different strategies for eliminating lingering LSCs:
 
 1. **Cure in place** — kill/weaken/mature LSCs inside the patient while sparing normal HSCs. Requires
-   a selectivity window. Everything in [brainstorm-topics.md](brainstorm-topics.md),
-   [challenges.md](challenges.md), and [wnt-persister-hypothesis.md](wnt-persister-hypothesis.md)
+   a selectivity window. Everything in [brainstorm-topics.md](../brainstorm-topics.md),
+   [challenges.md](../challenges.md), and [wnt-persister-hypothesis.md](../wnt-persister-hypothesis.md)
    is this strategy.
 2. **Nuke everything and replace** — stop trying to be selective. Wipe out all stem cells, then
    rebuild the blood system from a clean, engineered graft. This doc.
@@ -40,7 +40,7 @@ wrong — it's physical separation, not molecular discrimination.
 - **Allogeneic (donor cells)** — structurally guaranteed clean. A donor has no patient LSCs. This is
   why the trem-cel trial is allogeneic.
 - **Autologous (patient's own cells)** — dangerous. If LSCs contaminate the harvest (see the graft
-  contamination problem in [plerixafor-combination-brainstorm.md](plerixafor-combination-brainstorm.md)),
+  contamination problem in [plerixafor-combination-brainstorm.md](../plerixafor-combination-brainstorm.md)),
   **you edit and shield the cancer too** — permanently immunizing the leukemia against your own
   therapy. Worse than not treating.
 - **In vivo editing (lipid nanoparticle-delivered)** — being explored, but editing inside the patient
