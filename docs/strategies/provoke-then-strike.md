@@ -76,6 +76,57 @@ from chemo-induced apoptosis when co-cultured with stroma.
 
 Chemo is the weaker lever. Use it as a secondary/combination provocation, not the primary one.
 
+**Note on dosing:** the goal at this step is **signal, not kill.** You need enough stress to trigger
+the upregulation response, not enough to cause cytotoxic damage — a much lower dose than therapeutic
+chemo. That makes HSC toxicity from the provocation step far more manageable than "give chemo"
+implies.
+
+## Will This Kill Too Many Normal HSCs?
+
+### The provocation step is unusually favorable
+
+Stacking the hypoxia findings gives a rare alignment. Under HIF stabilization:
+
+- **Normal HSCs:** CXCR4 goes *down* (less visible to the drug) **and** they sit in their protected,
+  low-ROS, quiescent state — hypoxia is protective for normal HSCs, not harmful (mice at 10% O₂ show
+  *better* HSC function than at normal oxygen).
+- **LSCs:** CXCR4 stays *up* — visible and targetable.
+
+Both effects push the same direction. The lever that widens targeting separation is also the one
+that shelters the cells we're trying to preserve.
+
+**The risk that doesn't go away:** HIF-1α also drives pro-survival and stemness programs in cancer.
+This could strengthen the leukemia while illuminating it. Still the single biggest unknown in this
+strategy.
+
+### The dual binder: separate the gating job from the killing job
+
+Using **both hooks (CXCR4 + CD44) as the gate** is weaker than it looks.
+
+An AND-gate's safety is multiplicative *only if the two signals are independent*. If each threshold
+alone spares ~95% of normal HSCs, requiring both could spare ~99.75% — but that math assumes
+independence.
+
+**CXCR4 and CD44 aren't independent.** They're cross-linked: CXCL12 stimulates adhesion *via* CD44,
+and blocking CD44 loosens CXCR4–SDF1 binding. A cell high in one tends to be high in the other. You'd
+be partly measuring the same thing twice, and the multiplicative safety largely evaporates.
+
+**The fix:**
+
+- **Gate on independent axes** — CXCR4 (is it gripping hard?) AND CLL-1 (is it leukemic?). Different
+  biology, genuinely uncorrelated, so the multiplicative safety is real.
+- **Act on both hooks** — once the gate fires, sever CXCR4 *and* CD44 as the therapeutic effect.
+
+Real independence in the decision, full coverage in the action.
+
+### Reframing the bar
+
+**The bar isn't zero HSC loss.** Patients tolerate substantial HSC depletion and recover — the
+reserve regenerates. The failure mode is near-total ablation with nothing left to rebuild from.
+
+Fallback: bank HSCs before treatment as insurance. That reintroduces the graft contamination problem
+from [Strategy 1](nuke-everything-and-replace.md) and would need the purging step.
+
 ## Proposed Protocol
 
 1. **Measure baseline.** Quantitative flow with calibration beads (ABC — antibodies bound per cell)
@@ -84,7 +135,8 @@ Chemo is the weaker lever. Use it as a secondary/combination provocation, not th
 2. **Provoke.** HIF-stabilizing agent (primary) ± chemotherapy (secondary).
 3. **Confirm the shift.** Re-measure density. Verify LSC density rose and normal-cell density did
    not — this is the go/no-go gate. Without confirmed widening, don't proceed to the strike.
-4. **Strike in the window.** High-threshold, affinity-tuned binder, timed to peak separation.
+4. **Strike in the window.** High-threshold, affinity-tuned binder, gated on independent axes
+   (CXCR4 AND CLL-1 — see above), timed to peak separation. Therapeutic action severs both hooks.
 5. **Pair with a density-independent mechanism.** Ferroptosis via ferritinophagy, or synthetic
    lethality on a driver mutation — so cells escaping by shedding surface protein are still caught.
 
