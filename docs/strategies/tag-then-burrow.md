@@ -91,32 +91,58 @@ no reason to provoke, and every reason to tag while cells are still shallow.
 
 ---
 
-## This Already Exists — and It Works
+## This Already Exists — the Mechanism Works, the Clinical Benefit Is Unproven
 
 **Iomab-B (¹³¹I-apamistamab)** is an anti-CD45 antibody carrying iodine-131. CD45 is pan-hematopoietic
 — present on essentially all blood cells, healthy and leukemic. It is precisely "tag everything for
 extermination, graft only."
 
-### SIERRA trial (randomized Phase 3) results
+### SIERRA trial (randomized Phase 3)
 
 Population: relapsed/refractory AML, median age 65, **median 3 prior lines of therapy** — about the
 hardest population that exists.
 
+**What worked:**
+
 | Outcome | Iomab-B arm | Conventional care |
 |---|---|---|
-| **Reached transplant and engrafted** | **100% (31/31)** | 18% (7/38) |
-| Durable complete remission | Significantly higher | — |
-| 2-year survival among those with durable CR | 69% | — |
+| **Durable complete remission** (primary endpoint) | **22% (13/76)** | **0% (0/77)**, p<0.0001 |
+| Reached transplant and engrafted | 100% (31/31) | 18% (7/38) |
+| Event-free survival | **HR 0.22**, p<0.0001 | — |
 | 100-day non-relapse mortality | 6% | — |
-| Treatment-related deaths | **None** | — |
+| Treatment-related deaths | None | — |
 
-**The 100% vs 18% is the number that matters.** In conventional care most relapsed/refractory patients
-never make it to transplant at all, because they can't be gotten into remission first. Iomab-B got
-every treated patient there.
+Conventional care produced **zero** durable remissions in that population. Iomab-B also uses
+**personalized dosimetry** — measuring actual radiation dose delivered per patient before the
+therapeutic dose — which is the quantitative per-patient targeting this project kept speculating
+about, already in clinical practice.
 
-They also perform **personalized dosimetry** — measuring the actual radiation dose delivered per
-patient before the therapeutic dose. That's the quantitative, per-patient targeting this project kept
-speculating about, already in clinical practice.
+**What didn't work:**
+
+- **The FDA determined the SIERRA data are not adequate to support a BLA filing.** They advised
+  demonstrating an **overall survival** benefit in a randomized head-to-head trial first.
+- **Iomab-B is not approved.**
+
+### Why the gap, and what it means for this project
+
+Likely contributors: the trial permitted crossover (control-arm failures could receive Iomab-B),
+which dilutes any survival signal; a population with a median of three prior therapies has overall
+survival dominated by everything else going wrong; and 13 patients achieving durable remission is a
+thin base on which to move a survival curve.
+
+**The uncomfortable implication.** Every strategy in this project rests on an implicit chain:
+
+> kill lingering LSCs → prevent relapse → patient lives longer
+
+Iomab-B is a partial real-world test of that chain, and **the last link did not demonstrate.** It
+cleared the target population effectively and produced remissions that otherwise did not occur, and
+overall survival still did not move enough to satisfy the FDA.
+
+That is not proof the premise is wrong — a heavily pretreated relapsed/refractory cohort is close to
+the worst possible setting in which to detect a survival benefit, which reinforces this project's
+recurring observation that these agents keep being tested in the wrong patients. But it does mean
+**"we killed more LSCs" is not automatically a win**, and any design produced here must be honest
+about the distance between that and a patient living longer.
 
 ---
 
@@ -169,6 +195,7 @@ around them.
 ## Sources
 
 - [Randomized Phase III SIERRA Trial of ¹³¹I-Apamistamab before allogeneic HCT vs conventional care (JCO)](https://ascopubs.org/doi/10.1200/JCO.23.02018)
+- [SIERRA results do not support BLA filing for ¹³¹I-apamistamab in R/R AML](https://www.cancernetwork.com/view/sierra-results-do-not-support-bla-filing-for-131i-apamistamab-in-r-r-aml)
 - [Targeted conditioning with Iomab-B leads to high rates of transplantation and engraftment](https://www.sciencedirect.com/science/article/abs/pii/S1083879119315046)
 - [Personalized dosimetry using ¹³¹I-anti-CD45-apamistamab prior to myeloablative radioimmunotherapy](https://jnm.snmjournals.org/content/60/supplement_1/434)
 - [SIERRA clinical experience — engraftment and safety in R/R AML](https://www.sciencedirect.com/science/article/pii/S0006497121037551)
