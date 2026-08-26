@@ -222,15 +222,42 @@ Every consolidation cycle is another round of selection. By the time a patient i
 consolidation," the residual population isn't a smaller copy of the original leukemia — it's the
 toughest slice of it, concentrated.
 
-### Insertion point: between consolidation cycles, after count recovery
+### Insertion point: after consolidation completes, as maintenance
 
-Three reasons:
+Two reasons it belongs post-remission at all:
 
 1. **Residual disease is at its minimum** — fewest cells to kill.
 2. **Those cells are maximally enriched** for our target phenotype, so a hard-gripper-selective drug
    has its best hit rate.
-3. **Hard practical constraint:** an NK engager requires the patient to *have* NK cells. During
-   aplasia they don't. This therapy physically cannot run in the Days 8–28 window.
+
+And one hard constraint that pushes it later than expected:
+
+3. **The engager borrows the patient's NK cells — they have to be functional.** The drug is a
+   molecular clamp: it grabs an NK cell with one arm and a leukemia cell with another and forces
+   contact. It kills nothing on its own. No working NK cells, no effect.
+
+### NK reconstitution: why the window opens at ~6 weeks, not 3
+
+| Timepoint | NK status |
+|---|---|
+| Days 8–28 (aplasia) | Effectively absent — therapy is unusable here |
+| "A few weeks" post-chemo | Activating receptor expression partially restored |
+| **~6 weeks post-chemo** | **Degranulation (the killing function) recovered; cytokine production still low** |
+
+**That split is favorable.** The function we need — degranulation, releasing perforin and granzyme —
+is the one that came back. The function driving **cytokine release syndrome**, our main
+dose-limiting toxicity, is still suppressed. There may be a window where NK cells kill effectively
+while being less prone to a runaway cytokine response.
+
+**Baseline handicap:** AML actively suppresses NK cells. They're the most severely depleted
+lymphocyte population at diagnosis, and leukemia-induced NK defects predict failure to achieve
+remission. This is precisely why the TriKE format carries **IL-15** — that module exists to expand
+and reactivate NK cells rather than assuming healthy ones are on hand.
+
+**Scheduling conflict this creates:** consolidation cycles run roughly monthly; NK function needs
+~6 weeks. Those don't fit — there may be no clean gap between cycles. **Hence maintenance rather than
+inter-cycle:** after consolidation completes, no next cycle bearing down, NK function fully
+recovered, residual disease still minimal.
 
 ### One treatment cycle
 
@@ -241,13 +268,17 @@ Three reasons:
 | 12–24 | Begin infusion of the tetraspecific engager |
 | 24–48 | NK-mediated killing — hours, not days |
 | Days 3–5 | Washout (roxadustat half-life 2–3 days) |
-| Then | Repeat, slotted into the next consolidation gap |
+| Then | Repeat on a maintenance schedule |
 
 **Alternative insertion point worth considering:** run it *during* induction, when chemo is already
-provoking CXCR4 — striking the hard grippers before they're selected and concentrated rather than
-hunting them afterward. Conflict: the patient is heading into aplasia, so NK numbers fall exactly
-when you need them. Probably rules it out for an NK-based drug, but it's the right idea for a
-mechanism that doesn't depend on the patient's own immune cells.
+provoking CXCR4 for free — striking the hard grippers before they're selected and concentrated rather
+than hunting them afterward.
+
+**Why it doesn't work for this drug:** the patient is heading into aplasia, so NK cells vanish exactly
+when the provocation window opens. The provocation and the striker cancel each other out. This is
+the right idea for a mechanism that brings its *own* killing power and doesn't depend on the patient's
+immune system — a radioligand (¹⁷⁷Lu-Pentixather), an antibody-drug conjugate, or a direct cytotoxic
+payload. Worth pursuing as a separate arm.
 
 ---
 
@@ -255,26 +286,62 @@ mechanism that doesn't depend on the patient's own immune cells.
 
 **No — but it's one arm away from something that does.**
 
+### What already exists
+
+**The closest relative — CD16-IL15-CLEC12A TriKE.** A trispecific NK engager where CLEC12A *is*
+CLL-1. Published work reports it drives NK expansion, activation, and "antigen-specific killing of
+**cancer stem cells** in acute myeloid leukemia." Our antigen, our target population, preclinical
+data in hand. This is the scaffold to build on.
+
+**The engager format itself.** BiKE (bispecific killer engager) and TriKE platforms are established.
+The CD16-IL15-CD33 TriKE showed *superior killing kinetics* versus the two-arm BiKE version, and the
+anti-CD16 arm binds NK cells with higher affinity than natural Fc–CD16 binding. The IL-15 module was
+added specifically to overcome cancer-induced immune suppression.
+
+**The provocation drugs.** Roxadustat and daprodustat are FDA-approved PHD inhibitors for anemia of
+chronic kidney disease — well-characterized kinetics, existing human safety data. Standard
+chemotherapy is a second, free provocation lever (documented CXCR4 upregulation).
+
+**The imaging.** ⁶⁸Ga-Pentixafor PET images CXCR4 density in AML patients, with clean specificity
+(signal vanishes in CRISPR CXCR4-knockout xenografts). Its therapeutic partner ¹⁷⁷Lu/⁹⁰Y-Pentixather
+has first-in-human data in multiple myeloma — a complete theranostic pair.
+
+**The selectivity engineering.** Affinity-tuned binders that discriminate by antigen density are
+demonstrated on CD123, mesothelin, and GPC2. AND-gate constructs for AML exist preclinically —
+CD33+CLL-1 and CD13+TIM-3 pairs.
+
+**CXCR4 as a target.** Anti-CXCR4 CAR-T shows potent anti-leukemic activity in AML and ALL
+preclinically — but is positioned as *transplant conditioning*, meaning the field already concedes
+CXCR4 alone is too toxic to use standalone. That's evidence the gate is necessary, not optional.
+
+**Supporting finding.** Engineering CAR-T cells to co-express extra CXCR4 improves marrow homing,
+drives memory over exhaustion, and enhances anti-leukemic activity — reinforcing that CXCR4-directed
+homing into the niche works.
+
+### Summary table
+
 | Component | Status |
 |---|---|
-| **CD16-IL15-CLEC12A TriKE** (NK engager vs. CLL-1) | **Exists** — preclinical, reported to drive "antigen-specific killing of cancer stem cells in AML" |
-| NK engager format (TriKE/BiKE) | Established; superior killing kinetics vs. two-arm versions |
+| CD16-IL15-CLEC12A TriKE (NK engager vs. CLL-1) | **Exists** — preclinical, kills AML cancer stem cells |
+| NK engager format (TriKE/BiKE) | Established; better kinetics than two-arm |
 | Roxadustat / daprodustat | FDA-approved (anemia of CKD) |
+| Chemo-induced CXCR4 upregulation | Documented |
 | ⁶⁸Ga-Pentixafor PET | Exists; used in AML patients |
-| ¹⁷⁷Lu/⁹⁰Y-Pentixather (therapeutic pair) | First-in-human done in multiple myeloma |
-| Anti-CXCR4 CAR-T | Preclinical (AML and ALL) — positioned as transplant conditioning, i.e. the field concedes CXCR4 alone is too toxic standalone |
-| Affinity-tuned binders (density thresholds) | Demonstrated on CD123, mesothelin, GPC2 |
-| AND-gate constructs for AML | Preclinical — CD33+CLL-1, CD13+TIM-3 |
+| ¹⁷⁷Lu/⁹⁰Y-Pentixather | First-in-human (multiple myeloma) |
+| Anti-CXCR4 CAR-T | Preclinical (AML/ALL), as transplant conditioning |
+| Affinity-tuned density-threshold binders | Demonstrated (CD123, mesothelin, GPC2) |
+| AND-gate constructs for AML | Preclinical (CD33+CLL-1, CD13+TIM-3) |
 | **Tetraspecific: CD16 + CLL-1 + tuned CXCR4 + IL-15** | **Does not exist** |
 | **HIF stabilization used deliberately to raise target density** | **Not found** |
 | **A strike timed to a provoked density window** | **Not found** |
+| **Any of this aimed at dormant persisters rather than bulk blasts** | **Not found** |
 
-**What we'd actually build:**
+### What we'd actually build
 
 1. **One molecule** — add an affinity-tuned CXCR4 arm to the existing CD16-IL15-CLEC12A TriKE. Every
    component is proven separately; nobody has assembled this one.
 2. **The kinetics experiment** — how fast CXCR4 rises after provocation, when it peaks, how long it
-   holds. This is the real unknown, and it determines the drug's core engineering spec (half-life).
+   holds. The real unknown, and it determines the drug's core engineering spec (half-life).
 
 Low technical risk on every component; the novelty is in the assembly and the timing.
 
@@ -342,3 +409,6 @@ Drop them → chemo kills you.
 - [Logic-gated CAR T cells against AML — current status](https://doi.org/10.3390/lymphatics4020031)
 - [CXCR4 induces memory formation over exhaustion in CAR-T cells](https://www.nature.com/articles/s41467-025-67745-x)
 - [Eradication of measurable residual disease in AML: a challenging clinical goal](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8268140/)
+- [Kinetics of cytotoxic lymphocyte reconstitution after induction chemotherapy in AML](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5288405/)
+- [Leukemia-induced NK cell defects predict failure to achieve remission in AML](https://pubmed.ncbi.nlm.nih.gov/24488563/)
+- [NK cell defects: implication in acute myeloid leukemia](https://www.frontiersin.org/journals/immunology/articles/10.3389/fimmu.2023.1112059/full)
