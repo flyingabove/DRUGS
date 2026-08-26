@@ -336,6 +336,37 @@ homing into the niche works.
 | **A strike timed to a provoked density window** | **Not found** |
 | **Any of this aimed at dormant persisters rather than bulk blasts** | **Not found** |
 
+### Why the first-generation TriKE was discontinued — and what it tells us
+
+GTB-3550 (CD33 TriKE) completed Phase 1 in relapsed/refractory AML and high-risk MDS: **safe, no
+cytokine release syndrome at any dose tested**, confirmed in vivo NK activation, and up to **63.7%
+reduction in marrow blasts** (individual patients: 33%, 50%, 61%, 63%). Real activity, no cures.
+
+It was discontinued because the second generation (GTB-3650, now in trial NCT06594445) is **10–40×
+more potent** in animal studies — via a **camelid nanobody** replacing the scFv on the CD16 arm, plus
+**wild-type IL-15** instead of the mutant version.
+
+**The field's own diagnosis of the bottleneck is potency** — not selectivity, not safety, not
+pharmacokinetics. That's a direct challenge to our density-gate design: adding a second condition
+makes the drug fire *less* often. No CRS was seen and potency was limiting, which means the mechanism
+was being *under*-driven, not over-driven.
+
+**But the arms are independent knobs.** They strengthened the **CD16 (effector) arm**; affinity tuning
+applies to the **tumor-targeting arm**. Strong effector engagement plus a tuned targeting arm is
+internally consistent. Their fix tells us where the limitation was, not that ours is wrong.
+
+### Scope note: repositioning is not the project
+
+The single highest-value, lowest-cost move available is to take an existing potent engager and run it
+in the **minimal residual disease** setting — small burden, recovered NK function, consolidation chemo
+following. GTB-3550 and GTB-3650 were both tested in relapsed/refractory active disease instead, so
+that gap is wide open.
+
+**That is a clinical trial design, not a drug discovery program, and it is not what this project is
+for.** It's documented here because it's the right control arm and the honest benchmark any new
+molecule must beat — but the goal remains a genuine advancement, not repositioning someone else's
+drug.
+
 ### What we'd actually build
 
 1. **One molecule** — add an affinity-tuned CXCR4 arm to the existing CD16-IL15-CLEC12A TriKE. Every
@@ -344,6 +375,84 @@ homing into the niche works.
    holds. The real unknown, and it determines the drug's core engineering spec (half-life).
 
 Low technical risk on every component; the novelty is in the assembly and the timing.
+
+---
+
+## Four Alternative Uses of CXCR4 — Evaluated
+
+Ranked: **2 > 1 > 3 > 4.**
+
+### Option 1: Threshold ladder — sound logic, wrong implementation
+
+*Measure the patient's "velcroness," apply the most selective version, escalate to less selective
+versions until toxicity appears, then stop.*
+
+The logic is legitimate — escalating **selectivity** rather than dose. Two problems as stated:
+
+- **"Patient starts to die" is not an endpoint.** Use standard dose-limiting toxicity criteria:
+  neutrophil count, marrow cellularity, transfusion requirement.
+- **Each threshold variant would be a separate manufactured product** — five versions means five
+  manufacturing runs and potentially five regulatory filings. Prohibitive.
+
+**The fix: dose and threshold are the same knob.** For a low-affinity multivalent binder, engagement
+depends on antigen density *and* drug concentration. At low concentration only the densest cells
+achieve enough simultaneous bonds; raise the concentration and lower-density cells begin crossing the
+line too.
+
+**One molecule therefore gives the entire ladder — just titrate the dose.** Higher dose = effectively
+lower threshold. This converts the idea from "build five drugs" into "run a standard phase 1 dose
+escalation," reinterpreting what's being titrated.
+
+### Option 2: Pair with an incoming graft — most viable
+
+*Use a highly toxic, low-threshold CXCR4 agent right after chemo/radiation, with a graft ready — full
+reset.*
+
+Cleanest option, and the field is already moving here: anti-CXCR4 CAR-T is explicitly positioned as
+transplant conditioning, and Pentixather was used the same way in myeloma.
+
+**The real advantage isn't killing leukemia better — it's replacing toxic conditioning.** Standard
+conditioning (busulfan, melphalan, total-body irradiation) damages liver, lungs, gut, and gonads
+because it's indiscriminate. A CXCR4-targeted agent hits only CXCR4+ cells, sparing those organs.
+Non-genotoxic antibody-based conditioning is an active field for exactly this reason.
+
+**Weaknesses:** requires a transplant; useless for transplant-ineligible patients; CXCR4 is also
+expressed on endothelium and other tissues, so "ablate everything CXCR4+" is less clean than it
+sounds. Converges with [Strategy 1](nuke-everything-and-replace.md).
+
+### Option 3: Mark as suspicious, don't kill — solves a timing problem
+
+*Use a CXCR4 agent to flag cells for immune attention rather than to kill directly.*
+
+The obvious objection — marking only helps if something then kills, so the problem just moves — misses
+the real benefit.
+
+**It decouples targeting time from killing time.** Marking is instantaneous (binding happens in
+minutes); immune clearance can take days. That means **the provocation window only has to cover the
+marking**, not the killing.
+
+That removes the effector-kinetics constraint that pushed us away from T cells in the first place.
+Mark during a 24-hour window; let clearance proceed over the following week.
+
+Mechanism: a naked antibody driving ADCC/complement, ideally paired with **targeted** CD47 blockade to
+strip the "don't eat me" signal — targeted, because free CD47 blockade causes red cell and platelet
+toxicity.
+
+### Option 4: Block niche re-entry — real idea, fatal flaw
+
+*Use a CXCR4 agent between chemo rounds to physically block the niches.*
+
+**The refinement that makes it interesting:** don't block the niche generally — block **re-entry**.
+After chemo, surviving LSCs must re-home to the niche to regain protection. Preventing docking is
+mechanically easier than evicting an already-anchored cell, and cells stuck in circulation remain
+exposed to the next chemo cycle. That's meaningfully different from mobilization.
+
+**The fatal flaw:** normal HSCs must re-home too. Blocking CXCR4 during that window may prevent marrow
+reconstitution entirely — no count recovery. Potentially worse than the leukemia.
+
+**The only escape:** if LSCs and HSCs re-home on *different schedules*, a narrow blockade window could
+catch one and not the other. Purely speculative, but cheap to test in a mouse and worth checking
+before discarding the idea.
 
 ---
 
