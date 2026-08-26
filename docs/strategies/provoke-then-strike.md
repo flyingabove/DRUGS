@@ -438,21 +438,116 @@ Mechanism: a naked antibody driving ADCC/complement, ideally paired with **targe
 strip the "don't eat me" signal — targeted, because free CD47 blockade causes red cell and platelet
 toxicity.
 
-### Option 4: Block niche re-entry — real idea, fatal flaw
+### Rejected: block niche re-entry
 
-*Use a CXCR4 agent between chemo rounds to physically block the niches.*
+*Use a CXCR4 agent between chemo rounds to physically block the niches so LSCs can't re-dock.*
 
-**The refinement that makes it interesting:** don't block the niche generally — block **re-entry**.
-After chemo, surviving LSCs must re-home to the niche to regain protection. Preventing docking is
-mechanically easier than evicting an already-anchored cell, and cells stuck in circulation remain
-exposed to the next chemo cycle. That's meaningfully different from mobilization.
+**Rejected because the premise is backwards.** LSCs don't get dislodged by chemotherapy in the first
+place — the literature is explicit that chemo hits proliferating blasts while LSCs "escape" and
+"remain sheltered in the bone marrow microenvironment." **There is no re-entry to block, because there
+was no exit.** Sheltering in place *is* the resistance mechanism.
 
-**The fatal flaw:** normal HSCs must re-home too. Blocking CXCR4 during that window may prevent marrow
-reconstitution entirely — no count recovery. Potentially worse than the leukemia.
+Worse: the mobilization that does occur during a chemo cycle happens in the **recovery/rebound phase**
+and is disproportionately normal progenitors being pushed out by the regenerating marrow — precisely
+what chemomobilization exploits clinically to harvest stem cells. Blocking re-homing in that window
+would preferentially damage *normal* recovery while barely touching LSCs.
 
-**The only escape:** if LSCs and HSCs re-home on *different schedules*, a narrow blockade window could
-catch one and not the other. Purely speculative, but cheap to test in a mouse and worth checking
-before discarding the idea.
+**What it does reinforce:** if LSCs won't leave voluntarily, they must be **forced** out. The field
+says so directly — "detachment of these cells from the bone marrow in combination with chemotherapy
+may improve the outcome of therapy for AML."
+
+**Reference numbers:** at steady state, **<0.02% of HSCs circulate**. Chemomobilization roughly
+doubles circulating progenitors versus G-CSF alone; adding plerixafor gives another ~2-fold. **No
+published figure exists for what fraction of LSCs mobilize** — a real gap.
+
+---
+
+## Correction: There Are Three Hooks, Not Two
+
+This doc and its siblings were built around CXCR4 and CD44. The literature names **three** receptors
+as "paramount" for AML homing to and retention within the marrow:
+
+| Hook | Role |
+|---|---|
+| **CXCR4** | Binds CXCL12/SDF-1 from stroma. Anchors the cell *and* brakes proliferation. |
+| **CD44** | Binds hyaluronan. Independent anchor, cross-linked to CXCR4 signaling. |
+| **VLA-4** (α4β1 integrin) | Binds VCAM-1 on stroma. Switched into high-affinity "sticky" state *by* CXCR4 signaling; drives the reciprocal NF-κB chemoresistance loop. |
+
+VLA-4 appeared earlier in this project only as the adhesion system CXCR4 *activates* — never as a
+target in its own right. **A two-hook design leaves the third rope intact.**
+
+Supporting evidence: concomitant anti-CD44 + anti-α4β1 blockade is reported as the most efficient
+mobilizer of stem cells — better than single-axis blockade. Any "sever the grip" design should
+consider all three.
+
+---
+
+## Deep Dive: Option 2 — CXCR4 Agent as Transplant Conditioning
+
+### Addressable population: ~21% of AML patients
+
+**21% of AML patients undergo allogeneic transplant**; 79% receive chemotherapy only (population-based
+study, median age 67). Median age at AML diagnosis is 68 — an older person's disease, and transplant
+is hard on older patients.
+
+One in five is a real limitation, but they're the higher-risk patients who most need an advance, and
+transplant rates in older patients have been rising.
+
+### What conditioning is, and why it's the weak link
+
+Before a transplant you must (a) destroy the patient's existing marrow to make niche space and
+eliminate disease, and (b) suppress their immune system so the graft isn't rejected.
+
+Standard conditioning — busulfan, melphalan, cyclophosphamide, fludarabine, total-body irradiation —
+is **genotoxic**: it damages DNA in every cell it reaches. Hence organ toxicity (liver, lung, gut),
+infertility, and secondary cancers. It's often what makes a patient transplant-*ineligible* in the
+first place, which is a direct cause of that 79%.
+
+**The emerging alternative is targeted, non-genotoxic conditioning** using antibodies against
+hematopoietic markers — anti-CD117 (KIT) and anti-CD45 programs are in trials. CXCR4 would be another
+entry into an already-moving field.
+
+### Where CXCR4 is a worse conditioning target
+
+CD117 is fairly HSC-restricted. CD45 is pan-hematopoietic, which conveniently handles the
+immunosuppression requirement too. **CXCR4 is broader than either** — expressed on HSCs, leukemia,
+endothelium, neurons, and many immune cell types. On specificity grounds alone it's a weaker choice.
+
+### Where CXCR4 is uniquely better
+
+**It doesn't just kill — it evicts.** Conditioning's actual goal is *niche vacancy*, since available
+niche space determines graft engraftment. A CXCR4-targeted agent both kills occupants and blocks
+re-occupancy, which may empty the niche more completely than a pure killing agent that leaves dead
+cells and intact adhesion in place.
+
+### The design problem this creates
+
+**The incoming graft also needs CXCR4 to home into the niche.** Give a CXCR4-blocking agent and then
+infuse the graft, and the graft can't dock either — no engraftment.
+
+Two solutions:
+
+1. **Short half-life + washout.** The agent must clear before graft infusion. Another argument for
+   deliberately engineering short half-life.
+2. **Epitope-edited graft** — the better answer, and it converges with
+   [Strategy 1](nuke-everything-and-replace.md).
+
+### The strongest version: epitope-edited graft + CXCR4 agent
+
+Base-edit the graft's CXCR4 epitope so the therapeutic antibody can't bind it, while preserving the
+protein's ligand-binding function (the whole point of epitope editing versus knockout). Then:
+
+1. **Condition** with the CXCR4 agent — clears the patient's marrow and evicts residual LSCs.
+2. **Infuse the edited graft** — invisible to the agent, but still able to home normally.
+3. **Continue the agent post-transplant as maintenance** — killing any residual LSC that surfaces,
+   indefinitely, without ever touching the graft.
+
+That converts one-shot conditioning into **ongoing surveillance**, and it directly mirrors the
+trem-cel model already in humans (CD33-deleted graft + gemtuzumab maintenance, Phase 1/2 published).
+
+**Constraint:** epitope editing only defeats biologics, not small molecules — small molecules bind
+functional pockets you can't edit without breaking the protein. So the agent must be **antibody-based,
+not a plerixafor derivative**. Consistent with the constraint identified in Strategy 1.
 
 ---
 
@@ -519,5 +614,9 @@ Drop them → chemo kills you.
 - [CXCR4 induces memory formation over exhaustion in CAR-T cells](https://www.nature.com/articles/s41467-025-67745-x)
 - [Eradication of measurable residual disease in AML: a challenging clinical goal](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8268140/)
 - [Kinetics of cytotoxic lymphocyte reconstitution after induction chemotherapy in AML](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5288405/)
+- [Dependence of AML on adhesion within the bone marrow microenvironment (CXCR4/CD44/VLA-4)](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3259714/)
+- [Impact of expanding allogeneic transplantation on survival in AML: population-based study](https://www.nature.com/articles/s41408-025-01416-4)
+- [GTB-3550 TriKE Phase 1 interim results — blast reduction in MDS and R/R AML](https://www.onclive.com/view/gtb-3550-trike-reduces-bone-marrow-blast-levels-in-high-risk-mds-relapsed-refractory-aml)
+- [Second-generation NK cell engager (GTB-3650) heading to trial](https://www.cgtlive.com/view/second-generation-nk-cell-engager-trial-cd33-leukemia)
 - [Leukemia-induced NK cell defects predict failure to achieve remission in AML](https://pubmed.ncbi.nlm.nih.gov/24488563/)
 - [NK cell defects: implication in acute myeloid leukemia](https://www.frontiersin.org/journals/immunology/articles/10.3389/fimmu.2023.1112059/full)

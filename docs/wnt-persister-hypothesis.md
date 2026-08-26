@@ -12,8 +12,12 @@ internal self-renewal machinery (Wnt) than others. Some have more thoroughly shu
 
 - **CXCR4** — a dock on the LSC's surface that grabs a signal thrown by the marrow, physically
   anchoring the cell in its hiding spot and sending it a "stay quiet, don't divide" signal.
-- **CD44** — a second, separate dock doing a similar anchoring job, independent of CXCR4. Two hooks,
-  not one.
+- **CD44** — a second dock doing a similar anchoring job, binding hyaluronan. Cross-linked to CXCR4
+  signaling rather than fully independent.
+- **VLA-4** (α4β1 integrin) — a **third** hook, binding VCAM-1 on stromal cells. CXCR4 signaling is
+  what switches it into its high-affinity "sticky" state, and it drives the reciprocal NF-κB loop that
+  makes niche-attached cells chemoresistant. All three are named as paramount for AML marrow
+  retention; a design that severs only two leaves the third rope intact.
 - **Wnt** — an internal switch that tells the cell "keep copying yourself, don't mature yet." The
   engine behind self-renewal.
 - **Notch** — normally the opposite kind of switch, "okay, stop copying yourself and grow into a
@@ -61,9 +65,11 @@ treatment).
 **Step 2 — If confirmed, build a combination that attacks all three traits at once, not one at a
 time:**
 
-- **Cut both grappling hooks** — a CXCR4-blocking effect targeted specifically at LSCs (not free,
+- **Cut the grappling hooks** — a CXCR4-blocking effect targeted specifically at LSCs (not free,
   systemic Plerixafor, which would also hit normal HSCs' CXCR4 grip) plus a Wnt inhibitor, which
-  also weakens CD44 as a side effect. Together, the cell can't hang on either rope.
+  also weakens CD44 as a side effect. Note this still leaves **VLA-4** intact — full severing needs
+  all three, and concomitant anti-CD44 + anti-α4β1 blockade is reported as the most efficient
+  mobilizer, better than single-axis.
 - **Kill the self-renewal engine** — the same Wnt inhibitor also removes the "keep copying yourself"
   signal directly.
 - **Force the "grow up" switch back on** — a Notch-reactivating agent, pushing the cell toward
