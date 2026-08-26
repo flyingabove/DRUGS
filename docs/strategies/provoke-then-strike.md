@@ -1,165 +1,318 @@
 # Strategy 3: Provoke, Then Strike
 
-**The strategy in one line:** don't lower the threshold to reach the cancer — **raise the cancer to
-the threshold.** Deliberately provoke LSCs into displaying more target protein, then hit them with a
-high-threshold drug during that window, keeping maximum separation from normal cells the whole time.
+**One line:** don't lower the threshold to reach the cancer — **raise the cancer to the threshold.**
+Deliberately force lingering leukemic stem cells (LSCs) to display more target protein, then hit them
+with a threshold-gated drug during that window, keeping maximum separation from healthy cells the
+whole time.
 
 Sits alongside [Strategy 1: Nuke Everything and Replace](nuke-everything-and-replace.md) and
 [Strategy 2: Identify, Profile, Counterattack](identify-profile-counterattack.md).
 
+---
+
 ## The Core Insight
 
-Target density is **not a fixed trait — it moves.** Every previous idea treated a cell's CXCR4/CD44
-level as a static property to be measured. It isn't. It responds to stress, oxygen, and drug
-exposure.
+Target density is **not a fixed trait — it moves.** Every earlier idea treated a cell's CXCR4 level
+as a static property to measure. It isn't. It responds to stress, oxygen tension, and drug exposure.
 
-That changes the problem. A density-threshold drug (see the affinity-tuning section below) needs
-cells to be above a line. There are two ways to get there:
+That reframes the problem. A density-threshold drug needs cells to sit above a line. Two ways to get
+there:
 
-- **Lower the line** → dangerous. It approaches normal-cell density, destroying the safety margin,
-  and it selects for lower-density survivors — breeding the cancer to hide in the normal range.
+- **Lower the line** → dangerous. It creeps toward normal-cell density, destroying the safety margin,
+  and it selects for lower-density survivors — effectively breeding the leukemia to hide in the
+  normal range.
 - **Raise the cells** → keeps the line high and the margin intact. The cancer is pushed *toward*
   detection rather than away from it.
 
-## Background: Why a High Threshold Works
+---
 
-Build the binder deliberately **weak** — micromolar Kd (~1–200 μM) rather than nanomolar. A strong
-binder holds with a single bond, so it fires on any cell carrying any amount of target: no
-discrimination. A weak binder's bonds keep falling off, so stable engagement requires *many
-simultaneous* bonds — which only happens at high target density. That nonlinearity is the threshold.
+## Background: Why a Weak Binder Discriminates Better
 
-Verified: affinity-tuned CARs kill antigen-rich tumor while sparing normal cells at physiologic
-density; high-affinity versions hit everything, including cells whose antigen is undetectable by
-flow.
+Counterintuitive, so the mechanism matters.
 
-## Provocation Lever 1: Hypoxia — the strong one
+**Affinity (Kd)** is the strength of a *single* bond. **Avidity** is the combined strength when many
+bonds form at once.
 
-**This is the finding the strategy rests on.** Normal and leukemic cells respond to low oxygen in
+A **high-affinity** binder holds on with one bond. One target molecule is enough, so it fires on any
+cell carrying any amount — no discrimination. This is why high-affinity CARs attack normal tissue at
+antigen levels undetectable by flow cytometry.
+
+A **low-affinity** binder's bonds keep falling off. Stable engagement requires *many simultaneous*
+bonds, and the probability of that scales nonlinearly with target density. That nonlinearity is the
+threshold — you've converted a smooth "how much antigen" into a sharp "above or below the line."
+
+Think weak Velcro: one industrial hook grabs any surface with a few loops; weak hooks only hold on a
+surface densely covered in them.
+
+**Working range:** micromolar Kd (~1–200 μM) discriminates. Nanomolar (~1–200 nM) does not.
+
+---
+
+## The Drug: A Tetraspecific NK-Cell Engager
+
+An **engager** is a single manufactured protein — batch-produced, off-the-shelf, infused like any
+biologic. It physically staples an immune killer cell to a cancer cell and forces the kill, without
+engineering anyone's cells.
+
+Four components:
+
+| Arm | Plain terms | Purpose |
+|---|---|---|
+| **anti-CD16** | grabs NK cells | Recruits the killer |
+| **anti-CLL-1 (CLEC12A)** | "is this leukemia?" | Identity gate |
+| **anti-CXCR4, affinity-tuned** | "is it gripping hard?" | Density gate — only fires above threshold |
+| **IL-15** | NK growth signal | Drives NK expansion and persistence |
+
+### Why NK cells, not T cells
+
+T-cell engagers were the obvious first choice, but **T cells are too slow.** Naive T cells need
+activation and clonal expansion — days. Blinatumomab (a T-cell engager) takes weeks to show
+responses. Our therapeutic window is measured in hours.
+
+**NK (natural killer) cells are innate immune cells — pre-armed.** They circulate already loaded with
+perforin and granzyme (the proteins that punch holes in target cells) and need no priming. Killing
+happens within hours of engagement.
+
+Complement is faster still, but complement is a passive plasma protein cascade — it can't migrate.
+NK cells actively move into tissue, which matters for reaching the poorly-perfused endosteal niche.
+
+### Why the two gates must be independent
+
+Gating on both grip proteins (CXCR4 + CD44) looks appealing but is weaker than it seems. An AND-gate
+is multiplicatively safe **only if the two signals are independent** — and CXCR4 and CD44 are
+cross-linked (CXCL12 drives adhesion via CD44; blocking CD44 loosens CXCR4–SDF1 binding). A cell high
+in one tends to be high in the other, so you'd be measuring the same thing twice.
+
+**Gate on independent axes instead:** CXCR4 (grip strength) AND CLL-1 (leukemic identity). Different
+biology, genuinely uncorrelated, so the multiplicative safety is real. Then act on both hooks once
+the gate fires.
+
+### Why this format also solves the half-life problem
+
+Recruiting NK cells normally requires an **Fc domain** (the antibody tail that immune cells grab) —
+but Fc also confers a weeks-long half-life via FcRn recycling, which would smear the drug far beyond
+our window.
+
+The TriKE-style format sidesteps this: it engages NK cells through a **direct anti-CD16 arm** rather
+than through Fc, reportedly with higher affinity than natural Fc–CD16 binding. No Fc means no FcRn
+recycling means short half-life comes free.
+
+**Short half-life is a design goal here, not a compromise.** Precedent: blinatumomab has a ~2-hour
+half-life and runs on a continuous infusion pump — the short half-life is what makes the pump an
+on/off switch. Same logic drives newer MCL-1 inhibitors, engineered to hit hard then clear before
+cardiac toxicity accumulates.
+
+**Target half-life ≈ one-third to one-half the therapeutic window.** If the CXCR4 window turns out to
+be 24–48 hours, that means roughly 4–12 hours — long enough to cover it without re-dosing gaps, short
+enough to clear before it becomes pure off-target exposure. This spec cannot be fixed until the
+window is measured.
+
+---
+
+## The Provocation
+
+### Lever 1: Hypoxia signaling — the strong one
+
+**This is the finding the strategy rests on.** Healthy and leukemic cells respond to low oxygen in
 *opposite directions*:
 
-- **Normal cells DOWN-regulate CXCR4 under hypoxia**, via a post-transcriptional mechanism driven by
-  miR-146a upregulation.
+- **Normal cells down-regulate CXCR4** under hypoxia, via a post-transcriptional mechanism driven by
+  miR-146a.
 - **Primary AML blasts fail to do this** — the miR-146a/CXCR4 mechanism is dysregulated in them, so
   they keep CXCR4 high.
 
-**Separation widens in both directions at once.** Cancer goes up (or holds), normal goes down. That's
-better than a lever that simply raises both.
+**Separation widens in both directions at once.** Cancer holds or rises, healthy cells fall. That
+beats a lever that merely raises both.
 
 Mechanistic basis: the CXCR4 promoter carries four hypoxia-response elements (HREs) within 2.6 kb
-upstream of the transcription start site, plus one intronic — CXCR4 is a genuinely
-hypoxia-responsive gene. Separately confirmed: CXCR4 expression and biologic activity in AML are
-directly dependent on oxygen partial pressure.
+upstream of the transcription start site, plus one intronic — CXCR4 is genuinely a hypoxia-responsive
+gene. Independently confirmed: CXCR4 expression and biologic activity in AML depend directly on
+oxygen partial pressure.
 
-**Scope caveat:** the differential miR-146a finding is from monocytic cells and AML-M5 specifically,
-partly in cell lines. Whether it generalizes across AML subtypes is the first thing to test.
+**Scope caveat:** the differential miR-146a finding comes from monocytic cells and AML-M5, partly in
+cell lines. Whether it generalizes across AML subtypes is the first thing to test.
 
-### How to induce it without making the patient hypoxic
+**How to induce it without making the patient hypoxic:** use a **prolyl hydroxylase (PHD) inhibitor**
+— roxadustat or daprodustat, already approved for anemia of chronic kidney disease. These stabilize
+HIF-1α pharmacologically, mimicking the hypoxic signal. A drug-repurposing play in the spirit of
+[brainstorm-topics.md](../brainstorm-topics.md) Idea 7.
 
-Use a **HIF-stabilizing drug** rather than actual low oxygen. Prolyl hydroxylase inhibitors
-(roxadustat, daprodustat — already approved for anemia of chronic kidney disease) stabilize HIF-1α
-pharmacologically, mimicking the hypoxic signal.
-
-This is a drug-repurposing play in the same spirit as
-[brainstorm-topics.md](../brainstorm-topics.md) Idea 7 — an approved compound with existing human
-safety data, used for a new purpose.
-
-## Provocation Lever 2: Chemotherapy — weaker, but real
-
-Standard cytotoxic chemotherapy induces dynamic upregulation of surface CXCR4 on leukemia cells — a
-documented mechanism of acquired resistance. Cells that upregulated were differentially protected
-from chemo-induced apoptosis when co-cultured with stroma.
-
-**Two limitations:**
-1. Upregulation is **variable**, not universal — some lines do it, some don't.
-2. The comparison against normal CD34+ cells isn't established in the literature found. Without that,
-   we don't know whether chemo widens or merely shifts the separation.
-
-Chemo is the weaker lever. Use it as a secondary/combination provocation, not the primary one.
-
-**Note on dosing:** the goal at this step is **signal, not kill.** You need enough stress to trigger
-the upregulation response, not enough to cause cytotoxic damage — a much lower dose than therapeutic
-chemo. That makes HSC toxicity from the provocation step far more manageable than "give chemo"
-implies.
-
-## Will This Kill Too Many Normal HSCs?
-
-### The provocation step is unusually favorable
-
-Stacking the hypoxia findings gives a rare alignment. Under HIF stabilization:
-
-- **Normal HSCs:** CXCR4 goes *down* (less visible to the drug) **and** they sit in their protected,
-  low-ROS, quiescent state — hypoxia is protective for normal HSCs, not harmful (mice at 10% O₂ show
-  *better* HSC function than at normal oxygen).
-- **LSCs:** CXCR4 stays *up* — visible and targetable.
-
-Both effects push the same direction. The lever that widens targeting separation is also the one
-that shelters the cells we're trying to preserve.
+**A second benefit:** hypoxia is *protective* for normal HSCs — mice housed at 10% O₂ show better HSC
+function than at room air. So the same lever that widens targeting separation also shelters the cells
+we're trying to preserve. Both effects push the same way.
 
 **The risk that doesn't go away:** HIF-1α also drives pro-survival and stemness programs in cancer.
-This could strengthen the leukemia while illuminating it. Still the single biggest unknown in this
-strategy.
+This could strengthen the leukemia while illuminating it. Single biggest unknown in the strategy.
 
-### The dual binder: separate the gating job from the killing job
+### Lever 2: Chemotherapy — weaker, but free
 
-Using **both hooks (CXCR4 + CD44) as the gate** is weaker than it looks.
+Standard cytotoxic chemotherapy induces dynamic upregulation of surface CXCR4 on leukemia cells — a
+documented resistance mechanism. Cells that upregulated were differentially protected from apoptosis
+when co-cultured with stroma.
 
-An AND-gate's safety is multiplicative *only if the two signals are independent*. If each threshold
-alone spares ~95% of normal HSCs, requiring both could spare ~99.75% — but that math assumes
-independence.
+**Limitations:** upregulation is *variable*, not universal, and the comparison against normal CD34+
+cells isn't established. Without that, we don't know whether chemo widens the separation or just
+shifts everything up together.
 
-**CXCR4 and CD44 aren't independent.** They're cross-linked: CXCL12 stimulates adhesion *via* CD44,
-and blocking CD44 loosens CXCR4–SDF1 binding. A cell high in one tends to be high in the other. You'd
-be partly measuring the same thing twice, and the multiplicative safety largely evaporates.
+**Dosing note:** the goal here is **signal, not kill** — enough stress to trigger the upregulation
+response, not enough to cause cytotoxic damage. A far lower dose than therapeutic chemo, which makes
+marrow toxicity from the provocation step much more manageable than "give chemo" implies.
 
-**The fix:**
+Chemo is the weaker lever but costs nothing extra, since patients are receiving it anyway.
 
-- **Gate on independent axes** — CXCR4 (is it gripping hard?) AND CLL-1 (is it leukemic?). Different
-  biology, genuinely uncorrelated, so the multiplicative safety is real.
-- **Act on both hooks** — once the gate fires, sever CXCR4 *and* CD44 as the therapeutic effect.
+---
 
-Real independence in the decision, full coverage in the action.
+## Timing: How We Know When to Strike
 
-### Reframing the bar
+Striking blind is not an option — and provoking *without* striking actively harms the patient (see
+Risks). Two layers:
 
-**The bar isn't zero HSC loss.** Patients tolerate substantial HSC depletion and recover — the
-reserve regenerates. The failure mode is near-total ablation with nothing left to rebuild from.
+### Layer 1 — ⁶⁸Ga-Pentixafor PET, to calibrate the protocol
 
-Fallback: bank HSCs before treatment as insurance. That reintroduces the graft contamination problem
-from [Strategy 1](nuke-everything-and-replace.md) and would need the purging step.
+**Pentixafor** is a PET imaging tracer that binds CXCR4, already used in AML patients. Tracer uptake
+correlated with leukemia infiltration on MRI in 5 of 10 patients, and specificity is clean — signal
+vanishes in CRISPR CXCR4-knockout xenografts.
 
-## Proposed Protocol
+That gives a **whole-body, quantitative, non-invasive readout of CXCR4 density** — no marrow biopsy,
+no blood-sampling problem.
 
-1. **Measure baseline.** Quantitative flow with calibration beads (ABC — antibodies bound per cell)
-   to get real molecules-per-cell for the patient's LSCs *and* their normal CD34+ cells. Relative
-   fluorescence is not sufficient; threshold design needs absolute counts.
-2. **Provoke.** HIF-stabilizing agent (primary) ± chemotherapy (secondary).
-3. **Confirm the shift.** Re-measure density. Verify LSC density rose and normal-cell density did
-   not — this is the go/no-go gate. Without confirmed widening, don't proceed to the strike.
-4. **Strike in the window.** High-threshold, affinity-tuned binder, gated on independent axes
-   (CXCR4 AND CLL-1 — see above), timed to peak separation. Therapeutic action severs both hooks.
-5. **Pair with a density-independent mechanism.** Ferroptosis via ferritinophagy, or synthetic
-   lethality on a driver mutation — so cells escaping by shedding surface protein are still caught.
+**Limitation:** PET images bulk disease. Our actual target — post-remission residual cells — is almost
+certainly below detection.
 
-## Why This Composes Well With the Collateral-Sensitivity Trap
+**Workaround:** run PET in *active-disease* patients to map the kinetic curve (how fast CXCR4 rises,
+when it peaks, how long it holds), then apply that fixed schedule in the residual-disease setting.
+**PET calibrates the protocol; it doesn't guide each individual patient.**
 
-A cell facing a high-threshold drug has one escape route: shed target protein. But grip *depends* on
+**Bonus:** only 5 of 10 patients lit up. That's not a failure — that's patient selection. PET-positive
+patients are the ones this strategy can work for. A companion diagnostic, already built.
+
+### Layer 2 — Erythropoietin as the cheap real-time gate
+
+**You don't have to measure CXCR4 directly in each patient.** If roxadustat is the provocateur,
+erythropoietin (EPO) rises as a well-characterized pharmacodynamic marker of HIF stabilization,
+peaking at ~6 hours.
+
+EPO is a routine blood test. So you confirm "the provocation took" with a cheap, fast, repeatable
+assay, and infer CXCR4 is climbing from the Layer 1 curve.
+
+**Roxadustat kinetics:** peak PD response at ~6h; PHD inhibition sustained ≥24h; half-life 2–3 days;
+reversible.
+
+---
+
+## Where This Fits in a Real Patient's Course
+
+| When | What happens | Leukemic burden |
+|---|---|---|
+| **Day 0** | Diagnosis — marrow biopsy shows >20% blasts; genetic profiling assigns risk group | ~10¹² cells |
+| **Days 1–7** | Induction ("7+3": cytarabine ×7 days, anthracycline ×3) | falling |
+| **Days 8–28** | **Aplasia** — counts crash, neutropenic, transfusion-dependent, high infection risk | ↓ |
+| **~Day 28** | Marrow biopsy; <5% blasts = **complete remission (CR)** | **~5×10⁹ remain** |
+| **Months 1–6** | Consolidation — 2–4 cycles high-dose cytarabine (1 week on, ~3 weeks recovering), or transplant | ↓ |
+| **Months 6–24** | Surveillance, or relapse. Most relapses occur in year one. | 0, or back to 10¹² |
+
+**The number that matters: complete remission is only a ~200-fold reduction.** Start at a trillion
+cells, divide by 200, and billions remain. "CR" means the leukemia is invisible on a slide — not that
+it's gone. MRD testing goes deeper (flow ~1 in 10⁴; molecular ~1 in 10⁵–10⁶), but a significant
+proportion of MRD-negative patients still relapse, because LSCs specifically are what the panels miss.
+
+**What's happening to the hard grippers meanwhile:** induction kills dividing cells; the hard grippers
+are dormant in the niche and mostly untouched — while chemo simultaneously upregulates their CXCR4.
+Every consolidation cycle is another round of selection. By the time a patient is "in remission on
+consolidation," the residual population isn't a smaller copy of the original leukemia — it's the
+toughest slice of it, concentrated.
+
+### Insertion point: between consolidation cycles, after count recovery
+
+Three reasons:
+
+1. **Residual disease is at its minimum** — fewest cells to kill.
+2. **Those cells are maximally enriched** for our target phenotype, so a hard-gripper-selective drug
+   has its best hit rate.
+3. **Hard practical constraint:** an NK engager requires the patient to *have* NK cells. During
+   aplasia they don't. This therapy physically cannot run in the Days 8–28 window.
+
+### One treatment cycle
+
+| Hour | Action |
+|---|---|
+| 0 | Provocation dose — oral roxadustat |
+| ~6 | EPO blood test — confirm HIF stabilized. **Go/no-go gate.** |
+| 12–24 | Begin infusion of the tetraspecific engager |
+| 24–48 | NK-mediated killing — hours, not days |
+| Days 3–5 | Washout (roxadustat half-life 2–3 days) |
+| Then | Repeat, slotted into the next consolidation gap |
+
+**Alternative insertion point worth considering:** run it *during* induction, when chemo is already
+provoking CXCR4 — striking the hard grippers before they're selected and concentrated rather than
+hunting them afterward. Conflict: the patient is heading into aplasia, so NK numbers fall exactly
+when you need them. Probably rules it out for an NK-based drug, but it's the right idea for a
+mechanism that doesn't depend on the patient's own immune cells.
+
+---
+
+## Does This Drug Already Exist?
+
+**No — but it's one arm away from something that does.**
+
+| Component | Status |
+|---|---|
+| **CD16-IL15-CLEC12A TriKE** (NK engager vs. CLL-1) | **Exists** — preclinical, reported to drive "antigen-specific killing of cancer stem cells in AML" |
+| NK engager format (TriKE/BiKE) | Established; superior killing kinetics vs. two-arm versions |
+| Roxadustat / daprodustat | FDA-approved (anemia of CKD) |
+| ⁶⁸Ga-Pentixafor PET | Exists; used in AML patients |
+| ¹⁷⁷Lu/⁹⁰Y-Pentixather (therapeutic pair) | First-in-human done in multiple myeloma |
+| Anti-CXCR4 CAR-T | Preclinical (AML and ALL) — positioned as transplant conditioning, i.e. the field concedes CXCR4 alone is too toxic standalone |
+| Affinity-tuned binders (density thresholds) | Demonstrated on CD123, mesothelin, GPC2 |
+| AND-gate constructs for AML | Preclinical — CD33+CLL-1, CD13+TIM-3 |
+| **Tetraspecific: CD16 + CLL-1 + tuned CXCR4 + IL-15** | **Does not exist** |
+| **HIF stabilization used deliberately to raise target density** | **Not found** |
+| **A strike timed to a provoked density window** | **Not found** |
+
+**What we'd actually build:**
+
+1. **One molecule** — add an affinity-tuned CXCR4 arm to the existing CD16-IL15-CLEC12A TriKE. Every
+   component is proven separately; nobody has assembled this one.
+2. **The kinetics experiment** — how fast CXCR4 rises after provocation, when it peaks, how long it
+   holds. This is the real unknown, and it determines the drug's core engineering spec (half-life).
+
+Low technical risk on every component; the novelty is in the assembly and the timing.
+
+---
+
+## Why This Composes With the Collateral-Sensitivity Trap
+
+A cell facing a threshold-gated drug has one escape route: shed target protein. But grip *depends* on
 having lots of CXCR4/CD44 — shed them and the cell can't hold the niche, loses its dormancy brake,
 and loses stromal chemoprotection. It becomes an ordinary dividing cell, which is exactly what
 standard chemo kills.
 
-That's a **collateral sensitivity** setup (resistance to one drug creating vulnerability to another),
-deliberately engineered as an **evolutionary double bind**. Keep the hooks → threshold drug kills you.
+That's **collateral sensitivity** (resistance to one drug creating vulnerability to another),
+deliberately engineered as an **evolutionary double bind**. Keep the hooks → the engager kills you.
 Drop them → chemo kills you.
 
-**Design consequence: the threshold drug must be given *with* chemo, not after it.** The trap needs
-both jaws present. Post-remission consolidation, with the patient off chemo, leaves the second jaw
-missing and escapers simply escape.
+**Design consequence: give the engager *with* chemo, not after it.** The trap needs both jaws present.
+
+---
 
 ## Risks and Open Threads
 
-- **HIF stabilization may help the cancer.** HIF-1α drives many pro-survival and stemness programs.
-  Provoking it could strengthen LSCs in ways that outweigh the targeting benefit. This is the single
-  biggest unknown and needs direct testing before anything else.
+- **HIF stabilization may help the cancer.** HIF-1α drives pro-survival and stemness programs.
+  Biggest unknown; needs direct testing before anything else.
+- **Roxadustat may suppress the killer cells.** It's been studied for *reducing* graft-versus-host
+  disease — meaning HIF stabilization dampens immune-mediated killing. Could suppress our own NK
+  response. May favor chemo as the provocation lever when pairing with an immune effector.
+- **Provoking without striking makes things worse.** You'd have raised CXCR4 = tighter grip = more
+  chemoresistance. If the strike misses the window, you've actively helped the leukemia. This is why
+  the kinetics study is non-negotiable.
+- **Cytokine release syndrome (CRS).** Engagers cause it, and it scales with how hard and fast you
+  activate immune cells. Step-up dosing manages it but lengthens the ramp — directly fighting the
+  narrow-window goal. Possible resolutions: step up in early cycles then hit hard once the patient's
+  cytokine response is characterized, or pre-medicate with tocilizumab (IL-6 blocker).
+- **Provocation deepens the hiding place.** More CXCR4 = tighter grip = further into the
+  poorly-perfused endosteal niche. Partly mitigated because NK cells actively migrate rather than
+  passively diffusing, but it's a real tension: the drug becomes more *visible* to the target and
+  less *accessible* to it simultaneously.
 - **Does the miR-146a differential generalize** beyond monocytic/AML-M5 lineages?
 - **Receptor internalization as a fake-out.** A cell can transiently pull the receptor inside itself
   to duck below threshold, then re-express it — hiding without paying the chemo-vulnerability price.
@@ -167,17 +320,25 @@ missing and escapers simply escape.
   temporarily invisible?
 - **Intrinsic dormancy leaks the trap.** Cells quiescent via p21/p27 rather than niche grip could
   shed the hooks *and* stay chemo-resistant, slipping both jaws.
-- **Patient heterogeneity.** Primary AML spans ~557–11,726 CD123 molecules/cell. A fixed threshold
-  can't fit everyone — this forces a companion diagnostic, and possibly a small panel of variants at
-  different thresholds matched per patient.
-- **Timing window unmeasured.** How long does provoked upregulation last? The strike has to land
-  inside it.
+- **Patient heterogeneity.** Primary AML spans ~557–11,726 CD123 molecules/cell; CXCR4 likely varies
+  similarly. A fixed threshold can't fit everyone — forces a companion diagnostic and possibly a
+  small panel of variants at different thresholds.
+- **Low affinity narrows the escape margin.** Because the drug needs high density, modest antigen
+  downregulation drops cells below threshold. Selectivity bought at the cost of a thinner margin.
+
+---
 
 ## Sources
 
 - [Differential hypoxic regulation of the miR-146a/CXCR4 pathway in normal and leukemic cells](https://haematologica.org/article/view/7491)
 - [CXCR4 expression and biologic activity in AML are dependent on oxygen partial pressure](https://pmc.ncbi.nlm.nih.gov/articles/PMC2644078/)
-- [Dynamic chemotherapy-induced upregulation of CXCR4: a mechanism of resistance in pediatric AML](https://aacrjournals.org/mcr/article/11/9/1004/89410/Dynamic-Chemotherapy-Induced-Upregulation-of-CXCR4)
+- [Dynamic chemotherapy-induced upregulation of CXCR4: a resistance mechanism in pediatric AML](https://aacrjournals.org/mcr/article/11/9/1004/89410/Dynamic-Chemotherapy-Induced-Upregulation-of-CXCR4)
+- [CD16-IL15-CLEC12A TriKE drives NK killing of AML cancer stem cells](https://ashpublications.org/blood/article/132/Supplement%201/1454/272874/CD16-IL15-CLEC12A-Trispecific-Killer-Engager-TriKE)
+- [CD16-IL15-CD33 TriKE — enhanced killing kinetics in MDS and AML](https://www.sciencedirect.com/science/article/pii/S0006497119342922)
+- [Targeted PET imaging of CXCR4 expression in patients with AML](https://pmc.ncbi.nlm.nih.gov/articles/PMC4967572/)
 - [Balance of anti-CD123 CAR binding affinity and density for targeting AML](https://pmc.ncbi.nlm.nih.gov/articles/PMC5542631/)
 - [Affinity-tuned CARs spare normal cells](https://www.genengnews.com/topics/drug-discovery/affinity-tuned-car-t-cells-slay-tumor-cells-spare-normal-cells/)
 - [T cell circuits that sense antigen density with an ultrasensitive threshold](https://limlab.ucsf.edu/pdfs/hernandez-lopez_2021.pdf)
+- [Logic-gated CAR T cells against AML — current status](https://doi.org/10.3390/lymphatics4020031)
+- [CXCR4 induces memory formation over exhaustion in CAR-T cells](https://www.nature.com/articles/s41467-025-67745-x)
+- [Eradication of measurable residual disease in AML: a challenging clinical goal](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8268140/)
