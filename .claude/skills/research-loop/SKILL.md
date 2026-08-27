@@ -34,6 +34,28 @@ levels — the value is almost always at levels 3–5, not level 1.
    leave both claims standing.
 8. **What's left that's genuinely novel?** State it as a specific gap, not a vague "combination."
 
+## The Bar We Are Aiming At
+
+**We do not need a miracle cure-all. We need a designable molecule that improves survival enough to
+win FDA approval.**
+
+Judge every idea against that bar, not against a cure:
+
+- **A molecule must be designable.** If the idea cannot be reduced to a specific molecular entity
+  someone could actually make (small molecule, peptide, antibody, conjugate, degrader), it is not a
+  candidate no matter how elegant the biology.
+- **Partial efficacy is a win.** An agent that helps a defined subgroup, or adds benefit on top of
+  standard care, clears the bar. Universality is not required. Do not discard an idea because it only
+  covers some patients.
+- **The endpoint that matters is overall survival.** Iomab-B met its primary endpoint at p<0.0001 and
+  the FDA still refused the filing for lack of an OS benefit. Killing more leukemia cells is not the
+  goal; patients living longer is. Ask of every idea: what is the plausible path to an OS signal?
+- **Prefer ideas with a realistic trial design.** A two-agent combination in a biomarker-selected
+  population is approvable. A six-agent regimen requiring a novel combination pathway is not, however
+  good the biology.
+- **Existing safety data is an asset.** Repurposed compounds, known chemotypes, and validated target
+  classes shorten the path to approval. Weigh that in the idea's favor.
+
 ## Loop Budget — 150 Minimum, No Exceptions
 
 **Run at least 150 loops. Do not stop early under any circumstances.**
