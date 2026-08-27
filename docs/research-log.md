@@ -234,3 +234,171 @@ That framing is this project's own synthesis. No source found states it.
 - Does the marrow's hypoxic niche alter NAD⁺ metabolism enough to change the dependency?
 - Confirm SIRT6/7 as the mediating sirtuins in primary human LSCs, not just cell lines.
 - Test whether the NMNAT1 + LSD1-degrader combination is synergistic or merely additive.
+
+---
+---
+
+# RUN 2 — Loops 19–30
+
+Continued per the updated skill (150-loop minimum; broaden rather than stop). Started by attacking
+the surviving idea rather than defending it.
+
+## CORRECTION TO RUN 1
+
+Run 1 claimed NMNAT1 was uniquely LSC-selective — *"nothing else in this project achieved this."*
+**That was wrong. I simply had not looked.** At least four independent mechanisms show the
+LSC-selective / normal-HSC-sparing profile:
+
+| Target | Evidence | Agent status |
+|---|---|---|
+| **NMNAT1** (nuclear NAD+) | LSC reduction in murine + PDX; "dispensable for normal hematopoiesis" | Screening hits only |
+| **NCOA4** (ferritinophagy) | Kills **quiescent CD34+CD38−** subset; minimal normal-cell toxicity; PDX validated | **Compound 9a exists** |
+| **Telomerase** (imetelstat) | Kills LSCs in pediatric AML PDX, limited effect on normal marrow stem cells | **FDA approved (MDS)** |
+| **ELAVL1/HuR** (RNA-binding) | In vivo CRISPR screen; "selectively depleted primitive malignant versus healthy cells" | Tool compound MS-444 |
+
+LSC-selectivity is less rare than Run 1 concluded.
+
+## Loop 19 — Attack on NMNAT1: **SURVIVED, and strengthened**
+
+- *"NMNAT1 loss only slightly affected genome integrity without any impact on cell proliferation,
+  suggesting that targeting NMNAT1 could have no toxic impact in normal tissue."*
+- **Why NAMPT inhibitors failed clinically** — FK866 and others died of "toxicity and resistance"
+  precisely *because NAMPT is not compartmentalized*: inhibiting it drains NAD+ from all three
+  compartments at once. NMNAT1 compartment restriction is the specific fix for the specific reason
+  the predecessor class failed.
+- Nuclear NAD+ salvage is also a vulnerability in B-lymphoid malignancies — broader applicability.
+- Residual risk: three NAD+ synthesis routes exist (de novo/tryptophan, salvage/NAM,
+  Preiss-Handler/nicotinic acid) and could in principle compensate — though the gatekeeper finding
+  (precursors bypass NAMPT but *not* NMNAT1) argues against it.
+
+## Loops 22–23 — Imetelstat: **THE CAUTIONARY DATA POINT**
+
+Imetelstat is LSC-selective, spares normal HSCs, and is **FDA approved** — for lower-risk MDS. In
+AML it **underperformed**: the IMpress trial showed "minimal efficacy in higher-risk MDS and AML."
+It remains in combination trials (IMAGINE: + azacitidine ± venetoclax).
+
+**This is the most important negative finding of the run.** An agent with exactly the profile we have
+been hunting — LSC-selective, normal-sparing, PDX-validated — reached the clinic in AML and did not
+deliver. That is a direct warning to NMNAT1, NCOA4, and ELAVL1, all of which rest on the same class
+of evidence. *LSC-selectivity in PDX is not yet a demonstrated predictor of clinical benefit in AML.*
+
+Also noted: imetelstat induces ferroptosis via fatty acid metabolism changes in AML — mechanistically
+adjacent to the NCOA4/iron axis.
+
+## Loop 20 — Mitochondrial transfer: **explains a prior failure**
+
+Bone marrow stroma transfers functional mitochondria to AML cells via **tunneling nanotubes** and
+macropinocytosis, conferring chemoresistance. Critically: **OxPhos inhibition itself induces the
+transfer.** Attack the metabolism and the niche resupplies the cell.
+
+That retroactively explains why the OxPhos-targeting approaches discussed earlier in this project
+underperformed. Blockable by ICAM-1 neutralizing antibody, microtubule inhibitors, or cytochalasin B —
+none selective enough to be a drug on its own.
+
+## Loops 24–25 — SIN3A/PAH2: **Malone claim validated elsewhere, GAP in AML**
+
+Malone claimed "release of a SIN3-HDAC repressor complex" and "RARB restoration." Both correspond to
+real published biology:
+
+- The SIN3A **PAH2 domain** binds the SID motif of transcription factors such as MAD1, recruiting
+  HDAC1/2 to chromatin.
+- **Blocking the PAH2–SID interaction with SID peptides or small-molecule inhibitors increased RARβ
+  expression and induced retinoic acid metabolism** — in breast cancer, in vitro and in vivo.
+- In leukemia, the **UHRF1–SAP30–MXD4 axis** (SAP30 is a SIN3A-associated protein; MXD4 is a
+  MAD-family SID protein) has been targeted for "leukemia initiating cell eradication."
+
+**The gap:** PAH2 inhibitors have been pursued in breast cancer. No published work applies them to
+AML — despite RARβ restoration being the same differentiation/ATRA-sensitization axis that LSD1
+inhibitors exploit. This is the most direct Malone-derived opening found in the entire project.
+
+## Loop 26 — NMNAT1 structural tractability: **unusually favorable**
+
+- The three isoforms have **different quaternary structures**: NMNAT1 is a homohexamer, NMNAT3 a
+  homotetramer, NMNAT2 a monomer. Oligomerization interfaces differ completely — a strong handle for
+  isoform selectivity beyond the conserved active site.
+- Crystal structures exist for NMNAT1 and NMNAT3 (apo and substrate-bound); NMNAT2 has only a
+  homology model.
+- A **cryo-EM structure of NMNAT1 bound to inhibitor AMI-1** exists, with the inhibition mechanism
+  resolved.
+
+## Loops 28–29 — Barrier exclusion: **feasible, with concrete numbers**
+
+Designing for CNS/retinal exclusion is an established strategy, not a hope:
+
+- Make the compound a **P-gp (ABCB1) / BCRP (ABCG2) substrate** — both are expressed on the luminal
+  membrane of the inner blood-retinal barrier and actively pump substrates out of the retina.
+- Property targets: **MW < 500 and PSA < 140** preserve oral absorption; **MW < 450 and PSA < 70**
+  are required *for* CNS penetration. So aim for **PSA ~70–140, MW ~450–500** — orally absorbed,
+  centrally excluded.
+- This "delivers significant CNS restriction whilst retaining good oral bioavailability."
+
+**Caveat found:** retina and brain do not behave identically — P-gp/BCRP inhibition affects erlotinib
+distribution differently in retina versus brain, and retinal distribution "has hardly been
+investigated." BBB exclusion does not automatically guarantee BRB exclusion. Needs direct testing.
+
+## Loops 27, 30 — ELAVL1/HuR: **new candidate, high AI-tractability**
+
+- In vivo two-step CRISPR screen: 32 RNA-binding proteins essential for LSCs; **ELAVL1 selectively
+  depleted primitive malignant versus healthy cells.**
+- Mechanism spans differentiation, splicing, and mitochondrial metabolism; TOMM34 (mitochondrial
+  import) is a directly stabilized target.
+- Tool compound **MS-444** blocks ELAVL1 dimerization; **in primary AML specimens it "significantly
+  induced myeloid maturation and increased cell death,"** with no appreciable effect on
+  non-transformed cells in the colorectal comparison.
+- RNA-binding proteins are classically "undruggable" — no enzymatic pocket, flat RNA-binding
+  surfaces. **That is exactly the class modern structure prediction and de novo binder design newly
+  opens**, which scores it high on AI-tractability precisely because it was hard before.
+
+---
+
+# RE-RANKING AGAINST THE TWO NEW CRITERIA
+
+Scored on **(a)** plausible path to an FDA-approvable overall-survival benefit and **(b)** whether
+modern AI/ML/simulation newly unlocks it.
+
+### 1. NMNAT1 catalytic inhibitor — **still the lead**
+
+**AI unlocks:** a four-way simultaneous optimization that would have been a brutal medicinal-chemistry
+grind before — (i) potency at the NMNAT1 active site, (ii) selectivity over NMNAT2/NMNAT3 via their
+*different oligomeric interfaces*, (iii) deliberate barrier exclusion to a specified property window
+(PSA 70–140, MW 450–500, P-gp substrate), (iv) catalytic-only inhibition preserving the
+neuroprotective chaperone function. A solved cryo-EM structure with a bound inhibitor gives
+generative design a starting point.
+
+**FDA path:** add-on to venetoclax (synergy already demonstrated) in p53-wild-type AML — a two-agent,
+biomarker-selected trial, which is an approvable design.
+
+**Main risks:** the imetelstat precedent, and TP53-mutant escape.
+
+### 2. SIN3A PAH2–SID inhibitor in AML — **best novelty, direct Malone lineage**
+
+**AI unlocks:** PAH2–SID is a protein-protein interface — a flat, historically undruggable surface
+now approachable via structure prediction and de novo binder/peptidomimetic design.
+
+**FDA path:** restores RARβ and retinoic-acid metabolism, so it pairs naturally with ATRA — and
+ATRA-plus-X combination trials in AML are a well-trodden regulatory route.
+
+**Why it ranks high:** genuinely unclaimed in AML, mechanistically validated elsewhere, and the
+closest this project has come to Malone being *right about the underlying biology*.
+
+### 3. ELAVL1/HuR binder — **highest AI leverage, highest risk**
+
+Previously undruggable target class; LSC-selective by in vivo CRISPR; induces myeloid maturation in
+primary AML. MS-444 is an unoptimized natural product, leaving real design room.
+
+### 4. NCOA4/ferritinophagy — **best biology, least left to design**
+
+Uniquely validated in the *quiescent* subset — the exact population this project targets — but
+compound 9a already exists, so there is less of a molecule-design opportunity.
+
+---
+
+# OPEN THREADS AFTER RUN 2
+
+- Does NMNAT1 dependency hold in *quiescent* LSCs specifically? NCOA4 has this evidence; NMNAT1 does not.
+- Confirm that blood-retinal-barrier exclusion tracks with BBB exclusion for a given chemotype.
+- Test SIN3A PAH2 inhibitors in AML primary cells — the single cheapest high-value experiment identified.
+- Does mitochondrial transfer from stroma rescue cells from NAD+ or iron depletion the way it rescues
+  them from OxPhos inhibition? If so, every metabolic approach inherits that resistance mechanism.
+- Why did imetelstat fail in AML despite LSC selectivity? The answer likely predicts whether NMNAT1,
+  NCOA4, and ELAVL1 will too.
