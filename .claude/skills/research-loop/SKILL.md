@@ -56,6 +56,31 @@ Judge every idea against that bar, not against a cure:
 - **Existing safety data is an asset.** Repurposed compounds, known chemotypes, and validated target
   classes shorten the path to approval. Weigh that in the idea's favor.
 
+## Prefer Ideas That AI Newly Unlocks
+
+**The right idea is one that modern LLM, machine-learning, and large-scale simulation tooling makes
+tractable — and that would have been very hard to pursue before it.** Score every candidate on this.
+
+Favor ideas whose bottleneck is a **search, prediction, or design** problem:
+
+- **Multi-parameter molecular optimization.** Satisfying several conflicting constraints at once
+  (potency + isoform selectivity + deliberate barrier exclusion + preserved non-enzymatic function)
+  was previously a slow medicinal-chemistry grind. Generative design plus property prediction now
+  attacks all constraints simultaneously. This is the strongest signal an idea belongs here.
+- **Paralog/isoform selectivity against near-identical active sites.** Structure prediction plus
+  large-scale docking makes discriminating close homologs feasible where it once was not.
+- **Protein-protein interaction and interface design.** Flat, undruggable interfaces are now
+  approachable via structure prediction and de novo binder design.
+- **Cross-field literature synthesis.** Connecting a mechanism published in one disease to an unmet
+  need in another is something an LLM does at a scale no individual reviewer can match.
+- **Virtual screening at billion-compound scale**, and in-silico triage before any synthesis.
+
+Deprioritize ideas whose bottleneck is **wet-lab throughput, unknown biology, or clinical logistics** —
+AI does not relieve those, so the idea is no better positioned now than it was a decade ago.
+
+State explicitly, for each surviving idea: *what specifically does AI make possible here that was not
+before?* If there is no good answer, the idea is probably not the right one for this project.
+
 ## Loop Budget — 150 Minimum, No Exceptions
 
 **Run at least 150 loops. Do not stop early under any circumstances.**
