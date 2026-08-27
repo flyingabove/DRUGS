@@ -34,9 +34,31 @@ levels — the value is almost always at levels 3–5, not level 1.
    leave both claims standing.
 8. **What's left that's genuinely novel?** State it as a specific gap, not a vague "combination."
 
-## Stop Conditions (Dead Ends)
+## Loop Budget — 150 Minimum, No Exceptions
 
-Stop looping on an idea when **any** of these is true:
+**Run at least 150 loops. Do not stop early under any circumstances.**
+
+The dead-end criteria below retire a **single idea**. They never end the run. When an idea dies, the
+loop count keeps going — you move to the next idea, not to the summary.
+
+**When every lead on the board is exhausted, do not stop. Broaden instead:**
+
+1. Run a fresh comprehensive literature search on the disease area from a new angle — a different
+   pathway family, a different modality, a different patient subgroup, an adjacent disease with
+   transferable biology.
+2. Attack the surviving idea rather than defending it. Go hunting for the paper that kills it. Every
+   idea that died in this project died to one sentence someone went looking for.
+3. Re-run the ladder on ideas previously marked dead, with the newer findings in hand — a dead idea
+   plus a new fact is often a live one (senescence was dead until WNT explained the escape).
+4. Follow the open threads already recorded in the research log (docs/research-log.md).
+
+Report the loop count honestly. Never inflate it, and never pad with re-searches of covered ground —
+if you are repeating yourself, that is the signal to broaden per the list above, not to stop and not
+to fake progress.
+
+## Stop Conditions (Retire an Idea — Never the Run)
+
+Retire **one idea** and move to the next when **any** of these is true:
 
 - **Repetition** — three consecutive searches return sources you've already seen.
 - **Needs an experiment** — the remaining question can't be answered from literature (e.g. "how fast
