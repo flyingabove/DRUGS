@@ -198,3 +198,145 @@ met its endpoint and still failed on survival. **The hypothesis stands or falls 
 
 **What would falsify the hypothesis:** GPX4 inhibition kills LSCs but leaves leukemia-initiating
 capacity intact on serial transplant. That single result would end it.
+
+---
+
+# 7. COMPUTATIONAL WORK COMPLETED — DATA
+
+Everything below was executed, not planned. Build log:
+[../planning/execution-log.md](../planning/execution-log.md). Raw outputs under `work/`.
+
+## 7.1 Structures — verified, not assumed
+
+| PDB | Contents | Resolution |
+|---|---|---|
+| **6HN3** | Apo human GPX4, wild-type | **1.01 Å** |
+| **6HKQ** | GPX4 + ML162 (S), covalent | 1.54 Å |
+
+Both carry **genuine selenocysteine** — residue 46 parses as SEC with an SE atom and is declared in
+SEQRES — not the U46C substitution common in GPX4 entries, which would be useless for reactivity work.
+
+**Covalent geometry extracted from the LINK records:** ligand **G9N**, anchor **Sec46 SE → ligand
+C20**, bond length **1.56–1.61 Å**. An independently computed Se–C20 distance of **1.61 Å** matched
+the deposited record exactly, validating coordinate parsing.
+
+**Sec46 is modelled in two conformers** — altloc A at 0.60 occupancy, B at 0.40, selenium positions
+**2.33 Å apart**. Most preparation tools silently keep only altloc A; here that default is defensible
+but must be deliberate rather than accidental.
+
+## 7.2 Non-covalent docking fails — and that is a result
+
+AutoDock Vina 1.2.5, exhaustiveness 32, redocking G9N into its own crystal structure.
+
+| Metric | Crystal | Best of 9 docked poses |
+|---|---|---|
+| Affinity | — | **−5.7 kcal/mol** (weak) |
+| RMSD | 0 | **5.88 Å** (range 5.9–7.9) |
+| **Closest approach to catalytic Se** | **1.61 Å** | **3.64 Å** |
+| Radius of gyration | 3.62 | 3.9–4.6 |
+
+Order-independent metrics were used to exclude an atom-correspondence artifact.
+
+**This empirically confirms two claims the strategy rests on.** Affinities of −5.2 to −5.7 kcal/mol —
+a real pocket gives −8 to −10 — together with nine non-converging poses demonstrate that **GPX4 has no
+drug-like binding pocket**. And **no pose came within 3.64 Å of the selenium**, roughly 2 Å too far to
+bond, so **the covalent constraint is mandatory rather than a refinement.** The crystal geometry
+exists because of the bond, not because of shape complementarity.
+
+Had 20,000 generated compounds been ranked on non-covalent scores, the campaign would have been
+worthless. This was caught before generating one.
+
+**Toolchain note:** Meeko **refused selenocysteine** outright — `Template generation failed for
+unknown residues: {'SEC'}` — and offered `--delete_residues` as a remedy, which would silently remove
+the catalytic residue and let the pipeline run to completion producing meaningless output. An
+explicitly labelled Cys surrogate was used for **geometry only**. Proper SEC parameters remain an open
+blocker for any reactivity work on the protein.
+
+## 7.3 Quantum chemistry — the selectivity determinant
+
+GFN2-xTB, geometry-optimised, on capped warhead models so the comparison isolates intrinsic
+electronics.
+
+| Warhead model | HOMO (eV) | LUMO (eV) | Gap (eV) | ω (eV) |
+|---|---|---|---|---|
+| **ML210 nitro-isoxazole** | −11.03 | **−9.05** | 1.97 | **25.5** |
+| RSL3 / ML162 chloroacetamide | −10.88 | −6.58 | 4.30 | 8.9 |
+| Control — nitro removed | −10.57 | −7.47 | 3.10 | 13.1 |
+
+**Findings:**
+
+- The ML210 warhead LUMO sits **2.48 eV lower** than the chloroacetamide — a far stronger electron
+  acceptor, with a **2.9× higher** global electrophilicity index.
+- **The nitro group is the activator.** Removing it raises the LUMO by **1.59 eV**. Any analog must
+  preserve the nitro, not merely the isoxazole ring — a hard design constraint derived from data.
+
+**Interpretation, stated carefully.** The naive reading — more electrophilic implies less selective —
+is contradicted by ML210 being the selective compound. The resolution is that **the two warheads react
+by different mechanisms, so the comparison is not like-for-like.** Chloroacetamide is a plain SN2
+electrophile, immediately reactive toward any accessible thiol or selenol, consistent with its
+promiscuity and its TXNRD1 off-target. ML210 is a **masked** nitrile-oxide precursor that must be
+unmasked before it reacts; its very low LUMO and narrow 1.97 eV gap reflect activation toward that
+rearrangement rather than toward direct attack. **Selectivity here is kinetic, and it derives from
+masking.**
+
+**Limitation, explicitly:** the species modelled is the ML210 *precursor*, not the unmasked nitrile
+oxide that actually reacts. The reactive species was not computed. This quantifies the electronic
+difference between chemotypes; it does not by itself prove the selectivity mechanism.
+
+## 7.4 First design cycle — 210 analogs, 15 clear the window
+
+BRICS decomposition fixed the **nitro-isoxazole → amide → piperazine** scaffold. The variable handle
+is the **bis(4-chlorophenyl)methine**, which carries most of the lipophilicity and contributes zero
+polarity. Twenty aryl and heteroaryl replacements were enumerated pairwise, and **every structure was
+gated on warhead integrity by SMARTS** before scoring.
+
+| Candidate (R1 / R2) | MW | logP | TPSA | HBD | QED | Structural alerts |
+|---|---|---|---|---|---|---|
+| 4-OH-phenyl / 4-NHMe-phenyl | 451.5 | 3.19 | 125.0 | 2 | 0.43 | ⚠️ aniline + phenol |
+| 4-OH-phenyl / 4-CH₂OH-phenyl | 452.5 | 2.64 | 133.2 | 2 | 0.43 | ⚠️ phenol |
+| bis(4-CH₂OH-phenyl), symmetric | 466.5 | 2.42 | 133.2 | 2 | 0.40 | benzylic alcohol |
+| **bis(4-CONH₂-phenyl), symmetric** | 492.5 | **1.64** | — | 2 | — | ✅ **none** |
+| **ML210 baseline** | 475.3 | 4.75 | 92.7 | **0** | 0.39 | — |
+
+**Movement against objectives:** HBD **0 → 2**, the key barrier-exclusion driver; logP **4.75 →
+1.64–3.19**; TPSA **92.7 → 125–139**; MW held inside the window.
+
+**Self-critique applied after ranking.** The two highest-QED hits carry structural alerts — the
+**aniline is a quinone-imine risk**, and phenols are metabolic soft spots. The symmetric
+**bis(4-carbamoylphenyl)** analog is alert-free, has the lowest lipophilicity, and symmetric benzhydryl
+centres are **synthetically easier** than mixed ones. On medicinal-chemistry grounds it outranks the
+QED ordering.
+
+## 7.5 The result that makes this scaffold credible
+
+Measured bond path from the design handle to the electrophilic warhead carbon: **7 bonds, through an
+amide and a saturated piperazine.**
+
+Tested computationally rather than asserted — full-molecule GFN2-xTB, ML210 versus the substituted
+analog:
+
+| | ML210 | 4-OH / 4-NHMe analog | Shift |
+|---|---|---|---|
+| **LUMO** (warhead-localised acceptor) | −9.11 | −9.06 | **+0.054 eV** |
+| HOMO (ligand-localised) | −10.10 | −9.51 | +0.59 eV |
+
+**The LUMO is unmoved; only the HOMO shifts.** Substituting electron-rich aryls raises the donor
+orbital while leaving the warhead acceptor orbital untouched — the exact signature of electronic
+insulation.
+
+**Therefore the property problem and the selectivity problem are separable on this scaffold.** That is
+the strongest single argument that lead optimisation here is a credible programme rather than a
+reactivity gamble, and it is now a measurement rather than a claim.
+
+## 7.6 What has NOT been established
+
+- **No potency prediction whatsoever.** The chlorophenyls may make essential contacts. The mitigating
+  argument — GPX4 has no real pocket, so they plausibly contribute positioning rather than affinity —
+  is a hypothesis supported by §7.2, not a result.
+- **Covalent docking not yet run.** The non-covalent gate was retired as uninformative; the
+  constrained protocol is next.
+- **Barrier exclusion is predicted from property heuristics**, not modelled.
+- **Selenocysteine parameters unresolved**, which blocks all reactivity modelling on the protein.
+- **No MD, no FEP, no free-energy work yet.**
+- **Nothing here addresses durability.** Serial transplantation remains the experiment that decides
+  whether this is a therapy or a delay, and no amount of simulation substitutes for it.
