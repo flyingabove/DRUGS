@@ -1,262 +1,300 @@
-# Strategy 5: Break the Shield — A GPX4 Inhibitor That Spares the Kidney
+# Strategy 5: Break the Shield — A Dual GPX4/FSP1 Inhibitor for Venetoclax-Resistant AML
 
-**The challenge in one line:** find a molecule that is very good at killing leukemic stem cells by
+**The challenge in one line:** design a molecule that is very good at killing leukemic stem cells by
 forcing them to rust from the inside — without doing the same thing to the patient's kidneys.
 
-That second clause is not a footnote. **It is the whole design problem**, and it is what this document
-is really about.
+**The drug:** a selective covalent GPX4 inhibitor with FSP1 coverage, designed for hepatobiliary
+clearance, developed for **venetoclax-resistant AML**.
 
-Related: [Strategy 3](provoke-then-strike.md) and [Strategy 4](tag-then-burrow.md) attacked LSCs by
-where they hide. This one attacks what they chemically depend on to stay alive.
+Revised after research loops 37–40, which corrected two assumptions in the first draft. Superseded
+sections are marked rather than deleted.
 
 ---
 
 ## Part 1: The Biology
 
-### What ferroptosis is
+**Ferroptosis** is cell death driven by iron reacting with membrane fats, causing them to go rancid.
+The membrane rusts and the cell falls apart. It is mechanistically distinct from apoptosis — the
+orderly self-destruct program venetoclax and most cancer drugs trigger — which is why cells resistant
+to one can still be killed by the other. **That distinction is the entire clinical rationale here.**
 
-A form of cell death driven by **iron reacting with fats in the cell membrane**, causing them to go
-rancid. The membrane effectively rusts, oxidative damage spreads, and the cell falls apart. It is
-distinct from apoptosis (the orderly self-destruct program most cancer drugs trigger), which matters
-because cells resistant to one are often still vulnerable to the other.
+LSCs run high iron traffic. To survive it they maintain an antioxidant shield with **three parallel
+arms**:
 
-### Why LSCs are exposed to it
-
-Leukemic stem cells run **high iron flux**. To survive that, they depend on a three-step defense chain:
-
-1. **SLC7A11** (a transporter) imports cystine into the cell
-2. Cystine is converted into **glutathione**, the cell's primary antioxidant
-3. **GPX4** uses that glutathione to neutralize damaged membrane fats before the damage spreads
-
-GPX4 is the last link. Cut it and the damage runs away unchecked.
-
-### Four independent lines converge here
-
-This was not a single finding. Four separate research threads, each discovered in a different
-research loop, all landed on this same axis:
-
-| Line | Finding | Population validated |
+| Arm | Mechanism | Status in AML |
 |---|---|---|
-| **NCOA4 / ferritinophagy** | Controls iron release from ferritin stores | **Quiescent CD34+CD38− LSCs** |
-| **Imetelstat** | Its real AML mechanism is lipid ROS and ferroptosis, *not* telomerase | AML PDX models |
-| **Cysteine / SLC7A11** | Depletion impairs energy metabolism in **ROS-low LSCs but not normal HSPCs** | **Quiescent LSCs** |
-| **GPX4 expression** | The terminal enzyme in the defense chain | See below |
+| **GPX4** | Uses glutathione to neutralize damaged membrane fats | High expression = adverse prognosis |
+| **FSP1 / AIFM2** | Regenerates CoQ10; ubiquinol traps lipid peroxyl radicals — **glutathione-independent** | High expression = adverse prognosis |
+| **TXNRD1** | Thioredoxin system | Overexpressed, correlates with poor prognosis |
 
-Convergence from four directions on one mechanism is the strongest signal produced anywhere in this
-project.
+Upstream, **SLC7A11** imports cystine to make the glutathione that GPX4 needs, and **NRF2** is the
+master regulator driving expression of the whole defense.
+
+### Four independent lines converged here
+
+Discovered in four separate research loops, all landing on the same axis:
+
+| Line | Finding | Population |
+|---|---|---|
+| NCOA4 / ferritinophagy | Controls iron release from ferritin | **Quiescent CD34+CD38− LSCs** |
+| Imetelstat | Its real AML mechanism is lipid ROS/ferroptosis, not telomerase | AML PDX |
+| Cysteine / SLC7A11 | Depletion impairs **ROS-low LSCs but not normal HSPCs** | **Quiescent LSCs** |
+| GPX4 expression | The terminal enzyme of the glutathione arm | See Part 2 |
 
 ---
 
 ## Part 2: The Selectivity Window
 
-This is the part that has eluded every earlier strategy here. **For once, the difference points the
-right way:**
+For once the difference points the right way:
 
-- **GPX4 is highly expressed in most AML subtypes, and expressed at lower levels in normal
-  hematopoietic stem cells** — it varies by myeloid differentiation stage.
-- **Normal HSCs tolerate GPX4 depletion** with no significant effect, indicating tolerability for
+- **GPX4 is highly expressed in most AML subtypes and lower in normal hematopoietic stem cells**,
+  varying by myeloid differentiation stage.
+- **Normal HSCs tolerate GPX4 depletion** with no significant effect — indicating tolerability for
   normal hematopoiesis.
-
-LSCs are on a tightrope: high iron flux, heavy dependence on the antioxidant shield. Normal blood stem
-cells are not on that tightrope at all — they sit in a low-oxygen niche and run less GPX4.
+- **High GPX4 *and* high AIFM2 (FSP1) both independently predict adverse prognosis in AML** — the
+  patients who most need a new option are the ones most dependent on this shield.
 
 Every earlier target in this project (CXCR4, CD44, CD45, CD33, CD123, LSD1, HMG20B) was shared with
-normal blood cells in a way that cut against us. This one does not.
+normal blood cells in a way that cut against us. This one is not.
 
 ---
 
-## Part 3: The Gap — Why This Is Worth Building
+## Part 3: The Gap
 
-**GPX4 has a shallow active site with no drug-like binding pocket.** It is a textbook
-difficult-to-drug target. Existing inhibitors (RSL3, ML210) have poor pharmacokinetics and low
-selectivity that "preclude their clinical use."
+**GPX4 has a shallow active site with no drug-like binding pocket** — a textbook difficult-to-drug
+target. Existing inhibitors (RSL3, ML210) have pharmacokinetics that "preclude their clinical use."
 
-And then the finding that makes this genuinely open:
+And the finding that makes it genuinely open:
 
-> Cell-free assays show that **RSL3 and ML210 fail to inhibit purified GPX4 at all.** They target
-> **TXNRD1** and other components of the selenoprotein synthesis machinery instead.
+> Cell-free assays show **RSL3 and ML210 fail to inhibit purified GPX4 at all.** They hit **TXNRD1**
+> and selenoprotein-synthesis machinery instead.
 
-**The field's two standard GPX4 tool compounds do not hit GPX4.** A substantial body of published
-"GPX4 inhibition" work may therefore be mechanistically misattributed — the same failure mode found
-in the same research run for imetelstat.
+### Why the target survives that finding anyway
 
-**Net position:** no validated, selective, drug-like GPX4 inhibitor exists. Crystal structures are
-solved (apo GPX4, and GPX4 covalently bound to ML162). The problem is simply unsolved.
+This looked like it might invalidate the target. It does not, because **GPX4 has been validated
+genetically, independent of those compounds**:
+
+- **GPX4 knockdown induces ferroptosis in AML cells** with characteristic mitochondrial lipid
+  peroxidation, and exerts anti-AML effects **in vitro and in vivo**.
+
+So the biology is real; only the tool compounds were misattributed. **What does not exist is a
+validated, selective, drug-like GPX4 inhibitor.** Crystal structures are solved (apo, and covalently
+bound to ML162). The problem is open.
 
 ---
 
-## Part 4: THE KIDNEY PROBLEM
+## Part 4: The Indication — Venetoclax-Resistant AML
 
-**This is the central challenge, and it is serious.**
+This is the sharpest clinical framing available, and it comes from a single finding:
 
-Inducible GPX4 knockout in mice causes **acute renal failure and death**, through massive ferroptotic
-death of renal tubular epithelial cells. Human renal proximal tubule epithelial cells undergo
-ferroptosis when exposed to ferroptosis-inducing agents. GPX4 is also essential in T cells, and
-germline knockout is embryonically lethal.
+> **GPX4 inhibitor ML210 plus venetoclax is synergistic in AML cell lines and in primary cells from
+> AML patients, including those with venetoclax resistance.**
 
-So a systemically active, unmodified GPX4 inhibitor would plausibly kill the leukemia and the kidneys
-together. **Any version of this idea that does not solve the kidney problem is not a drug.**
+Venetoclax resistance is currently among the largest unmet needs in AML. Venetoclax kills by
+apoptosis; ferroptosis is a *different death pathway*, so resistance to the first does not confer
+resistance to the second.
 
-### Solution A: Iron-gated prodrug — **the lead approach**
+**That gives a defined population, a mechanistic rationale, primary-patient-cell evidence, and an
+existing backbone to add to — the shape of an approvable trial.**
 
-Make the molecule inert until it encounters **high labile ferrous iron, Fe(II)**, and only then
-release the active GPX4 inhibitor.
+**Patient selection biomarker:** a published model integrating **TfR1, GPX4, and FTH1** predicts LSC
+ferroptosis susceptibility. GPX4-high/AIFM2-high status adds a second selection axis.
 
-**Why this is the right gate:** the very property that makes LSCs vulnerable to ferroptosis — a large
-pool of free, reactive iron — becomes the trigger that activates the drug. Targeting and vulnerability
-are the same variable. A cell that is not iron-loaded never generates the active compound, so it is
-never at risk.
+---
 
-Chemistry precedent exists: Fe(II)-cleaved **endoperoxide and 1,2,4-trioxolane** scaffolds
-(artemisinin-class chemistry) are well characterized and specifically reactive toward ferrous iron.
+## Part 5: THE KIDNEY PROBLEM
 
-**The question that decides it:** proximal tubule cells reabsorb transferrin and handle substantial
-iron traffic. Total iron handling and *labile* (free, reactive) iron pool are different quantities —
-the design depends on LSCs having a meaningfully larger labile pool than renal tubular cells. **This
-is the single most important experiment to run before anything else.**
+**This is the central design challenge.**
 
-### Solution B: Avoid renal clearance — **necessary regardless**
+Inducible GPX4 knockout in mice causes **acute renal failure and death** via massive ferroptotic
+death of renal tubular epithelium. Human proximal tubule epithelial cells undergo ferroptosis when
+exposed to ferroptosis inducers. GPX4 is also essential in T cells, and germline knockout is
+embryonically lethal.
 
-Kidneys filter blood and concentrate solutes in the tubules, meaning a renally-cleared drug is
-concentrated in precisely the tissue we must protect. Design instead for **hepatobiliary
-elimination** — tuning molecular weight, charge, and transporter-substrate profile away from renal
-excretion.
+Any version of this idea that does not solve the kidney problem is not a drug.
 
-This is standard medicinal chemistry, and it should be applied whether or not Solution A works.
+### ~~Solution A: Iron-gated prodrug~~ — **WEAKENED, demoted**
 
-### Solution C: Reversible-covalent warhead + intermittent dosing
+*First draft proposed making the molecule inert until it met high labile ferrous iron, so that the
+property making LSCs vulnerable would also be the trigger arming the drug.*
 
-Exploit differential recovery. A reversible-covalent warhead detaches over hours rather than
-permanently disabling the enzyme; combined with intermittent dosing and drug holidays, renal tubular
-cells — which regenerate — recover between cycles, while iron-loaded LSCs under continuous oxidative
-stress do not tolerate even transient loss of the shield.
+**Loop 37 undercut the premise.** LSCs **overexpress ferritin (FTH and FTL) relative to normal HSCs**
+and *actively use ferritinophagy to prevent excessive labile iron accumulation*. **They buffer their
+iron rather than leaving it loose.** A drug requiring a large labile Fe(II) pool may therefore not
+preferentially activate in them.
+
+Retained only as a secondary option pending direct measurement of labile iron pool in LSCs versus
+proximal tubule cells. A further caution: at least one study reports that labile iron pool dynamics
+do *not* drive ferroptosis potentiation in colorectal cancer cells.
+
+### Solution B: Avoid renal clearance — **now primary**
+
+Kidneys filter and concentrate solutes in the tubules, so a renally-cleared drug is concentrated in
+precisely the tissue we must protect. Design instead for **hepatobiliary elimination**, tuning
+molecular weight, charge, and transporter-substrate profile away from renal excretion.
+
+Standard medicinal chemistry, and now the first line of defense rather than a supplement.
+
+### Solution C: Reversible-covalent warhead plus intermittent dosing — **now co-primary**
+
+A reversible-covalent warhead detaches over hours rather than permanently disabling the enzyme.
+Combined with intermittent dosing, renal tubular cells — which regenerate — recover between cycles,
+while LSCs under continuous oxidative stress and with no defense reserve do not tolerate even
+transient loss.
 
 Precedent: reversible-covalent chemistry is established in approved kinase inhibitors.
 
-### Solution D: Hypoxia activation — **investigated and downgraded**
+### ~~Solution D: Hypoxia activation~~ — **INVESTIGATED AND REJECTED**
 
-The obvious idea, given this project's long thread on the hypoxic marrow niche: make it a
-hypoxia-activated prodrug, inert in oxygenated tissue.
-
-**It does not work cleanly, and the numbers say why:**
+The intuitive move, given this project's long thread on the hypoxic niche. The numbers kill it:
 
 | Tissue | Oxygen tension |
 |---|---|
 | Bone marrow endosteal niche | **< 10 mmHg** |
-| Renal medulla | **~10 mmHg** |
+| **Renal medulla** | **~10 mmHg** |
 | Renal cortex | ~30 mmHg |
 
-The renal medulla is *as hypoxic as the marrow niche*. Worse, the GPX4-dependent ferroptosis
-vulnerability sits **at the interface of the inner cortex and outer medulla** — straddling the
-boundary, partly inside the hypoxic zone.
-
-There is essentially no oxygen window separating the target tissue from the tissue we must protect.
-**Recorded as investigated and rejected**, since it is the intuitive move and someone will propose it.
+The renal medulla is as hypoxic as the marrow niche, and the GPX4-dependent vulnerability sits **at
+the interface of inner cortex and outer medulla** — straddling the boundary. There is no usable
+oxygen window. Recorded because someone will propose it.
 
 ---
 
-## Part 5: The Molecule
+## Part 6: The Escape Route — and Why the Molecule Must Cover FSP1
 
-**An Fe(II)-gated prodrug of a selective covalent GPX4 inhibitor, designed for hepatobiliary
-clearance.**
+**Blocking GPX4 alone builds in a known resistance mechanism.**
 
-Design constraints, each derived from a specific documented failure:
+- **FSP1 suppresses ferroptosis by a glutathione-independent route**, regenerating CoQ10 whose
+  reduced form traps lipid peroxyl radicals. It works in parallel to GPX4 and rescues cells from
+  GPX4 deletion.
+- **Upregulation of CoQ shifts ferroptosis dependence from GPX4 to FSP1** under therapeutic pressure —
+  documented in acquired radioresistance. Cells do not die; they switch arms.
+- **Pharmacological FSP1 targeting strongly synergizes with GPX4 inhibitors** across multiple cancers.
+- In AML specifically, ferroptosis induction via suppression of **both GPX4 and AIFM2** eliminates
+  chemotherapy-resistant cells.
 
-1. **Must actually inhibit purified GPX4.** RSL3 and ML210 fail this. Cell-free validation against
-   purified enzyme is a gating criterion, not a confirmatory afterthought.
-2. **Selectivity against TXNRD1** and the wider selenoprotein synthesis machinery — the specific
-   off-target that invalidated the existing tool compounds.
-3. **Fe(II)-dependent activation** — endoperoxide/trioxolane gating so the active species only appears
-   in iron-loaded cells.
-4. **Hepatobiliary, not renal, clearance** — keep the compound out of the tubules entirely.
-5. **Tuned warhead reactivity** — potent enough to engage a shallow pocket with no conventional
-   binding site, selective enough to avoid proteome-wide covalent promiscuity. Masked nitrile-oxide
-   electrophiles are the reported starting point, with "unexpected proteome-wide selectivity and
+### The niche supplies the escape route
+
+A connection this project can make that the individual papers do not:
+
+- Mitochondrial electron transport chains are a primary source of **CoQ recycling** — and
+  mitochondria-specific CoQ potently blocks GPX4-inhibition-mediated ferroptosis in AML.
+- Separately, **marrow stroma transfers functional mitochondria to AML cells** through tunneling
+  nanotubes, and metabolic attack *induces* that transfer.
+
+**Therefore: attacking GPX4 should provoke the niche to hand LSCs fresh mitochondria, more CoQ, and a
+reinforced FSP1 arm.** The resistance mechanism is not merely intrinsic — it is resupplied from
+outside. This is a testable prediction and a direct argument that FSP1 coverage is not optional.
+
+**Note:** dual GPX4/TXNRD1 targeting in AML has already been explored (2024 preprint). Dual
+**GPX4/FSP1** in AML appears not to have been.
+
+---
+
+## Part 7: The Molecule
+
+**A selective covalent GPX4 inhibitor with FSP1 coverage, cleared hepatobiliarily.**
+
+Two architectures, to be decided by feasibility:
+
+- **(a) Single dual-acting molecule** — one entity engaging both GPX4 and FSP1. Higher design
+  difficulty, simpler regulatory path.
+- **(b) A best-in-class GPX4 inhibitor co-developed with an FSP1 inhibitor.** Lower design risk,
+  two-component combination. *Recommended starting point.*
+
+Design constraints, each derived from a documented failure:
+
+1. **Must inhibit purified GPX4 in a cell-free assay.** RSL3 and ML210 fail this. A gating criterion,
+   not a confirmatory afterthought.
+2. **Selectivity against TXNRD1** and the wider selenoprotein machinery — the exact off-target that
+   invalidated the existing tools.
+3. **Hepatobiliary, not renal, clearance** — keep the compound out of the tubules.
+4. **Reversible-covalent warhead** — enable differential recovery between doses.
+5. **Tuned warhead reactivity** — potent enough for a shallow pocket with no conventional binding
+   site, selective enough to avoid proteome-wide covalent promiscuity. **Masked nitrile-oxide
+   electrophiles** are the reported starting point, offering "unexpected proteome-wide selectivity and
    vastly improved physicochemical and pharmacokinetic properties" over chloroacetamide chemistry.
+6. **FSP1 coverage** — by dual pharmacology or a co-developed partner agent.
 
 ---
 
-## Part 6: Why AI Makes This Tractable Now
+## Part 8: Why AI Makes This Tractable Now
 
-**Five coupled constraints on a structurally-solved but pocket-less target.** Shallow-site binding,
-covalent reactivity tuning, selectivity against a near-identical selenoprotein family, iron-gated
-prodrug release kinetics, and clearance-route steering — all optimized **simultaneously**, not
-sequentially.
+**Six coupled constraints on a structurally-solved but pocket-less target**, optimized simultaneously
+rather than sequentially: shallow-site binding, covalent reactivity tuning, selectivity against a
+near-identical selenoprotein family, clearance-route steering, reversibility kinetics, and dual-target
+pharmacology.
 
-That is a combinatorial design problem that defeated conventional medicinal chemistry for over a
-decade, on a target where crystal structures already exist. Generative chemistry plus structure
-prediction plus multi-parameter property models attack all five at once; a human chemist attacks them
-one at a time and loses ground on each round trip.
+A human medicinal chemistry program attacks these one at a time and loses ground on each round trip —
+which is precisely why GPX4 has resisted drugging for over a decade despite solved crystal structures.
+Generative chemistry plus structure prediction plus multi-parameter property models attack all six at
+once.
 
-**This is the best fit to the AI-tractability criterion found anywhere in this project.**
-
----
-
-## Part 7: The Regulatory Path
-
-Add to the **venetoclax + azacitidine** backbone:
-
-- Azacitidine, already standard of care, **independently sensitizes AML cells to ferroptosis** via the
-  MAGEA6–AMPK–SLC7A11–GPX4 axis.
-- NRF2 inhibition (ML385) enhancing venetoclax killing produced cell death equal to or greater than
-  venetoclax + azacitidine — evidence that collapsing the antioxidant defense synergizes with the
-  existing regimen.
-
-A two-agent addition to an approved backbone, in a biomarker-selected population (GPX4-high, and
-plausibly iron-loading-high), is an approvable trial design — not a six-drug regimen with no
-regulatory pathway.
+**This remains the best fit to the AI-tractability criterion found anywhere in this project.**
 
 ---
 
-## Part 8: Risks, Honestly
+## Part 9: The Regimen
 
-- **Kidney toxicity is not solved, only addressed.** Solutions A–C are design hypotheses, not
-  demonstrated results. If LSCs and proximal tubule cells have comparable labile iron pools, the lead
-  approach fails.
-- **The target's validation needs re-examination.** If RSL3/ML210 were not inhibiting GPX4, some
-  evidence that "GPX4 inhibition kills AML" may actually be evidence about TXNRD1. Building a
-  genuinely selective compound is partly how that gets resolved — which is either a weakness or the
-  point.
-- **TXNRD1 may be the better target.** The compounds that hit it *did* kill AML cells. Worth testing
-  before committing.
-- **Covalent inhibitors** carry inherent off-target and immunogenicity risk.
-- **Niche resupply.** Marrow stroma transfers mitochondria to AML cells through tunneling nanotubes,
-  and OxPhos inhibition *induces* that transfer. Whether the niche similarly resupplies glutathione or
-  antioxidant capacity under ferroptotic stress is untested — if it does, this approach inherits the
-  same resistance mechanism.
+| Component | Role | Status |
+|---|---|---|
+| **GPX4 inhibitor (+FSP1)** | Collapse the ferroptosis defense | **The molecule we design** |
+| **Venetoclax** | Apoptotic arm; synergy shown in primary venetoclax-*resistant* cells | Approved |
+| **Azacitidine** | Backbone; independently sensitizes to ferroptosis via MAGEA6–AMPK–SLC7A11–GPX4 | Approved |
+| *HDAC inhibitor* | *Optional: upregulates iron metabolism genes, raises labile iron, enhances ferroptosis susceptibility* | *Approved* |
+
+Adding one novel agent to an approved backbone in a biomarker-selected population is an approvable
+design.
+
+---
+
+## Part 10: Risks, Honestly
+
+- **Kidney toxicity is addressed, not solved.** Solutions B and C are design hypotheses. The gating
+  experiment — labile iron pool in LSCs versus proximal tubule cells — still needs running even
+  though iron-gating has been demoted.
 - **T cell toxicity.** GPX4 is essential in T cells; immunosuppression is a plausible dose-limiting
-  effect not addressed by any solution above.
+  effect no proposed solution addresses. **The largest unaddressed risk.**
+- **TXNRD1 may be the better target.** The compounds that hit it did kill AML cells, it is
+  overexpressed in AML with poor prognosis, and auranofin — an approved drug — inhibits it. Caution:
+  TXNRD1 inhibitors expand regulatory T cells, a paradoxical immunosuppressive effect that may limit
+  efficacy in immunocompetent patients.
+- **Covalent inhibitors** carry inherent off-target and immunogenicity risk.
+- **Mitochondrial CoQ resupply from the niche** (Part 6) may blunt the whole approach unless FSP1 is
+  covered.
 
 ---
 
-## Part 9: The Fork
+## Part 11: The Fork
 
-**Iron starvation versus ferroptosis induction are opposite strategies and cannot be combined.**
+**Iron starvation and ferroptosis induction are opposite strategies and cannot be combined.**
 
 - **NCOA4 inhibition** (compound 9a exists) kills by *starving* cells of iron.
-- **GPX4 inhibition** kills by *exploiting* iron.
+- **GPX4/FSP1 inhibition** kills by *exploiting* iron.
 
-Blocking NCOA4 reduces labile iron, which would protect cells from ferroptosis. Running both would
-antagonize.
+Blocking NCOA4 lowers labile iron, which would protect against ferroptosis. Running both antagonizes.
 
 NCOA4 is better validated in the exact target population (quiescent LSCs) and a compound already
-exists. GPX4 is the far larger unmet design problem and the better fit to an AI-driven premise. **Pick
-one.** This document argues for GPX4 on the strength of the design opportunity, while noting that
-NCOA4 is the more conservative choice.
+exists. GPX4/FSP1 is the far larger unmet design problem, has the venetoclax-resistant indication,
+and is the better fit to an AI-driven premise. **This document argues for GPX4/FSP1**, while noting
+NCOA4 as the more conservative alternative.
 
 ---
 
 ## Sources
 
-- [Cysteine depletion targets leukemia stem cells through inhibition of electron transport complex II (Blood)](https://ashpublications.org/blood/article/134/4/389/260692/Cysteine-depletion-targets-leukemia-stem-cells)
-- [Cystine uptake inhibition potentiates front-line therapies in AML](https://pubmed.ncbi.nlm.nih.gov/35474100/)
-- [Cystine transporter SLC7A11/xCT in cancer: ferroptosis, nutrient dependency, and cancer therapy](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8310547/)
+- [Mitochondrial regulation of GPX4 inhibition–mediated ferroptosis in AML (Leukemia)](https://www.nature.com/articles/s41375-023-02117-2)
+- [FSP1 is a glutathione-independent ferroptosis suppressor (Nature)](https://www.nature.com/articles/s41586-019-1707-0)
+- [The CoQ oxidoreductase FSP1 acts parallel to GPX4 to inhibit ferroptosis (Nature)](https://www.nature.com/articles/s41586-019-1705-2)
+- [Upregulation of CoQ shifts ferroptosis dependence from GPX4 to FSP1](https://www.sciencedirect.com/science/article/pii/S1368764623001152)
+- [The ferroptosis landscape in acute myeloid leukemia](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC10713399/)
+- [Dual targeting of GPX4 and TXNRD1 eradicates AML cells](https://www.biorxiv.org/content/10.1101/2024.04.03.584800.full.pdf)
 - [Targeting GPX4 in ferroptosis and cancer: chemical strategies and challenges](https://www.sciencedirect.com/science/article/abs/pii/S0165614724000981)
 - [Selective covalent targeting of GPX4 using masked nitrile-oxide electrophiles](https://pubmed.ncbi.nlm.nih.gov/32231343/)
-- [Crystal structures of GPX4 apo and with covalently bound ML162](https://pubmed.ncbi.nlm.nih.gov/33559612/)
-- [Structure–activity relationships of GPX4 inhibitor warheads](https://pmc.ncbi.nlm.nih.gov/articles/PMC8006158/)
+- [Crystal structures of GPX4 apo and covalently bound to ML162](https://pubmed.ncbi.nlm.nih.gov/33559612/)
 - [Inactivation of the ferroptosis regulator Gpx4 triggers acute renal failure in mice (Nature Cell Biology)](https://www.nature.com/articles/ncb3064)
-- [Ferroptotic stress promotes accumulation of pro-inflammatory proximal tubular cells (eLife)](https://elifesciences.org/articles/68603)
+- [Cysteine depletion targets leukemia stem cells (Blood)](https://ashpublications.org/blood/article/134/4/389/260692/Cysteine-depletion-targets-leukemia-stem-cells)
+- [Susceptibility of AML cells to ferroptosis and evasion strategies](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC10561097/)
+- [HDAC inhibitor enhances ferroptosis susceptibility of AML cells by stimulating iron metabolism](https://pubmed.ncbi.nlm.nih.gov/39756501/)
+- [Thioredoxin reductase is a major regulator of metabolism in leukemia cells](https://www.researchgate.net/publication/353077930_Thioredoxin_reductase_is_a_major_regulator_of_metabolism_in_leukemia_cells)
 - [What Makes the Kidney Susceptible to Hypoxia?](https://anatomypubs.onlinelibrary.wiley.com/doi/10.1002/ar.24260)
-- [Low-dose hypomethylating agents cooperate with ferroptosis inducers via MAGEA6-AMPK-SLC7A11-GPX4 in AML](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC10877917/)
-- [Ferritinophagy is a druggable vulnerability of quiescent leukemic stem cells](https://www.biorxiv.org/content/10.1101/2023.12.18.572101.full.pdf)
