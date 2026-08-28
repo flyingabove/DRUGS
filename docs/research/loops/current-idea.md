@@ -2,7 +2,7 @@
 
 **Read this plus [dead-ideas.md](dead-ideas.md) to reload full context. Nothing else needed.**
 
-Loop count: **44**. Full detail: [../../strategies/break-the-shield-gpx4.md](../../strategies/break-the-shield-gpx4.md)
+Loop count: **48**. Full detail: [../../strategies/break-the-shield-gpx4.md](../../strategies/break-the-shield-gpx4.md)
 
 ---
 
@@ -139,6 +139,64 @@ Tunneling-nanotube → mitochondrial CoQ → FSP1 rescue is our inference.
 ## 6. Is TXNRD1 the better target? — **OPEN**
 Overexpressed in AML, poor prognosis, approved drug (auranofin) works in AML. And RSL3/ML162 killed
 AML cells *through* TXNRD1. Counter: TXNRD1 inhibitors expand Tregs (paradoxical immunosuppression).
+
+---
+
+# EFFICACY EVIDENCE (the primary gate)
+
+Ranked by the hierarchy in the skill: serial transplant > primary patient LSC > PDX > cell line.
+
+| Tier | Status |
+|---|---|
+| **Eradicates leukemia-initiating capacity (serial transplant)** | **NOT DEMONSTRATED for GPX4 inhibition.** The definitive experiment. Top remaining gap. |
+| **Primary patient LSC killing ex vivo** | **YES.** GPX4 inhibitors **HA344 and #231 efficiently kill CD34+ cells from AML patients**, with **blast cells significantly more sensitive than non-blast cells** in the same marrow sample |
+| **Persister/dormant cell killing** | **YES.** Persisters across tumor types are vulnerable to ferroptosis specifically via GPX4 inhibition; dormant cells highly sensitive, normal cells largely spared |
+| **Venetoclax-resistant primary cells** | **YES.** ML210 + venetoclax synergistic in primary AML patient cells including venetoclax-resistant |
+| **In vivo / PDX** | **YES.** GPX4 knockdown anti-leukemic in vivo |
+
+**Verdict on the primary gate: the mechanism kills LSCs.** Evidence spans genetic knockdown, multiple
+independent compounds, primary patient CD34+ cells, dormant persisters, and venetoclax-resistant
+disease. The one missing tier is serial transplantation.
+
+---
+
+# NCOA4 FORK — CONTRADICTION FOUND AND RESOLVED (loops 46–47)
+
+One source claimed *"inhibition of NCOA4 leads to iron overload and increased susceptibility to
+ferroptosis in LSCs"* — which would have meant NCOA4 inhibition **synergizes** with our GPX4 approach
+rather than antagonizing it, turning the fork into a combination.
+
+**Checked. That source was loosely worded. The consensus mechanism is the opposite:**
+
+> NCOA4 depletion **inhibits ferroptosis** by eliminating the accumulation of intracellular free iron.
+
+NCOA4-mediated ferritinophagy *releases* iron from ferritin and thereby **promotes** ferroptosis.
+Blocking NCOA4 traps iron in ferritin → less labile iron → **less** ferroptosis.
+
+**The fork stands. Do not combine an NCOA4 inhibitor with a GPX4 inhibitor.**
+
+**But the flip side is a real design idea:** if NCOA4 *activity* promotes ferroptosis, then an **NCOA4
+agonist** — forcing ferritinophagy to dump stored iron — would **synergize** with GPX4 inhibition.
+NCOA4 agonists do not appear to exist (agonists are harder than inhibitors).
+
+**Practical proxy: the HDAC inhibitor.** It upregulates iron metabolism genes and raises the labile
+iron pool, achieving "raise the iron" with an approved drug and no new agonist required. This
+reinforces the HDAC component of the regimen.
+
+**Mechanistically consistent regimen:**
+- Raise labile iron → HDAC inhibitor *(approved)*
+- Remove defense arm 1 → GPX4 inhibitor *(the molecule we design)*
+- Remove defense arm 2 → FSP1 inhibitor, icFSP1 class *(exists)*
+- Apoptotic backbone → venetoclax + azacitidine *(approved; azacitidine also sensitizes to ferroptosis)*
+- **Do NOT add** an NCOA4 inhibitor — antagonizes
+
+---
+
+# NEW RESISTANCE MECHANISM LOGGED
+
+**GADD45A loss** increases LSC self-renewal *and* ferroptosis resistance, reduces ROS, decreases
+response to ferroptosis inducers, and produces an increasingly aggressive phenotype on serial
+transplantation. A stemness/ferroptosis-resistance axis to screen for.
 
 ---
 
