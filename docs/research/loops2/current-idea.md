@@ -1,155 +1,192 @@
 # Current Idea — Track 2 Live State
 
 **Read this plus [dead-ideas.md](dead-ideas.md) to reload track 2. Track 1 (GPX4/ferroptosis) lives
-separately at [../loops/current-idea.md](../loops/current-idea.md) and is unaffected by this track.**
+separately at [../loops/current-idea.md](../loops/current-idea.md) and is unaffected.**
 
-Loop count: **28**.
+Loop count: **72**. Status: **strong, not airtight.** See HOLES.
 
 ---
 
-## THE IDEA — "Close the Escape Hatch"
+## THE IDEA — "Tip the Dimer"
 
-**Don't kill the leukemia and don't just differentiate it — control *which lineage it differentiates
+**Don't kill the leukemia, and don't just differentiate it — control *which lineage it differentiates
 into*, so it dies on its own schedule.**
 
-The one-sentence version: **existing differentiation therapy already works; it fails because the
-leukemia escapes down a long-lived lineage. Shut that exit and the same drugs become curative.**
+The therapeutic entity: **a designed, C/EBPγ-selective dominant-negative bZIP miniprotein**, given
+**with** an approved differentiation therapy, to redirect leukemic maturation from the long-lived
+monocytic exit to the short-lived neutrophil exit.
 
-This is a fundamentally different therapeutic logic from everything else in this project. Nothing is
-being killed. No selectivity window between LSC and HSC is required. The agent chooses an *exit
-route*.
+Nothing is killed. No LSC-vs-HSC selectivity window is required. The agent chooses an **exit route.**
 
 ---
 
 ## THE LOGIC CHAIN
 
-**Step 1 — Differentiation therapy already exists and already works, partially.** ATRA/ATO, IDH1/2
-inhibitors, menin inhibitors. Responses are real (enasidenib: 40% response in R/R AML) but relapse is
-prevalent.
+**1. Differentiation therapy already works — partially.** ATRA/ATO, IDH1/2 inhibitors, menin
+inhibitors. Enasidenib: 40% response in R/R AML. Relapse is prevalent. Menin inhibitors do engage the
+LSC: *"disruption of the menin–KMT2A interaction results in… loss of leukemic stem cell properties."*
 
-**Step 2 — Why APL is the one cure.** APL promyelocytes are forced into **neutrophils** — *"immortal,
-malignant promyelocytes are converted into mortal neutrophils."* Neutrophils live ~1 day. The cure
-mechanism is not killing; it is **conversion to a lineage with a built-in expiry date**.
+**2. Why APL is the one cure.** *"Immortal, malignant promyelocytes are converted into mortal
+neutrophils."* Neutrophils live ~1 day. **The cure mechanism is conversion to a lineage with an expiry
+date**, not killing.
 
-**Step 3 — Why every other differentiation therapy fails.** Differentiation therapy produces **two**
-mature lineages, and only one of them expires:
+**3. Why the others fail — the escape lineage.**
 
-| Therapy-induced lineage | Fate | Contribution to relapse |
+| Therapy-induced lineage | Fate | Relapse contribution |
 |---|---|---|
 | Leukemia-derived **neutrophils** | *"Clear rapidly"* | **None** |
-| Leukemia-derived **eosinophil-like cells** | ***Persist during remission, often in extramedullary organs*** | **This is the relapse reservoir** |
+| Long-lived lineages (**eosinophil** in mouse, **monocytic** in human) | ***Persist during remission*** | **The reservoir** |
 
-**Step 4 — The genetic proof.** *"Restricting therapy-induced leukemia maturation to the short-lived
-neutrophil lineage markedly reduces relapse rates and **can yield cure**."* Achieved by selectively
-blocking eosinophil differentiation — *"all AML cells matured into neutrophils."*
+**4. The genetic proof.** *"Restricting therapy-induced leukemia maturation to the short-lived
+neutrophil lineage markedly reduces relapse rates and **can yield cure**."* Achieved by blocking the
+escape lineage — *"all AML cells matured into neutrophils."* **A cure claim in vivo, by lineage
+control alone.** Strongest efficacy evidence in either track.
 
-**That is a cure claim in vivo, achieved by lineage control alone.** It is the strongest efficacy
-evidence found anywhere in this project, across both tracks.
+**5. Human relevance — and it is worse than "just relapse".** Patients on revumenib show
+*"intermediate and **monocytic** cells enriched in post-treatment samples."* And monocytic AML
+*"suppresses BCL2… relies on MCL1… rendering [it] inherently resistant to venetoclax plus
+azacitidine"* — **genotype-independently**, per AML-derived iPSC work.
 
-**Step 5 — Nobody has drugged it.** The Nature Communications authors state the implication in their
-own discussion — *"differentiation therapy combined with targeted eradication of mature
-leukemia-derived lineages may improve disease outcome"* — and stop there. The genetic tool exists.
-**The drug does not.**
+> **The original claim of this track:** menin/IDH differentiation therapy drives monocytic
+> maturation; monocytic state confers venetoclax resistance; these agents are being **combined with
+> venetoclax**. **Differentiation therapy may be manufacturing the resistance it is paired with.**
+> Every link is published. The chain does not appear to be drawn anywhere.
 
----
+**6. Lineage steering is already proven pharmacologically.** *"ATRA + **G-CSF** → **neutrophils**;
+ATRA + **GM-CSF** → **eosinophils**."* Same leukemia, same driver, exit decided by the co-agent.
+*Why not just use G-CSF? It signals through G-CSFR, which AML blasts express — a **proliferative**
+signal, and its use in AML is "controversial due to a theoretically increased risk of relapse." We
+want a cell-intrinsic, non-mitogenic steer.*
 
-## THE SELECTIVITY WINDOW — the first clean one in this project
-
-Every prior target across both tracks was wounded or killed by overlap with normal HSCs: CD123, CD33,
-CD44, CD45, CXCR4, LSD1, HMG20B, MECOM/EVI1, GATA2.
-
-**IL5RA (CD125) is different, by developmental logic rather than luck:**
-
-> *"IL5RA gene expression was detectable in the first identifiable eosinophil progenitors, but not
-> earlier"* — **absent from normal HSCs and multipotent progenitors.** Expression begins only *after*
-> the divergence point of the basophil/mast-cell and eosinophil lineages, **only in cells committed
-> to the eosinophil fate.**
-
-And the target population expresses it: *"IL5RA transcript and CD125 surface protein were found in
-both immature and eosinophil-like leukemic cells"* — so it covers the reservoir **and** immature
-leukemic cells, while sparing HSCs.
-
-**Human safety of depleting this lineage is already established.** Benralizumab (anti-IL-5Rα,
-approved) produces near-complete eosinophil depletion for **4+ years** with *"no evidence of increased
-infection risk or immunologic compromise"*, no malignancy signal, no autoimmune signal. Eosinophils
-are, in practice, dispensable.
+**7. The node: the C/EBPα:C/EBPγ dimer.**
+- **C/EBPα drives granulocytic/neutrophil fate** — *"conditional expression of C/EBPα triggers
+  neutrophilic differentiation."*
+- **C/EBPγ is a dominant negative.** It retains the basic region and leucine zipper but **has no
+  transactivation domain**, so heterodimerizing with C/EBPα produces a dead complex.
+- *"Downregulation of Cebpg… **completely restored granulocytic differentiation**."*
+- **The convergence:** C/EBPγ binds and represses the promoters of **CSF3R** (the G-CSF receptor) and
+  **CEBPE**. Remove C/EBPγ → CSF3R rises → the cell becomes G-CSF-responsive. **The dimer switch and
+  the lineage switch are the same switch** — which is why finding #6 and finding #7 are one mechanism.
 
 ---
 
-## TWO IMPLEMENTATIONS — near-term and designed
+## THE SELECTIVITY WINDOW — clean, and on the target itself
 
-### (A) Fast path — repurposing, low design risk
-**Approved differentiation agent + anti-IL-5Rα (benralizumab)** in a biomarker-selected population.
-Adds one approved agent to an approved backbone. Cheapest possible test of the whole thesis.
-*Weakness: this is repurposing, not design — it scores poorly on the project's AI-tractability
-criterion. Also an IgG1, and the reservoir sits in **extramedullary organs**, where antibody
-penetration is poor.*
+Every earlier target across both tracks was wounded by overlap with normal HSCs: CD123, CD33, CD44,
+CD45, CXCR4, LSD1, HMG20B, MECOM/EVI1, GATA2, **and IRF8** (see the attack below).
 
-### (B) Designed path — the molecule this project would actually build
-**A small-molecule lineage-steering agent that acts at the fate decision point**, so the persistent
-cell is never made rather than chased into tissue sanctuaries.
+> **"C/EBPγ is dispensable for steady-state and emergency granulopoiesis."** Conditional knockout,
+> no defect. No difference in NK cells either — despite C/EBPγ being highly expressed across all
+> hematopoietic cells.
 
-The molecular switch is transcription-factor stoichiometry, not a receptor:
-- **GFI1 + C/EBPα high → neutrophil** (the exit we want)
-- **PU.1 + IRF8 high → monocyte/DC**; **GATA2 high → eosinophil** (the exits we want closed)
-- **IRF8 physically binds C/EBPα and prevents its chromatin binding**, blocking neutrophil
-  differentiation — a documented, structurally-defined PPI
+**A dominant-negative regulator you can delete without harming normal blood production.** This is the
+first target in this project whose *own* loss-of-function is clean in normal hematopoiesis.
 
-**No small-molecule inhibitor of the IRF8–C/EBPα interaction exists** (loop 22, tentative).
-
-*Why a small molecule beats the antibody here:* tissue penetration into the extramedullary sanctuary
-sites where the reservoir actually lives.
+Contrast IRF8, the node considered first: germline *Irf8*-null mice develop a **CML-like
+myeloproliferative neoplasm at 10–16 weeks**, with blast crisis in ~⅓. The pivot is better than the
+original on **both** efficacy and safety.
 
 ---
+
+## THE MOLECULE — design spec
+
+**A C/EBPγ-selective dominant-negative bZIP miniprotein** (or a small molecule blocking the
+C/EBPα–C/EBPγ coiled-coil, if a pocket is findable).
+
+**Clinically validated modality precedent:** **OMO-103** — a 91-aa designed dominant-negative
+miniprotein from MYC's B-HLH-LZ domain with four substitutions, which *"can enter cells and reach its
+target within the nucleus."* **Completed Phase 1** (*Nature Medicine* 2024, 22 patients): safe, mainly
+grade-1 infusion reactions, one PR, one patient stable 26 months. The **first MYC inhibitor to
+complete a Phase 1**. The exact modality, in humans, against an "undruggable" TF dimer.
+
+**Mature design toolkit:**
+- **A-ZIPs** = leucine zipper + acidic amphipathic N-terminal extension; new designs stabilize
+  heterodimerization **up to 11 kcal/mol**; A-C/EBP regresses pre-formed papilloma in vivo
+- **"The specificity of dominant-negative action is determined by the leucine zipper"** — specificity
+  is a designable parameter, not a lucky property
+- **Ubiquitin-tagged** dominant negatives can *degrade* the captured bZIP, not just sequester it
+- Designed bZIP-binding peptides reach **nanomolar** IC50
+
+**Design constraints:**
+1. **Selective for C/EBPγ over C/EBPα, β, δ, ε.** This is the hard problem and the whole ballgame —
+   a pan-C/EBP dominant negative would ablate C/EBPα too and abolish the very differentiation we want.
+2. **No self-association** (the documented failure mode for designed bZIP inhibitors).
+3. **Intracellular + nuclear delivery to marrow cells.** The acknowledged bottleneck. OMO-103 shows it
+   is achievable; engineered peptide coacervates delivered Omomyc as further precedent.
+4. **Transient/pulsed exposure.** C/EBPα-driven fate commitment is **hit-and-run** — a 4-day
+   induction produced a stable macrophage fate persisting after inducer withdrawal. Fate changes may
+   not need chronic dosing.
 
 ## WHY AI UNLOCKS IT
 
-**A transcription-factor–transcription-factor protein–protein interface.** Flat, no natural small-
-molecule pocket, historically the definition of undruggable — and precisely the class the project's
-AI-tractability criterion names as newly approachable via structure prediction plus de novo binder
-and interface design.
-
-Additional AI leverage: the target is a **ratio**, not an on/off switch. Steering a fate decision means
-tuning relative TF activity without abolishing either factor — a multi-parameter optimization problem
-of exactly the shape generative design plus property prediction attacks well, and that serial
-medicinal chemistry attacks badly.
+**bZIP coiled-coil specificity is one of the best-posed protein design problems in existence** and
+squarely inside what current tooling does well:
+- Published **data-driven prediction and design of bZIP coiled-coil interactions**, with designed
+  peptides interacting specifically with **19 of 20 human bZIP families**
+- The target is a **paralog-selectivity problem across a near-identical family** — the project's named
+  AI-tractability criterion, verbatim
+- It is a **flat PPI interface** with no natural small-molecule pocket — the other named criterion
+- Positive *and* negative design simultaneously (bind C/EBPγ, avoid C/EBPα/β/δ/ε, avoid self-
+  association): multi-parameter optimization that serial medicinal chemistry attacks badly
 
 ---
 
-# HOLES — STATUS, ordered by how badly a bad answer hurts
+# ⚠️ THE ATTACK THAT KILLED THE FIRST VERSION (loop 53) — keep for context
 
-## 1. Does the eosinophil-persister phenomenon occur in HUMAN AML? — **CRITICAL, UNVERIFIED**
-The entire thesis rests on a **mouse model**. If therapy-induced eosinophil-like persisters are a
-mouse artifact, the idea is dead. Must find human evidence: patients on IDH or menin inhibitors
-showing eosinophilic differentiation or persistent mature leukemic cells.
-**This is the next search, and it is the make-or-break question.**
+The first version of this idea proposed **inhibiting IRF8** (which physically binds C/EBPα and blocks
+it from chromatin) to steer monocyte→neutrophil. Hunting for the paper that kills it found one:
 
-## 2. Has the follow-up combination already been published? — **UNVERIFIED**
-The authors proposed it in their discussion; the Mark Foundation funds *"Preventing Relapse Following
-AML Differentiation Therapy."* High risk that the originating lab has already executed this.
-**Novelty is not yet established. Do not claim it.**
+Hartung et al., *Blood* 2024: in *Irf8*-knockout AML cells, **ATRA IC50 rose 151-fold** (47 nM →
+7.1 µM); LSD1-inhibitor IC50 rose 9.7-fold. **IRF8 loss makes AML far MORE resistant to
+differentiation therapy** — IRF8 appears required for the differentiation *response*, not just the
+fate *choice*. You cannot steer the car by removing the engine.
 
-## 3. Is there already a selective TRIM28 inhibitor driving neutrophil differentiation? — **UNVERIFIED**
-One search summary claimed *"a selective small-molecule TRIM28 inhibitor induces neutrophil
-differentiation with anti-leukemia activity."* A follow-up search did **not** confirm it. If it
-exists, it is either a competitor or the ideal partner agent. **Claim came from a search summary, not
-a read paper — treat as unverified.**
+**The C/EBPγ pivot dodges this entirely** by tilting the same ratio from the other side: C/EBPα
+activity is *raised* rather than IRF8 *removed*, so the differentiation response stays intact.
+**Retain this as the cautionary case** — perturbing this network can backfire, and the same question
+must be asked of C/EBPγ blockade directly (hole #1).
 
-## 4. Does this reach the dormant LSC at all? — **OPEN, AND POSSIBLY MISFRAMED**
-This strategy targets the *differentiated progeny*, not the dormant LSC. That may be a feature
-(it closes the relapse route) or a fatal gap (the dormant LSC is untouched and reseeds anyway).
-Track-2 structural lesson 6 applies: quiescent cells are chromatin-locked against reprogramming.
-**Unresolved: does differentiation therapy engage the dormant compartment in the first place?**
+---
 
-## 5. Which node is druggable — IRF8–C/EBPα, or the GATA2 axis? — **OPEN**
-IRF8–C/EBPα governs *monocyte* vs neutrophil. The persister lineage is *eosinophil*, which is
-GATA2-driven. These may be different switches, and GATA2 is essential in normal HSCs
-(haploinsufficiency causes marrow failure — MonoMAC/Emberger). **The exact druggable node is not yet
-identified.**
+# HOLES — ordered by how badly a bad answer hurts
 
-## 6. Extramedullary penetration — **OPEN**
-The reservoir is in extramedullary organs. Any agent must get there. Favors small molecule over
-antibody; unquantified either way.
+## 1. Does C/EBPγ blockade STEER lineage, or merely restore differentiation? — **CRITICAL, UNTESTED**
+All the C/EBPγ evidence shows it restores **granulocytic differentiation in CEBPA-silenced cells**.
+That is not the same claim as *"redirects the exit lineage from monocyte to neutrophil in
+CEBPA-normal AML undergoing differentiation therapy."* **The central claim of this idea has never been
+tested.** And the Hartung result proves perturbations here can invert.
+**This is the gating experiment: menin inhibitor ± C/EBPγ knockdown, read out lineage.**
+
+## 2. Does it work in CEBPA-NORMAL AML? — **CRITICAL, UNTESTED**
+The C/EBPγ literature is about AML where **C/EBPα is silenced**. The broad use requires tipping the
+dimer where C/EBPα is present and functional. Plausible (more free C/EBPα → more neutrophil) but
+unestablished.
+
+## 3. Population size — **A REAL PROBLEM for the narrow indication**
+*CEBPG*-high is **8 of 526 AML cases (~1.5%)**; CEBPA-silenced is **1.4–2.1%**. Desperate patients
+(silenced CEBPA: **5-year OS 25% vs 88%** for CEBPA-mutant) but orphan-sized.
+**Two distinct uses, do not conflate:** (a) narrow — CEBPG-high/CEBPA-silenced AML, strong evidence,
+tiny population; (b) broad — lineage-steering add-on to differentiation therapy in general AML, large
+population, **no direct evidence yet**. The program's value rests on (b), which is hole #2.
+
+## 4. Selective C/EBPγ inhibition may be undesignable — **OPEN**
+The bZIP zipper is what confers specificity, and C/EBP family zippers are similar by construction.
+A-C/EBP inhibits the **whole family**. Achieving γ-over-α selectivity is the core design risk.
+*This is also exactly why the project's AI tooling is the right instrument — but it could still fail.*
+
+## 5. Delivery to marrow LSCs — **OPEN**
+*"Intracellular delivery is a bottleneck in the development of therapeutic peptides and proteins."*
+OMO-103 proves nuclear delivery is achievable in solid tumors; marrow LSCs are not solid tumors.
+
+## 6. CEBPA-mutant AML is excluded — **KNOWN CONSTRAINT**
+In CEBPA-mutant AML (10–20% of normal-karyotype AML) *"in all cases at least one allele capable of
+producing p30 is retained"* — p30 binds DNA but lacks the N-terminal transactivation domain. No
+functional p42 to liberate. **Biomarker exclusion.**
+
+## 7. Does differentiation therapy reach the dormant LSC? — **PARTIALLY CLOSED**
+Menin inhibitors collapse stemness networks and cause *"loss of leukemic stem cell properties."*
+But track-2 structural lesson 6 stands: quiescent cells are chromatin-locked (*"vast histone
+deacetylation and chromatin compaction"*), so a chromatin-opening partner may be required.
 
 ---
 
@@ -157,24 +194,34 @@ antibody; unquantified either way.
 
 | Tier | Status |
 |---|---|
-| **Eradicates leukemia-initiating capacity / cure** | **YES, genetically, in vivo (mouse).** *"Markedly reduces relapse rates and can yield cure."* Strongest efficacy claim in either track — but genetic, not pharmacological, and murine |
-| **Primary patient LSC killing ex vivo** | **NOT APPLICABLE / NOT SOUGHT** — this strategy does not kill LSCs. Efficacy is measured as relapse prevention, not cytotoxicity |
-| **Human relevance** | **UNVERIFIED — hole #1** |
+| **Cure / eradication of leukemia-initiating capacity** | **YES — genetically, in vivo, murine.** *"Markedly reduces relapse rates and can yield cure."* Genetic, not pharmacological; mouse, not human |
+| **Human relevance of the escape** | **YES for the phenomenon** (monocytic enrichment in revumenib patients; monocytic venetoclax resistance genotype-independent). **NO for the fix** — no human lineage-steering data |
+| **C/EBPγ as the lever** | **YES for restoring granulocytic differentiation** in CEBPA-silenced AML. **NO for lineage steering** (hole #1) |
+| **Primary patient LSC killing** | **N/A** — this strategy does not kill. Endpoint is relapse prevention |
 
-**Verdict: the mechanism prevents relapse and yields cure in a mouse model, by lineage control alone.
-Human relevance is unestablished and is the gating question.**
+**Verdict: the mechanism yields cure in a mouse by lineage control, the failure mode it fixes is
+confirmed in humans, and the proposed lever is clean in normal hematopoiesis. The specific claim that
+C/EBPγ blockade steers the exit lineage is untested. That is the one experiment that makes or breaks
+this.**
 
 ---
 
 # FALLBACKS (track 2)
 
-1. **PU.1 restoration** — *"Restoring endogenous PU.1 activity in established AML is sufficient to
-   trigger robust differentiation into polymorphonuclear neutrophil-like cells, with sustained
-   disease clearance."* Note it produces the *right* (neutrophil) lineage. No PU.1 **agonist** small
-   molecule exists — only inhibitors (DB1976, DB2115, DB2313). Real gap, hard modality.
-2. **C/EBPα hit-and-run reprogramming** — 4-day induction produces a **stable** macrophage fate that
-   persists after the inducer is withdrawn. Permanent fate change from transient dosing. Mostly
-   B-lineage data so far; the *hit-and-run* property is the valuable part and transfers.
-3. **In vivo DC transdifferentiation** — Kit-M (GM-CSF + PGE1) converts AML blasts to DCleu *without
-   inducing blast proliferation*; DC vaccines show most benefit *in the MRD setting* — our exact
-   population. Currently ex vivo manufacturing; in vivo small-molecule version is open.
+1. **Raise C/EBPα by other routes** — all have existing agents:
+   - **MTL-CEBPA** — first-in-class saRNA upregulating CEBPA. Phase 1 in liver cancer, **no MTD
+     reached**, acceptable safety. **Already applied to AML (2025):** boosts CEBPA, promotes a
+     *"non-proliferative, mature state"* in FLT3-mutant AML, synergizes with gilteritinib in vivo.
+     *Novelty hit on the repurposing angle — but framed as maturation, not lineage steering.*
+   - **CDK1 inhibition** — CDK1 phosphorylates C/EBPα at Ser21 to inactivate it; inhibition relieves
+     the block in primary patient samples
+   - **CDK2 degraders** — CDK2→SKP2→C/EBPα degradation; a first-in-class selective CDK2 degrader
+     *"induced remarkable differentiation of AML cell lines and primary patient cells"*
+   - **TRIB2/COP1** — degrades C/EBPα p42; *"clinically untargeted vulnerability"*; afatinib
+     (approved) degrades TRIB2 and synergizes with cytarabine
+2. **IL5RA / benralizumab** — for the *eosinophil* escape if ever shown in humans. Retains the
+   cleanest lineage-marker selectivity found (IL5RA absent from HSCs/MPPs) and 4+ years of human
+   eosinophil-depletion safety with no immune compromise.
+3. **ZMYND8** — upstream regulator of the IRF8–MEF2D circuit; ablation abrogates AML proliferation
+   in vivo. Bromodomain-containing, so a better-precedented target class — but no selective chemical
+   probe exists.

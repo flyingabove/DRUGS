@@ -2,7 +2,7 @@
 
 **Read this plus [dead-ideas.md](dead-ideas.md) to reload full context. Nothing else needed.**
 
-Loop count: **51**. Full detail: [../../strategies/break-the-shield-gpx4.md](../../strategies/break-the-shield-gpx4.md)
+Loop count: **51**. Full detail: [../../strategies/lsc-ferroptosis-hypothesis.md](../../strategies/lsc-ferroptosis-hypothesis.md)
 
 ---
 

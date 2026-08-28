@@ -1,7 +1,7 @@
 # Compute Plan — GPX4 Inhibitor Design
 
 Execution plan for the program in
-[strategies/gpx4-dependency-aml.md](strategies/gpx4-dependency-aml.md). Assumes ample compute and
+[strategies/lsc-ferroptosis-hypothesis.md](strategies/lsc-ferroptosis-hypothesis.md). Assumes ample compute and
 **no model training** — pretrained generators plus separate scoring and simulation.
 
 ---

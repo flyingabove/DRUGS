@@ -28,6 +28,44 @@ Format: `IDEA — KILLED BY: reason`
   may exist (leukemia has out-of-context enhancer-driven overexpression vs. normal baseline) but it
   is narrow and unquantified.
 
+## Killed on mechanism (the premise was wrong / inverted)
+
+- **IRF8 blockade to steer monocyte→neutrophil** (loop 53) — KILLED BY: Hartung et al., *Blood* 2024.
+  In *Irf8*-KO AML cells the **ATRA IC50 rose 151-fold** (47 nM → 7.1 µM) and LSD1-inhibitor IC50 rose
+  9.7-fold. **IRF8 loss makes AML more resistant to differentiation therapy**, not better steered —
+  IRF8 is required for the differentiation *response*, not only the fate *choice*. You cannot steer
+  the car by removing the engine.
+  - Secondary strike: germline *Irf8*-null mice develop a **CML-like MPN at 10–16 weeks** with blast
+    crisis in ~⅓. Chronic deep IRF8 loss is oncogenic.
+  - *Survives as: the cautionary case. The C/EBPγ pivot tilts the same ratio from the opposite side
+    and dodges both problems.*
+- **Pan-C/EBP dominant negative (A-C/EBP class)** — KILLED BY: inhibits the **whole C/EBP family**,
+  including C/EBPα — which would ablate the very differentiation the strategy depends on. Only a
+  **γ-selective** version is viable; that selectivity is the core design risk.
+
+## Demoted, not dead
+
+- **Eosinophil escape / IL5RA / benralizumab** (loops 21–28, demoted loop 31) — The eosinophil
+  persister lineage is a **mouse** finding; human patients on revumenib show **monocytic** enrichment
+  instead. Retains the **cleanest lineage-marker selectivity in the project** (*"IL5RA… absent from
+  normal HSCs and multipotent progenitors,"* expressed only after eosinophil commitment) and 4+ years
+  of human eosinophil-depletion safety with *"no evidence of increased infection risk or immunologic
+  compromise."* **Revive if human eosinophilic escape is ever demonstrated.**
+  - Partial novelty hit: *"Preliminary Effects of Benralizumab in an AML Cell Model with Promyelocytic
+    Features Expressing IL-5R"* exists — but HL-60 only, exploratory, and about direct anti-leukemic
+    signalling, **not** about clearing therapy-induced persisters.
+- **MTL-CEBPA (saRNA raising CEBPA)** — EXISTS AND ALREADY IN AML: *"RNA activation of CEBPA improves
+  leukemia treatment"* (2025) — boosts CEBPA, promotes a *"non-proliferative, mature state"* in
+  FLT3-mutant AML, synergizes with gilteritinib in vivo. **Novelty hit on the repurposing route**, but
+  framed as maturation, not lineage steering. Best *fast* fallback and a possible combination partner.
+- **ZMYND8** — upstream regulator of the IRF8–MEF2D circuit; ablation abrogates AML proliferation
+  in vivo and improves xenograft survival. Bromodomain-containing (well-precedented target class) but
+  **no selective chemical probe exists**.
+- **G-CSF as the lineage steer** — works (*ATRA+G-CSF → neutrophils*) but signals through G-CSFR,
+  which AML blasts express; a **proliferative** signal whose AML use is *"controversial due to a
+  theoretically increased risk of relapse."* The obvious move, and the reason a cell-intrinsic
+  non-mitogenic steer is worth designing.
+
 ## Killed on tool-compound validity
 
 - **MSI2 / Musashi-2 via Ro 08-2750** (loop 6) — KILLED BY: *"Small-molecule Ro-08-2750 interacts with
