@@ -77,7 +77,82 @@ Python 3.13.11 · conda 25.11.1 · numpy 2.4.1 · scipy 1.17.0 · curl 8.17.0
 
 ---
 
-# ▶ STEP 2 — NEXT: Structure preparation, with Sec46 as the assertion
+# ✅ STEP 3 — COMPLETE (with a method-changing finding): Counter-target structures
+
+**Downloaded and verified TXNRD1:** `2J3N` (X-ray, human TrxR1, 6 chains) and `3QFA` (TrxR–Trx
+complex, 2.2 Å).
+
+## ⚠️ Neither contains selenium. Both are Sec→Cys mutants.
+
+The SEQADV records in 3QFA state it outright:
+
+```
+SEQADV 3QFA SER A 497  UNP Q16881 CYS 497  ENGINEERED MUTATION
+SEQADV 3QFA CYS A 498  UNP Q16881   U 498  SEE REMARK 999
+```
+
+Residue 498 is **U (selenocysteine) in UniProt Q16881**, replaced by **CYS** in the crystal. 2J3N
+shows the same substitution — its native motif should read Gly496-Cys497-**Sec498**-Gly499 but reads
+**CYS498**.
+
+**And the catalytic tail is frequently disordered:** in 2J3N, only chains C/D/E resolve to residue
+499. Chains A, B, and F stop at 494–496 — the C-terminal arm is simply not modeled.
+
+## Why this matters — three consequences
+
+**1. A systematic bias in the selectivity margin.** We have a *genuine* selenocysteine structure for
+the on-target (GPX4: 6HN3/6HKQ) and only a *cysteine surrogate* for the counter-target. Selenium and
+sulfur differ in nucleophilicity and in bond length (Se–C ≈ 1.98 Å vs S–C ≈ 1.8 Å). Docking them
+head-to-head compares unlike with unlike, and the resulting margin would be biased in an unknown
+direction.
+
+**2. Rigid docking misrepresents TXNRD1.** The catalytic Sec sits on a **flexible C-terminal arm**
+that swings to deliver electrons — which is precisely why half the chains fail to resolve it. A
+static receptor model does not capture that.
+
+**3. The likely conclusion: selectivity here is a reactivity problem, not a shape problem.**
+
+Look at what actually distinguishes the compounds:
+
+| Compound | Warhead | Hits GPX4? | Hits TXNRD1? |
+|---|---|---|---|
+| ML210 | Nitroisoxazole (masked nitrile-oxide) | **Yes** | No |
+| RSL3, ML162 | Chloroacetamide | **No** | **Yes** |
+
+**That is a warhead-chemistry difference, not a binding-pocket difference.** Two chemotypes, opposite
+selectivity, with the discriminating variable being intrinsic electrophile reactivity and its match to
+a selenol versus a thiol.
+
+## Method revision
+
+**Structure-based covalent docking alone will probably not reproduce the known selectivity ordering** —
+so the Step 4 validation gate needs a second axis:
+
+1. **Keep the docking arm**, but computationally restore Sec498 in the TXNRD1 model so both targets
+   carry selenium. Document it as a modeled residue, not experimental.
+2. **Add a reactivity arm.** Quantum-chemical treatment of warhead electrophilicity and its
+   selenol-versus-thiol preference. This was previously scheduled for the reversibility question in
+   Phase 5; it is now needed earlier, for selectivity.
+3. **Treat TXNRD1 docking scores as low-confidence** given the flexible, partly-unresolved tail.
+
+**This is exactly what the Step 4 validation gate exists to catch — and it caught it before we
+generated a single molecule.**
+
+## Still open
+
+**GPX1** accession not yet resolved. As the closest GPX-family member it remains the more informative
+shape-based counter-target, since it *is* a selenoprotein with a comparable fold.
+
+---
+
+# ▶ STEP 2 — IN PROGRESS: Structure preparation
+
+RDKit **2026.03.5** installed. Still needed: covalent-capable docking engine, selenocysteine
+force-field parameters.
+
+---
+
+# ▶ STEP 2 detail — Structure preparation, with Sec46 as the assertion
 
 **Goal:** produce docking-ready receptors without losing selenocysteine.
 
@@ -94,13 +169,6 @@ reproduce a known answer → cannot trust an unknown one.
 
 ---
 
-# ▶ STEP 3 — Counter-target structures
-
-Still to resolve: **TXNRD1** and **GPX1** accessions. Required before any selectivity scoring —
-ranking on on-target score alone reproduces exactly the failure that invalidated RSL3 and ML162.
-
----
-
 # ▶ STEP 4 — The validation run (compute plan Part 1)
 
 Dock **ML210, RSL3, ML162** into both GPX4 and TXNRD1. Ask whether the pipeline reproduces the known
@@ -113,7 +181,10 @@ whose real-world answer is known and opposite cannot rank novel ones.
 
 # OPEN ITEMS
 
-- [ ] TXNRD1 and GPX1 PDB accessions
+- [x] TXNRD1 accessions — 2J3N, 3QFA (both Sec->Cys mutants; see Step 3)
+- [ ] GPX1 accession — still open
+- [ ] Computationally restore Sec498 in TXNRD1 model
+- [ ] QM reactivity workflow for warhead selectivity (promoted from Phase 5)
 - [ ] Selenocysteine force-field parameters (AMBER/CHARMM)
 - [ ] Covalent docking engine that handles Se–C bond formation
 - [ ] ML210 and RSL3 ligand structures for the validation run
