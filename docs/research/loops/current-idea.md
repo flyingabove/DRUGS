@@ -2,7 +2,7 @@
 
 **Read this plus [dead-ideas.md](dead-ideas.md) to reload full context. Nothing else needed.**
 
-Loop count: **49**. Full detail: [../../strategies/break-the-shield-gpx4.md](../../strategies/break-the-shield-gpx4.md)
+Loop count: **50**. Full detail: [../../strategies/break-the-shield-gpx4.md](../../strategies/break-the-shield-gpx4.md)
 
 ---
 
@@ -129,9 +129,25 @@ GPX4-inhibition ferroptosis, reducing their antitumor potential. Our regimen is 
 immunotherapy-based, which limits exposure. Intermittent dosing should allow recovery.
 *Net effect unknown. Still the largest unresolved safety question.*
 
-## 4. Kidney sparing — **DESIGN HYPOTHESIS, NO DATA**
-Inducible GPX4 knockout causes acute renal failure via proximal tubule ferroptosis. Hepatobiliary
-clearance and reversible-covalent dosing are proposals, unvalidated.
+## 4. Kidney sparing — **REFRAMED, LESS ALARMING THAN ASSUMED (loop 50)**
+
+**All the kidney evidence is genetic knockout.** Induced Gpx4-/- mice die in ~13.5 days with
+widespread tubular death, interstitial edema, and proteinaceous casts. But that is **complete,
+permanent, whole-body ablation in every cell** — not what a drug does. A drug gives partial
+occupancy, reversibly, dose-controlled, intermittently. Many targets are lethal as knockouts and
+fine as drugs (proteasome / bortezomib being the obvious case).
+
+**No pharmacological therapeutic window has ever been measured**, because every GPX4 compound failed
+on PK before the study could be run. The window is **unmeasured, not proven absent.**
+
+Three favorable points:
+1. A window HAS been measured in marrow — **blasts significantly more sensitive than non-blasts in
+   the same patient sample** (HA344/#231).
+2. GPX4 is higher in AML than normal HSCs; normal HSCs tolerate depletion.
+3. **An antidote exists** — **liproxstatin-1** suppresses ferroptosis in Gpx4-null mice. Potential
+   rescue agent or protective co-therapy if renal toxicity emerges.
+
+Levers unchanged: hepatobiliary clearance, reversible-covalent warhead, intermittent dosing.
 
 ## 5. Does the niche resupply CoQ? — **UNTESTED**
 Tunneling-nanotube → mitochondrial CoQ → FSP1 rescue is our inference.
@@ -149,7 +165,7 @@ Ranked by the hierarchy in the skill: serial transplant > primary patient LSC > 
 | Tier | Status |
 |---|---|
 | **Eradicates leukemia-initiating capacity (serial transplant)** | **NOT DEMONSTRATED — searched directly, loop 49, genuinely absent.** No ferroptosis inducer has been shown to eliminate LIC by serial transplant or limiting-dilution assay in AML. Existing limiting-dilution work is on GADD45A (a resistance gene); existing secondary-transplant work is DOT1L. **This is the single most important experiment to run.** |
-| **Primary patient LSC killing ex vivo** | **YES.** GPX4 inhibitors **HA344 and #231 efficiently kill CD34+ cells from AML patients**, with **blast cells significantly more sensitive than non-blast cells** in the same marrow sample |
+| **Primary patient LSC killing ex vivo** | **PARTIAL.** GPX4 inhibitors **HA344 and #231 efficiently kill CD34+ cells from AML patients**, with **blasts significantly more sensitive than non-blasts** in the same marrow. **Caveat: CD34+ includes progenitors. The LSC-enriched fraction is CD34+CD38-, and the published data does not separate them.** |
 | **Persister/dormant cell killing** | **YES.** Persisters across tumor types are vulnerable to ferroptosis specifically via GPX4 inhibition; dormant cells highly sensitive, normal cells largely spared |
 | **Venetoclax-resistant primary cells** | **YES.** ML210 + venetoclax synergistic in primary AML patient cells including venetoclax-resistant |
 | **In vivo / PDX** | **YES.** GPX4 knockdown anti-leukemic in vivo |
