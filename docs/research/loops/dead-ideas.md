@@ -90,7 +90,7 @@ Format: `IDEA — KILLED BY: reason`
 
 1. **Verify existence before claiming novelty.** Wrong at least four times here.
 2. **Mechanism working ≠ patients living longer.** Iomab-B is the standing proof.
-3. **Tool compounds may not hit their nominal target.** True for both RSL3/ML210 and imetelstat —
+3. **Tool compounds may not hit their nominal target.** True for both RSL3/ML162 and imetelstat —
    found in the same run. Always check cell-free validation against purified protein.
 4. **The niche resupplies whatever you deplete.** Stroma transfers mitochondria via tunneling
    nanotubes, and metabolic attack *induces* the transfer. Assume resupply for any metabolic target.

@@ -34,6 +34,27 @@ levels — the value is almost always at levels 3–5, not level 1.
    leave both claims standing.
 8. **What's left that's genuinely novel?** State it as a specific gap, not a vague "combination."
 
+## Efficacy First — Toxicity Is a Downstream Engineering Problem
+
+**The single most important question about any candidate is whether it actually kills LSCs.**
+Everything else is secondary at this stage.
+
+- **Gate on efficacy, not safety.** If a mechanism demonstrably eradicates leukemic stem cells, it
+  stays alive as a candidate **even if the current version would harm the patient.** Toxicity is a
+  medicinal-chemistry and delivery problem — clearance route, warhead reactivity, dosing schedule,
+  prodrug gating, targeted delivery. Those are solvable by engineering a better molecule around a
+  validated mechanism.
+- **You cannot engineer around a mechanism that does not kill the target.** No amount of delivery
+  cleverness rescues a drug that leaves LSCs alive. That failure is terminal; toxicity usually is not.
+- **Therefore: never retire an idea on toxicity alone.** Record the toxicity, mark it as an
+  engineering problem, and keep hunting for whether the mechanism is lethal to LSCs. Retire an idea
+  when the *efficacy* evidence fails.
+- **Prioritize efficacy evidence in this order:** eradication of leukemia-initiating capacity on
+  serial transplantation > primary patient LSC (CD34+CD38−) killing ex vivo > PDX in vivo efficacy >
+  cell line data. Weight the top of that list heavily; discount the bottom.
+- **When loops are limited, spend them on efficacy questions**, not on characterizing toxicities that
+  a later chemistry program would address anyway.
+
 ## The Bar We Are Aiming At
 
 **We do not need a miracle cure-all. We need a designable molecule that improves survival enough to
