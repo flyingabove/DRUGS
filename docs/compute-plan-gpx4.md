@@ -1,7 +1,7 @@
 # Compute Plan — GPX4 Inhibitor Design
 
 Execution plan for the program in
-[strategies/lsc-ferroptosis-hypothesis.md](strategies/lsc-ferroptosis-hypothesis.md). Assumes ample compute and
+[strategies/crack-the-shell.md](strategies/crack-the-shell.md). Assumes ample compute and
 **no model training** — pretrained generators plus separate scoring and simulation.
 
 ---

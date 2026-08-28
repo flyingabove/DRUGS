@@ -1,6 +1,6 @@
 # Execution Log — GPX4 Program
 
-Live build log. Strategy: [../strategies/lsc-ferroptosis-hypothesis.md](../strategies/lsc-ferroptosis-hypothesis.md).
+Live build log. Strategy: [../strategies/crack-the-shell.md](../strategies/crack-the-shell.md).
 Method: [../compute-plan-gpx4.md](../compute-plan-gpx4.md).
 
 **Working directory:** `work/structures/`
