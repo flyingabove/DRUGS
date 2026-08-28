@@ -34,6 +34,35 @@ levels — the value is almost always at levels 3–5, not level 1.
    leave both claims standing.
 8. **What's left that's genuinely novel?** State it as a specific gap, not a vague "combination."
 
+## Context Management — Exactly Two Living Docs
+
+Long runs die from context exhaustion, not from running out of ideas. **Keep exactly two files under
+`docs/research/loops/` and treat them as the complete working memory of the run.** Reading those two
+must be enough to fully reload the project state — nothing else required.
+
+**1. `dead-ideas.md` — the graveyard.**
+Every retired idea as one entry: what it was, and the specific sentence or finding that killed it.
+Group by failure class (selectivity / mechanism / novelty / clinical evidence / demoted-not-dead).
+Keep it dense — this file is read constantly, so no padding. Its job is to stop the same idea being
+proposed twice, which has already happened in this project.
+
+**2. `current-idea.md` — the live state.**
+The one surviving idea, why it works with evidence attached, its design spec, and a
+**"still needs verification"** list ordered by how badly a bad answer would hurt. Mark holes CLOSED
+as they close, with the loop number. Keep the fallback list at the bottom.
+
+**Rules:**
+- **Update these two as you go, not at the end.** A finding that is not written down is lost when
+  context rolls over.
+- **Log corrections in place.** When a later loop contradicts an earlier claim, fix it in the doc and
+  say what changed — do not leave both versions standing. This project has already made several such
+  corrections (ML162 vs ML210; NCOA4 fork; imetelstat mechanism).
+- **Long-form strategy docs live elsewhere** (`docs/strategies/`). These two are the working memory,
+  not the deliverable.
+- **Do not build search infrastructure.** No indexes, no databases, no MCP servers for this. Standing
+  up that machinery costs more context than it saves. Two well-maintained markdown files are the
+  right size for the problem.
+
 ## Efficacy First — Toxicity Is a Downstream Engineering Problem
 
 **The single most important question about any candidate is whether it actually kills LSCs.**
