@@ -2,7 +2,7 @@
 
 **Read this plus [dead-ideas.md](dead-ideas.md) to reload full context. Nothing else needed.**
 
-Loop count: **48**. Full detail: [../../strategies/break-the-shield-gpx4.md](../../strategies/break-the-shield-gpx4.md)
+Loop count: **49**. Full detail: [../../strategies/break-the-shield-gpx4.md](../../strategies/break-the-shield-gpx4.md)
 
 ---
 
@@ -148,7 +148,7 @@ Ranked by the hierarchy in the skill: serial transplant > primary patient LSC > 
 
 | Tier | Status |
 |---|---|
-| **Eradicates leukemia-initiating capacity (serial transplant)** | **NOT DEMONSTRATED for GPX4 inhibition.** The definitive experiment. Top remaining gap. |
+| **Eradicates leukemia-initiating capacity (serial transplant)** | **NOT DEMONSTRATED — searched directly, loop 49, genuinely absent.** No ferroptosis inducer has been shown to eliminate LIC by serial transplant or limiting-dilution assay in AML. Existing limiting-dilution work is on GADD45A (a resistance gene); existing secondary-transplant work is DOT1L. **This is the single most important experiment to run.** |
 | **Primary patient LSC killing ex vivo** | **YES.** GPX4 inhibitors **HA344 and #231 efficiently kill CD34+ cells from AML patients**, with **blast cells significantly more sensitive than non-blast cells** in the same marrow sample |
 | **Persister/dormant cell killing** | **YES.** Persisters across tumor types are vulnerable to ferroptosis specifically via GPX4 inhibition; dormant cells highly sensitive, normal cells largely spared |
 | **Venetoclax-resistant primary cells** | **YES.** ML210 + venetoclax synergistic in primary AML patient cells including venetoclax-resistant |
@@ -191,6 +191,13 @@ reinforces the HDAC component of the regimen.
 - **Do NOT add** an NCOA4 inhibitor — antagonizes
 
 ---
+
+# DELIVERY PRIOR ART
+
+**GCFN** — a glutathione-responsive cysteine-polymer nanocarrier that depletes intracellular GSH
+*and* inhibits GPX4, causing lipid peroxidation in AML cells. Relevant as prior art on delivery:
+someone has already attacked this axis with a nanomedicine rather than a small molecule. Worth
+knowing before claiming the delivery approach is open.
 
 # NEW RESISTANCE MECHANISM LOGGED
 
