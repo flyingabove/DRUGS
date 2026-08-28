@@ -64,9 +64,9 @@ Format: `IDEA — KILLED BY: reason`
   progenitor expression.
 - **NAMPT inhibitors (FK866 etc.)** — KILLED BY: toxicity and resistance in trials, *because NAMPT
   is not compartmentalized* — inhibiting it drains NAD+ from all three cellular compartments.
-- **RSL3 / ML210 as GPX4 tools** — KILLED BY: cell-free assays show they **fail to inhibit purified
-  GPX4 at all**; they hit TXNRD1 and selenoprotein-synthesis machinery. Much "GPX4 inhibition"
-  literature may be misattributed.
+- **RSL3 / ML162 as GPX4 tools** — KILLED BY: cell-free assays show they **fail to inhibit purified
+  GPX4**; they hit TXNRD1 instead. NOTE: this is ML1**62**, not ML2**10**. ML210 (nitroisoxazole
+  warhead) IS genuinely selective for GPX4 with low proteome-wide reactivity. Do not conflate them.
 
 ## Demoted, not dead (viable but superseded)
 

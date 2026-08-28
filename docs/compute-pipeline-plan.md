@@ -48,6 +48,20 @@ complex prediction and validation. **None of FLOWR / GenMol / DiffSBDD apply.**
 and the benchmark protocol in Section 5 validates our *methodology* in a way that transfers. But do
 not let tooling momentum silently pick the modality — that is a target decision, made in Phase 0.
 
+### RESOLVED (loop 40): Branch A, covalent
+
+[strategies/break-the-shield-gpx4.md](strategies/break-the-shield-gpx4.md) selects **GPX4 + FSP1**.
+Both are intracellular enzymes → **Branch A confirmed**, and M5 is unblocked.
+
+Three consequences that reshape the rest of this doc:
+
+1. **The program is covalent.** The stack in Section 4 is non-covalent by default. See Section 4b.
+2. **The counter-screen targets are now concrete**, not hypothetical: **TXNRD1** first — it is the
+   off-target that invalidated RSL3/ML210 — plus the wider selenoproteome and the GPX1–8 family.
+3. **The pocket is bad.** GPX4 has a shallow active site with no drug-like pocket. Pocket-conditioned
+   generators (FLOWR.root, DiffSBDD) are trained overwhelmingly on well-formed pockets. Expect
+   degraded performance and validate against that specifically, not against an easy pocket.
+
 ---
 
 ## 2. Hardware Reality Check
@@ -179,10 +193,35 @@ The proposed flow, with the four gaps closed. **Additions in bold.**
 | Complex validation | Boltz-2, Chai-1 |
 | Developability | TAP metrics, aggregation / immunogenicity predictors |
 
+### 4b. Covalent lane — required by the GPX4 target choice
+
+**The entire stack in Section 4 assumes non-covalent binding. Our program is covalent.** This is not
+a tweak; it breaks three stages.
+
+| Broken stage | Why | Fix |
+|---|---|---|
+| **Generation** | FLOWR.root, DiffSBDD, TargetDiff and GenMol are trained on non-covalent complexes. They will not place a warhead for attack on a specific residue, and they have no notion of reaction geometry | Generate the recognition scaffold, then **enumerate warheads combinatorially** onto it as a separate step. Constrain to a curated warhead set (see below) |
+| **Docking** | Standard Vina/smina/gnina produce non-covalent poses. A covalent ligand's pose is constrained by the bond to the residue | **Covalent docking**: AutoDock-Vina covalent mode, or RxDock/AutoDock4 covalent protocols. Anchor to GPX4's catalytic **Sec46** |
+| **Affinity ranking** | Covalent potency is *kinetic* (k_inact/K_I), not a single binding constant. Boltz-2 and every affinity predictor here estimate non-covalent ΔG | Rank on the **non-covalent recognition step** (K_I) with these tools; treat warhead reactivity as a separate, orthogonally-scored axis |
+
+**Warhead strategy.** Part 7 of the strategy doc specifies **masked nitrile-oxide electrophiles** over
+chloroacetamides, and a **reversible-covalent** mechanism. Both are constraints on warhead choice, so
+build a small curated warhead library up front (reversible-covalent classes: cyanoacrylamides,
+α-cyanoacrylates, activated nitriles, plus the masked nitrile-oxides) and enumerate rather than
+generate. Reactivity should be estimated separately — quantum-chemical electrophilicity descriptors
+or a trained reactivity model — because it is the axis that determines both potency *and*
+proteome-wide promiscuity, and no generative model here scores it.
+
+**Selectivity is the whole program here.** For a covalent agent, selectivity is not a docking
+question — it is a question of which other nucleophilic residues in the proteome get hit. Structural
+counter-screening against TXNRD1 and the selenoproteome is necessary but *not sufficient*; the real
+readout is chemoproteomic (ABPP), which is wet-lab. Scope the in-silico claim honestly: we can
+propose selective candidates, we cannot demonstrate selectivity computationally.
+
 > **Verify before installing.** Several claims above — FLOWR.root checkpoint version, GenMol license
-> terms, current Boltz-2 capabilities — come from a fast-moving field. Run `/research-loop` on this
-> doc to confirm versions, licenses, and whether anything newer has displaced these choices before
-> committing setup time.
+> terms, current Boltz-2 capabilities, current best covalent-docking tooling — come from a
+> fast-moving field. Run `/research-loop` on this doc to confirm versions, licenses, and whether
+> anything newer has displaced these choices before committing setup time.
 
 ---
 
@@ -221,8 +260,28 @@ capability this project needs.** If it cannot, nothing downstream is trustworthy
 5. **Novelty vs. memorization.** Are outputs genuinely novel, or lightly perturbed training-set
    molecules? Check Tanimoto similarity against ChEMBL and the generators' training sets.
 
-**Gate: do not run a real campaign until criteria 1–3 pass.** Budget 2–4 weeks. This is not a
-detour; it is what makes the rest of the project mean anything.
+### Second benchmark: BTK, for covalent selectivity
+
+BCL-2/BCL-xL tests *paralog* selectivity in a non-covalent PPI groove. Our program is covalent
+against a shallow site — a different capability, so it needs its own test.
+
+**BTK is the closest available analogue with a known answer.** Ibrutinib is a covalent BTK inhibitor
+whose off-target covalent hits (EGFR, TEC-family kinases) drive its characteristic toxicities;
+acalabrutinib and zanubrutinib were deliberately engineered for covalent selectivity against exactly
+those off-targets. Solved structures, known actives, documented selective/promiscuous pairs.
+
+That maps one-to-one onto strategy doc design constraint #5 — "potent enough for a shallow pocket,
+selective enough to avoid proteome-wide covalent promiscuity." **If the covalent lane can separate
+acalabrutinib-like selectivity from ibrutinib-like promiscuity, it can be trusted on GPX4 vs.
+TXNRD1. If it cannot, the counter-screen is theater.**
+
+| Benchmark | Capability tested | Known answer |
+|---|---|---|
+| BCL-2 / BCL-xL | Paralog selectivity, non-covalent, shallow groove | Venetoclax spares BCL-xL; navitoclax does not |
+| **BTK / EGFR+TEC** | **Covalent warhead selectivity** | **Acalabrutinib selective; ibrutinib promiscuous** |
+
+**Gate: do not run a real campaign until criteria 1–3 pass on both benchmarks.** Budget 3–5 weeks.
+This is not a detour; it is what makes the rest of the project mean anything.
 
 ---
 
@@ -257,15 +316,22 @@ It belongs at lead optimization, after a series is chosen, on rented compute.
 | # | Milestone | Gate to pass | Est. |
 |---|---|---|---|
 | M0 | WSL2 + CUDA + conda working; RDKit and DiffSBDD run end-to-end on the tutorial complex | Generate a valid .sdf from a .pdb | 2–4 days |
-| M1 | Full Branch A stack installed; each tool runs standalone | Every tool produces expected output on its own example | 1–2 weeks |
+| M1 | Full Branch A stack installed **+ covalent lane (Section 4b)**; each tool runs standalone | Every tool produces expected output on its own example | 2–3 weeks |
 | M2 | Pipeline wired end-to-end, automated | One command: pocket in → ranked candidates out | 1–2 weeks |
 | M3 | **BCL-2 benchmark passes criteria 1–3** | See Section 5. **Hard gate** | 2–4 weeks |
-| M4 | Selectivity counter-screen validated on BCL-2 / BCL-xL | Separates selective from dual inhibitors | 1 week |
-| M5 | Phase 0 delivers a real target + modality decision | Gate Zero answered | *blocked on Phase 0* |
-| M6 | First real campaign | 20–50 candidates with routes + rationale | 2–4 weeks |
+| M4 | **BTK covalent-selectivity benchmark passes** | Separates acalabrutinib-like from ibrutinib-like. **Hard gate** | 1–2 weeks |
+| M5 | ~~Phase 0 delivers a target~~ **DONE — GPX4/FSP1, Branch A covalent** | Gate Zero answered | ✅ loop 40 |
+| M6 | GPX4 structure prep + TXNRD1/selenoproteome counter-screen panel assembled | Sec46 covalent anchor validated; redock ML162 co-crystal | 1 week |
+| M7 | First real campaign | 20–50 candidates with routes + rationale | 2–4 weeks |
 
-M0–M4 are **not blocked on target selection** and can start now. That is the argument for building
-this in parallel with Phase 0 rather than after it.
+M0–M4 are **not blocked on further research** and can start now. M6 is data work and can run in
+parallel with installation.
+
+**Do M3 and M4 honestly.** The temptation with a target already chosen is to skip validation and go
+straight to GPX4. Resist it — GPX4 is a shallow, pocket-less, covalent target, i.e. the hardest case
+for every tool in this stack. A pipeline that has not been shown to work on easy targets will
+certainly not work on this one, and we will not be able to tell the difference between a good
+candidate and a hallucination.
 
 ---
 
