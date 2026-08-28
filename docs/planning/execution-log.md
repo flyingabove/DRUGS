@@ -204,10 +204,101 @@ Files: `work/structures/G9N.cif`, `work/structures/baseline_props.json`
 
 ---
 
-# ▶ STEP 2 — IN PROGRESS: Structure preparation
+# ✅ STEP 2 — COMPLETE: Toolchain built, and it broke on selenium exactly as predicted
 
-RDKit **2026.03.5** installed. Still needed: covalent-capable docking engine, selenocysteine
-force-field parameters.
+## Toolchain
+
+| Component | Status |
+|---|---|
+| RDKit 2026.03.5 | ✅ pip |
+| **AutoDock Vina 1.2.5** | ✅ Windows binary (`work/bin/`). *pip build failed — needs Boost headers* |
+| Meeko 0.8.0 + gemmi 0.7.5 | ✅ pip (`--no-deps`, then gemmi separately) |
+
+## ⚠️ Meeko refuses selenocysteine — the predicted failure, observed
+
+The compute plan warned that structure-prep tools would drop, mis-type, or silently mutate Sec.
+Confirmed verbatim:
+
+```
+Template SEC Failed to pass ResidueTemplate check.
+Template generation failed for unknown residues: {'SEC'}
+Recommendations:
+1. Use --add_templates to pass additional templates ...
+2. Use --delete_residues to ignore them. Residues will be deleted ...
+```
+
+**Note the second recommendation.** Taking it would silently delete the catalytic residue, and the
+pipeline would then run to completion producing meaningless results. **This is the exact silent
+failure Step 1 was designed to prevent.**
+
+**Workaround used:** an explicitly-labelled **Cys surrogate** (SEC46→CYS46, SE→SG). **Geometry only.**
+Se–C is 1.98 Å against S–C 1.81 Å, and nucleophilicity differs — never valid for reactivity work.
+Proper SEC templates remain an open blocker.
+
+## Receptor and ligand prepared
+
+- `6HKQ_receptor.pdb` — chain A, altloc A, waters and additives (DMS/EDO/SO4) removed. **Sec46
+  assertion passed:** 6 atoms including selenium survived the split.
+- `6HKQ_ligand.pdb` / `G9N_bound.sdf` — bound ligand with bond orders from RCSB ModelServer.
+  Independent check: **computed Se–C20 = 1.61 Å, matching the crystal LINK record exactly** —
+  coordinate parsing validated.
+- Docking box from the ligand envelope: centre **(-24.775, 9.440, 2.706)**, 20 Å cube.
+
+---
+
+# ✅ STEP 2b — POSE-RECOVERY GATE: FAILED, and the failure is the finding
+
+Non-covalent redocking of G9N into its own crystal structure. Vina 1.2.5, exhaustiveness 32, 9 modes.
+
+## Result
+
+| Metric | Crystal | Best docked pose |
+|---|---|---|
+| Affinity | — | **−5.7 kcal/mol** (weak) |
+| RMSD to crystal | 0 | **5.88 Å** (all 9 modes 5.9–7.9 Å) |
+| **Minimum distance to catalytic Se** | **1.61 Å** (covalent bond) | **3.64 Å** |
+| Centroid shift | 0 | 3.6–5.5 Å, systematically +Z |
+| Radius of gyration | 3.62 | 3.9–4.6 (more extended) |
+
+Order-independent metrics were used to rule out an atom-correspondence artifact. The conclusion holds
+either way.
+
+## What this actually demonstrates
+
+**Not a broken pipeline — an empirical confirmation of two claims the strategy rests on.**
+
+**1. GPX4 has no drug-like binding pocket.** Affinities of −5.2 to −5.7 kcal/mol are weak (a genuine
+pocket gives −8 to −10), and nine poses failed to converge anywhere near the crystal geometry. The
+ligand drifts into a shallow surface groove because there is nothing to hold it.
+
+**2. Covalent constraint is mandatory, not a refinement.** **No pose came within 3.64 Å of the
+catalytic selenium** — roughly 2 Å too far to form a bond. The crystal geometry exists *because of*
+the covalent bond, not because of non-covalent complementarity. Free docking has no mechanism to find
+it.
+
+**This is exactly the failure that would have wasted the campaign** had we generated 20,000 compounds
+and ranked them on non-covalent scores. Caught before a single molecule was generated — which is what
+the gate is for.
+
+## Revised gate
+
+Re-run pose recovery with a **covalent/constrained protocol** — Meeko supports reactive residues via
+`--reactive_flexres`, or apply a distance restraint of ~1.98 Å between the warhead electrophilic
+carbon and Sec46 Se. **The non-covalent gate is retired: it asks a question this target cannot
+answer.**
+
+---
+
+# ▶ NEXT
+
+1. **Covalent docking protocol** — Meeko reactive-residue setup, or restrained docking. Re-run the
+   recovery gate against the 1.61 Å crystal geometry.
+2. **Proper SEC parameters** — required before any reactivity work; the Cys surrogate is
+   geometry-only.
+3. **Step 4 selectivity gate** — ML210 vs ML162/RSL3 against GPX4 and TXNRD1. Per Step 3, this now
+   needs a **quantum-chemistry reactivity arm**, since the discriminating variable is warhead
+   electrophilicity rather than pocket shape.
+4. **Generation** — only after gates 1 and 3 pass.
 
 ---
 

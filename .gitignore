@@ -217,3 +217,7 @@ __marimo__/
 # Streamlit
 .streamlit/secrets.toml
 work/structures/*.pdb
+work/bin/
+work/structures/*.pdbqt
+work/structures/*.sdf
+work/structures/*.npy
