@@ -113,15 +113,24 @@ answer?**
 
 ## Phase 0 — Environment and target preparation
 
-**Structures to obtain:**
-- GPX4 apo
-- **GPX4 covalently bound to ML162** — this defines the site geometry
-- TXNRD1 (counter-target)
-- GPX1 (counter-target, closest family member)
-- FSP1 (for the parallel partner campaign, lower priority)
+**Structures — resolved, with accessions:**
 
-*Look up exact PDB accessions rather than assuming; do not proceed on a homology model where a
-crystal structure exists.*
+| Structure | PDB | Resolution | Note |
+|---|---|---|---|
+| **GPX4 apo, wild-type** | **6HN3** | **1.0 Å** | Near-atomic. Contains genuine **Se-Cys46** |
+| **GPX4 + ML162 (S-enantiomer), covalent** | **6HKQ** | **1.54 Å** | **Defines the site geometry.** Also genuine Sec46 |
+| TXNRD1 (counter-target) | *to look up* | — | Required for selectivity margin |
+| GPX1 (counter-target) | *to look up* | — | Closest family member |
+| FSP1 (parallel track) | *to look up* | — | Lower priority |
+
+**Critical detail: 6HN3 and 6HKQ contain real selenocysteine, not a U46C mutant.** Many GPX4
+structures in the PDB substitute cysteine for selenocysteine because Sec is difficult to express —
+those are unusable for reactivity work here, since selenium nucleophilicity is the mechanism. Verify
+residue 46 identity in any structure before use.
+
+*Wet-lab note for later:* wild-type GPX4 was produced by co-expression with **SBP2**
+(selenocysteine-insertion-sequence-binding protein 2) in HEK cells. Anyone reproducing the purified
+enzyme assay will need that construct — and that assay is the program gate.
 
 **Deliverables:**
 - Sec46 parameters validated end-to-end
