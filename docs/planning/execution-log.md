@@ -145,6 +145,65 @@ shape-based counter-target, since it *is* a selenoprotein with a comparable fold
 
 ---
 
+# ✅ STEP 3b — COMPLETE: Compound baseline established
+
+RDKit 2026.03.5. Structures pulled from PubChem; warhead classes confirmed computationally by SMARTS,
+not by assumption.
+
+## The three reference compounds
+
+| Compound | MW | logP | TPSA | HBD | HBA | rotB | Warhead (verified) | Known selectivity |
+|---|---|---|---|---|---|---|---|---|
+| **ML210** | 475.3 | 4.75 | **92.7** | **0** | 6 | 5 | **nitro-isoxazole** ✅ | **GPX4-selective** |
+| ML162 | 477.4 | 5.08 | 58.6 | 1 | 4 | 9 | chloroacetamide ✅ | hits TXNRD1 |
+| RSL3 | 442.9 | 3.10 | 84.9 | 1 | 6 | 4 | chloroacetamide ✅ | hits TXNRD1 |
+
+SMARTS confirmed each assignment: ML210 matches nitro-isoxazole and **not** chloroacetamide; ML162 and
+RSL3 match chloroacetamide and **not** nitro-isoxazole. The warhead classification underpinning this
+whole program is now verified computationally rather than taken from prose.
+
+## 🎯 Headline: ML210 already falls inside the design window
+
+Target window from the strategy doc: **TPSA 70–140, MW 450–500, logP < 5**.
+
+| Compound | Verdict |
+|---|---|
+| **ML210** | **Within window on all three** — MW 475, logP 4.75, TPSA 92.7 |
+| ML162 | TPSA 58.6 (below 70 → predicted CNS/retina penetrant); logP 5.08 (Lipinski violation) |
+| RSL3 | MW 443, marginally below range |
+
+**This materially de-risks the program.** The chemotype selected for its *selectivity* turns out to be
+property-appropriate as well. The optimization problem narrows from "fix fundamentally poor
+properties" to "improve PK, metabolic stability, and clearance route within an already-reasonable
+envelope."
+
+Worth noting the correlation: the selective compound also has the better property profile, while both
+non-selective chloroacetamides sit outside the window on at least one axis. Suggestive, not causal, on
+a sample of three.
+
+## ⚠️ The one property flag: ML210 has zero hydrogen-bond donors
+
+TPSA 92.7 looks comfortable, but **HBD = 0** is a strong driver of passive CNS penetration. For most
+programs that would be desirable. **Here it is backwards** — we want blood-brain and blood-retinal
+exclusion.
+
+**Concrete design lever, first one derived from computed data rather than reasoning:** introduce
+hydrogen-bond donors while holding the nitro-isoxazole warhead fixed. Compounds carrying ≥2 HBD are
+substantially more likely to be barrier-excluded, and there is headroom in TPSA (92.7 against a
+ceiling near 140) to add polarity without breaking oral absorption.
+
+This becomes an explicit objective for the GenMol campaign.
+
+## Covalent chemistry confirmed from the crystal
+
+The free G9N definition carries **2 chlorine atoms**; the bound form in 6HKQ carries **1**. The
+chloroacetamide chloride departed — direct confirmation of SN2 displacement forming the Se–C20 bond.
+The bound geometry is the post-reaction adduct, which is the correct template for covalent docking.
+
+Files: `work/structures/G9N.cif`, `work/structures/baseline_props.json`
+
+---
+
 # ▶ STEP 2 — IN PROGRESS: Structure preparation
 
 RDKit **2026.03.5** installed. Still needed: covalent-capable docking engine, selenocysteine
