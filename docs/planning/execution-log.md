@@ -289,6 +289,81 @@ answer.**
 
 ---
 
+# ✅ STEP 5 — FIRST DESIGN CYCLE RUN: 210 analogs, 15 clear the window
+
+**Rationale for going here rather than to covalent docking first.** Step 2b showed non-covalent
+docking is uninformative on this target, and Step 3 showed selectivity is probably reactivity-driven
+rather than shape-driven. Both point the same way: **property-directed, warhead-conserved design is
+the defensible move**, and it needs no docking at all.
+
+## Method
+
+Decomposed ML210 by BRICS. Fixed scaffold: **nitro-isoxazole warhead → amide → piperazine**. The
+variable handle is the **bis(4-chlorophenyl)methine**, which carries most of the lipophilicity and
+contributes zero polarity.
+
+Enumerated 20 aryl/heteroaryl replacements pairwise (210 combinations). **Every structure was gated
+on warhead integrity by SMARTS** before scoring — no compound advances with a mangled electrophile.
+
+## Result
+
+| R1 / R2 | MW | logP | TPSA | HBD | QED |
+|---|---|---|---|---|---|
+| 4-OH-phenyl / 4-NHMe-phenyl | 451.5 | 3.19 | 125.0 | 2 | 0.43 |
+| 4-NHMe-phenyl / 3-OH-phenyl | 451.5 | 3.19 | 125.0 | 2 | 0.43 |
+| 4-OH-phenyl / 4-CH2OH-phenyl | 452.5 | 2.64 | 133.2 | 2 | 0.43 |
+| 4-CH2OH-phenyl / 3-OH-phenyl | 452.5 | 2.64 | 133.2 | 2 | 0.43 |
+| 4-OH-phenyl / 4-OH-3-Cl-phenyl | 472.9 | 3.50 | 133.2 | 2 | 0.43 |
+| 3-OH-phenyl / 4-OH-3-Cl-phenyl | 472.9 | 3.50 | 133.2 | 2 | 0.43 |
+| **ML210 baseline** | **475.3** | **4.75** | **92.7** | **0** | 0.39 |
+
+**Movement against the design objectives:**
+
+| Objective | ML210 | Best analogs | Direction |
+|---|---|---|---|
+| **HBD** (drives barrier exclusion) | **0** | **2** | ✅ the key fix |
+| logP | 4.75 | 2.42–3.50 | ✅ substantially less greasy |
+| TPSA | 92.7 | 125–139 | ✅ into the exclusion range |
+| MW | 475 | 450–493 | ✅ held in window |
+| QED | 0.39 | 0.43 | ✅ marginally better |
+
+Top candidates:
+
+1. `CNc1ccc(C(c2ccc(O)cc2)N2CCN(C(=O)c3noc(C)c3[N+](=O)[O-])CC2)cc1`  — 4-OH-phenyl / 4-NHMe-phenyl
+2. `CNc1ccc(C(c2cccc(O)c2)N2CCN(C(=O)c3noc(C)c3[N+](=O)[O-])CC2)cc1`  — 4-NHMe-phenyl / 3-OH-phenyl
+3. `Cc1onc(C(=O)N2CCN(C(c3ccc(O)cc3)c3ccc(CO)cc3)CC2)c1[N+](=O)[O-]`  — 4-OH-phenyl / 4-CH2OH-phenyl
+4. `Cc1onc(C(=O)N2CCN(C(c3ccc(CO)cc3)c3cccc(O)c3)CC2)c1[N+](=O)[O-]`  — 4-CH2OH-phenyl / 3-OH-phenyl
+
+## The finding that makes this chemotype tractable
+
+Measured bond path from the design handle to the electrophilic warhead carbon: **7 bonds, through an
+amide and a saturated piperazine** (6 non-aromatic atoms in the path).
+
+**The modification site is electronically insulated from the electrophile.** Substituent effects
+should not propagate to the warhead, so property optimisation here is unlikely to perturb the
+reactivity that confers GPX4 selectivity.
+
+That is a strong argument for this scaffold specifically: **the property problem and the selectivity
+problem are separable.** It is why a lead-optimisation campaign here is credible rather than a
+reactivity gamble.
+
+## Honest limits of this cycle
+
+- **Property-optimised only. No potency prediction.** The chlorophenyls may be making essential
+  contacts; replacing them could destroy activity. *Mitigating argument:* GPX4 has no real binding
+  pocket (demonstrated in Step 2b), so the aryls plausibly contribute positioning rather than
+  affinity — but this is a hypothesis, not a result.
+- **Synthetic accessibility not properly assessed.** Mixed (unsymmetrical) benzhydryl centres are
+  harder than symmetric ones. The symmetric hits (e.g. bis-4-NHMe-phenyl, bis-4-CH2OH-phenyl) are
+  more tractable and should be weighted up.
+- **Barrier exclusion is predicted from property rules, not modelled.** HBD ≥ 2 and TPSA > 70 are
+  heuristics.
+- No stereochemistry handled at the methine centre.
+
+Files: `work/design/analogs.json` (210 enumerated, 15 passing)
+
+---
+
 # ▶ NEXT
 
 1. **Covalent docking protocol** — Meeko reactive-residue setup, or restrained docking. Re-run the
