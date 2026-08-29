@@ -465,3 +465,119 @@ covalently-anchored warhead that does the chemistry.
 **Still unestablished:** actual potency. This argues the modifications are *unlikely to hurt*; it does
 not demonstrate the parent chemotype is potent enough to matter, which requires the purified-enzyme
 assay.
+
+---
+
+# 9. PENETRATE AND KILL
+
+Two separate problems. One resolves cleanly; the other exposes a limit of what this hardware can settle.
+
+## 9.1 PENETRATE — resolved, and the apparent conflict was false
+
+There seemed to be a contradiction at the heart of the design: we deliberately added polarity to keep
+the compound **out** of brain and retina, yet the target sits in the bone marrow niche, which earlier
+work in this project identified as one of the hardest places in the body to deliver a drug.
+
+**The two are governed by different mechanisms, so there is no conflict.**
+
+| | Brain | Bone marrow |
+|---|---|---|
+| Endothelium | Continuous, **tight junctions** | **Sinusoidal, fenestrated** |
+| Efflux pumps | P-gp / BCRP at the interface | Not a barrier interface |
+| Nature of the obstacle | **A true barrier — exclusion** | **Poor perfusion — slow delivery** |
+| What it takes to enter | Low TPSA, low HBD, no efflux liability | Little; solutes equilibrate through fenestrae |
+
+Crossing into brain requires defeating a physical barrier. Reaching marrow interstitium does not —
+the fenestrated sinusoidal endothelium admits solutes without demanding high passive permeability.
+The endosteal niche is limited by **how fast blood arrives**, not by whether the molecule is allowed in.
+
+**Polarity that keeps a compound out of brain therefore does not keep it out of marrow.** Adding
+hydrogen-bond donors buys barrier exclusion at no cost to the target tissue.
+
+**Access profile:**
+
+| Compound | MW | logP | TPSA | HBD | CNS-MPO (lower = less brain-penetrant) |
+|---|---|---|---|---|---|
+| ML210 | 475.3 | 4.75 | 92.7 | 0 | 1.64 |
+| **Lead B — bis(4-CH₂OH)** | 466.5 | **2.42** | 133.2 | **2** | **1.24** |
+| C — bis(4-CONH₂) | 492.5 | 1.64 | 178.9 | 2 | 1.05 |
+
+The lead moves decisively away from brain penetration relative to ML210 while remaining well within
+the range that reaches marrow. C is more excluded still, but its 179 Å² polar surface starts to
+threaten oral absorption.
+
+**Remaining penetration risk is kinetic, not thermodynamic:** the niche is poorly perfused, so
+exposure there will lag plasma. That argues for sustained exposure rather than sharp peaks — a
+dosing-schedule question, not a molecular-design one.
+
+## 9.2 KILL — a method failure worth recording, then a real number
+
+With no binding pocket (§8.2), potency cannot come from affinity. It has to come from reactivity. So
+the decisive question is whether the warhead genuinely prefers the selenol of GPX4 over the thiols
+that dominate the proteome.
+
+### First attempt: frontier orbital analysis — structurally incapable of answering
+
+Computed in implicit water: selenolate HOMO −11.02 eV, thiolate HOMO −7.82 eV; nitro-isoxazole LUMO
+−9.40 eV, chloroacetamide LUMO −6.64 eV.
+
+The apparent "selenium preference" came out at **exactly −3.20 eV for both warheads**, and the
+differential at **exactly 0.00**.
+
+**That is arithmetic, not chemistry.** Writing it out:
+
+```
+preference = gap(S) − gap(Se) = (LUMO − HOMO_S) − (LUMO − HOMO_Se) = HOMO_Se − HOMO_S
+```
+
+**The warhead LUMO cancels.** A frontier-gap comparison can never distinguish two warheads facing the
+same pair of nucleophiles — the answer is fixed by the nucleophiles alone. The approach was incapable
+of answering the question it was set, and no amount of running it would have helped.
+
+**Recorded because the failure is instructive:** it rules out a whole class of cheap descriptor-based
+selectivity prediction for this problem.
+
+### Second attempt: explicit reaction energetics
+
+Modelling the actual SN2 displacement on the chloroacetamide, GFN2-xTB in implicit water:
+
+```
+Nu⁻ + ClCH₂C(O)NMe₂  →  Nu–CH₂C(O)NMe₂ + Cl⁻
+```
+
+| Nucleophile | ΔE |
+|---|---|
+| Selenolate | **+1.5 kcal/mol** |
+| Thiolate | **−37.8 kcal/mol** |
+
+**Reliability caveat, stated first because it matters:** the 39 kcal/mol magnitude is **not credible**.
+Semiempirical methods handle anionic species and implicit solvation poorly, and selenium is less well
+parameterised in GFN2 than sulfur. Treat the number as directional only.
+
+**The direction, however, is chemically sound and experimentally consistent.** C–S bonds are
+intrinsically stronger than C–Se (roughly 272 vs 234 kJ/mol), so thiolate adduct formation is
+genuinely the more favourable thermodynamic outcome. And that matches what is observed: **RSL3 and
+ML162, both chloroacetamides, hit the cysteine machinery of TXNRD1 rather than the selenocysteine of
+GPX4.** Their off-target preference is thermodynamically expected.
+
+### What this implies for the programme
+
+**A GPX4-selective warhead cannot win on thermodynamics.** Forming a C–Se bond is intrinsically less
+favourable than forming a C–S bond, so any compound that preferentially modifies selenocysteine must
+be doing so **kinetically** — through accessibility, residence time, or a reaction pathway only
+available at that site.
+
+**This independently supports the masking hypothesis.** ML210 is a masked nitrile-oxide precursor
+requiring unmasking before it reacts. A latent electrophile that becomes reactive only under specific
+local conditions is exactly the mechanism you would need to beat an unfavourable thermodynamic
+gradient — and it explains why a *more* electrophilic warhead (§7.3: 2.9× higher ω) is nonetheless the
+*more* selective one.
+
+**And it sets the boundary of what this hardware can settle.** Kinetic selectivity requires transition
+states and activation barriers — proper DFT with TS searches, not semiempirical ground-state
+energetics. That is a substantially heavier calculation, and for the masked nitrile-oxide pathway it
+also requires modelling the unmasking step, whose mechanism is not established.
+
+**Honest position: we can show the design is sound and the thermodynamics are unfavourable-but-
+surmountable. We cannot compute the number that decides potency.** That is the purified-enzyme assay —
+the same assay RSL3 and ML162 failed.
