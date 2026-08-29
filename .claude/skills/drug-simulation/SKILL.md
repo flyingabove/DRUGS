@@ -171,6 +171,34 @@ That spread is noise. Ranking on it is false precision — and doing so put an a
 (here: the amide fragment class solves masking). Selection then belongs to medicinal chemistry —
 metabolic stability, synthetic symmetry, lipophilicity — not to another decimal place.
 
+## RULE 12 — Always run a positive control through your docking protocol
+
+Three anchored-docking attempts failed. The second rejected **ML210, a compound known to bind**, as
+firmly as the novel candidate — 0 clash-free poses out of 1,860 for both. A method that rejects the
+positive control is broken, and its verdict on your candidate is worthless.
+
+**Run the reference ligand through every scoring protocol before trusting it on anything new.**
+
+## RULE 13 — Straight-ray accessibility is the wrong test for a surface groove
+
+A probe requiring an unobstructed straight line from the anchor atom outward found **zero open exit
+vectors in the very crystal structure that contains a covalently bound ligand.** That is a
+contradiction, and it means the test measured the wrong thing.
+
+Ligands bend. Grooves curve. Straight-ray channel-finding suits buried pockets with a mouth; it fails
+completely on shallow curved surfaces.
+
+**Use per-atom burial of a known ligand instead** — it is order-independent, needs no sampling, and it
+answered the question the ray-casting could not.
+
+## RULE 14 — For covalent targets, start from the bonded state
+
+Pose *prediction* is the hardest part and the least necessary. If a covalent complex exists, build the
+bond and run MD from there. That sidesteps docking entirely and directly answers whether substituents
+are accommodated.
+
+Reserve docking for cases where you genuinely do not know where the ligand sits.
+
 ---
 
 ## Standard cascade

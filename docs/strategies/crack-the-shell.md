@@ -834,3 +834,75 @@ false-alert).
 inhibits GPX4, and the selectivity question requires QM/MM with transition states — blocked by the
 unresolved selenocysteine parameters. **The purified-enzyme assay remains the gate, and it is the same
 assay RSL3 and ML162 failed.**
+
+---
+
+# 15. THREE DOCKING METHODS, THREE FAILURES — AND WHAT THEY AGREE ON
+
+Attempted to answer one question: **can GPX4-M1 physically adopt the covalent geometry, or do the
+larger amide substituents clash?** Three approaches, all failed, each for a different reason. Recorded
+in full because the pattern is the result.
+
+## Attempt 1 — Non-covalent redocking (§7.2)
+
+Weak affinities (−5.7 kcal/mol), nine non-converging poses, nothing within 3.64 Å of the selenium.
+
+**Failure mode: no pocket to score.** Informative — it established that covalent constraint is
+mandatory and that non-covalent scores are meaningless here.
+
+## Attempt 2 — Anchored docking, random orientations
+
+Placed the warhead anchor atom 1.98 Å from Sec46 SE in random directions, sampling conformers and
+rotations. **Zero clash-free poses out of 1,860 for GPX4-M1 — and zero out of 1,860 for ML210**, a
+compound known to bind.
+
+**Failure mode: my sampling, not the molecules.** Random directions from a buried atom point mostly
+*into* protein. A method that rejects the positive control is broken, not informative.
+
+## Attempt 3 — Anchored docking along solvent-accessible exit vectors
+
+Restricted placement to open directions from the selenium and aimed the molecular long axis outward.
+
+**Result: zero fully-open exit vectors out of 400 directions — in *both* the apo structure and the
+ligand-bound structure with the ligand deleted.**
+
+That is a contradiction on its face: **the crystal contains a ligand covalently bonded at 1.61 Å from
+that selenium.** If no open exit vector exists in the very structure where the ligand is bound, the
+test cannot be measuring what matters.
+
+**Failure mode: straight-ray accessibility is the wrong test for a curved surface groove.** My probe
+required an unobstructed straight line from the selenium out to 10 Å. A ligand needs no such channel —
+it can bend, and it occupies a groove that curves along the protein surface.
+
+## What the three failures agree on
+
+**This target defeats rigid-receptor structure-based methods**, and it does so for reasons intrinsic
+to the site rather than to any one algorithm.
+
+The per-atom burial analysis (§8.1) was the method that actually worked, and it already told us why:
+mean burial 0.34, only 6 of 30 atoms more than half buried, the warhead anchored and the rest lying in
+solvent. **There is no pocket, no channel, and no clean exit vector — only a shallow curved surface
+with a covalent tether at one end.**
+
+Rigid docking assumes a cavity to fill. There isn't one.
+
+## What would actually answer the question
+
+- **Flexible-receptor covalent docking** — the ligand tethered at the reactive atom, receptor
+  side-chains free to move. Needs a covalent-capable engine *and* selenocysteine parameters, which
+  remain the standing blocker (§7.2).
+- **MD of the covalent adduct** — build the bond, simulate, observe whether the substituents are
+  accommodated. This is the most credible route with current tooling, and it sidesteps pose
+  *prediction* entirely by starting from the bonded state.
+- **QM/MM** for the reaction step itself, which is the only thing that addresses potency.
+
+## The honest interim position on GPX4-M1
+
+**Steric feasibility is unproven, but the burial evidence argues it is not the risk it appears to be.**
+The positions we modified sit at burial 0.06–0.17 — essentially in solvent — so larger substituents
+there extend into open space rather than into protein. Attempt 2 rejected ML210 as firmly as GPX4-M1,
+which means it carries no information about their *relative* fit.
+
+**No result so far distinguishes GPX4-M1 from ML210 sterically.** Given that they differ only at
+solvent-facing positions, that is the expected outcome — but it is an absence of evidence, not
+evidence of absence.
