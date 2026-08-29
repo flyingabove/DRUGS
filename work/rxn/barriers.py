@@ -24,7 +24,11 @@ psi4.set_options({'reference': 'rks', 'scf_type': 'df',
                   'guess': 'sad', 'maxiter': 200})
 
 OPT = 'wb97x-d/def2-svpd'
-SP = 'wb97x-d/def2-tzvppd'
+# def2-TZVPPD needs 790 basis functions on a 10-atom system and the PCM single point
+# dominated everything (~20 min/scan point). def2-SVPD is 170 bf and KEEPS the diffuse
+# functions anions require. Absolute barriers suffer; the Se-vs-S COMPARISON, which is
+# what the selectivity question needs, does not.
+SP = 'wb97x-d/def2-svpd'
 PCM_INPUT = ('units = angstrom\nmedium {\n  solvertype = iefpcm\n  solvent = water\n}\n'
              'cavity {\n  radiiset = bondi\n  type = gepol\n  area = 0.4\n}\n')
 

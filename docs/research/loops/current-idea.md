@@ -266,3 +266,72 @@ transplantation. A stemness/ferroptosis-resistance axis to screen for.
 1. **NMNAT1** — nuclear NAD+; LSC-specific, dispensable for normal hematopoiesis, gatekeeper property.
 2. **SIN3A PAH2–SID** — genuine AML gap, direct Malone lineage, cheapest experiment.
 3. **NCOA4** — best quiescent-LSC validation; antagonizes the GPX4 route, cannot combine.
+
+---
+
+# STATE AS OF 2026-08-29 — computational campaign, second pass
+
+## The lead changed: GPX4-M1 → **GPX4-M3**
+
+```
+CNC(=O)c1ccc(C(c2ccc(C(=O)NC)cc2)N2C(=O)CN(C(=O)c3noc(C)c3[N+](=O)[O-])CC2)cc1
+```
+
+ML210 with both 4-chlorophenyls replaced by 4-(N-methylcarbamoyl)phenyl **and the piperazine replaced
+by a 2-oxopiperazine (lactam)**. Warhead untouched.
+
+The linker vector had never been explored. Opening it removed a liability I had identified myself and
+then left in the molecule — a basic amine, which OCT2 concentrates in the proximal tubule.
+
+| | M1 | **M3** | ML210 |
+|---|---|---|---|
+| Basic N (kidney/OCT2) | 1 | **0** | 1 |
+| hERG pharmacophore | MOD-HIGH | **low** | HIGH |
+| cLogP | 2.16 | **1.68** | 4.75 |
+| logS | −4.30 | **−4.08** | −5.84 |
+| Plasma protein binding | 79% | **70%** | ~100% |
+| Stereocentres | 0 | **0** | 0 |
+| SA score | 2.65 | ~2.7 | — |
+
+## What the models say to do differently
+
+1. **Stop optimising potency.** Two independent models agree: a 10× potency gain buys 3.2 months
+   (resistance model), and target occupancy saturates above kinact/K_I ≈ 0.5 (covalent PK/PD).
+2. **The lever is kG** — whether anything still kills the escaping clone faster than it divides. Sharp
+   phase transition at kG/r = 1.
+3. **Partner drug must have an ORTHOGONAL death mechanism.** FSP1i is a patient-selection and
+   depth-of-remission tool, not a durability tool — the escaping clone is ferroptosis-*incompetent*.
+4. **Daily dosing, ~4 h half-life is enough**, and it is schedule-robust.
+5. **Deploy in deepest remission** — 3 logs of extra cytoreduction beats a 10× better drug.
+
+## Selectivity — the structural picture
+
+| | Burial | Exposed |
+|---|---|---|
+| GPX4 Sec46 | **0.93** | 7% |
+| TXNRD1 catalytic Sec | 0.23–0.38 | 62–76% |
+
+**Accessibility runs *against* selectivity** — the off-target is the more exposed one. Selectivity comes
+from the masked warhead plus GPX4's enclosed groove providing residence time. **Never simplify the
+nitroisoxazole to a direct electrophile** — that is exactly the ML162/RSL3 liability.
+
+Also resolves an old tension: 26 Å³ volume *and* 0.93 burial means a **narrow groove**, not a cavity.
+Defeats docking, still supports binding.
+
+## Safety
+
+Window is real but **vitamin E dependent** — Gpx4-null HSPCs are rescued by α-tocopherol, and
+vitamin E-depleted knockout mice show impaired haematopoiesis. **Predicted DLT: anaemia**, erythroid
+progenitors the sensitive compartment. Monitorable by CBC.
+
+## Open
+
+- **Barriers (ΔΔG‡ Se vs Cys)** — running at DFT. The one number selectivity rests on.
+- **MD of the tethered adduct** — built, waiting on openff-interchange.
+- Tier 3.1 selenoproteome-wide scan — not started.
+- **kG measurement (ACSL4-knockout lines)** — wet-lab, and the single most decision-relevant experiment.
+
+## Tooling note
+
+psi4 1.11, OpenMM 8.6 and a TITAN Xp (OpenCL, 203 ns/day) are all available here. An earlier claim that
+Windows blocked DFT was wrong — it came from one failed `pip install pyscf`.

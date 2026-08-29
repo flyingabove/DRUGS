@@ -224,3 +224,12 @@ work/structures/*.npy
 work/design/qm/*.out
 work/design/qm/*.err
 work/design/conf/*.out
+
+# live compute logs (written during runs)
+work/rxn/barriers.out
+work/rxn/dft_full.out
+work/rxn/dft_control.out
+work/rxn/psi4*.log
+work/rxn/t*.log
+work/md/traj.dcd
+work/md/*.out
