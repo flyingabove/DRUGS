@@ -1226,3 +1226,87 @@ target, and the cheap diagnostics in §7–8 are what established that before an
 **Where a generative model would genuinely help:** designing an FSP1 inhibitor for the partner arm.
 FSP1 has a real binding pocket, and existing tool compounds (icFSP1, viFSP1) have known liabilities —
 that is a conventional structure-based problem where FLOWR.root and DiffSBDD are appropriate.
+
+---
+
+# 19. STATE OF AFFAIRS — 2026-08-29
+
+Second computational pass. **The lead molecule changed, the combination strategy changed twice, and
+nine earlier claims in this campaign were overturned.** [FINDINGS.md](../FINDINGS.md) is the single
+current-state document; this section records what moved and why.
+
+## 19.1 The lead is now GPX4-M3, with M1 retained
+
+The **linker vector had never been explored** — every earlier cycle varied only the two aryl groups.
+Opening it produced M3: piperazine → 2-oxopiperazine, warhead untouched.
+
+| | M1 | **M3** |
+|---|---|---|
+| Basic N (OCT2 kidney trap) | 1 | **0** |
+| hERG pharmacophore | moderate-high | **low** |
+| cLogP / logS | 2.16 / −4.30 | **1.68 / −4.08** |
+| **Salt formation for injection** | **available** | **not available** |
+
+One change removed a liability I had identified myself in §11.1 and then left in the molecule.
+**But M1 is not dropped:** removing the basic nitrogen also removed the standard route to an injectable
+salt. That is a trade-off, not a ranking.
+
+## 19.2 What is newly established
+
+- **The design premise is confirmed under a mobile protein.** MD: the modified amide arms are **46% of
+  total ligand SASA and never buried**; the buried atoms are the warhead region. Anchor buried, payload
+  in water.
+- **Selectivity has a structural basis.** GPX4 Sec46 is **0.93 buried**; TXNRD1's catalytic Sec is
+  **0.23–0.38** (62–76% exposed). **Accessibility runs against selectivity** — the off-target is the
+  easier one to reach. Selectivity comes from the masked warhead plus GPX4's enclosed groove.
+  **This is a structural argument against ever simplifying the nitroisoxazole.**
+- **The "no pocket" tension is resolved:** 26 Å³ volume *with* 0.93 burial means a **narrow groove**,
+  not a cavity — which is why docking fails but a tethered ligand fits.
+
+## 19.3 The strategy changed: the value is in the partner, not the molecule
+
+Three independent findings converge:
+
+1. Resistance model: a **10× potency gain buys 3.2 months**
+2. Covalent PK/PD: occupancy **saturates above kinact/K_I ≈ 0.5**
+3. Dose scan: **4× dose buys 1.9 months**
+
+And the partner drug analysis, twice corrected:
+
+| Partner | Modelled delay | Basis |
+|---|---|---|
+| FSP1 inhibitor | **+0** | escaping clone is ferroptosis-*incompetent* |
+| **SLC7A11 agent** | **+14 mo** | erastin-type killing is **less ACSL4-dependent** (published) |
+| **Venetoclax** (apoptosis) | **control** | fully orthogonal |
+
+**FSP1i is withdrawn as a durability strategy** (retained for patient selection in FSP1-high /
+FLT3-ITD⁺ disease). **Durability requires a partner that does not depend on ACSL4.**
+
+## 19.4 The liability that matters most
+
+**Solubility ~0.03 mg/mL — griseofulvin territory, 30–100× short for a daily injectable.** Consensus of
+three models, anchored on compounds with measured values (griseofulvin reproduced exactly). Symmetry
+bought the no-stereocentre advantage and probably costs solubility, since symmetric rigid molecules pack
+and melt high. **A measured melting point and intrinsic solubility settle this; nothing else does.**
+
+## 19.5 Honest limits
+
+- **Reaction barrier: not obtained.** Three constrained-scan protocols failed — basin-hopping,
+  over-constraint, and optimisation failure at the transition region. It needs a genuine
+  eigenvector-following TS search, not another scan variant. **It was corroborative, not load-bearing.**
+- **Selenoproteome-wide scan: impossible.** 18 of 20 human selenoproteins are absent from AlphaFold DB
+  (Sec is encoded by UGA and the pipelines drop those sequences). **Chemical proteomics is the only
+  route.**
+- **kG ≈ 0** — ACSL4 loss is near-complete protection against GPX4 inhibitors. **This costs 1.7 months,
+  not the programme:** below the kG/r threshold the exact value barely matters. Monotherapy still models
+  to **~+20 months against the QUAZAR bar of +9.9**.
+
+## 19.6 The three experiments that would move this furthest
+
+All cheap, all wet-lab:
+
+1. **Measured solubility and melting point** — gates the injectable route
+2. **kG on ACSL4-knockout AML lines**, with erastin-type and venetoclax comparator arms
+3. **Proteome-wide covalent profiling** — the only route to selenoproteome selectivity
+
+And the one that decides everything: **serial transplantation**, with a pre-registered kill criterion.
