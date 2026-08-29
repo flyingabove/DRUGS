@@ -8,6 +8,11 @@ Fetches data from Open Targets, GWAS Catalog, and UniProt for target validation.
 import argparse
 import json
 import sys
+
+if sys.platform == "win32":
+    import io
+    sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8")
+    sys.stderr = io.TextIOWrapper(sys.stderr.buffer, encoding="utf-8")
 from typing import Any, Dict
 
 

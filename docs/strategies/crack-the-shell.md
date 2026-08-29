@@ -1937,3 +1937,97 @@ liability.
 
 **Correcting my own error: I set a ceiling from one chemotype and treated it as a law of nature.** It
 cost M3 a fair hearing and nearly cost C4 one.
+
+---
+
+# 29. GPX4-C4 IS THE LEAD — the synthesis of everything learned
+
+```
+O=C(N1CC(=O)N(C(c2ccccc2)c3ccccc3)CC1)c5noc(C)c5[N+](=O)[O-]
+```
+
+**ML210 with the two chlorines deleted and the piperazine replaced by 2-oxopiperazine.**
+Warhead untouched.
+
+## 29.1 Why it wins
+
+| | ML210 | C1 | **C4** | M3 (prev) |
+|---|---|---|---|---|
+| Polar surface | 92.7 | 92.7 | **109.8** | 168.0 |
+| **Inside revised ceiling (~130)** | ✅ | ✅ | **✅** | ❌ +38 |
+| cLogP | 4.75 | 3.44 | **2.97** | 1.68 |
+| Basic nitrogen (kidney trap) | 1 | 1 | **0** | 0 |
+| **hERG risk** | HIGH | MOD-HIGH | **low** | low |
+| Solubility (neutral) | 0.0001 | 0.0021 | **0.0051** | 0.0286 |
+| Stereocentres | 0 | 0 | **0** | 0 |
+| CYP soft spots | 7 | 5 | **4** | 6 |
+| **Covalent fit** (control 0.51) | 0.30 | 0.29 | **0.30** | 0.31 |
+
+**C4 dominates C1 outright**: same permeability class, no basic nitrogen, hERG down from MODERATE-HIGH
+to **low**, better solubility, fewer metabolic liabilities, lower lipophilicity. The only thing C1 has
+that C4 lacks is salt formation — and C4's intrinsic solubility is 2.4× better anyway.
+
+## 29.2 It vindicates part of the M3 work
+
+**The 2-oxopiperazine linker was a good idea applied to the wrong scaffold.**
+
+The M3 campaign made two changes at once: replace both aryl arms with amides, **and** replace the
+linker. The linker change was correct — it removes the basic nitrogen cleanly for +17 Å² of polar
+surface, which the revised ceiling can afford. **The arm change was the error**, costing +58 Å² that was
+never available.
+
+**C4 keeps the good half and drops the bad half.** Three rounds of design were not wasted; they were
+mis-combined.
+
+## 29.3 The decision graph
+
+```
+                    Is the polar-surface ceiling really 93?
+                                    |
+                  +-----------------+------------------+
+                  | NO - approved covalent drugs       |
+                  |      reach 131 (median 112)        |
+                  v                                    v
+        Ceiling ~130                          [if ceiling had held]
+                  |                            only C1/C2 survive
+     +------------+-------------+              (basic N mandatory,
+     |                          |               hERG risk accepted)
+     v                          v
+  C4 fits (109.8)          M3 still out (168)
+  AND has no basic N       -> fallback only
+     |
+     v
+  Does C4 still bind?  --- anchored fit 0.30 A vs control 0.51 --> YES
+     |
+     v
+  *** C4 = LEAD ***
+     |
+     +--> Solubility 0.0051 mg/mL, need >1, NO salt handle
+     |         |
+     |         +--> measure real solubility + melting point   [WET LAB, cheap]
+     |         +--> if inadequate: formulation (cyclodextrin / co-solvent)
+     |         +--> if still inadequate: fall back to C1 and accept hERG
+     |
+     +--> Permeability is inferred from TPSA precedent, not measured
+               |
+               +--> permeability assay: C4 vs C1 vs M3        [WET LAB, decides everything]
+                         |
+                         +-- C4 permeable  -> proceed, C4 confirmed
+                         +-- all fail      -> the polarity budget is tighter than
+                                              even the covalent precedent; go to C2/ML210-like
+                         +-- M3 permeable  -> ceiling wrong again; M3 returns (best safety)
+```
+
+## 29.4 What is still open on C4
+
+| Open | Severity | Resolved by |
+|---|---|---|
+| **Solubility 0.0051 mg/mL, no salt handle** | **highest** | measured solubility, then formulation |
+| Permeability inferred from precedent, not measured | high | permeability assay |
+| Novelty — a two-change edit of a published compound | medium | composition-of-matter search |
+| Warhead class liability (nitro → arylamine) | inherited | unchanged from ML210 |
+
+**Everything else in the campaign is compound-independent and carries over unchanged:** daily
+continuous dosing, ~4 h half-life sufficient, potency not the lever, deployment in deepest remission,
+venetoclax as the orthogonal partner, anaemia as the predicted dose-limiting toxicity, vitamin E
+status as an eligibility criterion.

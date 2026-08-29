@@ -43,8 +43,9 @@ print("  Se->C attack vector %s\n"%np.round(VEC,3))
 ADD={
  'G9N_reconstructed':'COc1ccc(N(C(=O)C[Se]C)[C@@H](C(=O)NCCc2ccccc2)c2cccs2)cc1Cl',
  'ML210'            :'O=C(N1CCN(C(c2ccc(Cl)cc2)c2ccc(Cl)cc2)CC1)C(=N[O-])[Se]C',
- 'GPX4-M1'          :'CNC(=O)c1ccc(C(c2ccc(C(=O)NC)cc2)N2CCN(C(=O)C(=N[O-])[Se]C)CC2)cc1',
- 'GPX4-M3'          :'CNC(=O)c1ccc(C(c2ccc(C(=O)NC)cc2)N2C(=O)CN(C(=O)C(=N[O-])[Se]C)CC2)cc1',
+ 'GPX4-M3 (prev)'   :'CNC(=O)c1ccc(C(c2ccc(C(=O)NC)cc2)N2C(=O)CN(C(=O)C(=N[O-])[Se]C)CC2)cc1',
+ 'GPX4-C1 (new)'    :'O=C(N1CCN(C(c2ccccc2)c3ccccc3)CC1)C(=N[O-])[Se]C',
+ 'GPX4-C4 (new)'    :'O=C(N1CC(=O)N(C(c2ccccc2)c3ccccc3)CC1)C(=N[O-])[Se]C',
 }
 def fit(smi,nconf=120):
     m=Chem.MolFromSmiles(smi)
