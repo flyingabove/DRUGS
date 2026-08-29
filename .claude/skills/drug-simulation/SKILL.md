@@ -1,6 +1,6 @@
 ---
 name: drug-simulation
-description: Computational drug design workflow — structure prep, docking, QM/xTB reactivity, conformer analysis, property optimisation, and the specific traps that silently produce garbage. Use when designing or optimising a small molecule against a protein target, running docking or QM, or evaluating candidate compounds.
+description: Computational drug design workflow — structure prep, docking, QM/xTB reactivity, conformer analysis, property optimisation, and the specific traps that silently produce garbage. START AT STEP 0: establish the property window from known actives and the reachability constraint BEFORE any design cycle, because binding methods cannot see whether the molecule ever arrives. Use when designing or optimising a small molecule against a protein target, running docking or QM, or evaluating candidate compounds.
 ---
 
 # Drug Simulation
@@ -11,6 +11,88 @@ silently produced plausible-looking wrong answers before being caught.
 Tooling that works: `rdkit` (pip), `xtb` (conda-forge, GFN2 semiempirical QM), AutoDock Vina
 (download the binary — the pip build needs Boost headers), `meeko` + `gemmi` (pip, `--no-deps` then
 gemmi separately).
+
+---
+
+# STEP 0 — DO THIS BEFORE THE FIRST DESIGN CYCLE
+
+**This section exists because skipping it cost three full design rounds.** A molecule was produced that
+was better than its parent on every optimised axis and almost certainly could not reach its target. Two
+expensive simulations confirmed it bound beautifully. Neither could see the problem, because both
+modelled the ligand *already at the target*.
+
+## 0.1 Two different questions — most methods answer only one
+
+| Question | Answered by | Blind to |
+|---|---|---|
+| **"Does it bind?"** | docking, burial, MD, covalent fit | everything before arrival |
+| **"Can it get there?"** | property profile vs known actives | binding quality |
+
+**Docking, burial analysis and MD all start with the ligand at the site.** They cannot tell you the
+molecule never arrives. If the target is intracellular, *reaching* it is a separate gate that no
+structure-based method will ever fail you on.
+
+**Ask, out loud, before designing: where is the target, and what must the molecule cross to reach it?**
+Intracellular target → a membrane. Central nervous system → the blood-brain barrier. Bone marrow →
+nothing much (sinusoidal vessels are leaky). The answer sets hard property limits before any chemistry.
+
+## 0.2 Build the comparator set first — it takes minutes
+
+Collect every compound known to be **active in the relevant system** (cells, not just enzyme) against
+this target. Five or six is enough.
+
+```python
+KNOWN = {...}          # compounds with demonstrated CELLULAR activity
+for prop in (TPSA, cLogP, HBD, HBA, MW, rotatable_bonds):
+    lo, hi = min(prop(k) for k in KNOWN), max(prop(k) for k in KNOWN)
+    print(prop.__name__, lo, hi)     # this is the window. Stay inside it.
+```
+
+**Check every candidate against every axis after every change — including the axes nobody is
+optimising.** The property that kills the programme is usually the one no design criterion mentioned.
+
+In the GPX4 campaign the window was TPSA ≤ 93 Å², HBD ≤ 1. The lead reached **168**, the "improved"
+version **208**. Assembling the six comparators took two minutes and would have caught it before the
+first analog was drawn.
+
+## 0.3 Compute the property budget — what is fixed, what is spendable
+
+Decompose the scaffold. Some of it is untouchable (the warhead, the pharmacophore). **Whatever that
+costs comes off the top.**
+
+```python
+# TPSA of the non-negotiable fragment vs the ceiling from 0.2
+budget = ceiling - tpsa(untouchable_fragment)
+```
+
+For GPX4: the warhead alone cost **89.5 of a 93 Å² ceiling**. The budget for everything else was
+**~3 Å²** — which is why the parent compound decorates with chlorophenyls contributing exactly zero, and
+why every polar group added was unaffordable from the start.
+
+**If the budget is near zero, polar solubilising groups are not available and solubility must come from
+formulation, a salt, or a prodrug.** Knowing that on day one changes the entire design strategy.
+
+## 0.4 Before removing any group, ask what else it is doing
+
+A single feature often serves several purposes, and optimisation notices only the one being targeted.
+
+A basic amine was removed to eliminate a renal-transporter trap and a cardiac liability — **both real.**
+It was also the handle for forming an injectable salt. Losing it cost solubility in a way **no
+solubility model could show**, because those models report the neutral form.
+
+**Checklist for any group being deleted:** binding contact? metabolic soft spot? solubility handle
+(salt formation)? permeability contributor? conformational lock? crystal-packing disruptor?
+
+## 0.5 Prefer the minimum edit to a known-active compound
+
+Comprehensive redesign compounds small errors. Each round fixed a genuine liability and introduced a
+worse one, because every fix pushed the same property in the same direction and nothing pushed back.
+
+**The eventual answer was deleting two chlorine atoms from the parent** — greasiness down 1.3 log units,
+polar surface unchanged and in-window, salt handle retained, twenty-fold better intrinsic solubility.
+
+Start from what is known to work. Make the smallest change that addresses the brief. Re-measure the
+**full** profile, not the axis you were fixing.
 
 ---
 
@@ -534,7 +616,9 @@ and be vetoed.
 **Stop a run you can already predict will be rejected.** v2's maximum sat in its unrelaxed region, so
 the Rule 31 veto was guaranteed to fire - six further hours would have bought a confirmed failure.
 
-## RULE 33 — Calibrate every property axis against known actives, not just the one being optimised
+## RULE 33 — Calibrate every property axis against known actives
+
+**Superseded by Step 0.2 — kept for the worked example.**
 
 Three individually-correct optimisations - solubility, kidney safety, cardiac safety - all pushed the
 same molecular property in the same direction, and nothing in the workflow pushed back.
@@ -559,6 +643,8 @@ axes nobody is optimising. The property that kills the programme is usually the 
 mentioned.
 
 ## RULE 34 — Prefer the minimum edit to a known-active compound
+
+**Superseded by Step 0.4-0.5 — kept for the worked example.**
 
 Three design rounds replaced both aryl arms and rebuilt the linker of a validated chemotype. Each round
 fixed a real liability. The cumulative result was polar surface area **168 Å²** against a known-active
