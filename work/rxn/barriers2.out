@@ -71,3 +71,71 @@ Hessian guess encountered unknown coordinate type.
 	Best geometry has RMS(Delta(q)) = 1.25e-07
 
 Optimizer: Optimization complete!
+    ctl-Se   form=2.65 break=2.08  E=-5055.08727979 
+Hessian guess encountered unknown coordinate type.
+
+Hessian guess encountered unknown coordinate type.
+
+	Previous geometry is closer to target in internal coordinates, so using that one.
+
+	Best geometry has RMS(Delta(q)) = 6.28e-16
+
+	Energy ratio indicates iffy step.
+	Intrafrag trust radius decreased to   0.05.
+	Previous geometry is closer to target in internal coordinates, so using that one.
+
+	Best geometry has RMS(Delta(q)) = 1.34e-05
+
+	Energy has increased in a minimization.
+	Energy ratio indicates iffy step.
+	Intrafrag trust radius decreased to 0.0125.
+Optimizer: Optimization complete!
+S matrix is not positive-definite!
+Consider changing the average area of the cavity finite elements.
+Normally an error, this has been commuted to a warning via patch.
+Please report this issue: https://github.com/PCMSolver/pcmsolver/issues/206
+
+S matrix is not positive-definite!
+Consider changing the average area of the cavity finite elements.
+Normally an error, this has been commuted to a warning via patch.
+Please report this issue: https://github.com/PCMSolver/pcmsolver/issues/206
+
+    ctl-Se   form=2.45 break=2.16  E=-5055.06930604 
+Hessian guess encountered unknown coordinate type.
+
+Hessian guess encountered unknown coordinate type.
+
+	Previous geometry is closer to target in internal coordinates, so using that one.
+
+	Best geometry has RMS(Delta(q)) = 7.61e-08
+
+	Previous geometry is closer to target in internal coordinates, so using that one.
+
+	Best geometry has RMS(Delta(q)) = 6.28e-16
+
+	Energy has increased in a minimization.
+	Energy ratio indicates iffy step.
+	Intrafrag trust radius decreased to   0.05.
+	Previous geometry is closer to target in internal coordinates, so using that one.
+
+	Best geometry has RMS(Delta(q)) = 6.28e-16
+
+	Previous geometry is closer to target in internal coordinates, so using that one.
+
+	Best geometry has RMS(Delta(q)) = 4.44e-07
+
+	Previous geometry is closer to target in internal coordinates, so using that one.
+
+	Best geometry has RMS(Delta(q)) = 6.28e-16
+
+	Previous geometry is closer to target in internal coordinates, so using that one.
+
+	Best geometry has RMS(Delta(q)) = 3.24e-05
+
+	Energy has increased in a minimization.
+	Energy ratio indicates iffy step.
+	Intrafrag trust radius decreased to  0.113.
+	Previous geometry is closer to target in internal coordinates, so using that one.
+
+	Best geometry has RMS(Delta(q)) = 2.36e-05
+

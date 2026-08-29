@@ -450,29 +450,31 @@ Fixes for constrained scans through a transition region: **Cartesian** optimisat
 each point **fresh** rather than chaining from the previous optimised geometry, and evaluate the energy
 at the built geometry when optimisation fails so one bad point cannot void the profile silently.
 
-## RULE 29 — Strip the hydrogens that occupy the bond you are about to form
+## RULE 29 — A restraint that will not close is reporting chemistry, not softness
 
-Structure-preparation tools protonate for the FREE residue. PDBFixer at pH 7.4 gives Cys46 its thiol
-**HG** - correct for a free cysteine, wrong for one covalently bonded to a ligand, where that sulfur
-carries no hydrogen.
+A stiff 1.82 A tether (k = 2x10^5 kJ/mol/nm^2) settled at **2.41 A +/- 0.02**. Sitting there costs
+~350 kJ/mol, so something was pushing back hard.
 
-The consequence was measurable, not cosmetic: a stiff 1.82 A tether settled at **2.41 A +/- 0.01**,
-because HG and the ligand's own H-cap were both sitting in the bond. The restraint was fighting two
-spurious hydrogens.
+**First diagnosis - wrong.** PDBFixer had protonated the bonded cysteine as a FREE cysteine, adding a
+thiol HG where the bond belongs. Deleting it changed nothing: still 2.41 A.
 
-**Diagnose it by listing the nearest atoms to the reactive centre**, not by trusting the restraint:
+**Actual cause: the LIGAND could not accept the bond.** The attachment carbon had been H-capped so
+OpenFF would parameterise it (radicals are rejected). That left it with three substituents - C, =N, H -
+already valence-saturated. A fourth bond to sulfur is hypervalent, so the force field saw only steric
+repulsion and 2.41 A is simply a compressed van der Waals contact.
+
+**The capping atom added to make parameterisation succeed silently made the modelled reaction
+impossible.** Whenever a molecule is modified to satisfy a toolkit, check that the modification does not
+remove the very capability being simulated.
+
+Diagnose by listing what is bonded to the reactive atom and what sits on the vector between the partners:
 
 ```python
-d = np.linalg.norm(frame - frame[sg], axis=1)
-for i in np.argsort(d)[:8]: print(topology.atom(int(i)), d[i])
+print([str(topology.atom(i)) for i in bonded_to(attach)])   # is the valence already full?
 ```
 
-A restraint that settles far from its target distance is reporting a steric obstruction, not a soft
-force constant.
-
-**And re-read every index after any atom deletion.** Removing HG renumbers every atom after it; an index
-captured from the pre-deletion object silently points somewhere else. Assert the atom you got is the
-atom you meant (Rule 21).
+Deleting the thiol HG was still correct - a bonded cysteine carries no hydrogen - it just was not the
+cause. Fixing a real defect does not prove it was the defect you were chasing.
 
 ## RULE 30 — A scan with a discontinuity has no barrier to report
 
