@@ -101,6 +101,25 @@ it. Any score on this criterion that ignores the toxicity side is wrong.
   measured survival benefit. QUAZAR's +5.4 months relapse-free became +9.9 months overall — an
   empirical relationship in one trial, not a conversion factor.
 
+#### Scoring a compound that has never been in a patient
+
+The procedure above interprets trial results. A preclinical compound has none, so score the **projection**
+— and cap it, because a projection is not a result:
+
+| Situation | Score |
+|---|---|
+| Modelled or inferred survival benefit clearing the bar, from a mechanism with a **surviving** precedent | 🟡 **maximum** |
+| Projection rests only on a surrogate (tumour burden, stem-cell counts, remission depth) | 🟡 **and say so explicitly** — this is the Iomab-B failure mode |
+| Projection needs optimistic assumptions to clear the bar | 🟠 |
+| The mechanism has a precedent that failed on survival | 🟠 at best, and name the precedent |
+
+**Never 🟢 before a survival readout exists.** Nothing preclinical can earn it.
+
+**State the surrogate-to-survival gap every time.** If the whole case is "we reduce the cancer cell
+count", that is precisely what Iomab-B proved at p<0.0001 while adding zero days of life. The gap
+between killing measurable disease and extending life is where this criterion is won or lost, and it
+cannot be closed by any amount of preclinical work.
+
 ### 4. Hits only what it should
 
 | | Standard |
