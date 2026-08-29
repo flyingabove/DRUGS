@@ -221,3 +221,6 @@ work/bin/
 work/structures/*.pdbqt
 work/structures/*.sdf
 work/structures/*.npy
+work/design/qm/*.out
+work/design/qm/*.err
+work/design/conf/*.out

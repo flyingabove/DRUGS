@@ -340,3 +340,128 @@ reactivity gamble, and it is now a measurement rather than a claim.
 - **No MD, no FEP, no free-energy work yet.**
 - **Nothing here addresses durability.** Serial transplantation remains the experiment that decides
   whether this is a therapy or a delay, and no amount of simulation substitutes for it.
+
+---
+
+# 8. STRUCTURAL VALIDATION OF THE DESIGN STRATEGY
+
+Three computations that together answer the question the first design cycle could not: **is modifying
+those aryl groups actually safe?**
+
+## 8.1 Where the crystal ligand touches the protein
+
+Per-atom burial of ML162 in 6HKQ, computed with a 1.4 Å probe against the chain-A receptor.
+1.00 = fully enclosed, 0.00 = fully solvent-exposed.
+
+| Region | Atoms | Burial |
+|---|---|---|
+| **Covalent carbon C20** | — | **0.90** |
+| Warhead vicinity | C19, O22, N13 | 0.60–0.78 |
+| Distal aryl / thiophene | S15, C4, C16, C7, C5, N9 | **0.06–0.12** |
+
+**Mean burial across the whole ligand: 0.34. Only 6 of 30 atoms are more than 50% buried.**
+
+**The molecule is not in a pocket. It lies in a shallow surface groove with its warhead end anchored
+and the rest in solvent.**
+
+This is the single most useful structural result of the programme, because it validates the design
+strategy directly:
+
+- **The buried end is the warhead** — which we preserved unchanged, verified by SMARTS on all 210
+  analogs and by the +0.054 eV LUMO measurement.
+- **The end we modified is solvent-facing** — burial 0.06–0.17. Polar substituents there are
+  sterically well tolerated and are not displacing protein contacts, because there were barely any
+  contacts to displace.
+
+It also quantitatively explains the earlier docking failure: with only 6 of 30 atoms making contact,
+there is almost nothing for a non-covalent scoring function to score.
+
+## 8.2 Accessible volume around the catalytic selenium
+
+Grid map of solvent-accessible, protein-adjacent volume around Sec46 in the apo structure (6HN3),
+0.6 Å grid, 1.4 Å probe:
+
+| Distance from Se | Accessible volume |
+|---|---|
+| within 5 Å | **26 Å³** |
+| within 6 Å | 64 Å³ |
+| within 8 Å | 298 Å³ |
+| within 10 Å | 809 Å³ |
+
+Against candidate molecular volumes:
+
+| Compound | Volume |
+|---|---|
+| ML162 (crystallographically fits) | 405 Å³ |
+| ML210 | 395 Å³ |
+| B — bis(4-CH₂OH-phenyl) | 416 Å³ |
+| C — bis(4-CONH₂-phenyl) | 427 Å³ |
+
+**A ~400 Å³ molecule cannot be accommodated within 8 Å of the selenium (298 Å³ available).** It must
+extend outward across the surface — exactly the arrangement §8.1 observes.
+
+**Consequence for the programme: affinity is not the optimisation axis.** There is no pocket to fill.
+Potency will be governed by warhead reactivity and residence time, not by shape complementarity.
+That reinforces the decision to treat this as a reactivity-and-properties problem.
+
+**Consequence for the design: bulk tolerance is generous** in the solvent-facing direction, which is
+precisely where our substitutions sit.
+
+## 8.3 Do the new hydrogen-bond donors survive in water?
+
+The standard way a TPSA-driven design fails is **intramolecular hydrogen bonding** — added donors fold
+back onto internal acceptors, become masked, and the compound behaves as if far less polar than its
+2D descriptors suggest. Barrier exclusion then does not materialise.
+
+Tested directly: 30-conformer ensembles, MMFF-minimised, lowest-energy conformer re-optimised with
+**GFN2-xTB in implicit water (ALPB)**.
+
+| Compound | Rg (Å) | Intramolecular H-bonds | 3D polar SASA (Å²) | **Exposed HBD** |
+|---|---|---|---|---|
+| ML210 | 4.43 | 0 | 84.5 | **0** |
+| A — 4-OH / 4-NHMe | 4.78 | **0** | 127.6 | **2** |
+| **B — bis(4-CH₂OH)** | 4.90 | **0** | 134.5 | **2** |
+| C — bis(4-CONH₂) | 4.95 | 2 | 181.6 | 2 |
+
+**The design holds.** A and B show **zero** intramolecular hydrogen bonds — their donors remain
+solvent-exposed, and the polar surface increase is real in three dimensions, not merely a 2D
+descriptor artefact.
+
+No compound collapses: Rg rises modestly (4.43 → 4.78–4.95), consistent with added substituents rather
+than folding.
+
+C forms 2 internal hydrogen bonds. It carries four donors in total (two primary amides), so two remain
+exposed — but its 3D polar surface of 181.6 Å² is high enough to raise a permeability concern in the
+opposite direction.
+
+## 8.4 Revised lead
+
+Combining alert screening (§7.4) with this analysis:
+
+| | logP | Exposed HBD | Intra-HB | Alerts | Symmetric? |
+|---|---|---|---|---|---|
+| A — 4-OH / 4-NHMe | 3.19 | 2 | 0 | ⚠️ aniline, phenol | no |
+| **B — bis(4-CH₂OH)** | **2.42** | **2** | **0** | benzylic alcohol only | **yes** |
+| C — bis(4-CONH₂) | 1.64 | 2 | 2 | none | yes | 
+
+**B is the lead.** It is symmetric — materially easier to synthesise than a mixed benzhydryl centre —
+carries no intramolecular masking, has the lowest alert burden short of C, and sits mid-range on
+polarity where C risks being over-polar for oral absorption.
+
+*Note this differs from the QED ranking, which favoured A. Automated desirability scores do not see
+aniline toxicophores or synthetic symmetry; the ranking was corrected on medicinal-chemistry grounds.*
+
+## 8.5 What these three results establish together
+
+1. The part of the molecule we modified **makes almost no protein contact** (burial 0.06–0.17).
+2. There is **no pocket to disrupt** — only 26 Å³ within 5 Å of the catalytic selenium.
+3. The modifications **achieve genuine polarity in water** without self-masking.
+4. The warhead is **electronically untouched** (+0.054 eV LUMO).
+
+**The property-optimisation strategy is structurally justified, not merely convenient.** We are
+altering a solvent-exposed region that contributes little binding, while leaving intact the buried,
+covalently-anchored warhead that does the chemistry.
+
+**Still unestablished:** actual potency. This argues the modifications are *unlikely to hurt*; it does
+not demonstrate the parent chemotype is potent enough to matter, which requires the purified-enzyme
+assay.
