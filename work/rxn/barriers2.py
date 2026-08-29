@@ -100,6 +100,7 @@ def scan(tag, S, P0, chrg, i_c=0, i_lg=1, i_nu=5, nu_from=5):
 
 def summarise(tag, res):
     E = np.array([r[2] for r in res])
+    relaxed = [r[3] for r in res]
     rel = (E - E[0]) * H2K
     nbad = int(np.isnan(E).sum())
     if nbad:
@@ -114,9 +115,16 @@ def summarise(tag, res):
         return dict(barrier=float('nan'), discontinuity=float(jumps.max()),
                     rel=rel.tolist())
     i = int(np.argmax(rel))
-    print('    profile smooth (max step %.1f kcal/mol)' % jumps.max())
+    # Rule 31: an unrelaxed maximum is an upper bound at a non-stationary geometry,
+    # invisible to both the nan check and the smoothness check.
+    if not relaxed[i]:
+        print('    WARNING: maximum-energy point %d is UNRELAXED - no barrier reported' % i)
+        return dict(barrier=float('nan'), unrelaxed_max=True, rel=rel.tolist())
+    n_un = sum(1 for x in relaxed if not x)
+    print('    profile smooth (max step %.1f kcal/mol), %d/%d points unrelaxed'
+          % (jumps.max(), n_un, len(relaxed)))
     return dict(barrier=float(rel[i]), i_ts=i, max_step=float(jumps.max()),
-                rel=rel.tolist(), failed=0)
+                rel=rel.tolist(), failed=0, n_unrelaxed=n_un)
 
 
 def main():
@@ -127,7 +135,7 @@ def main():
         S, P = sn2_geom(nu)
         r = scan('ctl-' + nu, S, P, -1)
         out['ctl_' + nu] = summarise('ctl-' + nu, r)
-        out['ctl_' + nu]['path'] = [(a, b) for a, b, _ in r]
+        out['ctl_' + nu]['path'] = [(a, b) for a, b, _e, _ok in r]
         print('  --> %s barrier %s\n' % (nu, out['ctl_' + nu]['barrier']), flush=True)
     a, b = out['ctl_Se']['barrier'], out['ctl_S']['barrier']
     if np.isnan(a) or np.isnan(b):
