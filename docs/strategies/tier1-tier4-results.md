@@ -181,3 +181,24 @@ over-interpretation of noise.
 
 **These numbers supersede §16's (0.55 / 0.39 / 0.42)**, which were computed in the QM-cluster
 coordinate frame with a different receptor subset and without the deposited-pose benchmark.
+
+---
+
+# Per-atom burial of M3 in its own anchored pose
+
+The design premise — that the N-methylamide arms, the only thing changed from ML210, sit in solvent —
+had only ever been checked on ML210's pose. Recomputed in **M3's own** best anchored pose:
+
+| | Max overlap | Mean burial | Atoms >50% buried |
+|---|---|---|---|
+| ML210 | 0.34 Å | 0.36 | 8 / 28 |
+| **GPX4-M3** | 0.34 Å | **0.22** | 8 / 35 |
+
+**M3 is less buried overall than ML210** (0.22 vs 0.36) despite being a larger molecule, and it has the
+same absolute number of buried atoms — those extra atoms all went into solvent.
+
+**The modified arms are at burial 0.00 — fully solvent-exposed.** The buried set in both compounds is
+the warhead region (Se, the adjacent N/O/C), exactly as designed: **anchor buried, payload in water.**
+
+This is the fourth independent line supporting the substitution, and the first computed on the actual
+lead rather than on its parent.
