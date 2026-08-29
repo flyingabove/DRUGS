@@ -199,6 +199,39 @@ are accommodated.
 
 Reserve docking for cases where you genuinely do not know where the ligand sits.
 
+## RULE 15 — Exclude covalent bonding partners from clash tests
+
+A constant, plausible **1.16 Å overlap** appeared for every molecule, every conformer count, every
+sampling scheme. Identical results across chemically different molecules is an artifact, not a result.
+
+```
+required C...Se separation in the clash test = 1.70 + 1.90 - 0.5 = 3.10 A
+actual covalent Se-C bond length             = 1.98 A
+registered overlap                           = 1.12 A
+```
+
+**The test was scoring the covalent bond itself as a clash.** The anchor residue sat in the receptor
+array, and the bonded ligand atom is necessarily ~2 Å away.
+
+Exclude the anchor residue sidechain (the bonded atom and its neighbour) from the steric test. **More
+sampling cannot fix a mis-specified objective** — three rounds of "add more conformers" left the
+number untouched, which was itself the clue.
+
+## RULE 16 — A positive control turns a raw number into a verdict
+
+The same control did decisive work twice, in opposite directions:
+
+- **Exposing a broken method:** anchored docking rejected ML210 — a known binder — as firmly as the
+  novel candidate. Verdict on the candidate: worthless.
+- **Making a working method interpretable:** the ligand actually present in the crystal scored a
+  residual overlap of **0.55 Å**. That *calibrates the scale* — 0.55 Å is demonstrably tolerable,
+  because a molecule scoring it is sitting in the structure. The candidate at 0.42 Å is therefore
+  fine, and ML210 at 0.39 Å indistinguishable from it.
+
+Without the control, 0.42 Å is an uninterpretable number. With it, it is a pass.
+
+**Never run a scoring protocol without putting a known binder through it first.**
+
 ---
 
 ## Standard cascade

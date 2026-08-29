@@ -906,3 +906,86 @@ which means it carries no information about their *relative* fit.
 **No result so far distinguishes GPX4-M1 from ML210 sterically.** Given that they differ only at
 solvent-facing positions, that is the expected outcome — but it is an absence of evidence, not
 evidence of absence.
+
+---
+
+# 16. IT WORKS — CALIBRATED ANCHORED FIT
+
+After three failed docking approaches (§15), the fourth worked. The fix came from diagnosing a bug,
+and the interpretation came from a positive control.
+
+## The method that worked
+
+Per Rule 14 — **start from the bonded state, not from pose prediction:**
+
+1. Build the **covalent adduct** explicitly: `CH₃Se–` (standing in for the Sec46 sidechain) bonded to
+   the warhead carbon. Optimise with **GFN2-xTB in implicit water**. Quantum mechanics handles
+   selenium natively, **which sidesteps the force-field parameter problem that blocked every earlier
+   attempt.**
+2. Generate ~150 conformers of the adduct.
+3. Superimpose the adduct Se onto the crystallographic Sec46 SE, and align the Se–C bond onto **the
+   experimentally observed Se→C20 vector from 6HKQ** — not a guessed direction.
+4. Scan 60 rotations about that bond; score the maximum van der Waals overlap against the receptor.
+
+## The bug that had invalidated every previous run
+
+Every attempt returned an identical **1.16 Å** overlap regardless of molecule, conformer count, or
+sampling. Identical results across chemically different molecules is a systematic artifact, not
+chemistry.
+
+The cause:
+
+```
+required C···Se separation in the clash test = 1.70 + 1.90 − 0.5 = 3.10 Å
+actual covalent Se–C bond length            = 1.98 Å
+registered overlap                          = 1.12 Å
+```
+
+**The test was scoring the covalent bond itself as a steric clash.** Sec46 SE sat in the receptor
+array, and the ligand carbon bonded to it is 1.98 Å away by construction. Bonding partners must be
+excluded from a clash test.
+
+*This is the single most instructive bug of the campaign: a constant, plausible-looking number that
+was pure artifact, surviving three rounds of "more sampling" because more sampling cannot fix a
+mis-specified objective.*
+
+## The result
+
+Sec46 SE and CB excluded as covalent partners:
+
+| Adduct | Conformers | Residual overlap | What it is |
+|---|---|---|---|
+| **ML162** | 145 | **0.55 Å** | **POSITIVE CONTROL — the ligand actually present in 6HKQ** |
+| ML210 | 137 | **0.39 Å** | Known selective GPX4 inhibitor |
+| **GPX4-M1** | 148 | **0.42 Å** | **Our candidate** |
+
+**The compound we know binds covalently shows the largest residual overlap.** That is what makes the
+number interpretable: **0.55 Å is demonstrably tolerable**, because a molecule scoring it is sitting
+in the crystal. The residual reflects rigid-receptor and rigid-conformer approximations — real side
+chains move.
+
+**GPX4-M1 at 0.42 Å fits better than the positive control and is indistinguishable from ML210 at
+0.39 Å.**
+
+## What this establishes
+
+**The steric question is answered.** The larger N-methylamide substituents are accommodated at the
+covalent geometry — they extend into the solvent-facing region that §8.1 measured at 0.06–0.17 burial,
+exactly as predicted.
+
+Combined with the earlier results, four independent lines now support the design:
+
+1. The modified positions make almost no protein contact (burial 0.06–0.17)
+2. There is no pocket to disrupt (26 Å³ within 5 Å of Se)
+3. The warhead is electronically insulated (ΔLUMO −0.32 eV)
+4. **The adduct is sterically accommodated, calibrated against a known binder**
+
+## What it does not establish
+
+Still no potency. Steric feasibility says the molecule *can* sit there; it says nothing about whether
+the warhead reacts fast enough, or selectively enough, to matter. That requires QM/MM barriers, and
+ultimately the purified-enzyme assay.
+
+**Methodological note for the skill:** the positive control did the decisive work twice — first
+exposing a broken method (§15, Attempt 2 rejected ML210), then making a good one interpretable
+(0.55 Å as the tolerance benchmark). Never run a scoring protocol without one.
