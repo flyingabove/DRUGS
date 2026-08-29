@@ -581,3 +581,152 @@ also requires modelling the unmasking step, whose mechanism is not established.
 **Honest position: we can show the design is sound and the thermodynamics are unfavourable-but-
 surmountable. We cannot compute the number that decides potency.** That is the purified-enzyme assay —
 the same assay RSL3 and ML162 failed.
+
+---
+
+# 10. THE GOAL, RESTATED: DAILY GENTLE MAINTENANCE
+
+**We are not building a cure. We are building a drug a patient in remission can take
+indefinitely to hold leukemic stem cells down — tolerable enough to live on, with any organ
+toxicity mitigable by a companion agent.**
+
+## The evidence that this is the right goal, not a lesser one
+
+Two trials in the same disease settle it.
+
+| | **Iomab-B** | **Oral azacitidine (Onureg)** |
+|---|---|---|
+| Approach | Massive one-shot radio-ablation | Gentle daily pill |
+| Setting | Relapsed/refractory | **Remission maintenance** |
+| Hit its primary endpoint | Yes, p<0.0001 | Yes |
+| **Median overall survival** | **No benefit** | **24.7 vs 14.8 months** |
+| **Regulatory outcome** | **FDA refused the filing** | **FDA approved, Sept 2020** |
+
+QUAZAR AML-001: 472 patients in first remission. Oral azacitidine improved survival by **31%** and
+relapse-free survival by **35%**, and it worked **regardless of MRD status**.
+
+**Same disease, same objective of clearing residual leukemia — and the gentle chronic agent won while
+the massive one-shot lost.** Maintenance is not the modest version of the goal. On the evidence it is
+the version that works.
+
+### Why Iomab-B cannot simply be dosed higher
+
+CD45 is on all *nucleated* blood cells — mature red cells are anucleate and unaffected. What Iomab-B
+destroys is the **blood-forming stem compartment**, and that destruction is the *intent*: it is
+transplant conditioning. The dose is not limited by marrow toxicity, because marrow toxicity is the
+goal; it is limited by radiation reaching liver and lung, which is what the per-patient dosimetry
+measures. Without a graft to follow, the patient dies of marrow failure. And radiation damage is
+cumulative and irreversible — it can never be a daily therapy.
+
+### What this does to the resistance objection
+
+§9 raised a serious problem: ferroptosis defence has at least five redundant arms (GPX4, FSP1,
+DHODH, GCH1–BH4, NQO1), so resistance is inevitable.
+
+**Under a maintenance goal that objection loses most of its force.** Azacitidine maintenance is not
+resistance-proof either. It bought ten months of life and won approval anyway. **The requirement is
+not "forever" — it is "long enough, repeatedly, tolerably."** That is a far more achievable bar, and
+it is the bar the comparator actually cleared.
+
+## Revised target product profile
+
+| Attribute | Target | Rationale |
+|---|---|---|
+| Use | Maintenance in remission | Matches the only regimen with a proven OS benefit |
+| Route | **Injectable acceptable** — oral not required | Removes the TPSA<140 absorption ceiling |
+| Dosing | Daily / repeated, chronic | Containment, not ablation |
+| Backbone | **+ azacitidine** | Approved in this exact setting, *and* independently sensitises to ferroptosis via SLC7A11–GPX4 |
+| Charge | **Neutral** | See the acid trap below |
+| Clearance | **Hepatobiliary** | Keeps drug out of the proximal tubule |
+| Barriers | Excluded from brain and retina | HBD ≥ 2, high polarity |
+
+---
+
+# 11. SECOND DESIGN CYCLE — OPTIMISED FOR MAINTENANCE
+
+## 11.1 The acid trap, caught before it was recommended
+
+Dropping the oral requirement first suggested adding a **carboxylic acid**: anionic at pH 7.4, it
+drives hepatic OATP uptake toward biliary clearance, and a permanent negative charge is near-totally
+excluded from brain and retina. Two problems solved by one group, and the top ten ranked candidates
+were all acids.
+
+**It is a trap.** Anions are substrates for the renal organic anion transporters **OAT1/OAT3**, which
+actively pump them *into* proximal tubule cells and concentrate them there — the established
+mechanism of anionic-drug nephrotoxicity (cidofovir, adefovir). **The proximal tubule is exactly where
+GPX4 loss causes acute renal failure.** An acid would actively deliver a GPX4 inhibitor into the cells
+we most need to protect.
+
+Cations are no better: OCT2 concentrates them in the same tubule (cisplatin, metformin).
+
+**Conclusion: the molecule must be neutral.** Polarity has to come from amides, alcohols, ethers and
+sulfonamides — never from an ionisable group.
+
+## 11.2 Ranking
+
+210 warhead-intact analogs, scored on a composite of MW 500–650 (biliary), logP 1.5–3.5, TPSA
+120–200, HBD ≥ 2, structural symmetry (synthesis), minus structural alerts.
+
+| R1 / R2 | MW | logP | TPSA | HBD | Alerts | Sym | Score |
+|---|---|---|---|---|---|---|---|
+| **bis(4-CONHMe-phenyl)** | 520.5 | 2.16 | 150.9 | 2 | 0 | ✅ | **6.50** |
+| bis(4-(2-OH-ethoxy)phenyl) | 526.5 | 2.18 | 151.6 | 2 | 0 | ✅ | **6.50** |
+| bis(4-CH₂CONH₂-phenyl) | 520.5 | 1.49 | 178.9 | 2 | 0 | ✅ | 6.47 |
+
+The top two tied exactly, and on every 2D descriptor they are near-identical.
+
+## 11.3 Simulation broke the tie — and caught a silent failure
+
+All three re-optimised with **GFN2-xTB in implicit water**:
+
+| Candidate | Rg | Internal H-bonds | **Exposed HBD** | ΔLUMO vs ML210 |
+|---|---|---|---|---|
+| **M1 — bis(4-CONHMe)** | 5.42 | **0** | **2** | −0.32 eV |
+| M2 — bis(4-(2-OH-ethoxy)) | 5.54 | 2 | **0** | −0.32 eV |
+| M3 — bis(4-CH₂CONH₂) | 5.33 | 2 | 2 | −0.33 eV |
+
+**M2 collapses in water.** Both hydroxyl groups fold back onto internal acceptors. Its two
+hydrogen-bond donors become **completely masked** — in solution it behaves as **HBD-zero, exactly like
+ML210, the liability the entire redesign exists to fix.**
+
+On paper M2 and M1 were indistinguishable: identical score, TPSA within 0.7 Å², same donor count. **A
+2D descriptor calculation would have picked either. The simulation is what separated a working design
+from one that silently fails.**
+
+**M1 keeps both donors solvent-exposed. It is the lead.**
+
+**One honest caveat:** ΔLUMO is −0.32 eV across all three, larger than the +0.054 eV measured for the
+smaller bis(CH₂OH) analog in §7.5. The bigger substituents do communicate slightly with the warhead.
+The shift is modest and uniform — a consequence of substituent size rather than a specific liability —
+but the insulation is not perfect at this scale and should be re-checked on any further growth.
+
+---
+
+# 12. THE LEAD MOLECULE
+
+**Working name: GPX4-M1**
+
+```
+Cc1onc(C(=O)N2CCN(C(c3ccc(C(=O)NC)cc3)c3ccc(C(=O)NC)cc3)CC2)c1[N+](=O)[O-]
+```
+
+**Structure:** ML210 with both 4-chlorophenyl groups replaced by **4-(N-methylcarbamoyl)phenyl**.
+Warhead and piperazine linker untouched.
+
+| Property | ML210 | **GPX4-M1** | Why it matters |
+|---|---|---|---|
+| MW | 475.3 | **520.5** | >500 favours biliary clearance, away from kidney |
+| logP | 4.75 | **2.16** | Amphipathic, not greasy |
+| TPSA | 92.7 | **150.9** | Barrier exclusion; no oral ceiling now |
+| **Exposed HBD in water** | **0** | **2** | The actual driver of brain/retina exclusion |
+| Internal H-bonds | 0 | **0** | Donors stay exposed — design does not self-defeat |
+| Charge at pH 7.4 | neutral | **neutral** | Avoids OAT/OCT tubular concentration |
+| Symmetric | yes | **yes** | Single benzhydryl coupling, not a mixed centre |
+| Structural alerts | — | **none** | No aniline, phenol, acid, or Michael acceptor |
+
+**Why the N-methyl amide specifically:** secondary amides are more metabolically robust than primary
+amides, and — as the simulation showed — the N-methyl group sterically discourages the intramolecular
+hydrogen bonding that masked M2 and M3.
+
+**Regimen:** GPX4-M1 + an FSP1 inhibitor (icFSP1 class, to close the CoQ escape route) on an
+**azacitidine** backbone, given as maintenance in remission.
