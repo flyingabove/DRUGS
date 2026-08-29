@@ -2,52 +2,60 @@
 
 ---
 
-# TIER 1 — Reaction chemistry: **BLOCKED, and this is the compute barrier**
+# TIER 1 — Reaction chemistry: **UNBLOCKED at DFT, and my earlier conclusion was wrong**
 
-I called ΔΔG‡(Cys − Se) the single most important calculation remaining. **It cannot be done on this
-hardware, and the way that was established matters more than the failure.**
+psi4 1.11 has a win-64 conda build. My earlier statement that "no DFT engine is available on Windows"
+was wrong — I had tried only `pip install pyscf`, which fails to compile, and stopped there.
+`conda install -c conda-forge psi4` works. **The blocker was mine, not the platform's.**
 
-## The first answer was wrong, and the control caught it
+## The correction that matters: my control was mis-specified
 
-Relaxed distance scans (GFN2-xTB / ALPB water) of selenolate and thiolate attacking the unmasked
-nitrile oxide returned:
+I had declared GFN2-xTB "sign-inverted" for selenium based on this control:
 
-| Nucleophile | Barrier | Endpoint |
-|---|---|---|
-| Selenolate (Sec46) | **+17.4 kcal/mol** | uphill throughout |
-| Thiolate (generic Cys) | **0.0 — barrierless** | −16.0 kcal/mol |
+> **CH₃Br + Nu⁻ → CH₃Nu + Br⁻**, "where selenolate is experimentally the better nucleophile"
 
-Read literally: **thiolate reacts freely, selenolate not at all.** That is backwards from textbook
-chemistry — selenolate is the stronger nucleophile — so per Rule 12 I ran a positive control before
-believing it.
+**That reasoning was invalid.** "Better nucleophile" is a statement about the **reaction barrier** —
+a kinetic quantity. What I computed was **ΔE of reaction** — a thermodynamic quantity fixed largely by
+bond strengths. **C–S (~272 kJ/mol) is stronger than C–Se (~234 kJ/mol)**, so thiolate methylation
+*should* be more exothermic. I was testing a kinetic claim with a thermodynamic number and calling the
+disagreement a method failure.
 
-**Control: SN2, CH₃Br + Nu⁻ → CH₃Nu + Br⁻**, where selenolate is experimentally the better nucleophile.
+### DFT reference — ωB97X-D/def2-TZVPPD // def2-SVPD, IEFPCM water
 
-| Method | ΔE(Se) | ΔE(S) | Δ(Se−S) | Verdict |
-|---|---|---|---|---|
-| **GFN2 + ALPB water** | −2.55 | −41.32 | **+38.77** | **WRONG SIGN** |
-| **GFN2 gas phase** | −3.39 | −34.52 | **+31.13** | **WRONG SIGN** |
-| GFN1 + ALPB water | +32.44 | +39.18 | −6.73 | correct sign |
-| GFN1 gas phase | +38.96 | +44.67 | −5.71 | correct sign |
+| | ΔE (kcal/mol) |
+|---|---|
+| CH₃Br + CH₃Se⁻ | −34.02 |
+| CH₃Br + CH₃S⁻ | −39.74 |
+| **Se − S** | **+5.72** |
 
-**GFN2-xTB gets selenium–sulfur discrimination wrong by ~35 kcal/mol, in gas phase and in solvent
-alike.** It is the Hamiltonian, not the solvation model. My first result was an artifact of the method,
-not chemistry.
+**Positive, and correct** — thiolate methylation is more exothermic, exactly as bond strengths predict.
 
-GFN1 gets the *ordering* right but its absolute SN2 energies are off by ~70 kcal/mol — usable as a
-direction, worthless as a barrier.
+### What that does to the semiempirical verdicts
 
-**At GFN1, the target reaction favours selenolate by 7.7 kcal/mol.** Right direction. Not a number to
-build on.
+| Method | Se − S | Error vs DFT | Revised verdict |
+|---|---|---|---|
+| **DFT (reference)** | **+5.72** | — | — |
+| GFN2 + ALPB water | +38.77 | **+33.05** | **right sign, magnitude inflated ~7×** |
+| GFN2 gas | +31.13 | +25.41 | right sign, inflated |
+| GFN1 + ALPB water | −6.73 | −12.45 | **WRONG SIGN** |
+| GFN1 gas | −5.71 | −11.43 | **WRONG SIGN** |
 
-## What this invalidates, and what it does not
+**Both of my earlier verdicts were backwards.** GFN2 was not sign-inverted — it has the right direction
+with a badly inflated magnitude. GFN1, which I endorsed as "passing the control," is the one that gets
+the sign wrong.
 
-- **Does NOT invalidate §16 (the anchored covalent fit).** That used GFN2 to optimise adduct
-  *geometry*, and compared steric overlap — not Se-vs-S energetics. Geometries are far more robust
-  than reaction energies. **The 0.42 Å result stands, with a noted caveat.**
-- **Does NOT invalidate §17 (potency by inheritance).** Those were C/N/O/H descriptors — Wiberg bond
-  orders and atomic charges on the warhead — where GFN2 is well validated. **No selenium was involved.**
-- **DOES invalidate any selenium reaction energetics from GFN2**, which is only ever this calculation.
+**GFN2 remains unusable for this comparison** — a 33 kcal/mol error is not salvageable — but the reason
+is magnitude, not direction, and **GFN1 is worse, not better.**
+
+## What still has to be computed
+
+**Reaction energies do not answer the selectivity question.** Selectivity is kinetic: whether the
+masked warhead reacts with Sec46 faster than with the cysteine proteome. That needs **barriers**,
+and the control for a barrier calculation must itself be kinetic — computed ΔE‡ for the SN2, checked
+against the documented faster reaction of selenolate with alkyl halides.
+
+**Status: barrier calculations are the remaining Tier 1 work, now tractable.** The thermodynamics
+above are a method calibration, not the answer.
 
 ## What is solid without QM — the protonation argument (Tier 1.4)
 
@@ -56,35 +64,18 @@ build on.
 | Sec46 selenocysteine | 5.2 | **99.4%** | 1 | 0.99 |
 | Generic cysteine | 8.3 | 11.2% | ~200,000 | **~22,000** |
 
-**Population does not deliver selectivity — it argues against it.** Selenocysteine is essentially fully
-reactive while cysteine is only 11% reactive, but 11% of 200,000 still swamps a single selenolate by
-four orders of magnitude.
+**Population does not deliver selectivity — it argues against it.** 11% of 200,000 cysteines still
+swamps a single selenolate by four orders of magnitude. Selectivity must come from the masking
+kinetics.
 
-**So the selectivity must come from the masking kinetics — and that is exactly the number this
-hardware cannot compute.** The argument in §9.2 remains an argument.
+## The strongest current basis: selectivity by inheritance
 
-## The strongest remaining basis: selectivity by inheritance
+**ML210 is experimentally selective for GPX4 and does not hit TXNRD1** — unlike ML162 and RSL3, whose
+chloroacetamide warheads do. GPX4-M3 carries ML210's warhead atom for atom.
 
-The same logic that carried potency (§17) carries selectivity, and it is grounded in experiment rather
-than computation:
-
-**ML210 is experimentally selective for GPX4 and does *not* hit TXNRD1 — unlike ML162 and RSL3, whose
-chloroacetamide warheads do.** GPX4-M3 carries ML210's warhead atom for atom. Selectivity is a property
-of the masked warhead, and we did not touch it.
-
-**Limit of the argument:** inheritance covers *warhead-driven* selectivity. It would not cover
-off-targets reached because our modifications changed the molecule's shape. We changed only
-solvent-facing positions, which makes that risk small but not zero.
-
-## The DFT calculation that is needed, specified for elsewhere
-
-- **Level:** ωB97X-D or M06-2X / def2-TZVP, with def2 ECP on Se; SMD water
-- **Systems:** unmasked nitrile oxide + CH₃Se⁻ and CH₃S⁻; full TS optimisation and IRC
-- **Also:** the HNO₂ elimination barrier (Tier 1.1) — is unmasking rate-limiting?
-- **Controls:** the SN2 reaction above, plus ML162/RSL3 chloroacetamide, which **must** come out
-  non-selective
-- **Requires:** Linux + Psi4/ORCA/Gaussian. **pyscf does not build on Windows; no DFT engine is
-  available here.**
+**Limit:** inheritance covers *warhead-driven* selectivity, not off-targets reached because our
+modifications changed shape. We changed only solvent-facing positions, which makes that risk small but
+not zero.
 
 ---
 

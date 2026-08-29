@@ -298,21 +298,26 @@ the QED difference that favoured the unsymmetrical candidates.
 10. Stop when the metric saturates; decide the rest on chemistry
 11. Record what was **not** established — potency almost always remains unaddressed
 
-## RULE 20 — Validate the Hamiltonian on the element chemistry you actually need
+## RULE 20 — Match the control's QUANTITY to the claim, not just its subject
 
-Semiempirical methods are parameterised per element and per bonding situation. Validated performance on
-C/N/O/H says nothing about selenium.
+A control on the right reaction can still be the wrong control.
 
-**GFN2-xTB gets selenolate-vs-thiolate reactivity wrong by ~35 kcal/mol — the wrong sign — in gas phase
-and in implicit solvent alike.** A control SN2 (`CH3Br + Nu-`), where selenolate is experimentally the
-better nucleophile, exposed it immediately. GFN1 gave the right ordering with absolute energies off by
-~70 kcal/mol: usable as a direction, worthless as a barrier.
+To test whether GFN2-xTB handles selenium, an SN2 was run "where selenolate is experimentally the better
+nucleophile." But **nucleophilicity is a statement about the BARRIER**, and what was computed was the
+**reaction energy** - which is dominated by bond strengths. C-S (~272 kJ/mol) is stronger than C-Se
+(~234 kJ/mol), so the thiolate product is legitimately more stable. The "wrong sign" was correct
+chemistry answering a question that had not been asked.
 
-**Before trusting any calculation involving an unusual element, run a reaction whose answer you already
-know.** If the method fails it, the calculation is not "approximate" — it is inverted.
+DFT later gave Se-S = +5.72 kcal/mol. GFN2 had said +38.77: **right direction, magnitude inflated ~7x.**
+GFN1 had said -6.73 - the wrong sign - and had been endorsed as the method that "passed."
+**Both verdicts were backwards, and the method declared broken was the less broken one.**
 
-Scope the damage precisely rather than discarding everything: geometry optimisations and same-element
-descriptor comparisons can remain valid while reaction energetics for that element do not.
+Before running a control, write down the quantity the claim is about - barrier or energy, kinetic or
+thermodynamic - and compute THAT. A validated-looking control on the wrong observable is more dangerous
+than no control, because it manufactures confidence.
+
+Semiempirical methods still could not do this job: a 33 kcal/mol error is not salvageable. But the
+diagnosis, and therefore which method to fall back to, was wrong.
 
 ## RULE 21 — Assert the catalytic residue by identity, never by pattern
 

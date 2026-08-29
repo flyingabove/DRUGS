@@ -114,3 +114,75 @@ Normally an error, this has been commuted to a warning via patch.
 Please report this issue: https://github.com/PCMSolver/pcmsolver/issues/206
 
   MeSMe        CSC                              chg+0  E = -478.03732508
+Inverting a small eigenvalue. System may include redundancies
+Smallest inverted value is 1.841e-09.
+	Previous geometry is closer to target in internal coordinates, so using that one.
+
+	Best geometry has RMS(Delta(q)) = 1.59e-04
+
+Inverting a small eigenvalue. System may include redundancies
+Smallest inverted value is 3.458e-10.
+	Previous geometry is closer to target in internal coordinates, so using that one.
+
+	Best geometry has RMS(Delta(q)) = 2.73e-04
+
+Inverting a small eigenvalue. System may include redundancies
+Smallest inverted value is 1.630e-10.
+	Change in internal coordinate of 8.09e-01 exceeds limit of 5.00e-01.
+	Skipping Hessian update for step 1.
+	Energy has increased in a minimization.
+	Energy ratio indicates iffy step.
+	Intrafrag trust radius decreased to   0.25.
+Inverting a small eigenvalue. System may include redundancies
+Smallest inverted value is 5.512e-10.
+	Change in internal coordinate of 6.10e-01 exceeds limit of 5.00e-01.
+	Skipping Hessian update for step 1.
+	Change in internal coordinate of 5.85e-01 exceeds limit of 5.00e-01.
+	Skipping Hessian update for step 1.
+	Energy has increased in a minimization.
+	Energy ratio indicates iffy step.
+	Intrafrag trust radius decreased to 0.0625.
+	Previous geometry is closer to target in internal coordinates, so using that one.
+
+	Best geometry has RMS(Delta(q)) = 1.27e-03
+
+Inverting a small eigenvalue. System may include redundancies
+Smallest inverted value is 1.738e-08.
+AlgError: Exception created. Mesg: Back transformation failed. Cartesian Step size too large. Please restart from the most recent geometry
+ Caught AlgError exception
+
+ Erasing coordinates.
+
+ Erasing history.
+
+
+	The following linear bends have been detected:
+ L(4,6,7), missing.
+	 l(4,6,7), missing.
+	 L(6,7,8), already present.
+	 l(6,7,8), already present.
+	 L(6,7,8), already present.
+	 l(6,7,8), already present.
+
+AlgError: Exception created. Mesg: New linear angles
+AlgError: Linear bends detected.
+ L(4,6,7)
+ l(4,6,7)
+ Caught AlgError exception
+
+Interior angle of 179.3 for bend B([3, 6, 7]) can't work in good torsion
+AlgError: Exception created. Mesg: Could not compute T([1, 3, 6, 7]). Problem computing interior bend.
+AlgError: Linear bends detected.
+[3, 6, 7]
+Interior angle of 179.3 for bend B([3, 6, 7]) can't work in good torsion
+AlgError: Exception created. Mesg: Could not compute T([4, 3, 6, 7]). Problem computing interior bend.
+AlgError: Linear bends detected.
+[3, 6, 7]
+ Erasing history.
+
+	Energy ratio indicates iffy step.
+	Intrafrag trust radius decreased to   0.25.
+	Previous geometry is closer to target in internal coordinates, so using that one.
+
+	Best geometry has RMS(Delta(q)) = 3.26e-05
+
