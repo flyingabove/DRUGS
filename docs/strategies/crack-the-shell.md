@@ -730,3 +730,107 @@ hydrogen bonding that masked M2 and M3.
 
 **Regimen:** GPX4-M1 + an FSP1 inhibitor (icFSP1 class, to close the CoQ escape route) on an
 **azacitidine** backbone, given as maintenance in remission.
+
+---
+
+# 13. EXPANDED SCREEN — 300 CANDIDATES, AND WHERE SIMULATION STOPS HELPING
+
+## 13.1 The library
+
+24 neutral fragments, chosen to resist intramolecular hydrogen bonding: secondary and tertiary
+amides, sulfones, sulfonamides, cyclic ethers, lactams. Enumerated pairwise on the fixed
+nitro-isoxazole/piperazine scaffold → **300 warhead-intact analogs**.
+
+Filtered to zero structural alerts, HBD ≥ 2, then to **symmetric** pairs only — a single benzhydryl
+coupling rather than an unsymmetrical centre, which is a real synthetic saving.
+
+**A bug worth recording:** the first pass returned *zero* candidates. The `basicN` alert was matching
+the **core piperazine**, which is present in ML210 itself and in every analog. An alert that fires on
+the scaffold is not an alert; it was removed. Left unnoticed, this would have silently emptied every
+subsequent screen.
+
+## 13.2 Eight candidates through full GFN2-xTB in implicit water
+
+| Tag | R-group (×2) | MW | logP | Rg | Internal H-bonds | **Free HBD** | ΔLUMO |
+|---|---|---|---|---|---|---|---|
+| S00 | 4-CONHMe | 520.5 | 2.16 | 5.60 | 0 | 2 | −0.322 |
+| S01 | 4-CONHEt | 548.6 | 2.94 | 5.92 | 0 | 2 | −0.324 |
+| S02 | 4-CONH-cPr | 572.6 | 3.22 | 6.11 | 0 | 2 | −0.324 |
+| S03 | 4-CONH-oxetan-3-yl | 604.6 | 1.70 | 5.97 | 0 | 2 | −0.323 |
+| S04 | 3-CONHMe | 520.5 | 2.16 | 5.29 | 0 | 2 | −0.330 |
+| S05 | 4-CONHMe-3-F | 556.5 | 2.44 | 5.58 | 0 | 2 | −0.334 |
+| S06 | 4-CH₂CONHMe | 548.6 | 2.02 | 5.55 | 0 | 2 | −0.332 |
+| S07 | 4-NHCOMe | 520.5 | 3.36 | 5.43 | 0 | 2 | −0.310 |
+
+**All eight pass.** Zero intramolecular masking, two free donors each, warhead perturbation uniform.
+
+**This is the point where simulation stops discriminating.** The entire ΔLUMO spread is **0.024 eV** —
+noise, not signal. Ranking on it would be false precision.
+
+**That is itself a useful result:** the amide-based fragment class as a whole solves the masking
+problem that killed the hydroxyl and hydroxyethoxy candidates. The design question is answered; the
+selection question now belongs to chemistry.
+
+## 13.3 The top-ranked candidate was a trap
+
+My numeric ranking put **4-NHCOMe first** — on a 0.012 eV ΔLUMO advantage that is not real.
+
+**4-NHCOMe is an acetanilide.** Aryl acetamides hydrolyse in vivo to the free **aniline** — precisely
+the quinone-imine toxicophore excluded in the first design cycle. Paracetamol hepatotoxicity proceeds
+through exactly this chemistry. It also carries the highest logP in the set (3.36).
+
+**A structural alert filter applied to the parent structure does not catch a toxicophore that is
+liberated by metabolism.** Second time in this project that an automated score has ranked something
+first that a medicinal chemist would reject on sight.
+
+## 13.4 Final selection, made on chemistry
+
+| Rank | R-group (×2) | MW | logP | TPSA | Basis |
+|---|---|---|---|---|---|
+| **1** | **4-CONHMe** | **520.5** | **2.16** | **150.9** | Robust secondary aryl amide; no metabolic liberation; ideal lipophilicity; smallest of the equals |
+| 2 | 3-CONHMe | 520.5 | 2.16 | 150.9 | Identical properties; meta substitution is a genuine backup vector |
+| 3 | 4-CH₂CONHMe | 548.6 | 2.02 | 150.9 | Clean, slightly larger, benzylic position adds a metabolic soft spot |
+| 4 | 4-CONHMe-3-F | 556.5 | 2.44 | 150.9 | Fluorine blocks para-hydroxylation — a useful second-generation move |
+
+Excluded: 4-NHCOMe (liberates aniline), 4-CONH-oxetan-3-yl (oxetanes are acid-labile),
+4-CONH-cPr and 4-CONHEt (logP 3.2 and 2.9, no compensating advantage).
+
+---
+
+# 14. FINAL COMPOUND — GPX4-M1
+
+```
+CNC(=O)c1ccc(C(c2ccc(C(=O)NC)cc2)N2CCN(C(=O)c3noc(C)c3[N+](=O)[O-])CC2)cc1
+```
+
+**ML210 with both 4-chlorophenyl groups replaced by 4-(N-methylcarbamoyl)phenyl.**
+Warhead and piperazine untouched.
+
+| Property | ML210 | **GPX4-M1** | Why |
+|---|---|---|---|
+| MW | 475.3 | **520.5** | >500 favours biliary clearance, away from the proximal tubule |
+| logP | 4.75 | **2.16** | Amphipathic, not greasy |
+| TPSA | 92.7 | **150.9** | Barrier exclusion; no oral ceiling under an injectable profile |
+| **Free HBD in water** | **0** | **2** | The real driver of brain/retina exclusion — *measured, not predicted* |
+| Internal H-bonds | 0 | **0** | Donors stay exposed; the design does not self-defeat |
+| Charge at pH 7.4 | neutral | **neutral** | Avoids OAT/OCT concentration in the tubule |
+| Symmetric | yes | **yes** | One benzhydryl coupling |
+| Alerts (incl. metabolic liberation) | — | **none** | No aniline, phenol, acid, Michael acceptor, or masked toxicophore |
+| ΔLUMO vs ML210 | — | **−0.32 eV** | Warhead essentially intact |
+
+**Regimen:** GPX4-M1 + an FSP1 inhibitor (icFSP1 class) on an **azacitidine** backbone, as
+**maintenance in remission** — matching the only regimen with a demonstrated overall-survival benefit
+in this setting.
+
+## What the computational campaign delivered, and what it did not
+
+**Delivered:** a specific, synthesisable, symmetric molecule; a warhead verified electronically intact;
+donors verified to survive solvation; a clearance route reasoned from transporter biology; three
+independent structural results showing the modified region makes almost no protein contact; and four
+liabilities caught before committing (acid/OAT trap, acetanilide, hydroxyl masking, piperazine
+false-alert).
+
+**Not delivered:** any evidence of potency. No calculation performed here predicts whether GPX4-M1
+inhibits GPX4, and the selectivity question requires QM/MM with transition states — blocked by the
+unresolved selenocysteine parameters. **The purified-enzyme assay remains the gate, and it is the same
+assay RSL3 and ML162 failed.**
