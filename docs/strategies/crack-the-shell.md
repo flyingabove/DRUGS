@@ -1834,3 +1834,50 @@ axis I was measuring and probably cannot reach its target.
 **Start from the known-active compound and make the minimum change that addresses the brief.** Measure
 the full property profile against known actives after every change, including the axes nobody asked
 about.
+
+---
+
+# 27. MD COMPLETE — the design premise confirmed, and why it does not rescue M3
+
+Full 20 ns, explicit solvent, protein free to move. **Solvent exposure computed on the solute only** —
+including explicit water as an occluder was checked and changes the answer by 4% (189.3 vs 180.9 Å²),
+so the earlier preliminary numbers stand.
+
+| Measurement | Full 20 ns | Preliminary (700 ps) |
+|---|---|---|
+| Ligand total exposed surface | **190.8 ± 10.0 Å²** | 185.4 |
+| **The two modified amide arms** | **83.7 ± 5.7 Å² = 44%** | 85.1 = 46% |
+| Frames with arms buried | **0 / 200** | 0 / 38 |
+| Protein backbone RMSD | 1.16 Å mean, 1.56 Å max | 0.76 |
+
+**The design premise is confirmed.** The groups substituted onto GPX4-M3 account for **44% of the
+molecule's entire solvent contact and are never buried in any frame**, while the warhead region stays
+buried. Anchor buried, payload in water — measured with the protein moving, not frozen. The fold is
+stable throughout (1.16 Å backbone drift is normal equilibration, not unfolding).
+
+## Why this does not rescue GPX4-M3
+
+**It answers a question that was never the problem.**
+
+This measurement says the arms are *tolerated at the binding site* — they do not clash, do not disturb
+the fold, and sit in solvent exactly where the burial analysis predicted. **All true, and irrelevant to
+whether the molecule can reach that site.**
+
+§25 established the actual constraint: polar surface area 168 Å² against a 92.7 Å² ceiling among GPX4
+inhibitors known to kill cells. **A molecule that binds beautifully to a protein it cannot reach is not
+a drug.**
+
+**This is the same blind spot in a different form.** The MD, like the burial analysis before it, models
+the ligand *already at the target*. Neither can see the membrane. The 44% figure is a correct answer to
+"can the protein accommodate these groups", and the programme changed lead because the binding question
+was not the binding constraint.
+
+## What the result is still worth
+
+- **It validates the substitution strategy in principle.** If a future analog needs polar groups at
+  those positions and can afford the polarity budget, the positions are confirmed as free.
+- **It retires the rigid-receptor caveat** that stood over the anchored-fit work (§16).
+- **It keeps M3 alive as a fallback** — if a permeability assay shows the polarity ceiling is softer
+  than the six comparators suggest, M3's binding case is now fully supported.
+
+**The measurement is sound. The question it answered was not the one that decides the programme.**

@@ -17,7 +17,9 @@ SG, ATTACH = meta['sg'], meta['attach']
 # makes partial-trajectory analysis possible while the run continues.
 import shutil
 shutil.copy('traj.dcd', 'snap.dcd')
-t = md.load('snap.dcd', top='equil.pdb')
+# SASA over 1000 frames x 31k atoms is slow; every 5th frame is ample for a
+# converged average and finishes in minutes.
+t = md.load('snap.dcd', top='equil.pdb', stride=5)
 print('trajectory: %d frames, %d atoms, %.1f ns'
       % (t.n_frames, t.n_atoms, t.time[-1] / 1000.0 if t.n_frames > 1 else 0))
 t = t.superpose(t, 0, atom_indices=t.topology.select('protein and name CA'))
