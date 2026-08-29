@@ -297,3 +297,47 @@ the QED difference that favoured the unsymmetrical candidates.
 9. Screen for metabolic liberation, not only parent-structure alerts
 10. Stop when the metric saturates; decide the rest on chemistry
 11. Record what was **not** established — potency almost always remains unaddressed
+
+## RULE 20 — Validate the Hamiltonian on the element chemistry you actually need
+
+Semiempirical methods are parameterised per element and per bonding situation. Validated performance on
+C/N/O/H says nothing about selenium.
+
+**GFN2-xTB gets selenolate-vs-thiolate reactivity wrong by ~35 kcal/mol — the wrong sign — in gas phase
+and in implicit solvent alike.** A control SN2 (`CH3Br + Nu-`), where selenolate is experimentally the
+better nucleophile, exposed it immediately. GFN1 gave the right ordering with absolute energies off by
+~70 kcal/mol: usable as a direction, worthless as a barrier.
+
+**Before trusting any calculation involving an unusual element, run a reaction whose answer you already
+know.** If the method fails it, the calculation is not "approximate" — it is inverted.
+
+Scope the damage precisely rather than discarding everything: geometry optimisations and same-element
+descriptor comparisons can remain valid while reaction energetics for that element do not.
+
+## RULE 21 — Assert the catalytic residue by identity, never by pattern
+
+`residue in (SEC, CYS, CSE) and atom in (SE, SG)` selected **Cys10** instead of the catalytic **Sec46**,
+because Cys10 appears first in the file. Every downstream number was computed against a site 34 Å from
+the ligand.
+
+**The tell was a sanity check, not the result:** the crystal ligand should be ~1.6-2.0 A from the atom
+it is covalently bonded to. Add the assertion:
+
+```python
+assert min(dist(ligand_atoms, site)) < 2.5, "ligand is NOT bonded to the identified site"
+```
+
+Loose residue matching is how the wrong site enters a pipeline silently. Name the residue number.
+
+## RULE 22 — A protocol control sets your resolution; differences below it are noise
+
+Re-derive a known answer with the *same* protocol, not just a known compound. Re-deriving the crystal
+ligand by conformer search scored **0.35 A** against its own deposited pose of **-0.23 A** — so the
+method's error is ~0.58 A.
+
+Every candidate then scored 0.29-0.31 A. **Differences of 0.02 A between compounds are meaningless at
+that resolution**, and an earlier reading that a candidate "fits better than the positive control" was
+over-interpretation of noise.
+
+A calibrated test that answers "no steric problem" is a real result. Do not let it masquerade as a
+ranking.

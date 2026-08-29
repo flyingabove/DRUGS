@@ -1,0 +1,6 @@
+$constrain
+ force constant=0.75
+ distance: 6, 16, auto
+$scan
+ 1: 3.60,1.90,22
+$end
