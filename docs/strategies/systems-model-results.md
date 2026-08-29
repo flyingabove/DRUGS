@@ -144,3 +144,71 @@ Argues for deploying this in *deepest remission*, not in relapsed/refractory dis
 **New experiment required, added to the plan:** measure whether GPX4-M3 retains *any* activity against
 ferroptosis-incompetent cells (ACSL4-knockout lines). **That single number — kG — matters more than the
 IC₅₀ we have been chasing.**
+
+---
+
+# Tier 5.1 — Covalent PK/PD: the dosing question answered
+
+For an **irreversible** inhibitor the duration of effect is set by **target resynthesis**, not by drug
+half-life. The drug can clear completely while GPX4 stays inactivated until the cell rebuilds it.
+Modelled with GPX4 protein half-life ≈ 24 h.
+
+## How long does the drug need to last?
+
+| Drug t½ | Mean occupancy | Trough | Verdict |
+|---|---|---|---|
+| 0.5 h | 34.4% | 24.4% | inadequate |
+| 1 h | 49.9% | 36.1% | oscillating |
+| 2 h | 65.3% | 48.9% | oscillating |
+| **4 h** | **78.4%** | **64.2%** | **sustained** |
+| 8 h | 88.2% | 80.7% | sustained |
+| 24 h | 96.0% | 94.8% | sustained |
+
+**A ~4-hour half-life is sufficient.** That is a low bar — a non-covalent daily drug would need
+something closer to 12–24 h. **We do not have to fight the CYP soft spots hard**, which is fortunate
+given the benzhydryl CH and N-methyl amides flagged in Tier 4.
+
+*(A 30-minute half-life is not enough — trough falls to 24%.)*
+
+## How potent does it need to be?
+
+| kinact/K_I | Mean occupancy | Requirement |
+|---|---|---|
+| 0.10 | 45.1% | insufficient |
+| **0.25** | **66.5%** | **adequate** |
+| 0.50 | 78.4% | adequate |
+| 1.00 | 85.8% | adequate |
+| 2.00 | 90.6% | **saturating — excess potency wasted** |
+
+**Occupancy saturates above kinact/K_I ≈ 0.5.** Extra potency past that point buys nothing.
+
+**This independently reproduces the resistance model's conclusion** — which found a 10× potency gain
+worth only 3.2 months — by a completely different route. **Two unrelated models, same answer: potency
+is not the lever.**
+
+## What schedule?
+
+| Interval | Mean occupancy | Trough |
+|---|---|---|
+| 8 h | 92.5% | 90.3% |
+| 12 h | 88.9% | 84.2% |
+| **24 h (daily)** | **78.4%** | **64.2%** |
+| 48 h | 59.4% | 32.8% |
+| 168 h (weekly) | 16.7% | 1.0% |
+
+**Daily dosing sits on the plateau.** Twice-daily adds little; every-other-day degrades; weekly fails
+outright.
+
+**And it is schedule-robust** — a missed dose costs little, because the target stays inactivated while
+the patient is between doses. For a therapy meant to be taken indefinitely, that tolerance to imperfect
+adherence matters as much as the pharmacology.
+
+## Combined design brief, from all three models
+
+| Property | Requirement | Status for GPX4-M3 |
+|---|---|---|
+| Half-life | **≥ 4 h** (not 24 h) | plausible; CYP soft spots tolerable |
+| kinact/K_I | **≥ 0.25**, saturates ~0.5 | inherited from ML210 — likely adequate |
+| Schedule | **daily injection** | matches the stated goal |
+| Potency beyond adequacy | **worthless** | stop optimising it |
+| **Retained kill on resistant clone (kG)** | **the actual lever** | **unmeasured — the key experiment** |
