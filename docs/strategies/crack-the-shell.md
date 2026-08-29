@@ -964,6 +964,10 @@ number interpretable: **0.55 Å is demonstrably tolerable**, because a molecule 
 in the crystal. The residual reflects rigid-receptor and rigid-conformer approximations — real side
 chains move.
 
+**SUPERSEDED — see `tier1-tier4-results.md`, "Anchored covalent fit, recalibrated".** The protocol's
+own error against the deposited crystal pose is ~0.58 Å, so 0.02–0.06 Å differences between compounds
+are noise. The test shows "no steric problem"; it cannot rank compounds. Original text follows:
+
 **GPX4-M1 at 0.42 Å fits better than the positive control and is indistinguishable from ML210 at
 0.39 Å.**
 

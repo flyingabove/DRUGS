@@ -199,7 +199,7 @@ The linker vector was opened while drafting this plan and immediately produced a
 | ID | Linker | Basic N | Stereo | cLogP | logS | Note |
 |---|---|---|---|---|---|---|
 | GPX4-M1 | piperazine | **1** | 0 | 2.16 | −4.30 | previous lead; **carries the OCT2 liability** |
-| **GPX4-M3** | 2-oxopiperazine | **0** | 0 | **1.68** | **−4.08** | **dominates M1 on every axis** |
+| **GPX4-M3** | 2-oxopiperazine | **0** | 0 | **1.68** | **−4.08** | removes OCT2 + hERG liabilities; **but not salt-formable — see Tier 4.3** |
 | GPX4-M4 | piperidine, C-linked | 0 | 0 | 3.29 | −5.01 | neutral but greasier |
 | ML210 | — | 1 | 0 | — | — | positive control |
 | ML162 / RSL3 | — | — | — | — | — | **negative controls for selectivity** |

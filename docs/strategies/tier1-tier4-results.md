@@ -127,8 +127,13 @@ exploring a non-nitro masked warhead — which the Tier 1 DFT work would also in
 | Stereocentres | 0 ✓ | **0 ✓** | 0 ✓ |
 | Warhead intact | ✓ | **✓** | ✓ |
 
-**GPX4-M3 is the lead.** It is not a marginal preference — it wins or ties on every measured axis, and
+**GPX4-M3 is the lead on the ADMET panel above.** It wins or ties on every axis *measured here*, and
 it removes two liabilities (kidney, heart) that M1 carried.
+
+**This ranking is qualified later in this document.** The solubility work (Tier 4.3) found that removing
+the basic nitrogen also removes the option of salt formation — the standard route to an injectable — so
+M1 retains a formulation advantage the panel above does not capture. **Both compounds are carried
+forward.**
 
 **Outstanding on M3:** the anchored covalent fit (§16) has been run for M1, not M3. The lactam changes
 the benzhydryl nitrogen's geometry, so that test must be repeated before M3 is confirmed.
