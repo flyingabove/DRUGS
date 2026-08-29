@@ -1584,3 +1584,82 @@ chronic administration, which ML210 is not (logP 4.75, hERG pharmacophore, essen
 **And it sharpens the kG experiment.** The proposed ACSL4-knockout study now has a concrete positive
 control: venetoclax should retain killing where GPX4-M3 alone does not. If it does not, the orthogonality
 assumption fails and the model is wrong about the mechanism of rescue.
+
+---
+
+# 24. ATTACKING THE SOLUBILITY BLOCKER — GPX4-S1
+
+Solubility is the highest-severity liability (§21.4). Ten analogs designed under three hard constraints:
+**warhead untouched**, **no basic nitrogen reintroduced** (that was the kidney/heart fix), **no
+stereocentres**.
+
+## 24.1 Results
+
+| Candidate | cLogP | Predicted mg/mL | vs M3 |
+|---|---|---|---|
+| **S1 bis-hydroxyethylamide** | **0.41** | **0.324** | **11×** |
+| S4 bis-sulfonamide | 0.78 | 0.127 | 4× |
+| S3 bis-primary amide | 1.16 | 0.124 | 4× |
+| **M3 (current lead)** | 1.68 | 0.029 | 1× |
+| S6 meta-amide | 1.68 | 0.029 | 1× |
+| S5 bis-methoxyethyl | 1.72 | 0.027 | 1× |
+| S7 ortho-F twist | 1.96 | 0.011 | 0.4× |
+| S8 N,N-dimethylamide | 2.37 | 0.007 | **0.2× — worse** |
+| S2 bis-morpholino | 1.91 | 0.007 | **0.2× — worse** |
+
+**All ten keep the warhead intact, carry no basic nitrogen, and have no stereocentres.**
+
+**Note S8 and S2:** capping the amide N–H (S8) or adding a bulky morpholine (S2) made solubility
+**four times worse**. Adding polarity is not the same as adding solubility — removing a hydrogen-bond
+donor costs more than the added heteroatoms gain.
+
+## 24.2 The masking check — the trap that killed an earlier analog
+
+An earlier candidate (M2, bis-hydroxyethyl ether) counted 2 donors on paper and had **zero free donors**
+once optimised in 3D: the hydroxyls folded back onto the molecule. Every 2D descriptor still counted
+them. **Any new polar group must be checked for this.**
+
+Conformer analysis, counting donors still pointing at solvent:
+
+| Candidate | Donors on paper | Mean free in 3D | Verdict |
+|---|---|---|---|
+| M3 | 2 | 1.90 | fine |
+| **S1** | **4** | **3.67** | **passes — not masked** |
+| S3 | 4 | **4.00** | fully available |
+| S4 | 2 | 2.00 | fully available |
+
+**S1 survives the check.** Its hydroxyls stay available to water, unlike M2's.
+
+## 24.3 Why S1 is the right pick
+
+**11× solubility for one substituent change**, and the change is on the arms — the positions the MD
+showed contribute 46% of the molecule's solvent contact and **never touch protein**. Longer arms extend
+further into water, which is the direction that is already free.
+
+**The metabolic liability is not a liability here.** Primary alcohols are cleared fast — oxidised or
+sugar-conjugated. Normally that is a problem. **For this drug it is not:** the PK/PD modelling (§18)
+showed a **~4-hour half-life is sufficient**, because the effect outlives the drug — the target stays
+disabled until the cell rebuilds it. **Fast clearance is affordable here in a way it would not be for a
+conventional drug.**
+
+## 24.4 Still not enough on its own
+
+**0.32 mg/mL against a practical need above 1 mg/mL.** S1 closes most of the gap but not all of it.
+
+**The realistic path is S1 plus formulation**, not S1 alone — a co-solvent or cyclodextrin vehicle
+starting from 0.32 mg/mL is routine, where starting from 0.029 mg/mL is not.
+
+**And this remains predicted, not measured.** Three models agreeing is not an experiment. The
+recommendation is unchanged: **measure melting point and intrinsic solubility on M3 and S1 together** —
+it is cheap, and it either dissolves the problem or sizes it properly.
+
+## 24.5 What still needs checking on S1
+
+| Open | Why |
+|---|---|
+| Anchored covalent fit | Arms are longer; burial says solvent-facing, but verify |
+| hERG / ADMET panel | Re-run — the panel was done on M3 |
+| Synthetic route | Hydroxyethylamine coupling instead of methylamine; likely needs the alcohol protected during the warhead step |
+
+**Status: S1 is a candidate, not yet a replacement lead.** M3 remains the lead until S1 clears the fit
+and ADMET checks.
