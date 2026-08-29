@@ -47,29 +47,59 @@ the property gap stated), *modelled*, or *asserted*. **Asserted is never above �
 
 ### 3. Extends life enough to matter — **anchored to real approval precedent**
 
-| | Standard |
-|---|---|
-| 🟢 | **Cure.** Durable remission; resistance does not emerge |
-| 🟡 | **Reliable delay that clears the approval bar** — see below |
-| 🟠 | Benefit clears the bar only under optimistic assumptions, or is unreliable |
-| 🔴 | No survival benefit, or resistance emerges so fast the benefit is negligible |
+**The only currency is overall survival — how long the patient lives.** Every other measurement is a
+surrogate, and surrogates have failed here before.
 
-**The bar, from actual precedent:**
+#### The decision procedure
 
-- **ASCO clinically-meaningful threshold:** ≥ **2.5 months** absolute **and** ≥ **25%** relative
-  improvement in overall survival
-- **The direct AML-maintenance precedent — QUAZAR AML-001 (oral azacitidine, FDA approved Sept 2020):**
-  overall survival **24.7 vs 14.8 months = +9.9 months**, relapse-free survival 10.2 vs 4.8. **Primary
-  endpoint was overall survival, not a lab marker**
-- **The cautionary precedent — Iomab-B:** hit its primary endpoint at p<0.0001 and was **refused filing
-  for lack of survival benefit**
+Ask these in order and stop at the first that applies:
 
-**So: a delay is not a failure.** A drug that reliably adds ~10 months of life is approvable and 🟡. A
-drug that only improves a laboratory measurement is 🔴 regardless of how good that measurement looks.
+| Ask | Answer | Score |
+|---|---|---|
+| **1.** Does the disease stop coming back — patients die of something else? | yes | 🟢 **cure** |
+| **2.** Does overall survival improve by **≥2.5 months absolute AND ≥25% relative**, statistically significant, in the primary analysis? | yes | 🟡 **approvable delay** |
+| **3.** Does overall survival improve, but below that threshold? | yes | 🟠 real but probably not approvable alone |
+| **4.** Does only a *surrogate* improve — remission rate, minimal residual disease, relapse-free survival — with no overall-survival gain? | yes | 🔴 |
+| **5.** Nothing improves | — | 🔴 |
 
-**When scoring from a model, say so and state the discount.** A modelled relapse delay is not a measured
-survival benefit — QUAZAR's +5.4 months relapse-free translated to +9.9 months overall survival, but
-that relationship is empirical, not guaranteed.
+**Step 2 is the approval bar and a delay passes it.** Not curing is not failing.
+
+#### The two precedents, with their real numbers
+
+**QUAZAR AML-001 — oral azacitidine, approved September 2020.** Nobody was cured. Overall survival
+**24.7 vs 14.8 months = +9.9 months** (67% relative). Relapse-free survival 10.2 vs 4.8. **Approved on
+the survival gain.** This is what 🟡 looks like: a delay, reliably delivered, and it was enough.
+
+**SIERRA — Iomab-B, refused filing.** Primary endpoint durable complete remission: **22% (13/76) vs 0%
+(0/77), p<0.0001** — met overwhelmingly. **Overall survival hazard ratio 0.99 (95% CI 0.70–1.41,
+p=0.96).**
+
+**Iomab-B did not extend life a little. It extended life not at all.** A hazard ratio of 0.99 means the
+two survival curves lie on top of each other. The FDA did not judge a small benefit insufficient — there
+was no benefit to judge, and it required a head-to-head trial showing overall survival before it would
+consider a filing.
+
+#### How 22% durable remission produces zero survival benefit
+
+**Because the treatment kills people too.** Iomab-B delivered targeted radiation before a bone-marrow
+transplant. Some patients got a durable remission they would never otherwise have had. Others died of
+the treatment. **Net effect on the population: zero.**
+
+**This is the trap to internalise.** A drug can measurably cure some patients and still be worthless as
+a medicine, because overall survival is a *net* figure and the treatment's own harm is subtracted from
+it. Any score on this criterion that ignores the toxicity side is wrong.
+
+#### Rules that follow
+
+- **A surrogate endpoint scores nothing on its own.** Remission rate, minimal residual disease,
+  leukaemia-stem-cell burden, relapse-free survival — all are 🔴 here unless a survival gain follows.
+  QUAZAR's relapse-free gain counted *because* +9.9 months of survival came with it.
+- **Post-hoc subgroups do not count.** Iomab-B showed a real-looking benefit in TP53-mutant patients
+  (5.49 vs 1.66 months). It did not rescue the filing and must not rescue a score.
+- **Score the primary analysis of the whole population**, not the best slice of it.
+- **When scoring from a model, say so and state the discount.** A modelled relapse delay is not a
+  measured survival benefit. QUAZAR's +5.4 months relapse-free became +9.9 months overall — an
+  empirical relationship in one trial, not a conversion factor.
 
 ### 4. Hits only what it should
 
