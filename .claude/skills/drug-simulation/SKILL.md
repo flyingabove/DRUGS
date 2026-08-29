@@ -511,3 +511,25 @@ if not relaxed[argmax(rel)]:
 
 Carry the relaxation flag through with each point rather than only printing it. A validation that lives
 in the log instead of the return value is a validation you will forget to apply.
+
+## RULE 32 — Change one variable per attempt when a protocol fails
+
+Three attempts at the same barrier, each failing differently, because two things changed at once:
+
+| | frozen bonds | geometry source | failure |
+|---|---|---|---|
+| v1 | forming only | rebuilt per point | **basin hop** - 46 kcal/mol cliff |
+| v2 | forming + breaking | chained | **over-constrained** - optimisation failed at the transition region, profile inflated to +48 vs ~20-25 expected |
+| v3 | forming only | chained | the untried combination |
+
+v1 -> v2 changed BOTH the constraint count and the geometry source, so when v2 failed there was no way
+to tell which change caused it. **Chaining was the fix; the second constraint was the new bug.** One
+variable at a time would have found that in half the compute.
+
+**Sanity-check the magnitude against a known value before spending more time.** An SN2 in water is
+~20-25 kcal/mol; a profile passing +48 and still climbing is reporting optimisation failure, not
+chemistry. That check is available at every point, and it is faster than waiting for the run to finish
+and be vetoed.
+
+**Stop a run you can already predict will be rejected.** v2's maximum sat in its unrelaxed region, so
+the Rule 31 veto was guaranteed to fire - six further hours would have bought a confirmed failure.

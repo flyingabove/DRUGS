@@ -2708,3 +2708,182 @@ Hessian guess encountered unknown coordinate type.
 	Energy ratio indicates iffy step.
 	Intrafrag trust radius decreased to   0.25.
     [ctl-Se 2.20/2.38] opt failed (OptimizationConvergenceError)
+S matrix is not positive-definite!
+Consider changing the average area of the cavity finite elements.
+Normally an error, this has been commuted to a warning via patch.
+Please report this issue: https://github.com/PCMSolver/pcmsolver/issues/206
+
+S matrix is not positive-definite!
+Consider changing the average area of the cavity finite elements.
+Normally an error, this has been commuted to a warning via patch.
+Please report this issue: https://github.com/PCMSolver/pcmsolver/issues/206
+
+    ctl-Se   form=2.20 break=2.38  E=-5055.02982680 (unrelaxed)
+Hessian guess encountered unknown coordinate type.
+
+Hessian guess encountered unknown coordinate type.
+
+	Energy has increased in a minimization.
+	Energy ratio indicates iffy step.
+	Intrafrag trust radius decreased to   0.15.
+	Energy has increased in a minimization.
+	Energy ratio indicates iffy step.
+	Intrafrag trust radius decreased to 0.0375.
+	Previous geometry is closer to target in internal coordinates, so using that one.
+
+	Best geometry has RMS(Delta(q)) = 5.28e-03
+
+	Energy has increased in a minimization.
+	Energy ratio indicates iffy step.
+	Intrafrag trust radius decreased to   0.25.
+	Previous geometry is closer to target in internal coordinates, so using that one.
+
+	Best geometry has RMS(Delta(q)) = 1.61e-05
+
+	Change in internal coordinate of 5.09e-01 exceeds limit of 5.00e-01.
+	Skipping Hessian update for step 13.
+	Change in internal coordinate of 5.53e-01 exceeds limit of 5.00e-01.
+	Skipping Hessian update for step 12.
+	Change in internal coordinate of 5.59e-01 exceeds limit of 5.00e-01.
+	Skipping Hessian update for step 11.
+	Change in internal coordinate of 9.04e-01 exceeds limit of 5.00e-01.
+	Skipping Hessian update for step 10.
+	Change in internal coordinate of 9.80e-01 exceeds limit of 5.00e-01.
+	Skipping Hessian update for step 9.
+	Change in internal coordinate of 9.91e-01 exceeds limit of 5.00e-01.
+	Skipping Hessian update for step 8.
+	Change in internal coordinate of 9.91e-01 exceeds limit of 5.00e-01.
+	Skipping Hessian update for step 7.
+	Change in internal coordinate of 1.01e+00 exceeds limit of 5.00e-01.
+	Skipping Hessian update for step 6.
+	Change in internal coordinate of 1.01e+00 exceeds limit of 5.00e-01.
+	Skipping Hessian update for step 5.
+	Change in internal coordinate of 1.02e+00 exceeds limit of 5.00e-01.
+	Skipping Hessian update for step 4.
+	Change in internal coordinate of 1.01e+00 exceeds limit of 5.00e-01.
+	Skipping Hessian update for step 3.
+	Change in internal coordinate of 1.02e+00 exceeds limit of 5.00e-01.
+	Skipping Hessian update for step 2.
+	Energy has increased in a minimization.
+	Energy ratio indicates iffy step.
+	Intrafrag trust radius decreased to   0.25.
+	Change in internal coordinate of 5.39e-01 exceeds limit of 5.00e-01.
+	Skipping Hessian update for step 12.
+	Change in internal coordinate of 5.46e-01 exceeds limit of 5.00e-01.
+	Skipping Hessian update for step 11.
+	Change in internal coordinate of 8.90e-01 exceeds limit of 5.00e-01.
+	Skipping Hessian update for step 10.
+	Change in internal coordinate of 9.67e-01 exceeds limit of 5.00e-01.
+	Skipping Hessian update for step 9.
+	Change in internal coordinate of 9.77e-01 exceeds limit of 5.00e-01.
+	Skipping Hessian update for step 8.
+	Change in internal coordinate of 9.78e-01 exceeds limit of 5.00e-01.
+	Skipping Hessian update for step 7.
+	Change in internal coordinate of 9.95e-01 exceeds limit of 5.00e-01.
+	Skipping Hessian update for step 6.
+	Change in internal coordinate of 9.99e-01 exceeds limit of 5.00e-01.
+	Skipping Hessian update for step 5.
+	Change in internal coordinate of 1.01e+00 exceeds limit of 5.00e-01.
+	Skipping Hessian update for step 4.
+	Change in internal coordinate of 9.99e-01 exceeds limit of 5.00e-01.
+	Skipping Hessian update for step 3.
+	Change in internal coordinate of 1.00e+00 exceeds limit of 5.00e-01.
+	Skipping Hessian update for step 2.
+	Change in internal coordinate of 1.00e+00 exceeds limit of 5.00e-01.
+	Skipping Hessian update for step 1.
+	Change in internal coordinate of 7.33e-01 exceeds limit of 5.00e-01.
+	Skipping Hessian update for step 13.
+	Change in internal coordinate of 7.76e-01 exceeds limit of 5.00e-01.
+	Skipping Hessian update for step 12.
+	Change in internal coordinate of 7.82e-01 exceeds limit of 5.00e-01.
+	Skipping Hessian update for step 11.
+	Change in internal coordinate of 1.13e+00 exceeds limit of 5.00e-01.
+	Skipping Hessian update for step 10.
+	Change in internal coordinate of 1.20e+00 exceeds limit of 5.00e-01.
+	Skipping Hessian update for step 9.
+	Change in internal coordinate of 1.21e+00 exceeds limit of 5.00e-01.
+	Skipping Hessian update for step 8.
+	Change in internal coordinate of 1.21e+00 exceeds limit of 5.00e-01.
+	Skipping Hessian update for step 7.
+	Change in internal coordinate of 1.23e+00 exceeds limit of 5.00e-01.
+	Skipping Hessian update for step 6.
+	Change in internal coordinate of 1.24e+00 exceeds limit of 5.00e-01.
+	Skipping Hessian update for step 5.
+	Change in internal coordinate of 1.24e+00 exceeds limit of 5.00e-01.
+	Skipping Hessian update for step 4.
+	Change in internal coordinate of 1.24e+00 exceeds limit of 5.00e-01.
+	Skipping Hessian update for step 3.
+	Change in internal coordinate of 1.24e+00 exceeds limit of 5.00e-01.
+	Skipping Hessian update for step 2.
+	Change in internal coordinate of 1.24e+00 exceeds limit of 5.00e-01.
+	Skipping Hessian update for step 1.
+	Previous geometry is closer to target in internal coordinates, so using that one.
+
+	Best geometry has RMS(Delta(q)) = 5.32e-04
+
+	Change in internal coordinate of 6.40e-01 exceeds limit of 5.00e-01.
+	Skipping Hessian update for step 16.
+	Change in internal coordinate of 8.67e-01 exceeds limit of 5.00e-01.
+	Skipping Hessian update for step 15.
+	Change in internal coordinate of 8.83e-01 exceeds limit of 5.00e-01.
+	Skipping Hessian update for step 14.
+	Change in internal coordinate of 9.35e-01 exceeds limit of 5.00e-01.
+	Skipping Hessian update for step 13.
+	Change in internal coordinate of 9.78e-01 exceeds limit of 5.00e-01.
+	Skipping Hessian update for step 12.
+	Change in internal coordinate of 9.84e-01 exceeds limit of 5.00e-01.
+	Skipping Hessian update for step 11.
+	Change in internal coordinate of 1.33e+00 exceeds limit of 5.00e-01.
+	Skipping Hessian update for step 10.
+	Change in internal coordinate of 1.41e+00 exceeds limit of 5.00e-01.
+	Skipping Hessian update for step 9.
+	Change in internal coordinate of 1.42e+00 exceeds limit of 5.00e-01.
+	Skipping Hessian update for step 8.
+	Change in internal coordinate of 1.42e+00 exceeds limit of 5.00e-01.
+	Skipping Hessian update for step 7.
+	Change in internal coordinate of 1.43e+00 exceeds limit of 5.00e-01.
+	Skipping Hessian update for step 6.
+	Change in internal coordinate of 1.44e+00 exceeds limit of 5.00e-01.
+	Skipping Hessian update for step 5.
+	Change in internal coordinate of 1.44e+00 exceeds limit of 5.00e-01.
+	Skipping Hessian update for step 4.
+	Change in internal coordinate of 1.44e+00 exceeds limit of 5.00e-01.
+	Skipping Hessian update for step 3.
+	Change in internal coordinate of 1.44e+00 exceeds limit of 5.00e-01.
+	Skipping Hessian update for step 2.
+	Change in internal coordinate of 1.44e+00 exceeds limit of 5.00e-01.
+	Skipping Hessian update for step 1.
+	Change in internal coordinate of 7.73e-01 exceeds limit of 5.00e-01.
+	Skipping Hessian update for step 17.
+	Change in internal coordinate of 1.03e+00 exceeds limit of 5.00e-01.
+	Skipping Hessian update for step 16.
+	Change in internal coordinate of 1.25e+00 exceeds limit of 5.00e-01.
+	Skipping Hessian update for step 15.
+	Change in internal coordinate of 1.27e+00 exceeds limit of 5.00e-01.
+	Skipping Hessian update for step 14.
+	Change in internal coordinate of 1.32e+00 exceeds limit of 5.00e-01.
+	Skipping Hessian update for step 13.
+	Change in internal coordinate of 1.33e+00 exceeds limit of 5.00e-01.
+	Skipping Hessian update for step 12.
+	Change in internal coordinate of 1.32e+00 exceeds limit of 5.00e-01.
+	Skipping Hessian update for step 11.
+	Change in internal coordinate of 1.55e+00 exceeds limit of 5.00e-01.
+	Skipping Hessian update for step 10.
+	Change in internal coordinate of 1.63e+00 exceeds limit of 5.00e-01.
+	Skipping Hessian update for step 9.
+	Change in internal coordinate of 1.64e+00 exceeds limit of 5.00e-01.
+	Skipping Hessian update for step 8.
+	Change in internal coordinate of 1.64e+00 exceeds limit of 5.00e-01.
+	Skipping Hessian update for step 7.
+	Change in internal coordinate of 1.66e+00 exceeds limit of 5.00e-01.
+	Skipping Hessian update for step 6.
+	Change in internal coordinate of 1.66e+00 exceeds limit of 5.00e-01.
+	Skipping Hessian update for step 5.
+	Change in internal coordinate of 1.67e+00 exceeds limit of 5.00e-01.
+	Skipping Hessian update for step 4.
+	Change in internal coordinate of 1.66e+00 exceeds limit of 5.00e-01.
+	Skipping Hessian update for step 3.
+	Change in internal coordinate of 1.67e+00 exceeds limit of 5.00e-01.
+	Skipping Hessian update for step 2.
+	Change in internal coordinate of 1.67e+00 exceeds limit of 5.00e-01.
+	Skipping Hessian update for step 1.

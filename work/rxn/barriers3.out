@@ -1,0 +1,16 @@
+
+  Memory set to   2.794 GiB by Python driver.
+=== KINETIC CONTROL v2: two-bond coordinate ===
+    expectation: SELENOLATE HAS THE LOWER BARRIER
+
+Some dependencies such as QCElemental have not yet finished migration to pydantic v2. If issues are encountered please downgrade pydantic or upgrade QCElemental as appropriate
+Hessian guess encountered unknown coordinate type.
+
+	Previous geometry is closer to target in internal coordinates, so using that one.
+
+	Best geometry has RMS(Delta(q)) = 9.90e-08
+
+	Previous geometry is closer to target in internal coordinates, so using that one.
+
+	Best geometry has RMS(Delta(q)) = 2.48e-06
+
