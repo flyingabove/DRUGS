@@ -92,7 +92,7 @@ def scan(tag, S, P0, chrg, i_c=0, i_lg=1, i_nu=5, nu_from=5):
             e = float('nan')
         psi4.set_options({'pcm': False})
         psi4.core.clean()
-        res.append((d_form, d_break, e))
+        res.append((d_form, d_break, e, ok))
         print('    %-8s form=%.2f break=%.2f  E=%.8f %s'
               % (tag, d_form, d_break, e, '' if ok else '(unrelaxed)'), flush=True)
     return res

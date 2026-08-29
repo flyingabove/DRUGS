@@ -1534,3 +1534,30 @@ Normally an error, this has been commuted to a warning via patch.
 Please report this issue: https://github.com/PCMSolver/pcmsolver/issues/206
 
     ctl-Se   form=2.30 break=2.26  E=-5055.04863174 (unrelaxed)
+Hessian guess encountered unknown coordinate type.
+
+Hessian guess encountered unknown coordinate type.
+
+	Energy has increased in a minimization.
+	Energy ratio indicates iffy step.
+	Intrafrag trust radius decreased to   0.15.
+	Energy ratio indicates iffy step.
+	Intrafrag trust radius decreased to 0.0375.
+	Energy has increased in a minimization.
+	Energy ratio indicates iffy step.
+	Intrafrag trust radius decreased to 0.0281.
+	Previous geometry is closer to target in internal coordinates, so using that one.
+
+	Best geometry has RMS(Delta(q)) = 9.41e-06
+
+	Previous geometry is closer to target in internal coordinates, so using that one.
+
+	Best geometry has RMS(Delta(q)) = 6.28e-16
+
+	Energy has increased in a minimization.
+	Energy ratio indicates iffy step.
+	Intrafrag trust radius decreased to 0.0211.
+	Previous geometry is closer to target in internal coordinates, so using that one.
+
+	Best geometry has RMS(Delta(q)) = 2.63e-07
+

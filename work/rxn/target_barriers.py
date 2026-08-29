@@ -96,21 +96,35 @@ def scan(tag, S, P0, chrg, i_c, i_nu, dists, nu_from):
             e = float('nan')
         psi4.set_options({'pcm': False})
         psi4.core.clean()
-        res.append((float(d), e))
+        res.append((float(d), e, ok))
         print('    %-8s d=%.2f  E=%.8f %s' % (tag, d, e, '' if ok else '(unrelaxed)'), flush=True)
     return res
 
 
 def summarise(res):
-    d = np.array([a for a, _ in res]); E = np.array([b for _, b in res])
+    d = np.array([r[0] for r in res]); E = np.array([r[1] for r in res])
+    relaxed = [r[2] for r in res]
     rel = (E - E[0]) * H2K
     nbad = int(np.isnan(E).sum())
     if nbad:
         print('    WARNING: %d/%d points failed - barrier NOT reported' % (nbad, len(E)))
         return dict(d=d.tolist(), rel=rel.tolist(), barrier=float('nan'), failed=nbad)
+    jumps = np.abs(np.diff(rel))
+    if jumps.max() > 15.0:
+        print('    WARNING: discontinuity %.1f kcal/mol - no barrier reported' % jumps.max())
+        return dict(barrier=float('nan'), discontinuity=float(jumps.max()), rel=rel.tolist())
     i = int(np.argmax(rel))
+    # An UNRELAXED point sits at a non-optimised geometry, so its energy is an upper
+    # bound, not a stationary value. If the maximum is unrelaxed the barrier is not
+    # a barrier - the smoothness check cannot see this.
+    if not relaxed[i]:
+        print('    WARNING: maximum-energy point %d is UNRELAXED - barrier not reported' % i)
+        return dict(barrier=float('nan'), unrelaxed_max=True, rel=rel.tolist())
+    n_un = sum(1 for r in relaxed if not r)
+    if n_un:
+        print('    NOTE: %d/%d points unrelaxed (max is relaxed)' % (n_un, len(relaxed)))
     return dict(d=d.tolist(), rel=rel.tolist(), barrier=float(rel[i]),
-                d_ts=float(d[i]), dE=float(rel[-1]), failed=0)
+                d_ts=float(d[i]), dE=float(rel[-1]), failed=0, n_unrelaxed=n_un)
 
 
 def main():

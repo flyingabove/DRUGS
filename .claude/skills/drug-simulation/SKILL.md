@@ -493,3 +493,21 @@ each point freedom to land in a different basin. Use a **difference coordinate**
 chain geometries along the path, or optimise the transition state directly. Comparing two such scans is
 only valid if the discontinuity falls at the same coordinate in both - verify that explicitly rather
 than assuming the protocol cancels.
+
+## RULE 31 — An unrelaxed point cannot define a barrier
+
+When a constrained optimisation fails, falling back to the *built* geometry keeps the scan alive
+(Rule 28) but that point's energy is an upper bound at a non-stationary geometry, not a physical value.
+
+A profile read 0, +4.1, +12.1, +23.4, **+36.4** - smooth by the adjacent-step test, every point finite,
+and the maximum was **unrelaxed**. Nothing in the smoothness or nan checks could see it.
+
+**If the maximum-energy point is unrelaxed, there is no barrier to report:**
+
+```python
+if not relaxed[argmax(rel)]:
+    return dict(barrier=nan, unrelaxed_max=True)
+```
+
+Carry the relaxation flag through with each point rather than only printing it. A validation that lives
+in the log instead of the return value is a validation you will forget to apply.
