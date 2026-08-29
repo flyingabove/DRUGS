@@ -34,19 +34,32 @@ print('\nTETHER  Cys46 SG - ligand C:  mean %.2f A  sd %.2f  range %.2f-%.2f'
 sasa = md.shrake_rupley(t, mode='atom')            # nm^2
 lig_sasa = sasa[:, heavy] * 100.0                  # -> A^2
 
-# the N-methylamide arms: C(=O)N(H)CH3 groups on the two aryl rings
+# The N-methylamide arms are the WHOLE C(=O)N(H)CH3 group, not just the nitrogen.
+# Selecting only the amide N understates their exposure - the carbonyl oxygens turn
+# out to be the most solvent-exposed atoms in the molecule.
 top = t.topology
+def nbrs_of(i):
+    return [b[1].index if b[0].index == i else b[0].index
+            for b in top.bonds if i in (b[0].index, b[1].index)]
 arms = []
 for a in lig:
-    at = top.atom(a)
-    if at.element.symbol == 'N':
-        nbrs = [b for b in top.bonds if a in (b[0].index, b[1].index)]
-        syms = []
-        for b in nbrs:
-            o = b[1] if b[0].index == a else b[0]
-            syms.append(o.element.symbol)
-        if syms.count('C') >= 2 and 'H' in syms:
-            arms.append(a)
+    if top.atom(a).element.symbol != 'N':
+        continue
+    nb = nbrs_of(a)
+    syms = [top.atom(j).element.symbol for j in nb]
+    if syms.count('C') >= 2 and 'H' in syms:
+        grp = {a}
+        for j in nb:
+            if top.atom(j).element.symbol != 'C':
+                continue
+            jn = nbrs_of(j)
+            # carbonyl carbon of the amide, plus its oxygen; or the N-methyl carbon
+            if any(top.atom(k).element.symbol == 'O' for k in jn):
+                grp.add(j)
+                grp.update(k for k in jn if top.atom(k).element.symbol == 'O')
+            elif sum(1 for k in jn if top.atom(k).element.symbol == 'H') == 3:
+                grp.add(j)
+        arms.extend(sorted(grp))
 print('amide N atoms identified in ligand: %s' % arms)
 
 print('\nLIGAND SOLVENT EXPOSURE OVER THE TRAJECTORY')
