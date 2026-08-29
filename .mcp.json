@@ -1,0 +1,23 @@
+{
+  "mcpServers": {
+    "biocontext-kb": {
+      "command": "uvx",
+      "args": ["biocontext_kb@latest"],
+      "env": { "MCP_ENVIRONMENT": "DEVELOPMENT" }
+    },
+    "gget-mcp": {
+      "command": "uvx",
+      "args": ["--from", "gget-mcp@latest", "stdio"]
+    },
+    "chembl-mcp-server": {
+      "command": "npx",
+      "args": ["-y", "@cyanheads/chembl-mcp-server@0.2.4"],
+      "env": { "MCP_TRANSPORT_TYPE": "stdio" }
+    },
+    "pubchem-mcp-server": {
+      "command": "npx",
+      "args": ["-y", "@cyanheads/pubchem-mcp-server@0.6.1"],
+      "env": { "MCP_TRANSPORT_TYPE": "stdio" }
+    }
+  }
+}

@@ -19,6 +19,9 @@ dependencies:
   - chembl-rest-api
 ---
 
+> **MCP available:** `biocontext-kb` (Open Targets, UniProt, Reactome, KEGG, AlphaFold) gives richer,
+> iterative querying than this script's fixed calls — prefer it when doing exploratory target work.
+
 # Target Profile Skill
 
 Generate comprehensive target dossiers for drug discovery decision-making.

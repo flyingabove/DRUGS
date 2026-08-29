@@ -16,6 +16,9 @@ dependencies:
   - uniprot
 ---
 
+> **MCP available:** `biocontext-kb` covers Open Targets + UniProt with iterative querying — prefer
+> it over this script's fixed calls for exploratory validation work.
+
 # Target Validation Skill
 
 Comprehensive target validation for drug discovery decision-making.

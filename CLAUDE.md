@@ -26,3 +26,15 @@
 - **Commit every significant change to git**, with a message stating what changed and why. Significant
   = a new finding, a corrected claim, a lead change, a skill update, a tooling fix. Do not batch
   unrelated changes into one commit.
+
+## MCP servers (`.mcp.json`)
+
+- `biocontext-kb` — Open Targets, UniProt, Reactome, KEGG, AlphaFold, Ensembl, ClinicalTrials.gov.
+  Use for target/pathway/structure lookups.
+- `gget-mcp` — Ensembl sequence retrieval, BLAST/BLAT.
+- `chembl-mcp-server` — compound-target bioactivity (IC50/Ki/EC50), mechanism, indication.
+- `pubchem-mcp-server` — compound structure/property/bioassay search.
+
+Prefer these over the raw-script skills for exploratory work. Same rule as everything else: verify
+one real record before trusting output in a doc (see
+[skills-and-mcp-integration-plan.md](docs/skills-and-mcp-integration-plan.md) §5).

@@ -12,6 +12,10 @@ Tooling that works: `rdkit` (pip), `xtb` (conda-forge, GFN2 semiempirical QM), A
 (download the binary — the pip build needs Boost headers), `meeko` + `gemmi` (pip, `--no-deps` then
 gemmi separately).
 
+**MCP available for Step 0/Rule 3 structure work:** `biocontext-kb` for AlphaFold/UniProt/Reactome
+lookups, `gget-mcp` for sequence retrieval and BLAST. Still run Rule 3's own diagnostics on whatever
+structure comes back — an MCP source doesn't exempt it from the pocket/burial checks.
+
 ---
 
 # STEP 0 — DO THIS BEFORE THE FIRST DESIGN CYCLE

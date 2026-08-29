@@ -16,6 +16,9 @@ dependencies:
   - drugbank-database
 ---
 
+> **MCP available:** `chembl-mcp-server` (bioactivity/IC50/Ki/mechanism) and `pubchem-mcp-server`
+> (structure/property/bioassay) give iterative querying beyond this script's single-shot calls.
+
 # Compound Profile Skill
 
 Comprehensive compound analysis for drug discovery and medicinal chemistry.

@@ -1,8 +1,9 @@
 # Skills & MCP Integration Plan
 
-Status: RECOMMENDATION — nothing in this doc has been installed. Researched from three sources the
-user provided (Claude for Life Sciences announcement, the Agent Skills blog post, and a DrugBank
-skill listing) plus verification of what those sources pointed to.
+Status: **4 MCP servers installed** (`.mcp.json`), see §6a. Skills library (K-Dense-AI) and
+credential-gated items (DrugBank, Tamarind, ToolUniverse) not installed. Researched from three
+sources the user provided (Claude for Life Sciences announcement, the Agent Skills blog post, and a
+DrugBank skill listing) plus verification of what those sources pointed to.
 
 ## 0. What This Doc Is For
 
@@ -178,6 +179,24 @@ molecule.
 
 **Not recommended:** Benchling, BioRender, 10x Genomics, Databricks/Snowflake connectors — built for
 wet-lab/institutional workflows this project doesn't have.
+
+## 6a. Installed
+
+`.mcp.json` (project root) now configures all four no-credential servers verified in Section 3:
+`biocontext-kb`, `gget-mcp`, `chembl-mcp-server` (v0.2.4, pinned), `pubchem-mcp-server` (v0.6.1,
+pinned). All four confirmed to exist and resolve real dependencies before wiring in — uvx-based
+servers pulled real matching packages (openmm, biopython, gget), npm packages confirmed on the
+registry. **Requires a session restart to activate** — Claude Code loads project MCP servers at
+startup, not mid-session.
+
+Pointers added to `target-profile`, `compound-profile`, `target-validation`, and `drug-simulation`
+skills, and to `CLAUDE.md`, noting when to prefer the MCP tool over the existing raw-script skill.
+
+**Not installed:** official ChEMBL connector (that's an account-level OAuth connector via claude.ai
+settings, not something addable from a repo config — same category as the Gmail/Calendar/Drive
+connectors already noted as unavailable from this session); ToolUniverse (heavier, no simple one-line
+run command found, deprioritized for compactness); K-Dense-AI skills library and DrugBank/Tamarind
+(credential- or account-gated, need the user's own registration first).
 
 ## Related Docs
 
