@@ -341,3 +341,41 @@ over-interpretation of noise.
 
 A calibrated test that answers "no steric problem" is a real result. Do not let it masquerade as a
 ranking.
+
+## RULE 23 — Never pre-write the interpretation into the print statement
+
+Twice in one session a script printed a conclusion its own table contradicted: "a 30-minute half-life
+suffices" when the table said 24% trough / inadequate, and "dose-response is non-monotonic" when the
+scan rose monotonically from 22.1 to 28.1 months.
+
+Both were narrative text embedded in `print` blocks and written *before* the numbers existed. Both would
+have entered a document as findings.
+
+**Print the table. Read it. Then write what it says** - in the document, not in the script. A script that
+states conclusions is a script that can lie to you in your own voice.
+
+## RULE 24 — When a model and the literature disagree, find the parameter they differ on
+
+A systems model said FSP1 inhibition added ~0.1 months. Published work says FSP1-high AML lines and
+FLT3-ITD+ blasts survive GPX4 inhibition and die when FSP1 is co-blocked.
+
+Neither was wrong. The model encoded FSP1 only as a route of *acquired escape* (kG); the literature
+described *pre-existing subtype biology* (baseline kS and depth of remission, S0). **The disagreement
+was entirely in which parameter the intervention touches.**
+
+Do not resolve a model-vs-literature conflict by picking a winner. Locate the parameter, and the two
+usually turn out to describe different mechanisms that both operate.
+
+## RULE 25 — Test a counterintuitive result by deleting its suspected cause
+
+A model showed that *restoring* drug sensitivity SHORTENED disease control - an apparent absurdity.
+Rather than debugging line by line, the shared carrying-capacity term was removed: the paradox vanished
+and the ordering reverted to intuitive.
+
+That single toggle distinguished **competitive release** (real ecology, the basis of adaptive therapy)
+from a coding error, in one run.
+
+**But confirming the mechanism does not license the obvious corollary.** "Competitive release is real"
+tempted an immediate conclusion that lower doses would be better; the dose scan was monotonically
+increasing, because reducing dose also relieves pressure on the resistant clone. Verify the corollary
+separately from the mechanism.
