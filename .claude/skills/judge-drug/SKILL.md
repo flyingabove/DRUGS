@@ -50,6 +50,19 @@ the property gap stated), *modelled*, or *asserted*. **Asserted is never above �
 **The only currency is overall survival — how long the patient lives.** Every other measurement is a
 surrogate, and surrogates have failed here before.
 
+#### The official language, verbatim
+
+> "Overall survival is defined as the time from randomization until death from any cause. **Survival is
+> considered the most reliable cancer endpoint**, and when trials can be conducted to adequately assess
+> survival, it is the preferred endpoint."
+> — FDA, *Clinical Trial Endpoints for the Approval of Cancer Drugs and Biologics* (2018)
+
+> Accelerated approval may be granted where a drug has an effect on "a surrogate endpoint that is
+> **reasonably likely to predict clinical benefit**", subject to a required confirmatory trial.
+> — FDCA §506(c) / 21 CFR 314.510
+
+**Note what is absent from both: any number.** No months, no hazard ratio, no percentage.
+
 #### What the FDA actually requires — and what it does not
 
 **The FDA publishes no numerical threshold.** There is no rule saying "X months of survival is enough".
