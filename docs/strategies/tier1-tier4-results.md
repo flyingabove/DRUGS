@@ -202,3 +202,63 @@ N/O/C). **Anchor buried, payload in water**, exactly as designed.
 **not** affect the DFT run: psi4 is given explicit coordinates and a charge, never SMILES bond orders,
 and it re-optimises the geometry — so it computed the correct closed-shell anion regardless. The
 nitrile-oxide electrophile itself was always correct.
+
+---
+
+# Tier 4.3 — Solubility: a real problem, and a trade-off I missed
+
+Three empirical models (ESOL, Ali, GSE with an estimated melting point), anchored against two compounds
+with known measured solubility.
+
+| Compound | mean logS | **mg/mL** |
+|---|---|---|
+| *ref: caffeine* (measured ~21 mg/mL) | −0.45 | *69* |
+| *ref: griseofulvin* (measured ~0.009 mg/mL) | −4.61 | *0.009* |
+| **GPX4-M3** | −4.27 | **0.029** |
+| GPX4-M1 | −4.65 | 0.012 |
+| GPX4-M4 | −5.65 | 0.001 |
+| ML210 | −6.81 | 0.0004 |
+
+**The anchors validate the method at the low end:** griseofulvin comes out at 0.009 mg/mL against a
+measured 0.009. Caffeine is overestimated ~3× but lands correctly as freely soluble.
+
+## The finding
+
+**GPX4-M3 at ~0.03 mg/mL sits in griseofulvin territory — a textbook poorly-soluble drug.** A daily
+injectable needs roughly **>1 mg/mL** in a formulable vehicle. **We are 30–100× short.**
+
+M3 is the best of the series — 2.4× better than M1, 30× better than M4, 70× better than ML210 — but
+"best of a poorly-soluble set" is not solved. This is a genuine formulation problem, not a rounding
+error, and it is the most concrete liability the campaign has produced.
+
+## The trade-off I missed
+
+Earlier I wrote that **M3 dominates M1 on every axis.** That was wrong in one important respect.
+
+**These models predict *intrinsic* (neutral-form) solubility. A basic amine can be formulated as a
+salt**, which routinely improves apparent solubility by orders of magnitude and is the standard route to
+an injectable. M1's piperazine (est. pKa ~6–7) would form a stable HCl salt. **M3 has no basic nitrogen
+at all — that was the point of the change — so salt formation is not available to it.**
+
+| | GPX4-M1 | GPX4-M3 |
+|---|---|---|
+| OCT2 kidney risk | basic N — **present** | none |
+| hERG pharmacophore | **moderate-high** | low |
+| Intrinsic solubility | 0.012 mg/mL | **0.029 mg/mL** |
+| **Salt formation for injection** | **available** | **not available** |
+
+**So the ranking is a genuine trade-off, not a clean win.** M3 removes two safety liabilities and gives
+up the most common formulation lever. Which matters more is an empirical question — measured solubility
+and a rat PK study decide it, not these models.
+
+**Both should be carried forward.** Dropping M1 on the strength of my earlier "dominates on every axis"
+claim would have discarded the only salt-formable candidate.
+
+## What computation cannot settle here
+
+The melting-point term drives the GSE estimate and is the weakest input. **Symmetric, rigid molecules
+pack efficiently and melt high, which suppresses solubility** — and symmetry is precisely what we chose
+for the no-stereocentre advantage. That benefit may have a solubility cost.
+
+**A measured melting point and a measured intrinsic solubility resolve this, and nothing else does.**
+Both are cheap, early experiments and belong in the first wet-lab batch alongside the enzyme assay.
