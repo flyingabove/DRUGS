@@ -232,6 +232,28 @@ Without the control, 0.42 Å is an uninterpretable number. With it, it is a pass
 
 **Never run a scoring protocol without putting a known binder through it first.**
 
+## RULE 17 — Establish potency by inheritance when you cannot compute it
+
+De novo potency prediction for a covalent inhibitor needs QM/MM barriers. Often you do not need it.
+
+If the candidate carries **the identical warhead** to a compound whose potency is experimentally
+known, the question changes from "how potent is this" to **"does anything I changed touch the
+machinery that makes the parent work?"** That *is* computable, cheaply, and it decomposes into three
+measurements:
+
+1. **Does the warhead still generate its reactive species?** For a masked electrophile, measure the
+   Wiberg bond order of the leaving-group bond and the charge on the electrophilic atom.
+   *GPX4-M1 vs ML210: bond order Δ 0.006, electrophile charge Δ 0.0003 e — unchanged.*
+2. **Is the electrophile still electrophilic?** Full-molecule LUMO shift. *Δ −0.32 eV.*
+3. **Can it still reach the reactive geometry?** Anchored fit against a positive control (Rule 16).
+   *0.42 Å vs 0.55 Å for a known binder.*
+
+All three unchanged ⇒ the candidate should inherit the parent potency.
+
+**State the limit plainly: this is an inheritance argument, not an IC₅₀.** It establishes that nothing
+was broken; it does not establish that the parent chemotype is potent enough to matter. Only the
+purified-enzyme assay does that.
+
 ---
 
 ## Standard cascade
