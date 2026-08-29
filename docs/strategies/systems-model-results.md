@@ -212,3 +212,63 @@ adherence matters as much as the pharmacology.
 | Schedule | **daily injection** | matches the stated goal |
 | Potency beyond adequacy | **worthless** | stop optimising it |
 | **Retained kill on resistant clone (kG)** | **the actual lever** | **unmeasured — the key experiment** |
+
+---
+
+# kG has literature support, and the news is bad
+
+The systems model identified **kG** — residual kill on the ferroptosis-incompetent escaping clone — as
+the parameter the whole programme lives on, with a sharp phase transition at kG/r = 1. It was flagged
+as unmeasured. Published data constrains it, and constrains it in the unfavourable direction.
+
+## What the literature says
+
+- **ACSL4 is required for ferroptosis sensitivity**, by enriching membranes with the long
+  polyunsaturated ω6 fatty acids that are the substrate for lethal lipid peroxidation
+  ([Nat Chem Biol](https://www.nature.com/articles/nchembio.2239)).
+- **GPX4-ACSL4 double-knockout cells are markedly resistant to ferroptosis.**
+- Critically: **ACSL4 matters far more for ferroptosis induced by GPX4 inhibitors (RSL3-type) than for
+  ferroptosis induced by SLC7A11 inhibitors (erastin) or cystine starvation**
+  ([ScienceDirect](https://www.sciencedirect.com/science/article/pii/S2451945622002781)).
+- GPX4-knockout cells that survive show **compensatory upregulation of FSP1 and PRDX1**
+  ([PMC](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC10747702/)).
+
+## What this means for GPX4-M3
+
+**kG is likely near zero for GPX4 monotherapy.** ACSL4 loss is not a partial shield against a GPX4
+inhibitor — it is close to a complete one, and it is *specifically* protective against this mechanism.
+With kG ≈ 0 the model gives kG/r ≈ 0, which is the regime where **relapse is arithmetically inevitable**
+and monotherapy delivers delay only.
+
+**This is confirmation of the model's central prediction, not a new problem** — but it removes the
+optimistic end of the parameter range. The maintenance thesis survives as *delay* (the QUAZAR
+precedent, ~10 months, FDA-approved) and does not survive as *control*.
+
+## The actionable asymmetry
+
+**Erastin-type killing is less ACSL4-dependent than RSL3-type killing.** That is a specific, published
+asymmetry and it matters: an SLC7A11 inhibitor retains more activity in exactly the cells that escape a
+GPX4 inhibitor.
+
+That does **not** contradict the earlier finding that a second ferroptosis arm adds nothing. The
+withdrawn recommendation was **FSP1i**, which acts on the same GPX4-type lipid-peroxidation axis the
+escaping clone has already disabled. **SLC7A11 inhibition is a different dependency** — it kills through
+cystine/glutathione starvation, which reaches cells whose ACSL4-dependent peroxidation machinery is
+gone.
+
+**Revised partner ranking for durability:**
+
+| Partner | Acts on | Expected effect on kG |
+|---|---|---|
+| FSP1 inhibitor | same lipid-peroxidation axis | **none** — clone already ferroptosis-incompetent |
+| **SLC7A11 / cystine-starvation agent** | **partially ACSL4-independent** | **plausible, published basis** |
+| Venetoclax (apoptosis) | fully orthogonal | plausible, mechanism-independent |
+| Azacitidine | lowers emergence rate μ | modest, additive |
+
+## The experiment this sharpens
+
+The proposed kG measurement stands and is now better specified: **GPX4-M3 against ACSL4-knockout AML
+lines, with an erastin-type agent and venetoclax as comparator arms.** The prediction is that M3 alone
+shows near-zero activity, and that the comparators retain measurable killing. **If M3 retains
+nothing and no partner rescues it, the durability thesis fails and the programme is a delay strategy
+only — which is still approvable, but it is a different clinical claim.**
