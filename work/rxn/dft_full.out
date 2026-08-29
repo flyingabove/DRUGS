@@ -1,0 +1,116 @@
+
+  Memory set to   3.260 GiB by Python driver.
+Level: opt wb97x-d/def2-svpd | SP wb97x-d/def2-tzvppd
+Solvent: IEFPCM water
+
+--- species ---
+Some dependencies such as QCElemental have not yet finished migration to pydantic v2. If issues are encountered please downgrade pydantic or upgrade QCElemental as appropriate
+	Previous geometry is closer to target in internal coordinates, so using that one.
+
+	Best geometry has RMS(Delta(q)) = 3.67e-07
+
+Optimizer: Optimization complete!
+  MeSe_anion   [CH3][Se-]                       chg-1  E = -2441.66579816
+	Previous geometry is closer to target in internal coordinates, so using that one.
+
+	Best geometry has RMS(Delta(q)) = 9.90e-08
+
+Optimizer: Optimization complete!
+  MeS_anion    [CH3][S-]                        chg-1  E = -438.24366934
+	Previous geometry is closer to target in internal coordinates, so using that one.
+
+	Best geometry has RMS(Delta(q)) = 3.27e-06
+
+Optimizer: Optimization complete!
+  MeBr         CBr                              chg+0  E = -2614.13520754
+Missing Hessian. Step is 0
+    [Br_anion] opt did not converge (ValueError) - using last geometry
+  Br_anion     [Br-]                            chg-1  E = -2574.40488035
+	Previous geometry is closer to target in internal coordinates, so using that one.
+
+	Best geometry has RMS(Delta(q)) = 1.28e-03
+
+	Previous geometry is closer to target in internal coordinates, so using that one.
+
+	Best geometry has RMS(Delta(q)) = 2.07e-05
+
+	Previous geometry is closer to target in internal coordinates, so using that one.
+
+	Best geometry has RMS(Delta(q)) = 1.38e-04
+
+	Change in internal coordinate of 5.73e-01 exceeds limit of 5.00e-01.
+	Skipping Hessian update for step 3.
+	Change in internal coordinate of 6.32e-01 exceeds limit of 5.00e-01.
+	Skipping Hessian update for step 2.
+	Change in internal coordinate of 6.62e-01 exceeds limit of 5.00e-01.
+	Skipping Hessian update for step 1.
+	Change in internal coordinate of 8.86e-01 exceeds limit of 5.00e-01.
+	Skipping Hessian update for step 4.
+	Change in internal coordinate of 1.02e+00 exceeds limit of 5.00e-01.
+	Skipping Hessian update for step 3.
+	Change in internal coordinate of 1.08e+00 exceeds limit of 5.00e-01.
+	Skipping Hessian update for step 2.
+	Change in internal coordinate of 1.11e+00 exceeds limit of 5.00e-01.
+	Skipping Hessian update for step 1.
+	Change in internal coordinate of 7.94e-01 exceeds limit of 5.00e-01.
+	Skipping Hessian update for step 4.
+	Change in internal coordinate of 9.23e-01 exceeds limit of 5.00e-01.
+	Skipping Hessian update for step 3.
+	Change in internal coordinate of 9.83e-01 exceeds limit of 5.00e-01.
+	Skipping Hessian update for step 2.
+	Change in internal coordinate of 1.01e+00 exceeds limit of 5.00e-01.
+	Skipping Hessian update for step 1.
+	Previous geometry is closer to target in internal coordinates, so using that one.
+
+	Best geometry has RMS(Delta(q)) = 3.38e-05
+
+	Change in internal coordinate of 8.26e-01 exceeds limit of 5.00e-01.
+	Skipping Hessian update for step 4.
+	Change in internal coordinate of 9.52e-01 exceeds limit of 5.00e-01.
+	Skipping Hessian update for step 3.
+	Change in internal coordinate of 1.01e+00 exceeds limit of 5.00e-01.
+	Skipping Hessian update for step 2.
+	Change in internal coordinate of 1.04e+00 exceeds limit of 5.00e-01.
+	Skipping Hessian update for step 1.
+	Energy ratio indicates iffy step.
+	Intrafrag trust radius decreased to   0.25.
+	Unable to completely converge to displaced geometry.
+	RMS(dx):  2.809e-06 	Max(dx):  9.046e-06 	RMS(dq):  2.006e-06
+	Previous geometry is closer to target in internal coordinates, so using that one.
+
+	Best geometry has RMS(Delta(q)) = 2.01e-06
+
+Optimizer: Optimization complete!
+S matrix is not positive-definite!
+Consider changing the average area of the cavity finite elements.
+Normally an error, this has been commuted to a warning via patch.
+Please report this issue: https://github.com/PCMSolver/pcmsolver/issues/206
+
+S matrix is not positive-definite!
+Consider changing the average area of the cavity finite elements.
+Normally an error, this has been commuted to a warning via patch.
+Please report this issue: https://github.com/PCMSolver/pcmsolver/issues/206
+
+  MeSeMe       C[Se]C                           chg+0  E = -2481.45034024
+	Previous geometry is closer to target in internal coordinates, so using that one.
+
+	Best geometry has RMS(Delta(q)) = 5.62e-05
+
+	Previous geometry is closer to target in internal coordinates, so using that one.
+
+	Best geometry has RMS(Delta(q)) = 2.38e-06
+
+	Unable to completely converge to displaced geometry.
+	RMS(dx):  2.658e-06 	Max(dx):  8.392e-06 	RMS(dq):  2.298e-06
+Optimizer: Optimization complete!
+S matrix is not positive-definite!
+Consider changing the average area of the cavity finite elements.
+Normally an error, this has been commuted to a warning via patch.
+Please report this issue: https://github.com/PCMSolver/pcmsolver/issues/206
+
+S matrix is not positive-definite!
+Consider changing the average area of the cavity finite elements.
+Normally an error, this has been commuted to a warning via patch.
+Please report this issue: https://github.com/PCMSolver/pcmsolver/issues/206
+
+  MeSMe        CSC                              chg+0  E = -478.03732508

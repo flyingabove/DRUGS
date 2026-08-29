@@ -94,14 +94,26 @@ def try_enable_pcm():
 
 
 def opt_then_sp(smi, chrg, tag):
+    """Optimise in GAS PHASE (analytic gradients), single-point with PCM.
+
+    psi4 has no analytic PCM gradients - it silently falls back to finite
+    differences, which costs ~6N SCF evaluations per geometry step and made the
+    first attempt intractable on a 5-atom molecule. Gas-phase geometry + implicit
+    solvent single-point is the standard and robust protocol.
+    """
     S, P = geom_from_smiles(smi)
     mol = psi4_mol(S, P, chrg)
+    psi4.set_options({'pcm': False})          # gas-phase geometry
     try:
         psi4.optimize(OPT_LEVEL, molecule=mol)
     except Exception as e:
         print("    [%s] opt did not converge (%s) - using last geometry"
               % (tag, type(e).__name__))
+    if HAVE_PCM:                              # solvated single-point
+        psi4.set_options({'pcm': True, 'pcm_scf_type': 'total'})
+        psi4.pcm_helper(PCM_INPUT)
     E = psi4.energy(SP_LEVEL, molecule=mol)
+    psi4.set_options({'pcm': False})
     psi4.core.clean()
     return float(E)
 

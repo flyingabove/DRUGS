@@ -1,3 +1,0 @@
-
-  Memory set to   3.260 GiB by Python driver.
-Some dependencies such as QCElemental have not yet finished migration to pydantic v2. If issues are encountered please downgrade pydantic or upgrade QCElemental as appropriate

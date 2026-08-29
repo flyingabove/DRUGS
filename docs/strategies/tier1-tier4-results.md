@@ -187,18 +187,27 @@ coordinate frame with a different receptor subset and without the deposited-pose
 # Per-atom burial of M3 in its own anchored pose
 
 The design premise — that the N-methylamide arms, the only thing changed from ML210, sit in solvent —
-had only ever been checked on ML210's pose. Recomputed in **M3's own** best anchored pose:
+had only ever been checked on ML210's pose. Recomputed in **M3's own** best anchored pose.
+
+**Correction to a first version of this section.** The adduct SMILES used
+`C(=[N+][O-])`, which puts three bonds on a positively charged nitrogen and therefore carries **one
+radical electron**. RDKit accepts it silently. The corrected structure is the **oximate**,
+`C(=N[O-])`. Rerun with the correct valence:
 
 | | Max overlap | Mean burial | Atoms >50% buried |
 |---|---|---|---|
-| ML210 | 0.34 Å | 0.36 | 8 / 28 |
-| **GPX4-M3** | 0.34 Å | **0.22** | 8 / 35 |
+| ML210 | 0.34 Å | 0.27 | 8 / 28 |
+| GPX4-M3 | 0.34 Å | 0.31 | 9 / 35 |
 
-**M3 is less buried overall than ML210** (0.22 vs 0.36) despite being a larger molecule, and it has the
-same absolute number of buried atoms — those extra atoms all went into solvent.
+**The earlier claim that M3 is *less* buried than ML210 (0.22 vs 0.36) was an artifact of the radical
+structure and is withdrawn.** With correct valences the two are comparable, M3 marginally more buried —
+and given that conformer search is stochastic, a 0.04 difference is not meaningful either way.
 
-**The modified arms are at burial 0.00 — fully solvent-exposed.** The buried set in both compounds is
-the warhead region (Se, the adjacent N/O/C), exactly as designed: **anchor buried, payload in water.**
+**What survives, and it is the claim that matters:** the modified arms sit at **burial 0.00 — fully
+solvent-exposed** — while the buried set in both compounds is the warhead region (Se and the adjacent
+N/O/C). **Anchor buried, payload in water**, exactly as designed.
 
-This is the fourth independent line supporting the substitution, and the first computed on the actual
-lead rather than on its parent.
+**Scope of the radical defect.** It affected the adduct structures in the fit and burial scripts. It did
+**not** affect the DFT run: psi4 is given explicit coordinates and a charge, never SMILES bond orders,
+and it re-optimises the geometry — so it computed the correct closed-shell anion regardless. The
+nitrile-oxide electrophile itself was always correct.

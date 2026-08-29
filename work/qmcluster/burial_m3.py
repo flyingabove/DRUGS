@@ -21,8 +21,8 @@ R=np.array(rec); R=R[np.linalg.norm(R-sec_se,axis=1)<20]
 sup=Chem.SDMolSupplier('../structures/G9N_bound.sdf',removeHs=True,sanitize=False)
 GP=next(iter(sup)).GetConformer().GetPositions()
 d=np.linalg.norm(GP-sec_se,axis=1);VEC=(GP[int(np.argmin(d))]-sec_se)/np.linalg.norm(GP[int(np.argmin(d))]-sec_se)
-ADD={'ML210':'O=C(N1CCN(C(c2ccc(Cl)cc2)c2ccc(Cl)cc2)CC1)C(=[N+][O-])[Se]C',
-     'GPX4-M3':'CNC(=O)c1ccc(C(c2ccc(C(=O)NC)cc2)N2C(=O)CN(C(=O)C(=[N+][O-])[Se]C)CC2)cc1'}
+ADD={'ML210':'O=C(N1CCN(C(c2ccc(Cl)cc2)c2ccc(Cl)cc2)CC1)C(=N[O-])[Se]C',
+     'GPX4-M3':'CNC(=O)c1ccc(C(c2ccc(C(=O)NC)cc2)N2C(=O)CN(C(=O)C(=N[O-])[Se]C)CC2)cc1'}
 def sasa_burial(X,EL,probe=1.4,npts=180):
     """fraction of each atom's SA sphere occluded by receptor atoms"""
     g=np.arange(npts);phi=np.arccos(1-2*(g+0.5)/npts);th=np.pi*(1+5**0.5)*g
@@ -74,3 +74,8 @@ for n,s in ADD.items():
     srt=np.argsort(b)
     print("           most exposed: "+", ".join("%s%d %.2f"%(EL[hv[i]],hv[i],b[i]) for i in srt[:5]))
     print("           most buried : "+", ".join("%s%d %.2f"%(EL[hv[i]],hv[i],b[i]) for i in srt[-5:]))
+    if n=='GPX4-M3':
+        np.save('m3_pose_full.npy',X)
+        with open('m3_pose_elements.txt','w') as fh:
+            fh.write(chr(10).join(EL))
+        print("           -> saved m3_pose_full.npy (%d atoms, incl. H)"%len(X))

@@ -379,3 +379,26 @@ from a coding error, in one run.
 tempted an immediate conclusion that lower doses would be better; the dose scan was monotonically
 increasing, because reducing dose also relieves pressure on the resistant clone. Verify the corollary
 separately from the mechanism.
+
+## RULE 26 — Check radical electrons after every SMILES construction
+
+`C(=[N+][O-])` looks like a reasonable nitrone and parses without complaint, but it puts three bonds on
+a cationic nitrogen and leaves **one radical electron**. RDKit accepts it silently; MMFF then produces a
+geometry for a species that does not exist. Downstream burial numbers shifted enough to reverse a
+published comparison.
+
+The correct adduct of a nitrile oxide is the **oximate** `C(=N[O-])` (or the neutral oxime `C(=NO)`).
+
+```python
+m = Chem.AddHs(Chem.MolFromSmiles(smi))
+assert sum(a.GetNumRadicalElectrons() for a in m.GetAtoms()) == 0, smi
+assert Chem.GetFormalCharge(m) == expected_charge, smi
+```
+
+**Assert both radicals and total charge on every constructed SMILES**, especially after string
+substitution. OpenFF refuses radicals outright with a clear error - which is how this one was finally
+caught, three calculations too late.
+
+**Scope the damage rather than discarding everything:** QM codes take coordinates and a charge, not bond
+orders, and re-optimise - so the DFT was unaffected. Force-field work, which reads bond orders directly,
+was not.
