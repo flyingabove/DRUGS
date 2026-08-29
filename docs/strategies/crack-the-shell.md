@@ -1368,6 +1368,7 @@ scan variant. It was corroborative, not load-bearing.
 | **"FSP1i closes the escape route"** | Withdrawn for durability; the escaping clone is ferroptosis-*incompetent* |
 | **"kG ≈ 0 is devastating"** | Costs **1.7 months**. kG only dominates *above* the kG/r threshold |
 | **"Competitive release ⇒ lower doses are better"** | Dose-response was flatly monotonic. The corollary did not follow from the mechanism |
+| **Presented "pair with an orthogonal mechanism" as a strategic discovery** | It is a **rediscovery** — ML210 + venetoclax synergy is published, including in CD34⁺CD38⁻ cells from venetoclax-resistant patients. The model reproducing it is validation, not novelty (§23) |
 | **"M1 fits better than the positive control"** | Difference below the protocol's own 0.58 Å resolution |
 | **"TXNRD1 tail unresolved because mobile"** | Resolved in 3QFA; both structures are Sec-to-Cys mutants |
 | **Broke the user's environment** | Installed a chemistry stack into base conda; it pulled a conda `pytorch` over a pip one and broke torch |
@@ -1512,3 +1513,74 @@ always corroborative. Recording its failure honestly costs the programme nothing
 selenocysteine proteome. Given that the selenoproteome is absent from structure databases (§20.1), this
 was already the only route to a proteome-scale answer. The failed calculation does not change that; it
 just removes the consolation prize.
+
+---
+
+# 23. THE PARTNER QUESTION IS ALREADY ANSWERED — and the model rediscovered it
+
+The systems modelling concluded that durability requires a partner with an **orthogonal death
+mechanism**, not a second ferroptosis arm, and named venetoclax as the archetype. **That combination has
+already been tested, with ML210 specifically, and it works.**
+
+## The published result
+
+**ML210 + venetoclax is synergistic in AML**
+([Leukemia](https://www.nature.com/articles/s41375-023-02117-2)):
+
+| Cell line | Combination index |
+|---|---|
+| OCI-AML3 | 0.71 |
+| MOLM13 | **0.53** |
+| MV4;11 | 0.57 |
+
+*(CI < 1 = synergy.)*
+
+And the parts that matter most for this programme:
+
+- **Venetoclax-resistant lines showed *more* prominent synergism** than venetoclax-sensitive ones
+- **Synergism was observed in CD34⁺CD38⁻ stem/progenitor cells** from both venetoclax-resistant and
+  venetoclax-naive patients — **the exact population this programme targets**
+- Recapitulated in doxycycline-inducible GPX4-knockdown cells, confirming the effect is **on-target**
+
+## What this does to the programme, honestly
+
+**It validates the model and removes a novelty claim.**
+
+The resistance model independently predicted that (a) a second ferroptosis arm adds nothing, (b) an
+orthogonal-mechanism partner converts delay into control, and (c) the effect should be strongest in
+cells that have escaped other pressure. **All three match the published data.** A model reproducing a
+known experimental result it was not fitted to is the best validation available here.
+
+**But the combination is not novel, and I should not have implied it was.** When the model produced
+"pair with an orthogonal mechanism" I presented it as a strategic redirection. It is a *rediscovery*.
+The synergy data was already in this project's evidence base — it is what made the venetoclax-resistant
+indication credible in the first place.
+
+## What is actually novel, then
+
+**Not the combination. The molecule, and the framing.**
+
+| Element | Novel? |
+|---|---|
+| GPX4 as an AML target | no — established |
+| GPX4 inhibitor + venetoclax | **no — published, with ML210** |
+| Activity in venetoclax-resistant LSCs | no — published |
+| **GPX4-M3 as a molecule** | **yes** — property-engineered for chronic dosing: no basic nitrogen, no hERG pharmacophore, 3 log units less lipophilic than ML210, no stereocentres |
+| **Chronic maintenance framing** | **yes in this context** — daily gentle dosing, modelled schedule, deployment in deepest remission |
+
+**This is a stronger position than proposing an untested combination, not a weaker one.** The partner is
+de-risked by published data in the target cell population; the contribution is a molecule fit for
+chronic administration, which ML210 is not (logP 4.75, hERG pharmacophore, essentially insoluble).
+
+## The revised clinical proposition
+
+**GPX4-M3 + venetoclax, as maintenance, in deepest remission.**
+
+- The **combination** has published synergy in CD34⁺CD38⁻ cells from venetoclax-resistant patients
+- The **schedule** comes from this campaign: daily, continuous, ~4 h half-life sufficient, dose
+  escalation pointless
+- The **molecule** is the new part, and its remaining gate is solubility (§21.4)
+
+**And it sharpens the kG experiment.** The proposed ACSL4-knockout study now has a concrete positive
+control: venetoclax should retain killing where GPX4-M3 alone does not. If it does not, the orthogonality
+assumption fails and the model is wrong about the mechanism of rescue.
