@@ -50,6 +50,38 @@ the property gap stated), *modelled*, or *asserted*. **Asserted is never above �
 **The only currency is overall survival — how long the patient lives.** Every other measurement is a
 surrogate, and surrogates have failed here before.
 
+#### What the FDA actually requires — and what it does not
+
+**The FDA publishes no numerical threshold.** There is no rule saying "X months of survival is enough".
+Approval turns on a case-by-case judgement of *clinically meaningful benefit*. Anyone quoting a fixed
+number is quoting a convention, not a regulation — **including the 2.5-month figure used earlier in this
+skill, which is ASCO's yardstick, not the FDA's.**
+
+What the FDA does provide:
+
+| Source | What it says |
+|---|---|
+| **Guidance: Clinical Trial Endpoints for the Approval of Cancer Drugs and Biologics** (2005, rev. 2018) | Defines acceptable endpoints. **Overall survival is the gold standard** — unambiguous, not subject to assessment bias |
+| **Accelerated approval pathway** | Permits approval on a surrogate **"reasonably likely to predict clinical benefit"**, with a confirmatory trial required afterwards |
+| **Draft guidance: Approaches to Assessment of Overall Survival in Oncology Clinical Trials** | Pushes sponsors to collect and analyse survival data even when it is not the primary endpoint |
+| **Recent direction** | A "one trial" design powered for **both** a surrogate and overall survival |
+
+So there are two doors, and they demand different things:
+
+- **Regular approval** — demonstrate clinical benefit. In practice, overall survival.
+- **Accelerated approval** — a surrogate reasonably likely to predict benefit, then confirm it.
+
+#### The three yardsticks, ranked by authority
+
+| Yardstick | Status | Number |
+|---|---|---|
+| **Precedent in the same indication** | **strongest** — an actual decision by the actual regulator | QUAZAR: **+9.9 months** overall survival → approved for AML maintenance |
+| **Empirical approval pattern** | observed, not mandated | hazard ratio **≤ 0.80** for overall survival ≈ 50% probability of approval |
+| **ASCO clinically-meaningful threshold** | professional-society **recommendation**, not regulation | ≥2.5 months absolute **and** ≥25% relative |
+
+**Score against precedent first.** A drug in AML maintenance is judged against what was actually approved
+in AML maintenance, not against a generic number.
+
 #### The decision procedure
 
 Ask these in order and stop at the first that applies:
@@ -57,9 +89,9 @@ Ask these in order and stop at the first that applies:
 | Ask | Answer | Score |
 |---|---|---|
 | **1.** Does the disease stop coming back — patients die of something else? | yes | 🟢 **cure** |
-| **2.** Does overall survival improve by **≥2.5 months absolute AND ≥25% relative**, statistically significant, in the primary analysis? | yes | 🟡 **approvable delay** |
-| **3.** Does overall survival improve, but below that threshold? | yes | 🟠 real but probably not approvable alone |
-| **4.** Does only a *surrogate* improve — remission rate, minimal residual disease, relapse-free survival — with no overall-survival gain? | yes | 🔴 |
+| **2.** Does overall survival improve by an amount comparable to what was approved in this indication (AML maintenance: ~10 months; hazard ratio ≤0.80), statistically significant, in the primary analysis? | yes | 🟡 **approvable delay** |
+| **3.** Does overall survival improve, but well short of that? | yes | 🟠 real but likely short of approval on its own |
+| **4.** Does only a *surrogate* improve — remission rate, minimal residual disease, relapse-free survival — with no overall-survival gain? | yes | 🔴 **for regular approval.** Consider accelerated approval only if that surrogate is independently accepted as reasonably likely to predict survival in this disease |
 | **5.** Nothing improves | — | 🔴 |
 
 **Step 2 is the approval bar and a delay passes it.** Not curing is not failing.
