@@ -1310,3 +1310,137 @@ All cheap, all wet-lab:
 3. **Proteome-wide covalent profiling** — the only route to selenoproteome selectivity
 
 And the one that decides everything: **serial transplantation**, with a pre-registered kill criterion.
+
+---
+
+# 20. WHAT DIDN'T WORK — the running list
+
+Kept deliberately. Most of these produced a confident-looking number before being caught, and the
+pattern is more useful to a reader than any single result.
+
+## 20.1 Methods that were structurally incapable of the question asked
+
+| # | Attempt | What happened | Why |
+|---|---|---|---|
+| 1 | **Non-covalent docking** | affinities −5.7 kcal/mol, crystal ligand redocked 5.9 Å off | **There is no cavity to score.** 26 Å³ within 5 Å of the catalytic selenium |
+| 2 | **Frontier-orbital selectivity analysis** | returned **exactly 0.00** | The warhead orbital cancels algebraically. The method could not have answered it |
+| 3 | **Anchored docking, random orientations** | 0 clash-free poses from 1,860 — **and 0 for ML210, a known binder** | Random directions from a buried atom point into protein. A method that rejects the positive control is broken, not informative |
+| 4 | **Straight-ray exit-vector search** | 0 open vectors out of 400 — **in the very structure that contains a bound ligand** | A ligand can bend; it does not need a straight channel |
+| 5 | **Selenoproteome-wide structural scan** | 18 of 20 selenoproteins absent from AlphaFold DB (2/2 controls present) | Selenocysteine is encoded by UGA; prediction pipelines drop those sequences. **Not fixable — the structures do not exist** |
+
+## 20.2 Three barrier protocols, three different failures
+
+The one calculation that would directly test the selectivity mechanism. **Not obtained.**
+
+| Version | Setup | Failure |
+|---|---|---|
+| **v1** | freeze forming bond, rebuild each point | **Basin hop** — 46 kcal/mol cliff across one 0.2 Å step. The "+23.6 barrier" was just the last point before the surface snapped |
+| **v2** | freeze both bonds, chain geometries | **Over-constrained** — optimisation failed at the transition region, profile inflated to +48 against ~20–25 expected for an SN2 in water |
+| **v3** | freeze forming bond, chain geometries | Relaxed one point further than v2, then **failed in the same place** |
+
+**v1 to v2 changed two things at once** (constraint count *and* geometry source), so v2's failure could
+not be attributed to either. Chaining was the fix; the second constraint was the new bug. **One variable
+per attempt would have found this in half the compute.**
+
+**Stopped at three.** This needs a genuine eigenvector-following transition-state search, not a fourth
+scan variant. It was corroborative, not load-bearing.
+
+## 20.3 Bugs that produced plausible wrong answers
+
+| Bug | Symptom | Cause |
+|---|---|---|
+| **Covalent bond scored as a steric clash** | identical **1.16 Å** overlap for every molecule across three runs | Sec46 SE left in the clash array; the bonded carbon sits 1.98 Å away by construction |
+| **Wrong catalytic residue** | crystal ligand sat **34.28 Å** from the "catalytic" site | Matching `CYS/SG` selected **Cys10**, the first such atom in the file, not Sec46 |
+| **Radical-bearing adduct SMILES** | reversed an already-committed burial comparison | `C(=[N+][O-])` puts three bonds on a cationic nitrogen — one radical electron. Correct form is the oximate `C(=N[O-])` |
+| **Ring-closure digit collision** | 3 of 4 compounds silently skipped | Regex assumed digit `1`; M1/M3 use `3`, and ML210 writes its carbonyl as `O=C(...)` |
+| **Zero shortlisted candidates** | every analog rejected | The basic-amine filter matched the **core piperazine**, present in ML210 and every analog |
+| **Ligand could not accept its own bond** | stiff 1.82 Å tether settled at **2.41 Å** | H-capping the attachment carbon to satisfy the parameteriser left it valence-saturated. **The atom added to make it run made the modelled reaction impossible** |
+| **Metric computed over failed points** | clean-looking "3.89 kcal/mol barrier" | 5 of 7 points were `nan`; `nanargmax` returned the maximum of the two survivors |
+| **Index captured before atom deletion** | would have pointed at the wrong atom | Deleting a hydrogen renumbers everything after it |
+
+## 20.4 Reasoning errors — mine, not the software's
+
+| Error | Correction |
+|---|---|
+| **Control tested the wrong quantity** | Judged GFN2-xTB "sign-inverted" using a *thermodynamic* number against a *kinetic* claim. C–S is stronger than C–Se, so the sign was correct chemistry. **GFN2 had it right; GFN1, which I endorsed, had it wrong.** Both verdicts backwards |
+| **"No DFT engine on Windows"** | One failed `pip install pyscf`. `conda install psi4` works. **A hard compute barrier reported after a single command** |
+| **"M3 dominates M1 on every axis"** | Removing the basic nitrogen also removed salt formation — the standard injectable route |
+| **"FSP1i closes the escape route"** | Withdrawn for durability; the escaping clone is ferroptosis-*incompetent* |
+| **"kG ≈ 0 is devastating"** | Costs **1.7 months**. kG only dominates *above* the kG/r threshold |
+| **"Competitive release ⇒ lower doses are better"** | Dose-response was flatly monotonic. The corollary did not follow from the mechanism |
+| **"M1 fits better than the positive control"** | Difference below the protocol's own 0.58 Å resolution |
+| **"TXNRD1 tail unresolved because mobile"** | Resolved in 3QFA; both structures are Sec-to-Cys mutants |
+| **Broke the user's environment** | Installed a chemistry stack into base conda; it pulled a conda `pytorch` over a pip one and broke torch |
+| **Scripts printed conclusions their own tables contradicted** | Twice. Narrative written into `print` statements before the numbers existed |
+
+---
+
+# 21. WHAT WORKED — the surviving case for GPX4-M3
+
+```
+CNC(=O)c1ccc(C(c2ccc(C(=O)NC)cc2)N2C(=O)CN(C(=O)c3noc(C)c3[N+](=O)[O-])CC2)cc1
+```
+
+ML210 with both 4-chlorophenyls replaced by 4-(N-methylcarbamoyl)phenyl **and** the piperazine replaced
+by a 2-oxopiperazine. **Warhead untouched, atom for atom.**
+
+## 21.1 Measurements that survived every check
+
+| Finding | Number | Method |
+|---|---|---|
+| **Modified arms sit in solvent under a mobile protein** | **46% of total ligand SASA, never buried in any frame** | explicit-solvent MD, GPU |
+| **Protein fold stable with ligand bound** | Cα RMSD 0.76 Å mean | same trajectory |
+| **Adduct sterically accommodated** | 0.29 Å overlap vs 0.35 Å for the crystal ligand re-derived by the same protocol | anchored covalent fit, calibrated on the deposited pose |
+| **Warhead electronically insulated from our edits** | C–NO₂ bond order Δ **0.006**; electrophilic carbon Δ **0.0003 e** | GFN2-xTB, implicit water — C/N/O/H only, no selenium involved |
+| **The site is a narrow groove, not a cavity** | 26 Å³ volume **with** 0.93 burial | pocket mapping + per-atom burial |
+| **Selectivity has a structural basis** | GPX4 Sec46 **0.93** buried vs TXNRD1 Sec **0.23–0.38** | SASA on experimental structures |
+| **No stereocentres** | 0 | symmetry makes the benzhydryl carbon non-stereogenic |
+| **Synthetically easy** | SA score **2.65** | RDKit |
+| **Two safety liabilities removed** | basic N 1 → 0; hERG moderate-high → low | ADMET panel |
+
+## 21.2 The design logic, and why it holds
+
+**Anchor buried, payload in water.** The only positions changed are the ones the MD shows contribute
+nearly half the molecule's solvent contact and never touch protein. The buried atoms are the warhead
+region. The substitution is tolerated because it was placed where the protein isn't.
+
+**Selectivity is inherited, and now structurally explained.** ML210 is experimentally GPX4-selective and
+does not hit TXNRD1, unlike the chloroacetamides ML162 and RSL3. M3 carries that warhead unchanged. The
+structural measurement explains *why* it has to work this way: **accessibility runs against
+selectivity** — TXNRD1's selenol is the *more* exposed one, so shape cannot discriminate. **Only the
+masked warhead plus GPX4's enclosed groove can.** This is a standing argument against ever
+"simplifying" the nitroisoxazole to a direct electrophile.
+
+**Potency is inherited too, and does not need improving.** Three independent results agree: 10× potency
+buys 3.2 months, occupancy saturates above kinact/K_I ≈ 0.5, and 4× dose buys 1.9 months.
+
+## 21.3 Dosing, settled
+
+| Parameter | Requirement |
+|---|---|
+| Schedule | **daily, continuous** — beats every pulsed schedule at matched total dose |
+| Half-life needed | **~4 h** — effect duration is set by target resynthesis, not the plasma curve |
+| Robustness | a missed dose costs little; the target stays inactivated |
+| Dose escalation | **do not** — flat response, no tolerability benefit |
+| Deployment | **deepest remission** — 3 logs of cytoreduction beats a 10× better drug |
+
+## 21.4 Open liabilities on this molecule
+
+| Liability | Severity |
+|---|---|
+| **Solubility ~0.03 mg/mL — 30–100× short for injection** | **highest**; symmetry likely contributes |
+| M3 cannot form a salt; M1 can | **carry both forward** |
+| Nitroaromatic reduced to arylamine | inherited class risk |
+| Predicted DLT: anaemia, erythroid progenitors | monitorable by routine CBC |
+| Window depends on **vitamin E status** | belongs in eligibility criteria |
+
+## 21.5 The reordered priority
+
+**The molecule is good enough; the partner is the open question.** FSP1 inhibition adds nothing — the
+escaping clone is ferroptosis-incompetent. An SLC7A11 agent adds ~14 months because erastin-type killing
+is **less ACSL4-dependent**. A fully orthogonal agent such as venetoclax crosses the kG/r threshold and
+converts delay into control.
+
+**Three cheap wet-lab experiments would move this furthest:** measured solubility and melting point;
+kG on ACSL4-knockout lines with erastin-type and venetoclax comparator arms; proteome-wide covalent
+profiling. **And serial transplantation decides everything**, with a pre-registered kill criterion.
