@@ -272,3 +272,51 @@ lines, with an erastin-type agent and venetoclax as comparator arms.** The predi
 shows near-zero activity, and that the comparators retain measurable killing. **If M3 retains
 nothing and no partner rescues it, the durability thesis fails and the programme is a delay strategy
 only — which is still approvable, but it is a different clinical claim.**
+
+## Re-run under the literature-constrained kG — and a correction to my own alarm
+
+Having found that ACSL4 loss is near-complete protection against GPX4 inhibitors, I re-ran the model
+with kG set near zero instead of the assumed 0.003/day.
+
+| Scenario | Time to relapse | Delay vs no drug |
+|---|---|---|
+| No drug | 3.1 mo | — |
+| GPX4i, kG = 0.003 (original assumption) | 25.4 mo | +22.3 |
+| GPX4i, kG = 0.0005 (literature-constrained) | 23.9 mo | +20.8 |
+| **GPX4i, kG = 0 (complete escape)** | **23.7 mo** | **+20.5** |
+| + FSP1i | 23.6 mo | +20.5 — **nothing** |
+| **+ SLC7A11 agent** (partly ACSL4-independent) | **37.8 mo** | **+34.7** |
+| **+ venetoclax** (orthogonal, apoptosis) | **>390 mo** | control |
+| + azacitidine | 26.9 mo | +23.8 |
+| + SLC7A11 + azacitidine | 42.8 mo | +39.7 |
+
+*Benchmark: oral azacitidine maintenance (QUAZAR AML-001) delivered +9.9 months OS and was FDA
+approved in 2020.*
+
+### The correction
+
+**I overstated the damage.** Driving kG from the optimistic 0.003 to zero costs **1.7 months** — from
+25.4 to 23.7. It does not collapse the programme.
+
+The earlier sensitivity scan reported kG as dominating with a 172.9-month spread, and that is true **only
+because the scan ran kG up past r**. The phase transition at kG/r = 1 is real, but **below that threshold
+the exact value of kG barely matters** — time to relapse is set by how long the resistant clone takes to
+emerge and expand, not by residual killing that is too slow to matter either way.
+
+So the correct statement is narrower than the one I made:
+
+- **Wrong:** "kG ≈ 0 means relapse is inevitable, therefore the news is bad."
+- **Right:** relapse is indeed inevitable on monotherapy — **but it was already inevitable at the
+  optimistic kG too.** The literature finding costs 1.7 months, not the programme.
+
+**Monotherapy still models to ~+20 months, roughly twice the QUAZAR benchmark that won approval.**
+
+### Where the value actually is
+
+**The partner drug, not kG.** FSP1i adds nothing (confirmed again). An SLC7A11 agent adds ~14 months
+because it is partly ACSL4-independent. A fully orthogonal agent such as venetoclax crosses the kG/r
+threshold and converts delay into control on this model.
+
+**That reorders the programme:** the combination question is worth more than any further optimisation of
+the molecule itself — consistent with the two earlier findings that potency is not the lever and that
+dose escalation buys almost nothing.
