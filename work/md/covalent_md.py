@@ -50,10 +50,28 @@ def main():
     fixer.findMissingAtoms()
     fixer.addMissingAtoms()
     fixer.addMissingHydrogens(7.4)
-    pdb = fixer
-    sg = find_cys46_sg(fixer)
-    print('receptor atoms %d (H added) | Cys46 SG index %d'
-          % (fixer.topology.getNumAtoms(), sg))
+    # PDBFixer protonates Cys46 as a FREE cysteine, adding the thiol HG. In the covalent
+    # adduct that sulfur is BONDED to the ligand and carries no hydrogen. Leaving HG in
+    # place puts a hydrogen exactly where the bond belongs: the first run held the ligand
+    # at 2.41 A instead of 1.82 A because HG (and the ligand H-cap) were in the way.
+    from openmm.app import Modeller as _Mod
+    _m = _Mod(fixer.topology, fixer.positions)
+    _hg = [a for r in _m.topology.residues()
+           if r.name in ('CYS', 'SEC', 'CSE') and r.id.strip() == '46'
+           for a in r.atoms() if a.name in ('HG', 'HG1', 'HE')]
+    if _hg:
+        print('deleting Cys46 thiol hydrogen(s): %s' % [a.name for a in _hg])
+        _m.delete(_hg)
+    else:
+        print('WARNING: no Cys46 thiol hydrogen found to delete')
+    pdb = _m
+    # Take the SG index from the POST-DELETION object: removing HG renumbers every
+    # atom after it, so an index read from `fixer` would point at the wrong atom.
+    sg = find_cys46_sg(_m)
+    sg_name = list(_m.topology.atoms())[sg].name
+    assert sg_name in ('SG', 'SE'), 'index %d is %s, not the catalytic sulfur' % (sg, sg_name)
+    print('receptor atoms %d (H added, Cys46 HG removed) | Cys46 %s index %d'
+          % (_m.topology.getNumAtoms(), sg_name, sg))
 
     # Load from the SDF written by make_pose.py: it carries BOTH the topology and the
     # anchored coordinates in one consistent atom ordering. Rebuilding from SMILES here
@@ -137,6 +155,10 @@ def main():
     app.PDBFile.writeFile(sim.topology,
                           sim.context.getState(getPositions=True).getPositions(),
                           open('equil.pdb', 'w'))
+    # Write metadata BEFORE production: it is needed to analyse a PARTIAL trajectory,
+    # and a run that is still going (or that crashes) would otherwise leave none.
+    json.dump({'lig_start': lig_start, 'attach': attach, 'sg': sg,
+               'n_lig': off.n_atoms}, open('md_meta.json', 'w'), indent=1)
     sim.reporters.append(app.DCDReporter('traj.dcd', 10000))
     sim.reporters.append(app.StateDataReporter(sys.stdout, 50000, step=True,
                                                potentialEnergy=True, temperature=True,
@@ -144,8 +166,6 @@ def main():
                                                totalSteps=int(NS * 5e5)))
     print('producing %.1f ns' % NS)
     sim.step(int(NS * 5e5))
-    json.dump({'lig_start': lig_start, 'attach': attach, 'sg': sg,
-               'n_lig': off.n_atoms}, open('md_meta.json', 'w'), indent=1)
     print('done -> traj.dcd')
 
 

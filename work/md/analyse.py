@@ -12,7 +12,12 @@ meta = json.load(open('md_meta.json'))
 LIG0, NLIG = meta['lig_start'], meta['n_lig']
 SG, ATTACH = meta['sg'], meta['attach']
 
-t = md.load('traj.dcd', top='equil.pdb')
+# A DCD being actively written cannot be opened - OpenMM rewrites the header on each
+# flush, so mdtraj hits "premature end of file". Copy first, read the copy. This also
+# makes partial-trajectory analysis possible while the run continues.
+import shutil
+shutil.copy('traj.dcd', 'snap.dcd')
+t = md.load('snap.dcd', top='equil.pdb')
 print('trajectory: %d frames, %d atoms, %.1f ns'
       % (t.n_frames, t.n_atoms, t.time[-1] / 1000.0 if t.n_frames > 1 else 0))
 t = t.superpose(t, 0, atom_indices=t.topology.select('protein and name CA'))

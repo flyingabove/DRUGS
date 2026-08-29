@@ -449,3 +449,45 @@ plausible scalar.
 Fixes for constrained scans through a transition region: **Cartesian** optimisation coordinates, build
 each point **fresh** rather than chaining from the previous optimised geometry, and evaluate the energy
 at the built geometry when optimisation fails so one bad point cannot void the profile silently.
+
+## RULE 29 — Strip the hydrogens that occupy the bond you are about to form
+
+Structure-preparation tools protonate for the FREE residue. PDBFixer at pH 7.4 gives Cys46 its thiol
+**HG** - correct for a free cysteine, wrong for one covalently bonded to a ligand, where that sulfur
+carries no hydrogen.
+
+The consequence was measurable, not cosmetic: a stiff 1.82 A tether settled at **2.41 A +/- 0.01**,
+because HG and the ligand's own H-cap were both sitting in the bond. The restraint was fighting two
+spurious hydrogens.
+
+**Diagnose it by listing the nearest atoms to the reactive centre**, not by trusting the restraint:
+
+```python
+d = np.linalg.norm(frame - frame[sg], axis=1)
+for i in np.argsort(d)[:8]: print(topology.atom(int(i)), d[i])
+```
+
+A restraint that settles far from its target distance is reporting a steric obstruction, not a soft
+force constant.
+
+**And re-read every index after any atom deletion.** Removing HG renumbers every atom after it; an index
+captured from the pre-deletion object silently points somewhere else. Assert the atom you got is the
+atom you meant (Rule 21).
+
+## RULE 30 — A scan with a discontinuity has no barrier to report
+
+A relaxed scan gave 0.0, +3.0, +10.3, **+23.6**, then **-22.7** kcal/mol - a 46 kcal/mol drop across a
+0.2 A step. That is not a transition state; it is the optimiser falling into the product basin between
+two independently-optimised points.
+
+The reported "+23.6 barrier" is only the last point before the surface snapped. On a discontinuous scan
+the maximum is an artifact of grid spacing.
+
+**Check adjacent-point differences before quoting any barrier.** A physical profile is smooth; a step
+larger than a few kcal/mol between neighbouring points means the geometries are in different basins.
+
+Causes and fixes: translating a rigid fragment along one distance while a second bond must break gives
+each point freedom to land in a different basin. Use a **difference coordinate** (d(form) - d(break)),
+chain geometries along the path, or optimise the transition state directly. Comparing two such scans is
+only valid if the discontinuity falls at the same coordinate in both - verify that explicitly rather
+than assuming the protocol cancels.
