@@ -533,3 +533,27 @@ and be vetoed.
 
 **Stop a run you can already predict will be rejected.** v2's maximum sat in its unrelaxed region, so
 the Rule 31 veto was guaranteed to fire - six further hours would have bought a confirmed failure.
+
+## RULE 33 — Calibrate every property axis against known actives, not just the one being optimised
+
+Three individually-correct optimisations - solubility, kidney safety, cardiac safety - all pushed the
+same molecular property in the same direction, and nothing in the workflow pushed back.
+
+The result: polar surface area **168 Å²** on the lead and **208 Å²** after the solubility fix, against a
+set of six GPX4 inhibitors known to kill cells that top out at **92.7 Å² with at most one hydrogen-bond
+donor.** No precedent in the chemotype for a molecule that polar reaching an intracellular target.
+
+**Binding analysis cannot see the membrane.** Per-atom burial correctly identified where substituents
+could go without disturbing binding. "Will this disturb binding?" and "can this reach the protein at
+all?" are different questions, and only the first was being asked.
+
+```python
+# takes two minutes; assemble it BEFORE the first design cycle
+knowns = {...}   # compounds with demonstrated cellular activity on this target
+for prop in (TPSA, logP, HBD, MW):
+    assert within_range(candidate, [f(k) for k in knowns.values()]), prop
+```
+
+**Put the comparator set in place first and check every axis against it each cycle** - including the
+axes nobody is optimising. The property that kills the programme is usually the one no criterion
+mentioned.

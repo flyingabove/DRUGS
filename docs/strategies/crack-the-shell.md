@@ -1663,3 +1663,89 @@ it is cheap, and it either dissolves the problem or sizes it properly.
 
 **Status: S1 is a candidate, not yet a replacement lead.** M3 remains the lead until S1 clears the fit
 and ADMET checks.
+
+---
+
+# 25. THE PERMEABILITY PROBLEM — a flaw in the whole optimisation direction
+
+**The target enzyme is inside the cell. The drug must cross a membrane to reach it. I never checked
+whether it can.**
+
+## 25.1 The calibration
+
+Not a rule of thumb — six GPX4 inhibitors that demonstrably kill cells:
+
+| Compound | TPSA (Å²) | cLogP | H-bond donors |
+|---|---|---|---|
+| FIN56 | 17.1 | 3.46 | 0 |
+| ML162 | 46.6 | 3.48 | 0 |
+| Altretamine | 48.4 | 0.07 | 0 |
+| JKE-1674 | 56.1 | 4.08 | 1 |
+| RSL3 | 63.7 | 4.27 | 0 |
+| **ML210** (our parent) | **92.7** | 4.75 | 0 |
+| | | | |
+| GPX4-M1 | **150.9** | 2.16 | 2 |
+| **GPX4-M3 (lead)** | **168.0** | 1.68 | 2 |
+| **GPX4-S1** (solubility fix) | **208.4** | 0.41 | 4 |
+
+**Every known cell-active GPX4 inhibitor sits at or below 92.7 Å² polar surface area with at most one
+hydrogen-bond donor.** Our lead is **+75 Å² beyond the most polar of them**, with double the donors.
+The solubility fix took it to **+116 Å² with four donors.**
+
+**That is not a marginal concern. There is no precedent in this chemotype for a molecule as polar as
+ours reaching an intracellular target.**
+
+## 25.2 How this was missed
+
+The per-atom burial analysis told me which positions face solvent and could therefore carry substituents
+**without disturbing binding**. That was correct, and the MD confirmed it — the arms are 46% of solvent
+contact and never touch protein.
+
+**But "will this disturb binding?" is a different question from "can this reach the protein at all?"**
+Burial analysis is blind to the membrane. Every design decision — amides replacing the chlorophenyls,
+removing the basic nitrogen, adding hydroxyethyl groups — was locally justified and all of them pushed
+the same direction: **more polar, less able to enter a cell.**
+
+**Three separate optimisations, each individually correct, compounding into a molecule that may not
+reach its target.**
+
+## 25.3 What this does to the programme
+
+**Criterion 1 (kills the target cells) drops from 🟢 to 🟡.** The inheritance argument was: same warhead,
+therefore same killing. **That argument assumed the molecule gets inside, and the property data now
+argues against it.**
+
+**It does not invalidate the binding work.** If the molecule reaches GPX4, everything measured about the
+fit, burial and warhead integrity still holds. **The question is purely delivery to the cytosol.**
+
+## 25.4 Three ways out, in order of preference
+
+**1. Prodrug — mask the polarity, unmask it inside.** Esterify the hydroxyls and amides so the molecule
+crosses as a greasy species; intracellular esterases cleave them and release the active drug, which is
+then trapped inside by its own polarity. **This is the textbook solution to exactly this problem** and it
+turns the liability into an advantage — polarity becomes a retention mechanism rather than an entry
+barrier.
+
+**2. Rebalance — accept some of the risk I designed out.** M1 (TPSA 150.9) is less bad than M3, and
+ML210 itself carries the basic nitrogen. **The hERG and kidney liabilities I removed may have been worth
+carrying** if removing them costs cell entry. This needs an explicit trade, not a silent one.
+
+**3. Test the assumption before redesigning.** Two arguments that low permeability might be tolerable
+here, both weaker than the empirical gap:
+- The warhead is **covalent** — every molecule that gets in and reacts is permanently spent, so
+  cumulative engagement matters more than instantaneous concentration
+- The PK/PD model showed the effect **outlives the drug**, so slow accumulation across daily dosing may
+  suffice
+
+**Neither argument is worth much against six comparators with no precedent above 92.7 Å².** A measured
+cell-permeability assay settles it and should come before any further property optimisation.
+
+## 25.5 The lesson
+
+**Optimising a molecule against a list of individually-correct criteria can produce a molecule that
+fails a criterion nobody put on the list.** Solubility, kidney safety and cardiac safety were all real
+and all pushed polarity up. Nothing in the workflow pushed back, because the binding analysis could not
+see the membrane.
+
+**Calibrate against known actives early, on every property axis, not just the ones being optimised.**
+Six comparators took two minutes to assemble and would have caught this before three rounds of design.

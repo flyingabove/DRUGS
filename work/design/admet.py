@@ -7,6 +7,9 @@ C={
 'GPX4-M1 (piperazine)':'CNC(=O)c1ccc(C(c2ccc(C(=O)NC)cc2)N2CCN(C(=O)c3noc(C)c3[N+](=O)[O-])CC2)cc1',
 'GPX4-M3 (2-oxopiperazine)':'CNC(=O)c1ccc(C(c2ccc(C(=O)NC)cc2)N2C(=O)CN(C(=O)c3noc(C)c3[N+](=O)[O-])CC2)cc1',
 'GPX4-M4 (piperidine)':'CNC(=O)c1ccc(C(c2ccc(C(=O)NC)cc2)C2CCN(C(=O)c3noc(C)c3[N+](=O)[O-])CC2)cc1',
+'GPX4-S1 (bis-OH-ethyl)':'OCCNC(=O)c1ccc(C(c2ccc(C(=O)NCCO)cc2)N2C(=O)CN(C(=O)c3noc(C)c3[N+](=O)[O-])CC2)cc1',
+'GPX4-S3 (bis-primary)':'NC(=O)c1ccc(C(c2ccc(C(=O)N)cc2)N2C(=O)CN(C(=O)c3noc(C)c3[N+](=O)[O-])CC2)cc1',
+'GPX4-S4 (bis-sulfonamide)':'CNS(=O)(=O)c1ccc(C(c2ccc(S(=O)(=O)NC)cc2)N2C(=O)CN(C(=O)c3noc(C)c3[N+](=O)[O-])CC2)cc1',
 'ML210 (reference)':'O=C(N1CCN(C(c2ccc(Cl)cc2)c2ccc(Cl)cc2)CC1)c1noc(C)c1[N+](=O)[O-]',
 }
 basic=Chem.MolFromSmarts("[NX3;H0,H1,H2;!$(N[C,S]=[O,S,N]);!$(N[a]);!$(N[N,O]);!$(N#*)]")
