@@ -21,6 +21,7 @@ import openmm.app as app
 import openmm.unit as u
 from openff.toolkit import Molecule
 from openmmforcefields.generators import SMIRNOFFTemplateGenerator
+from openff.toolkit.utils.toolkits import NAGLToolkitWrapper
 from pdbfixer import PDBFixer
 
 RECEPTOR = '../structures/6HKQ_receptor_CYSsurrogate.pdb'
@@ -62,6 +63,15 @@ def main():
         off = off[0]
     print('ligand atoms %d  net charge %s' % (off.n_atoms, off.total_charge))
 
+    # AM1-BCC charges normally require AmberTools (sqm) or OpenEye - neither has a
+    # Windows build. OpenFF NAGL predicts AM1-BCC charges with a graph neural network
+    # instead, which is the supported substitute. Charges are assigned HERE so the
+    # template generator uses them rather than trying (and failing) to call sqm.
+    off.assign_partial_charges('openff-gnn-am1bcc-1.0.0.pt',
+                               toolkit_registry=NAGLToolkitWrapper())
+    q = off.partial_charges.magnitude
+    print('NAGL charges assigned: sum %+.4f e (formal %+d), range %.3f..%.3f'
+          % (q.sum(), off.total_charge.magnitude, q.min(), q.max()))
     smirnoff = SMIRNOFFTemplateGenerator(molecules=off, forcefield='openff-2.2.0')
     ff = app.ForceField('amber14-all.xml', 'amber14/tip3pfb.xml')
     ff.registerTemplateGenerator(smirnoff.generator)

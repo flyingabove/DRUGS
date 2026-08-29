@@ -407,3 +407,45 @@ caught, three calculations too late.
 **Scope the damage rather than discarding everything:** QM codes take coordinates and a charge, not bond
 orders, and re-optimise - so the DFT was unaffected. Force-field work, which reads bond orders directly,
 was not.
+
+## RULE 27 — Install scientific stacks into a dedicated env, never the working one
+
+Installing `openff-interchange` into a base conda environment pulled in the conda `pytorch` package,
+which overwrote a pip-installed torch and left BOTH dist-info directories present. torch then failed to
+import with an unrelated-looking `AttributeError` deep inside `torch.fx`. **That was a user's working
+environment, broken as a side effect of a dependency I did not ask for and did not check.**
+
+Conda and pip both claim `site-packages/<pkg>`; when they disagree the result is a mixed install that
+imports halfway. Chemistry stacks (openff, openmm, psi4, ambertools) pull large, opinionated
+dependency trees and are the most likely to do this.
+
+```
+conda create -n <task> -c conda-forge <packages>
+```
+
+One env per task. Check `conda list | grep -i <critical-pkg>` before and after any large install, and
+say so plainly if something got clobbered.
+
+Corollary: **absence of a Windows build for one dependency does not block the stack.** `openmmforcefields`
+requires `ambertools` (no win-64 build), but `pip install openmmforcefields --no-deps` works because the
+SMIRNOFF path never calls AmberTools. Likewise AM1-BCC charges normally need `sqm`; **OpenFF NAGL**
+predicts them with a GNN instead.
+
+## RULE 28 — A metric computed over failed points is not a metric
+
+A relaxed scan reported a clean-looking "barrier 3.89 kcal/mol at d=3.00". Five of its seven points were
+`nan` - optking's internal coordinates collapse where one bond forms as another breaks. `np.nanargmax`
+dutifully found the maximum of the two surviving points and returned a number that meant nothing.
+
+```python
+if np.isnan(E).any():
+    return dict(barrier=float('nan'), failed=int(np.isnan(E).sum()))   # refuse to report
+```
+
+**Make the summary function refuse**, rather than relying on yourself to check the log. `nan`-skipping
+reductions (`nanmax`, `nanmean`) are the specific hazard: they convert a broken calculation into a
+plausible scalar.
+
+Fixes for constrained scans through a transition region: **Cartesian** optimisation coordinates, build
+each point **fresh** rather than chaining from the previous optimised geometry, and evaluate the energy
+at the built geometry when optimisation fails so one bad point cannot void the profile silently.
