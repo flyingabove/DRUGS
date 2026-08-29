@@ -1444,3 +1444,71 @@ converts delay into control.
 **Three cheap wet-lab experiments would move this furthest:** measured solubility and melting point;
 kG on ACSL4-knockout lines with erastin-type and venetoclax comparator arms; proteome-wide covalent
 profiling. **And serial transplantation decides everything**, with a pre-registered kill criterion.
+
+---
+
+# 22. THE BARRIER CALCULATION — FINAL OUTCOME: NOT OBTAINED
+
+Closing this out rather than leaving it open. **Three protocols, three failures, terminated deliberately.**
+
+## The v3 profile, in full
+
+| form (Å) | break (Å) | kcal/mol | status |
+|---|---|---|---|
+| 3.20 | 1.98 | 0.00 | ok |
+| 2.90 | 1.98 | 3.94 | ok |
+| 2.65 | 2.01 | 11.44 | ok |
+| 2.45 | 2.03 | 22.68 | ok |
+| 2.35 | 2.11 | 30.78 | ok |
+| 2.25 | 2.21 | 38.73 | **UNRELAXED** |
+| 2.15 | 2.21 | 49.21 | **UNRELAXED** |
+| 2.05 | 2.21 | 62.94 | **UNRELAXED** |
+
+**Verdict: Rule 31 veto — the maximum-energy point is unrelaxed, so there is no barrier to report.**
+
+## The diagnostic that makes this unambiguous
+
+**The breaking bond froze at 2.21 Å for the last three points.** While optimisation was succeeding, C–Br
+lengthened steadily as the nucleophile approached — 1.98 → 2.01 → 2.03 → 2.11 → 2.21 — which is what a
+genuine SN2 progression looks like. The moment optimisation began failing, it stopped moving.
+
+**So the final three energies are pure compression against a frozen geometry, not reaction energetics.**
+The profile climbing to +62.9 kcal/mol, against ~20–25 expected for an SN2 in water, is that artifact
+accumulating. It never turned over because it never reached a transition state — it was being crushed,
+not driven over a hill.
+
+## Why this was stopped rather than iterated
+
+A fourth variant would have been the fourth attempt at the same *class* of calculation. All three
+failures share a root cause: **a constrained relaxed scan approaches the transition state from the side,
+and the optimiser has to hold a near-singular geometry while a bond breaks.** More constraints
+over-determine it (v2); fewer let it fall off (v1); the intermediate case delays the failure without
+preventing it (v3).
+
+**What this actually needs:** an eigenvector-following transition-state optimisation — a method that
+walks *to* the saddle point deliberately rather than creeping toward it on a grid — with better
+geometries than HF/def2-SVP, and probably a Hessian at the starting guess. That is a different class of
+calculation and a different compute budget.
+
+## What is lost, and what is not
+
+**Lost:** a computed ΔΔG‡ (Cys − Se). The masking-kinetics hypothesis in §9.2 remains an argument rather
+than a number.
+
+**Not lost — the selectivity case never rested on it:**
+
+1. **Experimental inheritance.** ML210 is documented as GPX4-selective and does not hit TXNRD1, unlike
+   the chloroacetamides. GPX4-M3 carries that warhead atom for atom.
+2. **Measured structure.** GPX4 Sec46 is 0.93 buried; TXNRD1's catalytic Sec is 0.23–0.38.
+   **Accessibility runs against selectivity**, so shape cannot be doing the discriminating — which is
+   itself evidence that the masking is.
+
+**Both are stronger evidence than a ±5 kcal/mol computed barrier would have been.** The calculation was
+always corroborative. Recording its failure honestly costs the programme nothing it was relying on.
+
+## The experiment that settles it
+
+**Proteome-wide covalent profiling** — activity-based protein profiling against the full cysteine and
+selenocysteine proteome. Given that the selenoproteome is absent from structure databases (§20.1), this
+was already the only route to a proteome-scale answer. The failed calculation does not change that; it
+just removes the consolation prize.
