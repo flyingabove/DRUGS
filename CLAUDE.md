@@ -27,14 +27,19 @@
   = a new finding, a corrected claim, a lead change, a skill update, a tooling fix. Do not batch
   unrelated changes into one commit.
 
-## MCP servers (`.mcp.json`)
+## MCP servers (`.mcp.json`) — each one launch-tested, not just configured
 
+**Working:**
 - `biocontext-kb` — Open Targets, UniProt, Reactome, KEGG, AlphaFold, Ensembl, ClinicalTrials.gov.
-  Use for target/pathway/structure lookups.
 - `gget-mcp` — Ensembl sequence retrieval, BLAST/BLAT.
-- `chembl-mcp-server` — compound-target bioactivity (IC50/Ki/EC50), mechanism, indication.
-- `pubchem-mcp-server` — compound structure/property/bioassay search.
+- `patent-mcp-server` — patent/trademark search, no key needed for core tools (ODP/PTAB need a free
+  USPTO account). Required pinning `mcp<2` — the published package breaks on current `mcp`.
 
-Prefer these over the raw-script skills for exploratory work. Same rule as everything else: verify
-one real record before trusting output in a doc (see
-[skills-and-mcp-integration-plan.md](docs/skills-and-mcp-integration-plan.md) §5).
+**Blocked, not loaded** (`_disabled_needs_node_24` key in `.mcp.json`): `chembl-mcp-server`,
+`pubchem-mcp-server` — both require Node ≥24; this machine runs 10.15.3. `nvm install 24` hangs on a
+UAC prompt this session can't answer — needs the user to run it as Administrator, or install Node 24
+directly, then move the config back into `mcpServers`. Use `compound-profile`'s script until then.
+
+Prefer working MCPs over the raw-script skills for exploratory work. Same rule as everything else:
+verify one real record before trusting output in a doc (see
+[docs/research/mcp-landscape.md](docs/research/mcp-landscape.md)).

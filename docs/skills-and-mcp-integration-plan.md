@@ -180,14 +180,25 @@ molecule.
 **Not recommended:** Benchling, BioRender, 10x Genomics, Databricks/Snowflake connectors — built for
 wet-lab/institutional workflows this project doesn't have.
 
-## 6a. Installed
+## 6a. Installed — corrected after actually launching each one
 
-`.mcp.json` (project root) now configures all four no-credential servers verified in Section 3:
-`biocontext-kb`, `gget-mcp`, `chembl-mcp-server` (v0.2.4, pinned), `pubchem-mcp-server` (v0.6.1,
-pinned). All four confirmed to exist and resolve real dependencies before wiring in — uvx-based
-servers pulled real matching packages (openmm, biopython, gget), npm packages confirmed on the
-registry. **Requires a session restart to activate** — Claude Code loads project MCP servers at
-startup, not mid-session.
+First pass only checked that packages *resolved* (dependencies downloaded, registry entries existed)
+— not that they *ran*. Actually launching each found `chembl-mcp-server` and `pubchem-mcp-server`
+both require **Node ≥24**; this machine runs **10.15.3**, 14 major versions behind. `npx -y` itself
+misbehaves on this old npx (6.4.1) before the package's own engine check would even fire. Attempted
+`nvm install 24` to fix it without touching the global Node — nvm-windows needs admin rights to write
+`C:\Program Files\nodejs`, and the resulting UAC prompt can't be answered from this session; it hangs.
+
+**Working, in `.mcp.json` `mcpServers`:** `biocontext-kb`, `gget-mcp`, `patent-mcp-server` (added
+later — see [mcp-landscape.md](research/mcp-landscape.md); required pinning `mcp<2`, the published
+package breaks on current `mcp`).
+
+**Configured but non-functional**, moved to `.mcp.json`'s inert `_disabled_needs_node_24` key:
+`chembl-mcp-server`, `pubchem-mcp-server`. Fix: user runs `nvm install 24` as Administrator (or
+installs Node 24 directly), then moves that block back into `mcpServers`.
+
+**Requires a session restart to activate** — Claude Code loads project MCP servers at startup, not
+mid-session.
 
 Pointers added to `target-profile`, `compound-profile`, `target-validation`, and `drug-simulation`
 skills, and to `CLAUDE.md`, noting when to prefer the MCP tool over the existing raw-script skill.

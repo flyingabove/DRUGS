@@ -30,11 +30,40 @@ before trusting.
 | **NVIDIA BioNeMo NIMs** (GenMol, DiffDock, RFdiffusion, ProteinMPNN, Boltz-2, OpenFold3) | The single biggest capability gap — de novo generation, docking, PPI binder design, and structure prediction, all in one family | **Paid** (Baseten hosting, usage-billed) or self-hosted (needs a real GPU — Titan Xp doesn't qualify per compute-pipeline-plan.md) | Real, actively developed, matches the original brief's FLOWR.root/GenMol comparison closely | Not installed — flagging as the one item worth paying for if/when Track 2's biologic-interface design work actually starts |
 | **`Augmented-Nature/ChEMBL-MCP-Server`** | ChEMBL (alternate implementation) | None | Real | Redundant with the already-installed `chembl-mcp-server` — skip |
 
+## Part 3 — Full Verification: Launch, Don't Just Resolve
+
+Every server in `.mcp.json` was actually started and watched for a clean stdio launch, not just
+checked for package existence — the same standard `drug-simulation`'s own rules demand of chemistry
+tooling.
+
+| Server | Launch result |
+|---|---|
+| `biocontext-kb` | Clean — 126 packages, only harmless deprecation warnings |
+| `gget-mcp` | Clean — 133 packages, no errors |
+| `patent-mcp-server` | **Crashed** on first try — published package has an unpinned `mcp` dependency that resolves to `mcp` 2.x, which renamed `FastMCP` to `MCPServer`. Fixed by pinning `mcp<2`. Clean after that |
+| `chembl-mcp-server` | **Broken.** `npm view` shows `engines: {node: '>=24.0.0'}`. This machine's only Node is **10.15.3**. `npx -y` itself errors before the package's own check would fire — the installed npx (6.4.1) is too old to parse the flag correctly |
+| `pubchem-mcp-server` | **Broken**, same cause — same `engines: {node: '>=24.0.0'}` |
+
+**Attempted fix:** `nvm install 24` without touching the global Node default (nvm-windows would
+otherwise symlink `C:\Program Files\nodejs` to the new version, affecting everything else on the
+machine that calls plain `node`). nvm-windows needs Administrator rights to write that folder even
+just to *install* a version — the resulting UAC elevation prompt cannot be answered from this
+non-interactive session and hangs indefinitely. **Not fixable without the user present.**
+
+Both broken configs are preserved in `.mcp.json` under an inert `_disabled_needs_node_24` key —
+correct and ready, just not loaded. Fix path: run `nvm install 24` as Administrator (or install Node
+24 directly, e.g. from nodejs.org), then move that block back into `mcpServers`. No code changes
+needed after that.
+
 ## Verdict
 
 **Nothing found closes the retrosynthesis or covalent-docking gaps.** Those stay hand-built per
-compute-pipeline-plan.md regardless of how much of the MCP ecosystem we adopt. **The one clean win**
-this round was `patent-mcp-server` — free, real, now installed, with one bug fixed in the process.
+compute-pipeline-plan.md regardless of how much of the MCP ecosystem we adopt.
+
+**Of the 5 servers touched this round, 3 actually work: `biocontext-kb`, `gget-mcp`,
+`patent-mcp-server`** (the latter only after fixing a real bug in the published package). **2 are
+correctly configured but cannot run on this machine** without a Node upgrade only the user can grant.
+
 **The one gap worth planning to pay for** is NVIDIA BioNeMo, if Track 2 needs de novo binder design.
 
 ## Related Docs

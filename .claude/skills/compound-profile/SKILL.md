@@ -16,8 +16,9 @@ dependencies:
   - drugbank-database
 ---
 
-> **MCP available:** `chembl-mcp-server` (bioactivity/IC50/Ki/mechanism) and `pubchem-mcp-server`
-> (structure/property/bioassay) give iterative querying beyond this script's single-shot calls.
+> **MCP blocked, not available:** `chembl-mcp-server`/`pubchem-mcp-server` need Node ≥24; this
+> machine runs 10.15.3. Configs kept in `.mcp.json` under `_disabled_needs_node_24` — move back into
+> `mcpServers` after a Node upgrade. Use this script until then.
 
 # Compound Profile Skill
 

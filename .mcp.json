@@ -9,6 +9,12 @@
       "command": "uvx",
       "args": ["--from", "gget-mcp@latest", "stdio"]
     },
+    "patent-mcp-server": {
+      "command": "uvx",
+      "args": ["--with", "mcp<2", "patent-mcp-server"]
+    }
+  },
+  "_disabled_needs_node_24": {
     "chembl-mcp-server": {
       "command": "npx",
       "args": ["-y", "@cyanheads/chembl-mcp-server@0.2.4"],
