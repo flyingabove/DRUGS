@@ -1077,3 +1077,148 @@ calibrated against a known binder — plus five liabilities caught before commit
 acetanilide, hydroxyl masking, scaffold false-alert, covalent-bond-as-clash artifact).
 
 That is as far as hardware takes it. **The next step is synthesis and the purified-enzyme assay.**
+
+---
+
+# 18. SYNTHESIS ROUTE AND ASSAY DESIGN
+
+## 18.1 One thing I will not do
+
+**An enzyme assay cannot be simulated.** It is the empirical test that computation exists to earn the
+right to run. Producing numbers for it would be fabricating data, and those numbers would be
+indistinguishable in a document from real ones.
+
+What *can* be done, and is done below: propose a real synthetic route, and specify the assay protocol
+precisely enough to execute — including the controls that would have caught the field's own mistakes.
+
+## 18.2 Synthetic accessibility
+
+| Metric | Value |
+|---|---|
+| Formula / MW | C₂₆H₂₈N₆O₆ / 520.5 |
+| **SA score** (1 easy → 10 hard) | **2.65 — easy** |
+| **Stereocentres** | **none** |
+| Rings / rotatable bonds | 4 / 7 |
+
+**The symmetry choice pays off here concretely.** The benzhydryl carbon is a stereocentre *only* if
+the two aryl groups differ. GPX4-M1 is symmetric, so it has **no stereocentres**: no enantiomers, no
+chiral separation, no eutomer/distomer problem, no doubling of the tox package. That was the practical
+reason for preferring a symmetric analog over the higher-QED mixed candidates, and it is worth more
+than the QED difference.
+
+## 18.3 Proposed route
+
+Three fragments, two bond-forming steps at the end.
+
+```
+    4,4'-benzophenonedicarboxylic acid          5-methyl-4-nitroisoxazole-
+                    │                            3-carboxylic acid
+       (1) MeNH2, HATU/DIPEA                              │
+                    ↓                                     │
+      4,4'-bis(N-methylcarbamoyl)benzophenone             │
+                    │                                     │
+       (2) NaBH4, MeOH                                    │
+                    ↓                                     │
+              benzhydrol                                  │
+                    │                                     │
+       (3) SOCl2 (or MsCl/Et3N)                           │
+                    ↓                                     │
+            benzhydryl chloride                           │
+                    │                                     │
+       (4) piperazine (excess), base                      │
+                    ↓                                     │
+        1-benzhydrylpiperazine  ────────(5) HATU/DIPEA────┘
+                                          ↓
+                                      GPX4-M1
+```
+
+**Step notes and risks, stated honestly — I am not a synthetic chemist and these need a real one:**
+
+- **Step 3 is the risk.** Converting the benzhydrol to a leaving group under SOCl₂ in the presence of
+  two secondary amides is the step most likely to misbehave. **Mitigation: reorder.** Carry the
+  diester (dimethyl 4,4′-benzophenonedicarboxylate) through steps 2–4, then install the
+  N-methylamides last by aminolysis. That keeps the acid-sensitive amides out of the chlorination.
+- **Step 5 must be last.** The 4-nitroisoxazole is the reactive warhead; it should meet the molecule
+  as late as possible and see no strong nucleophile, no reduction, and no strong base after
+  installation.
+- **Excess piperazine in step 4** suppresses bis-alkylation; mono-Boc-piperazine with a later
+  deprotection is the cleaner alternative if selectivity is poor.
+- Starting materials are common: 4,4′-benzophenonedicarboxylic acid and methylamine are catalogue
+  items; the nitroisoxazole acid is the ML210 fragment and is literature-known.
+
+**Backups already characterised** (§13.4) if a step fails: 3-CONHMe (same properties, meta vector),
+4-CONHMe-3-F (fluorine blocks para-hydroxylation), 4-CH₂CONHMe.
+
+## 18.4 Assay cascade — with the controls that matter
+
+Ordered so that the cheapest disqualifying result comes first.
+
+### Gate 1 — Cell-free inhibition of purified GPX4 *(the gate)*
+
+**This is the assay RSL3 and ML162 failed, and their failure went unnoticed for years.** It is
+non-negotiable and it comes first.
+
+- **Protein:** wild-type human GPX4 with genuine selenocysteine — produced by co-expression with
+  **SBP2** (selenocysteine-insertion-sequence-binding protein 2) in HEK cells, the method behind
+  structures 6HN3/6HKQ. **A U46C mutant is not acceptable** — selenium nucleophilicity is the
+  mechanism.
+- **Readout:** NADPH-coupled GPX4 activity (glutathione reductase-coupled, phospholipid hydroperoxide
+  substrate), measured as A₃₄₀ decay.
+- **Controls:** ML210 (positive, known selective), **ML162 and RSL3 as negative controls for GPX4** —
+  they should show little or no inhibition of the purified enzyme. If they inhibit, the assay is
+  reporting something other than GPX4.
+- **Kinetics, not just IC₅₀:** covalent inhibitors need k_inact/K_I, from time-dependent inhibition.
+  A single-timepoint IC₅₀ is misleading for this mechanism.
+
+### Gate 2 — Selectivity counter-screen
+
+- **TXNRD1** and **glutathione reductase**, described in the literature as imperative counter-screens.
+- Rationale is specific: 26% of compounds inhibiting GPX4 in primary screens also hit TXNRD1.
+- Broader: proteome-wide covalent reactivity profiling, since the warhead is an electrophile.
+
+### Gate 3 — Cellular ferroptosis, with mechanism confirmation
+
+- Lipid peroxidation readout (C11-BODIPY) plus viability.
+- **Rescue controls prove it is ferroptosis and not general toxicity:** liproxstatin-1 or
+  ferrostatin-1 should rescue; a pan-caspase inhibitor should not.
+- **Mitochondrial CoQ rescue** tests the §6 prediction directly.
+
+### Gate 4 — Primary AML cells, with the internal control
+
+- **Blast versus non-blast sensitivity in the same marrow sample.** That within-patient comparison is
+  what makes the therapeutic window meaningful; a cross-sample comparison does not.
+- Then the **CD34⁺CD38⁻ LSC fraction specifically**, not bulk CD34⁺.
+- Venetoclax-resistant primary samples, since that is the intended indication.
+
+### Gate 5 — Combination
+
+GPX4-M1 + an FSP1 inhibitor (icFSP1 class) on an azacitidine backbone. Test whether FSP1 blockade
+closes the escape route as §6 predicts.
+
+### Gate 6 — The one that decides everything
+
+**Serial transplantation.** Treat a PDX, then transplant survivors into fresh recipients and ask
+whether leukemia-initiating capacity is gone. Nothing computational substitutes for it, and every
+earlier gate can pass while this one fails — that is precisely what happened to Iomab-B.
+
+## 18.5 On the proposed generative stack
+
+The recommendation to run **FLOWR.root + GenMol + DiffSBDD** with docking and affinity scoring is
+sound general advice. **For this target specifically, our own measurements rule most of it out:**
+
+| Proposed component | Applies here? | Evidence from this campaign |
+|---|---|---|
+| **FLOWR.root** (pocket-conditioned) | ❌ | Requires a pocket. We measured **26 Å³ within 5 Å of the catalytic selenium** against ~400 Å³ molecules. There is no pocket to condition on |
+| **DiffSBDD / TargetDiff** (pocket-conditioned) | ❌ | Same reason; also produce non-covalent binders, and §7.2 showed non-covalent binding is not what holds this ligand |
+| **Affinity scoring** | ❌ | Redocking the crystal ligand gave −5.7 kcal/mol and 5.9 Å RMSD. **Ranking generated compounds on these scores would have been worthless** |
+| **GenMol** (fragment-based) | ✅ | The right tool class — and its job was done here by BRICS decomposition plus warhead-constrained enumeration, 300 analogs with SMARTS integrity gating |
+| **RDKit filtering** | ✅ | Used throughout |
+| **MD / FEP** | ⚠️ later | Meaningful only from the *bonded* state (Rule 14); pose prediction is the wrong problem here |
+
+**This is not a rejection of the advice — it is the advice colliding with a measurement.** A
+pocket-conditioned generator is the correct first choice for a normal target. GPX4 is not a normal
+target, and the cheap diagnostics in §7–8 are what established that before any GPU time was spent.
+
+**Where a generative model would genuinely help:** designing an FSP1 inhibitor for the partner arm.
+FSP1 has a real binding pocket, and existing tool compounds (icFSP1, viFSP1) have known liabilities —
+that is a conventional structure-based problem where FLOWR.root and DiffSBDD are appropriate.

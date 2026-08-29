@@ -254,6 +254,34 @@ All three unchanged ⇒ the candidate should inherit the parent potency.
 was broken; it does not establish that the parent chemotype is potent enough to matter. Only the
 purified-enzyme assay does that.
 
+## RULE 18 — Diagnose the site before choosing a generative model
+
+Pocket-conditioned generators (FLOWR.root, DiffSBDD, TargetDiff) are the right default for a normal
+target and the wrong choice for a target without a pocket. **Run the cheap diagnostics of Rule 3
+first** — they cost minutes and can save an entire GPU campaign.
+
+For GPX4: 26 A^3 accessible within 5 A of the catalytic selenium against ~400 A^3 molecules, and
+crystal-ligand redocking at -5.7 kcal/mol with 5.9 A RMSD. **Ranking generated compounds on those
+affinity scores would have been worthless.** Fragment-based generation (GenMol class) on a validated
+chemotype was the appropriate tool.
+
+Match the tool to the measured site, not to the target class.
+
+## RULE 19 — Never simulate an assay
+
+Computation earns the right to run an experiment; it does not replace it. Generating plausible IC50s,
+kill curves, or survival numbers produces output indistinguishable from real data in any document
+that later quotes it.
+
+**What to produce instead:** the protocol, with the controls that would catch known failure modes.
+For a covalent inhibitor that means k_inact/K_I rather than a single-timepoint IC50, a counter-screen
+against the off-target that invalidated the field-standard tools, a rescue control proving the death
+mechanism, and an internal within-sample comparison rather than a cross-sample one.
+
+**Symmetry is a synthesis result, not just an aesthetic one:** a symmetric benzhydryl centre is not a
+stereocentre. No enantiomers, no chiral separation, no doubled tox package. That was worth more than
+the QED difference that favoured the unsymmetrical candidates.
+
 ---
 
 ## Standard cascade
