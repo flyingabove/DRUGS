@@ -2031,3 +2031,94 @@ mis-combined.
 continuous dosing, ~4 h half-life sufficient, potency not the lever, deployment in deepest remission,
 venetoclax as the orthogonal partner, anaemia as the predicted dose-limiting toxicity, vitamin E
 status as an eligibility criterion.
+
+---
+
+# 30. THREE BRANCHES — novelty, solubility, regulatory
+
+## 30.1 Branch A — novelty: the improvement we were making already exists
+
+**JKE-1674** is ML210 with the nitroisoxazole replaced by an α-nitroketoxime. It is the **active
+metabolite** of ML210, it is **orally active**, and the Broad Institute describe it as *"more suitable
+than ML210 for use in animal models or perhaps even patients."*
+
+**That is precisely the brief this campaign set itself** — make ML210 suitable for chronic dosing in a
+patient. It was largely met before we started.
+
+Also published: **structure-activity relationships on the warhead**, showing steep SAR — both the oxime
+and the nitro group are essential. The chemotype has been worked systematically (Broad, 2018–2020).
+
+**Consequences:**
+
+- **Criterion 8 (novelty) degrades further.** C4 is two edits from ML210; the *direction* of improvement
+  is claimed territory, and a better-developed compound in the same series already exists.
+- **JKE-1674 is arguably the better scaffold to build from** than ML210 — it is the species that
+  actually engages the target, and it is more stable. Building on ML210 means building on a prodrug of
+  something already improved.
+- **The warhead SAR is closed.** Steep SAR on the oxime and nitro means there is no room to modify the
+  warhead for property gain — which was already the working assumption, now confirmed by data rather
+  than caution.
+
+## 30.2 Correction — my JKE-1674 structure was wrong
+
+The comparator set that set the polarity ceiling contained a **wrong structure for JKE-1674**. I had
+omitted the nitro group.
+
+| | Formula | MW | TPSA |
+|---|---|---|---|
+| Published JKE-1674 | C₂₀H₂₀Cl₂N₄O₄ | **451.30** | — |
+| My SMILES | C₂₀H₂₁Cl₂N₃O₂ | 406.31 ✗ | 56.1 |
+| **Rebuilt α-nitroketoxime** | **C₂₀H₂₀Cl₂N₄O₄** | **451.31 ✓** | **99.3** |
+
+**Effect: the GPX4-only ceiling moves from 92.7 to 99.3 Å².** Small, and it does not change any
+conclusion — the operative ceiling is ~130 Å² from approved covalent drugs (§28) — but the comparator
+set was wrong and is now right.
+
+**This is the fourth structure error caught by a molecular-weight assertion.** The check earns its
+place: MW alone cannot prove a structure right, but it reliably catches structures that are wrong.
+
+## 30.3 Branch B — solubility within the budget
+
+C4 sits at 109.8 Å² with ~20 Å² of headroom before the ~130 ceiling. Symmetric substitutions only, so
+no stereocentres are created:
+
+| Candidate | TPSA | cLogP | mg/mL | vs C4 |
+|---|---|---|---|---|
+| C4 (current lead) | 109.8 | 2.97 | 0.0051 | 1× |
+| D1 bis-4-OMe | 128.3 | 2.98 | 0.0040 | 0.8× |
+| D2 bis-4-F | 109.8 | 3.24 | 0.0021 | 0.4× |
+| **D4 bis-4-pyridyl** | **135.6** | **1.76** | **0.0652** | **12.7×** |
+| D3 bis-3-pyridyl | 135.6 | 1.76 | 0.0652 | 12.7× |
+| D8 bis-2-furyl | 136.1 | 2.15 | 0.0373 | 7.3× |
+
+**Replacing both phenyl rings with pyridine gives a 12.7× solubility gain** and drops lipophilicity from
+2.97 to 1.76 — both wanted for chronic dosing.
+
+**The cost is 5.6 Å² over the ceiling.** That ceiling is itself an estimate from seven compounds whose
+maximum is nirmatrelvir at 131.4, so 135.6 is marginal rather than disqualifying — but it is the same
+kind of step that produced the M3 failure, and it must not be waved through.
+
+**An advantage my own filter missed:** a pyridine nitrogen is **weakly basic** (pKa ≈ 5). It is not
+counted by the basic-amine SMARTS — correctly, since it is aromatic and carries none of the hERG
+pharmacophore risk of an aliphatic amine — **but it can still form a salt with a strong acid.** That
+partially restores the salt handle C4 gave up, without restoring the cardiac liability.
+
+**Status: D4 is a candidate worth carrying, not a new lead.** It needs the anchored fit, and the TPSA
+overrun needs a permeability answer rather than an argument.
+
+## 30.4 Branch C — regulatory: the accelerated door is shut for AML
+
+Measurable residual disease as a surrogate for accelerated approval:
+
+- **Multiple myeloma: accepted.** FDA's Oncologic Drugs Advisory Committee voted **unanimously in April
+  2024** that MRD-negative complete response is reasonably likely to predict clinical benefit.
+- **AML: not accepted.** FDA has stated that *"the molecular heterogeneity of AML poses substantial
+  challenges to the use of MRD as a biomarker."* A consortium (MRD Partnership / Alliance in AML) is
+  actively pushing for it, and published a case in 2025.
+
+**So for this programme there is currently one door: overall survival.** The surrogate our entire
+preclinical case rests on — leukaemia stem cell burden — has no accepted regulatory standing in this
+disease.
+
+**This does not change criterion 3's score, but it removes an escape route I had assumed existed.** If
+MRD gains acceptance in AML the calculus changes materially, and it is worth tracking.
