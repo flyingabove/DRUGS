@@ -1749,3 +1749,88 @@ see the membrane.
 
 **Calibrate against known actives early, on every property axis, not just the ones being optimised.**
 Six comparators took two minutes to assemble and would have caught this before three rounds of design.
+
+---
+
+# 26. THE LEAD CHANGES BACK — GPX4-C1, and why three design rounds went the wrong way
+
+## 26.1 The trade-off, laid out
+
+| Compound | Polar surface | cLogP | Basic N | Neutral solubility | Enters cells? | Salt possible? |
+|---|---|---|---|---|---|---|
+| ML210 (parent) | 92.7 | 4.75 | 1 | 0.0001 mg/mL | **yes** | **yes** |
+| **C1 des-chloro** | **92.7** | **3.44** | 1 | 0.0021 | **yes** | **yes** |
+| C2 bis-4-F | 92.7 | 3.72 | 1 | 0.0008 | yes | yes |
+| C3 bis-2-thienyl | 92.7 | 3.56 | 1 | 0.0015 | yes | yes |
+| C4 des-Cl + oxopiperazine | 109.8 | 2.97 | 0 | 0.0051 | close | no |
+| **GPX4-M3** (was lead) | **168.0** | 1.68 | 0 | 0.0286 | **NO** | **no** |
+| GPX4-S1 | 208.4 | 0.41 | 0 | 0.3235 | **NO** | no |
+
+**Nothing in this chemotype is both freely soluble and clearly cell-permeable.** The compounds that get
+inside are greasy and do not dissolve; the ones that dissolve cannot get in.
+
+## 26.2 The mistake
+
+**The basic nitrogen was doing two jobs, and I only counted one.**
+
+I removed it to avoid the kidney transporter trap and the cardiac liability. Both real. **But it is also
+the handle that lets you make an injectable salt** — and a salt lifts usable concentration far above the
+neutral-form number, which is what every solubility model reports.
+
+So removing it cost the salt option. And the amide arms I installed *instead* of chlorophenyls cost cell
+permeability. **Two independent losses from one decision, and the decision looked locally correct at
+every step.**
+
+**The correct move was much smaller than the one I made.** Simply deleting the two chlorines from ML210
+drops greasiness from 4.75 to **3.44** — a 1.3 log-unit improvement, which is most of what the chronic
+dosing brief wanted — while **staying inside the permeability window and keeping the salt handle.**
+
+## 26.3 The new lead: GPX4-C1
+
+```
+O=C(N1CCN(C(c2ccccc2)c3ccccc3)CC1)c5noc(C)c5[N+](=O)[O-]
+```
+
+**ML210 with both chlorines removed. Nothing else changed.**
+
+| | Value | vs ML210 |
+|---|---|---|
+| Molecular weight | 406.4 | −69 (room to add later) |
+| Polar surface | 92.7 | unchanged — **in window** |
+| cLogP | **3.44** | **−1.31, better for chronic dosing** |
+| Basic nitrogen | 1 | retained — **salt formable** |
+| Stereocentres | **0** | symmetric |
+| Neutral solubility | 0.0021 mg/mL | **20× better than ML210** |
+| Warhead | intact | unchanged |
+
+**Remaining liabilities, now explicit rather than designed away:** the basic nitrogen carries kidney
+(OCT2) and cardiac (hERG) risk. **Both are lower at cLogP 3.44 than at ML210's 4.75** — the cardiac
+pharmacophore needs lipophilicity as well as the nitrogen — but neither is eliminated. **That is a trade
+made with open eyes, not a liability overlooked.**
+
+## 26.4 What survives from the M3 work
+
+Not wasted, but re-scoped:
+
+- **The burial and MD analysis stands.** The arm positions genuinely are solvent-facing and tolerate
+  substitution *at the binding site*. That was never the constraint — the membrane was.
+- **The linker chemistry stands.** 2-oxopiperazine does remove the basic nitrogen cleanly; it is
+  available if the kidney/cardiac risk proves unacceptable in vivo, at a permeability cost now quantified
+  (+17 Å²).
+- **The systems modelling is compound-independent.** Daily dosing, ~4 h half-life sufficient, potency not
+  the lever, partner drug is where the value is — all unchanged.
+- **M3 and S1 remain fallbacks** if permeability turns out not to be limiting, which a single assay
+  settles.
+
+## 26.5 The lesson, stated bluntly
+
+**Three rounds of design moved away from a viable molecule.** Each round fixed a real problem and each
+introduced a worse one, because the criteria being optimised did not include the one that mattered.
+
+**A smaller edit to the parent would have achieved most of the goal.** The instinct to redesign
+comprehensively — replace both arms, rebuild the linker — produced a molecule that is better on every
+axis I was measuring and probably cannot reach its target.
+
+**Start from the known-active compound and make the minimum change that addresses the brief.** Measure
+the full property profile against known actives after every change, including the axes nobody asked
+about.

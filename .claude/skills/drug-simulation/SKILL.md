@@ -557,3 +557,21 @@ for prop in (TPSA, logP, HBD, MW):
 **Put the comparator set in place first and check every axis against it each cycle** - including the
 axes nobody is optimising. The property that kills the programme is usually the one no criterion
 mentioned.
+
+## RULE 34 — Prefer the minimum edit to a known-active compound
+
+Three design rounds replaced both aryl arms and rebuilt the linker of a validated chemotype. Each round
+fixed a real liability. The cumulative result was polar surface area **168 Å²** against a known-active
+ceiling of **92.7** - a molecule better on every measured axis that probably cannot reach its
+intracellular target.
+
+**Deleting two chlorine atoms from the parent** achieved most of the same brief: greasiness 4.75 → 3.44,
+polar surface unchanged and in-window, salt handle retained, twenty-fold better intrinsic solubility.
+
+**A group can be doing two jobs.** The basic nitrogen removed for kidney and cardiac safety was also the
+handle for making an injectable salt. Removing it cost solubility in a way no solubility model showed,
+because those models report the neutral form.
+
+Before replacing any feature of a validated compound, ask what else it might be doing. Then make the
+smallest change that addresses the brief and re-measure the full profile - not just the axis being
+fixed.
