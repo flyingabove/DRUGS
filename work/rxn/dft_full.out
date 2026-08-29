@@ -186,3 +186,10 @@ AlgError: Linear bends detected.
 
 	Best geometry has RMS(Delta(q)) = 3.26e-05
 
+	Previous geometry is closer to target in internal coordinates, so using that one.
+
+	Best geometry has RMS(Delta(q)) = 3.92e-05
+
+	Energy has increased in a minimization.
+	Energy ratio indicates iffy step.
+	Intrafrag trust radius decreased to 0.0625.

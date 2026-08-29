@@ -130,3 +130,226 @@ Module                                       User      System        Wall       
 --------------------------------------------------------------------------------------
 
 **************************************************************************************
+
+Host: DESKTOP-L3BK9FC
+
+Timers On : Sat Aug 29 09:13:20 2026
+Timers Off: Sat Aug 29 09:13:21 2026
+
+Wall Time:        1.43 seconds
+
+                                                       Time (seconds)
+Module                                       User      System        Wall        Calls
+
+--------------------------------------------------------------------------------------
+
+**************************************************************************************
+
+Host: DESKTOP-L3BK9FC
+
+Timers On : Sat Aug 29 09:13:33 2026
+Timers Off: Sat Aug 29 09:13:36 2026
+
+Wall Time:        3.03 seconds
+
+                                                       Time (seconds)
+Module                                       User      System        Wall        Calls
+
+--------------------------------------------------------------------------------------
+
+**************************************************************************************
+
+Host: DESKTOP-L3BK9FC
+
+Timers On : Sat Aug 29 09:13:50 2026
+Timers Off: Sat Aug 29 09:13:52 2026
+
+Wall Time:        1.35 seconds
+
+                                                       Time (seconds)
+Module                                       User      System        Wall        Calls
+
+--------------------------------------------------------------------------------------
+
+**************************************************************************************
+
+Host: DESKTOP-L3BK9FC
+
+Timers On : Sat Aug 29 09:14:04 2026
+Timers Off: Sat Aug 29 09:14:06 2026
+
+Wall Time:        1.37 seconds
+
+                                                       Time (seconds)
+Module                                       User      System        Wall        Calls
+
+--------------------------------------------------------------------------------------
+
+**************************************************************************************
+
+Host: DESKTOP-L3BK9FC
+
+Timers On : Sat Aug 29 09:14:20 2026
+Timers Off: Sat Aug 29 09:14:21 2026
+
+Wall Time:        1.16 seconds
+
+                                                       Time (seconds)
+Module                                       User      System        Wall        Calls
+
+--------------------------------------------------------------------------------------
+
+**************************************************************************************
+
+Host: DESKTOP-L3BK9FC
+
+Timers On : Sat Aug 29 09:14:32 2026
+Timers Off: Sat Aug 29 09:14:33 2026
+
+Wall Time:        1.22 seconds
+
+                                                       Time (seconds)
+Module                                       User      System        Wall        Calls
+
+--------------------------------------------------------------------------------------
+
+**************************************************************************************
+
+Host: DESKTOP-L3BK9FC
+
+Timers On : Sat Aug 29 09:14:46 2026
+Timers Off: Sat Aug 29 09:14:47 2026
+
+Wall Time:        1.33 seconds
+
+                                                       Time (seconds)
+Module                                       User      System        Wall        Calls
+
+--------------------------------------------------------------------------------------
+
+**************************************************************************************
+
+Host: DESKTOP-L3BK9FC
+
+Timers On : Sat Aug 29 09:15:04 2026
+Timers Off: Sat Aug 29 09:15:05 2026
+
+Wall Time:        1.22 seconds
+
+                                                       Time (seconds)
+Module                                       User      System        Wall        Calls
+
+--------------------------------------------------------------------------------------
+
+**************************************************************************************
+
+Host: DESKTOP-L3BK9FC
+
+Timers On : Sat Aug 29 09:15:15 2026
+Timers Off: Sat Aug 29 09:15:16 2026
+
+Wall Time:        1.23 seconds
+
+                                                       Time (seconds)
+Module                                       User      System        Wall        Calls
+
+--------------------------------------------------------------------------------------
+
+**************************************************************************************
+
+Host: DESKTOP-L3BK9FC
+
+Timers On : Sat Aug 29 09:15:24 2026
+Timers Off: Sat Aug 29 09:15:25 2026
+
+Wall Time:        1.16 seconds
+
+                                                       Time (seconds)
+Module                                       User      System        Wall        Calls
+
+--------------------------------------------------------------------------------------
+
+**************************************************************************************
+
+Host: DESKTOP-L3BK9FC
+
+Timers On : Sat Aug 29 09:15:44 2026
+Timers Off: Sat Aug 29 09:15:52 2026
+
+Wall Time:        8.48 seconds
+
+                                                       Time (seconds)
+Module                                       User      System        Wall        Calls
+DFH: sparsity prep                  :      0.000u      0.000s      0.029w      3 calls
+Libint2ERI::Libint2ERI              :      0.000u      0.000s      0.104w     39 calls
+DFH: initialize()                   :      0.000u      0.000s      0.486w      3 calls
+DFH: AO Construction                :      0.000u      0.000s      0.060w      3 calls
+DFH: AO-Met. Contraction            :      0.000u      0.000s      0.029w      3 calls
+HF: Form core H                     :      0.000u      0.000s      0.034w      3 calls
+HF: Form S/X                        :      0.000u      0.000s      0.001w      3 calls
+HF: Guess                           :      0.000u      0.000s      0.271w      3 calls
+SAD Guess                           :      0.000u      0.000s      0.269w      1 calls
+HF: Form G                          :      0.000u      0.000s      0.149w     27 calls
+JK: D                               :      0.000u      0.000s      0.001w     27 calls
+JK: USO2AO                          :      0.000u      0.000s      0.002w     27 calls
+JK: JK                              :      0.000u      0.000s      0.144w     27 calls
+DFH: compute_JK()                   :      0.000u      0.000s      0.144w     27 calls
+DFH: Grabbing AOs                   :      0.000u      0.000s      0.000w     27 calls
+DFH: compute_J                      :      0.000u      0.000s      0.013w     27 calls
+DFH: compute_K                      :      0.000u      0.000s      0.067w     27 calls
+JK: AO2USO                          :      0.000u      0.000s      0.002w     27 calls
+HF: Form F                          :      0.000u      0.000s      0.000w     27 calls
+HF: Form D                          :      0.000u      0.000s      0.000w     27 calls
+HF: DIIS                            :      0.000u      0.000s      0.782w     26 calls
+HF: Form C                          :      0.000u      0.000s      0.027w     26 calls
+Grad: V T Perturb                   :      0.000u      0.000s      0.006w      3 calls
+Grad: S                             :      0.000u      0.000s      0.002w      3 calls
+Grad: JK                            :      0.000u      0.000s      0.980w      3 calls
+JKGrad: Amn                         :      0.000u      0.000s      0.143w      3 calls
+JKGrad: Awmn                        :      0.000u      0.000s      0.000w      3 calls
+JKGrad: AB                          :      0.000u      0.000s      0.378w      3 calls
+JKGrad: UV                          :      0.000u      0.000s      0.065w      3 calls
+JKGrad: ABx                         :      0.000u      0.000s      0.056w      3 calls
+JKGrad: Amnx                        :      0.000u      0.000s      0.316w      3 calls
+Grad: XC                            :      0.000u      0.000s      0.000w      3 calls
+
+--------------------------------------------------------------------------------------
+DFH: sparsity prep                  :      0.000u      0.000s      0.029w      3 calls
+| Libint2ERI::Libint2ERI            :      0.000u      0.000s      0.018w      3 calls
+DFH: initialize()                   :      0.000u      0.000s      0.486w      3 calls
+| Libint2ERI::Libint2ERI            :      0.000u      0.000s      0.028w     15 calls
+| DFH: AO Construction              :      0.000u      0.000s      0.060w      3 calls
+| DFH: AO-Met. Contraction          :      0.000u      0.000s      0.029w      3 calls
+HF: Form core H                     :      0.000u      0.000s      0.034w      3 calls
+HF: Form S/X                        :      0.000u      0.000s      0.001w      3 calls
+HF: Guess                           :      0.000u      0.000s      0.271w      3 calls
+| SAD Guess                         :      0.000u      0.000s      0.269w      1 calls
+HF: Form G                          :      0.000u      0.000s      0.149w     27 calls
+| JK: D                             :      0.000u      0.000s      0.001w     27 calls
+| JK: USO2AO                        :      0.000u      0.000s      0.002w     27 calls
+| JK: JK                            :      0.000u      0.000s      0.144w     27 calls
+| | DFH: compute_JK()               :      0.000u      0.000s      0.144w     27 calls
+| | | DFH: Grabbing AOs             :      0.000u      0.000s      0.000w     27 calls
+| | | DFH: compute_J                :      0.000u      0.000s      0.013w     27 calls
+| | | DFH: compute_K                :      0.000u      0.000s      0.067w     27 calls
+| JK: AO2USO                        :      0.000u      0.000s      0.002w     27 calls
+HF: Form F                          :      0.000u      0.000s      0.000w     27 calls
+HF: Form D                          :      0.000u      0.000s      0.000w     27 calls
+HF: DIIS                            :      0.000u      0.000s      0.782w     26 calls
+HF: Form C                          :      0.000u      0.000s      0.027w     26 calls
+Grad: V T Perturb                   :      0.000u      0.000s      0.006w      3 calls
+Grad: S                             :      0.000u      0.000s      0.002w      3 calls
+Grad: JK                            :      0.000u      0.000s      0.980w      3 calls
+| JKGrad: Amn                       :      0.000u      0.000s      0.143w      3 calls
+| | Libint2ERI::Libint2ERI          :      0.000u      0.000s      0.025w      3 calls
+| JKGrad: Awmn                      :      0.000u      0.000s      0.000w      3 calls
+| JKGrad: AB                        :      0.000u      0.000s      0.378w      3 calls
+| | Libint2ERI::Libint2ERI          :      0.000u      0.000s      0.006w     12 calls
+| JKGrad: UV                        :      0.000u      0.000s      0.065w      3 calls
+| JKGrad: ABx                       :      0.000u      0.000s      0.056w      3 calls
+| | Libint2ERI::Libint2ERI          :      0.000u      0.000s      0.002w      3 calls
+| JKGrad: Amnx                      :      0.000u      0.000s      0.316w      3 calls
+| | Libint2ERI::Libint2ERI          :      0.000u      0.000s      0.025w      3 calls
+Grad: XC                            :      0.000u      0.000s      0.000w      3 calls
+
+**************************************************************************************

@@ -1,0 +1,10 @@
+
+  Memory set to   2.794 GiB by Python driver.
+=== KINETIC CONTROL: SN2  CH3Br + CH3Nu(-) -> CH3Nu-CH3 + Br(-) ===
+    expectation: SELENOLATE HAS THE LOWER BARRIER
+
+Some dependencies such as QCElemental have not yet finished migration to pydantic v2. If issues are encountered please downgrade pydantic or upgrade QCElemental as appropriate
+	Previous geometry is closer to target in internal coordinates, so using that one.
+
+	Best geometry has RMS(Delta(q)) = 2.18e-04
+

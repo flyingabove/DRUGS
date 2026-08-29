@@ -244,3 +244,30 @@ If Tiers 1–6 pass:
 **Pre-registered kill criterion:** if LSC burden falls but serial transplantation shows undiminished
 engraftment, the maintenance thesis is wrong and the program stops — regardless of how good the
 biomarkers look. **That is precisely the discipline the Iomab-B program lacked.**
+
+---
+
+## STATUS UPDATE — the compute barrier was self-imposed
+
+**Every tool I declared unavailable is in fact available on this machine.**
+
+| Capability | Earlier claim | Reality |
+|---|---|---|
+| DFT | "no engine on Windows" | **psi4 1.11 installs from conda-forge.** I had only tried `pip install pyscf`, which fails to compile, and stopped |
+| MD | "OpenMM not installed" | **OpenMM 8.6 installs.** The first attempt failed only because `openmmforcefields` pulls `ambertools`, which has no win-64 build — `pip install openmmforcefields --no-deps` sidesteps it |
+| GPU | not considered | **NVIDIA TITAN Xp, 12 GB.** CUDA fails on a PTX version mismatch, but **OpenCL runs at 203 ns/day** — 7.7× the CPU |
+| PCM solvation | — | available; **but psi4 has no analytic PCM gradients** and silently falls back to finite differences. Gas-phase geometry + PCM single-point is the workable protocol |
+
+**Lesson for the plan: "blocked" claims need the same verification as results.** I reported a hard
+compute barrier on the single most important calculation after one failed `pip` command.
+
+### Revised tier status
+
+| Tier | Status |
+|---|---|
+| 1 — reaction chemistry | **UNBLOCKED.** Thermodynamics done; **barriers running** (the quantity that actually matters) |
+| 2 — MD | **UNBLOCKED.** OpenCL GPU available; system built from the anchored pose |
+| 3 — proteome selectivity | not started |
+| 4 — ADMET | **done** — M3 sweeps |
+| 5 — systems modelling | **done** — potency is not the lever; kG is |
+| 6 — target validation | **done** — window real but vitamin-E-dependent; DLT predicted as anaemia |
