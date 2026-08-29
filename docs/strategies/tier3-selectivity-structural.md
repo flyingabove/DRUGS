@@ -70,3 +70,41 @@ a measured reason rather than an assumed one.
 Exposure is measured on a **Cys** standing in for **Sec**, in a crystal. Selenium is larger and the real
 selenolate is anionic at pH 7.4 where most cysteines are not — both push TXNRD1's site toward *more*
 reactivity, not less. **The comparison is conservative in the direction that matters.**
+
+---
+
+# Tier 3.1 — Selenoproteome-wide scan: **not possible from AlphaFold DB**
+
+The plan called for scanning all ~25 human selenoproteins for accessible Sec in a GPX4-like environment.
+**AlphaFold DB does not contain them.**
+
+| | Entries present |
+|---|---|
+| Human selenoproteins queried (GPX1-4/6, TXNRD1-3, DIO1-3, SELENOP/K/S/W/N/O/V, MSRB1, SEPHS2) | **2 / 20** |
+| Non-selenoprotein controls (EGFR, TP53) | **2 / 2** |
+
+**Both apparent exceptions are false positives.** DIO1's entry is `AF-P49895-7` — a **113-residue
+isoform** of a 249-residue protein whose sequence **contains no U (Sec) at all**. The Sec-containing
+canonical sequences return HTTP 404.
+
+**Verified as genuine absence, not a query artifact:** the failures are `404 Not Found`, not `429`
+rate-limiting, and the controls return `200` under the identical protocol. **The first version of this
+check used a guessed URL and 404'd on EGFR too** — had I not run a non-selenoprotein control, I would
+have written up "selenoproteins are excluded" from what was actually my own malformed URL.
+
+## Why, and what it means
+
+Selenocysteine is encoded by UGA — normally a stop codon — and is a non-standard residue. Structure
+prediction pipelines built on the 20 canonical amino acids have no token for it, so the sequences are
+dropped rather than modelled.
+
+**Consequence for this program:** a structure-based selectivity scan across the selenoproteome is not
+available. The options are experimental structures — scarce, and as §Tier 3.2 showed, usually
+**Sec→Cys mutants** — or custom modelling with a Sec residue built in.
+
+**This is also why the field uses chemical proteomics (activity-based protein profiling) rather than
+structure for selenoprotein selectivity.** It is not a methodological preference; the structures do not
+exist. That elevates the proteome-wide covalent profiling experiment from "nice to have" to **the only
+way to answer K1 across the selenoproteome**.
+
+The focused GPX4-vs-TXNRD1 comparison in §Tier 3.2 stands, because both had experimental structures.

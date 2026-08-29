@@ -35,3 +35,73 @@ Hessian guess encountered unknown coordinate type.
 	Energy ratio indicates iffy step.
 	Intrafrag trust radius decreased to 0.0281.
 Optimizer: Optimization complete!
+    ctl-Se   d=3.40  E=-5055.10815930 
+Hessian guess encountered unknown coordinate type.
+
+	Previous geometry is closer to target in internal coordinates, so using that one.
+
+	Best geometry has RMS(Delta(q)) = 1.25e-07
+
+	Previous geometry is closer to target in internal coordinates, so using that one.
+
+	Best geometry has RMS(Delta(q)) = 3.35e-05
+
+	Energy has increased in a minimization.
+	Energy ratio indicates iffy step.
+	Intrafrag trust radius decreased to   0.05.
+	Previous geometry is closer to target in internal coordinates, so using that one.
+
+	Best geometry has RMS(Delta(q)) = 1.09e-05
+
+	Energy ratio indicates iffy step.
+	Intrafrag trust radius decreased to 0.0375.
+	Energy has increased in a minimization.
+	Energy ratio indicates iffy step.
+	Intrafrag trust radius decreased to 0.00938.
+Optimizer: Optimization complete!
+    ctl-Se   d=3.00  E=-5055.10337313 
+Hessian guess encountered unknown coordinate type.
+
+	Previous geometry is closer to target in internal coordinates, so using that one.
+
+	Best geometry has RMS(Delta(q)) = 1.78e-06
+
+	Energy has increased in a minimization.
+	Energy ratio indicates iffy step.
+	Intrafrag trust radius decreased to   0.15.
+	Previous geometry is closer to target in internal coordinates, so using that one.
+
+	Best geometry has RMS(Delta(q)) = 7.52e-06
+
+	Energy ratio indicates iffy step.
+	Intrafrag trust radius decreased to 0.0375.
+	Previous geometry is closer to target in internal coordinates, so using that one.
+
+	Best geometry has RMS(Delta(q)) = 3.26e-07
+
+	Energy has increased in a minimization.
+	Energy ratio indicates iffy step.
+	Intrafrag trust radius decreased to 0.0844.
+Optimizer: Optimization complete!
+    ctl-Se   d=2.70  E=-5055.09169325 
+Hessian guess encountered unknown coordinate type.
+
+	Previous geometry is closer to target in internal coordinates, so using that one.
+
+	Best geometry has RMS(Delta(q)) = 4.55e-08
+
+	Previous geometry is closer to target in internal coordinates, so using that one.
+
+	Best geometry has RMS(Delta(q)) = 6.32e-05
+
+	Energy has increased in a minimization.
+	Energy ratio indicates iffy step.
+	Intrafrag trust radius decreased to   0.15.
+	Previous geometry is closer to target in internal coordinates, so using that one.
+
+	Best geometry has RMS(Delta(q)) = 1.22e-04
+
+	Previous geometry is closer to target in internal coordinates, so using that one.
+
+	Best geometry has RMS(Delta(q)) = 1.54e-05
+

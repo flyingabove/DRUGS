@@ -1,0 +1,22 @@
+[
+ [
+  "P00533",
+  "EGFR (control, no Sec)",
+  "https://alphafold.ebi.ac.uk/files/AF-P00533-F1-model_v6.pdb"
+ ],
+ [
+  "P04637",
+  "TP53 (control, no Sec)",
+  "https://alphafold.ebi.ac.uk/files/AF-P04637-F1-model_v6.pdb"
+ ],
+ [
+  "P49895",
+  "DIO1",
+  "https://alphafold.ebi.ac.uk/files/AF-P49895-7-F1-model_v6.pdb"
+ ],
+ [
+  "Q9BQI3",
+  "SELENOO",
+  "https://alphafold.ebi.ac.uk/files/AF-Q9BQI3-F1-model_v6.pdb"
+ ]
+]
