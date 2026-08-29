@@ -1881,3 +1881,59 @@ was not the binding constraint.
   than the six comparators suggest, M3's binding case is now fully supported.
 
 **The measurement is sound. The question it answered was not the one that decides the programme.**
+
+---
+
+# 28. THE CEILING WAS TOO STRICT — budget assumption revised
+
+The 92.7 Å² polar-surface ceiling came from **six GPX4 inhibitors — one chemical series.** Tested
+against approved covalent drugs whose targets are also **inside the cell**:
+
+| Drug | Target | TPSA | HBD | cLogP |
+|---|---|---|---|---|
+| osimertinib | EGFR | 87.5 | 2 | 4.51 |
+| afatinib | EGFR | 88.6 | 2 | 4.39 |
+| ibrutinib | BTK | 99.2 | 1 | 4.22 |
+| neratinib | EGFR | 112.4 | 2 | 5.93 |
+| acalabrutinib | BTK | 118.5 | 2 | 3.31 |
+| bortezomib | 20S proteasome | 124.4 | 4 | 0.36 |
+| **nirmatrelvir** | viral Mpro | **131.4** | 3 | 1.10 |
+
+**Range 87.5–131.4, median 112.4. Five of seven exceed the ceiling I had been enforcing.**
+
+*(An eighth entry, sotorasib, was rejected automatically — the SMILES gave MW 479.6 against a published
+560.6. The MW assertion is necessary but not sufficient, since a ring-digit collision preserves MW, but
+it caught this one.)*
+
+## What this changes
+
+**The real working ceiling for approved covalent drugs at intracellular targets is ~130 Å², not 93.**
+
+| Compound | TPSA | vs revised ceiling (~130) |
+|---|---|---|
+| **GPX4-C1** | 92.7 | **comfortably inside** |
+| **C4 (des-Cl + oxopiperazine)** | **109.8** | **inside — and no basic nitrogen** |
+| GPX4-M3 | 168.0 | **+38 — still outside** |
+| GPX4-S1 | 208.4 | +78 — far outside |
+
+**M3 is not rescued.** The gap is smaller than I claimed (+38 over the real ceiling, not +75 over a
+false one), but it still sits well beyond every approved comparator.
+
+**The middle ground exists after all, and it already appeared in the earlier series.** C4 — des-chloro
+ML210 with the 2-oxopiperazine linker — sits at 109.8 Å², *inside* the revised range, **with no basic
+nitrogen.** Under the old ceiling it was dismissed as "close but outside". It is now the most
+interesting compound in the campaign: cell-permeable by precedent **and** free of the kidney/cardiac
+liability.
+
+## Caveats kept explicit
+
+- Bortezomib and nirmatrelvir are unusual (a boronic-acid peptide; a compound co-dosed with a metabolic
+  booster). The tighter cluster — the kinase inhibitors — sits at **87–118**.
+- TPSA is a proxy. It correlates with membrane crossing; it does not measure it. **A permeability assay
+  still settles this**, and remains the single most decision-relevant experiment.
+- Covalent drugs plausibly tolerate lower permeability than reversible ones, since every molecule that
+  enters and reacts is permanently consumed. That argument is now *supported* by the data rather than
+  merely asserted — the covalent set skews higher than typical oral-drug guidance.
+
+**Correcting my own error: I set a ceiling from one chemotype and treated it as a law of nature.** It
+cost M3 a fair hearing and nearly cost C4 one.
