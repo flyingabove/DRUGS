@@ -25,14 +25,18 @@ the property gap stated), *modelled*, or *asserted*. **Asserted is never above �
 
 ## The eight criteria and their standards
 
-### 1. Kills the target cells
+### 1. Eliminates the target cells
 
 | | Standard |
 |---|---|
-| 🟢 | Measured killing of the actual target population by **this** compound |
-| 🟡 | Inherited from a close analog with measured activity, **and** the property profile is compatible with reaching the target |
-| 🟠 | Inherited, but a property gap makes reaching the target doubtful |
-| 🔴 | Evidence it does not kill them |
+| 🟢 | **This compound** measurably kills primary patient LSCs, or irreversibly matures them with demonstrated loss of self-renewal/leukemia-initiating capacity |
+| 🟡 | Activity is inherited from a close analog, the exact activity-critical features are preserved, and the property profile is compatible with reaching the target |
+| 🟠 | Activity is inherited but a structural, reactivity, or intracellular-exposure gap makes retention doubtful |
+| 🔴 | Evidence it leaves functional LSCs alive, or only changes maturation markers without abolishing leukemia initiation |
+
+This is the programme's first gate. Never raise another property to distract from a non-green row 1.
+Until row 1 is green, `Next thing that would move a score` must name the shortest decisive efficacy
+experiment or exact-compound evidence search, not a solubility or safety optimization.
 
 ### 2. Doesn't kill the patient
 
@@ -234,7 +238,7 @@ not in a row of its own.
 
 | # | Criterion | Status | Where it stands |
 |---|---|---|---|
-| 1 | Kills the target cells | 🟢 | <one line, with the number and the evidence class> |
+| 1 | Eliminates the target cells | 🟢 | <one line, with the number and the evidence class> |
 ...
 
 **Biggest problem right now:** <one sentence>

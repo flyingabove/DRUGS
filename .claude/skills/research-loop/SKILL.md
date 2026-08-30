@@ -1,9 +1,67 @@
 ---
 name: research-loop
-description: Research one idea (or sweep all ideas) in docs/ to exhaustion — verify it exists, find whether it's been tried, find why it failed, isolate what's genuinely novel — then write findings back to the doc. Use when the user says "research X", "loop on X", "dig into the ideas", or wants existing claims verified/updated.
+description: Central controller for every AML leukemic-stem-cell drug iteration. Routes work through the other project skills and available MCPs, gates first on whether the exact candidate kills LSCs or irreversibly matures them, then considers delivery, safety, survival, manufacture, and novelty. Also use for broad idea research and claim verification.
 ---
 
-# Research Loop
+# LSC Drug Research Loop
+
+This is the central controller for every drug-design iteration. Route work through the other project
+skills and available MCPs, then write the evidence back to the live state.
+
+## Non-negotiable priority
+
+**The exact candidate must kill LSCs or irreversibly force them to mature so they lose
+leukemia-initiating capacity. This is Gate 1 and outranks every other property.**
+
+- Do not promote a modified molecule because it is more soluble, safer, newer, or easier to make.
+- A close analog's activity keeps a design plausible; it does not prove the new molecule works.
+- Docking, reactivity calculations, target-occupancy models, and cell-line data are supporting evidence
+  only. They cannot make Gate 1 green.
+- If the exact candidate lacks target-cell evidence, the next iteration must reduce that uncertainty:
+  find overlooked measurements, preserve the activity-critical pharmacophore, or specify the decisive
+  assay. Do not spend the iteration polishing downstream properties.
+- Differentiation counts only when it is functional and durable: mature-cell markers plus loss of
+  self-renewal or leukemia initiation. A marker change alone is not enough.
+
+## Controller workflow — run on every drug iteration
+
+1. **Reload state.** Read `CLAUDE.md`, `docs/research/loops/current-idea.md`, and `dead-ideas.md`. Name
+   the exact molecule and intended patient population.
+2. **State the Gate 1 claim.** Choose LSC killing, irreversible LSC maturation, or both. Define the
+   measurement that would prove it.
+3. **Search efficacy first.** Seek exact-compound evidence in this order: serial transplantation or
+   limiting dilution; primary patient LSC killing or durable maturation; patient-derived xenograft;
+   then cell lines. Record required combination partners.
+4. **Check that the molecule can plausibly retain the effect.** Verify structure and formula; preserve
+   the activity-critical pharmacophore; test target engagement/reactivity and intracellular reach with
+   validated positive and negative controls. A method that rejects the known active control is invalid.
+5. **Make the Gate 1 decision.** Green only on measured target-population activity by this compound.
+   Otherwise keep it below green and make the missing efficacy experiment the next action.
+6. **Only after Gate 1 plausibility survives**, evaluate selectivity, delivery, chronic safety,
+   survival path, synthesis, and novelty. These can kill a candidate, but never substitute for efficacy.
+7. **Write and judge.** Update the live state and long-form strategy, correct contradictions in place,
+   run `judge-drug`, show its table, and commit the significant finding.
+
+## Skill and MCP routing
+
+Use the project skills as modules rather than duplicating them:
+
+| Need | Load/use |
+|---|---|
+| Publications and negative results | `literature-search` |
+| Exact structure, identifiers, activity, and physicochemical facts | `compound-profile` |
+| Target dependence and disease biology | `target-validation` |
+| Existing molecules, patents, and differentiation | `competitor-landscape` |
+| Exposure, metabolism, and toxicity predictions | `admet-prediction` |
+| Pharmacokinetic/pharmacodynamic or resistance modelling | `drug-simulation` |
+| Trial, regulatory, and approval precedent | `clinical-intelligence` |
+| Deliverable synthesis | `report-generator` |
+| Mandatory end-of-iteration decision table | `judge-drug` |
+
+Prefer the working MCPs named in `CLAUDE.md` when they cover the question: `biocontext-kb` for
+biological and clinical records, `gget-mcp` for sequences/alignment, and `patent-mcp-server` for prior
+art. Use scripts when an MCP is unavailable or deterministic local computation is the better
+instrument. Verify at least one real record before trusting a new source or tool.
 
 Take an idea, research it until you hit a dead end, write findings back to its doc, move on.
 
@@ -65,7 +123,8 @@ as they close, with the loop number. Keep the fallback list at the bottom.
 
 ## Efficacy First — Toxicity Is a Downstream Engineering Problem
 
-**The single most important question about any candidate is whether it actually kills LSCs.**
+**The single most important question about any candidate is whether it actually kills LSCs or
+irreversibly matures them so they cannot restart leukemia.**
 Everything else is secondary at this stage.
 
 - **Gate on efficacy, not safety.** If a mechanism demonstrably eradicates leukemic stem cells, it
