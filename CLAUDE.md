@@ -29,6 +29,11 @@
 
 ## MCP servers (`.mcp.json`) — each one launch-tested, not just configured
 
+**`uvx` must be given by ABSOLUTE PATH** (`C:\Users\Christian\.local\bin\uvx.exe`). A bare `uvx`
+resolves in a shell that sources the user profile, but the MCP launcher does not inherit that PATH —
+all three servers failed with `CONNECTION_CLOSED` until the path was made explicit. **Check this first**
+if servers stop connecting.
+
 **Working:**
 - `biocontext-kb` — Open Targets, UniProt, Reactome, KEGG, AlphaFold, Ensembl, ClinicalTrials.gov.
 - `gget-mcp` — Ensembl sequence retrieval, BLAST/BLAT.
