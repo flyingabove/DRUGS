@@ -1,19 +1,20 @@
 {
   "mcpServers": {
     "biocontext-kb": {
-      "command": "uvx",
+      "command": "C:\\Users\\Christian\\.local\\bin\\uvx.exe",
       "args": ["biocontext_kb@latest"],
       "env": { "MCP_ENVIRONMENT": "DEVELOPMENT" }
     },
     "gget-mcp": {
-      "command": "uvx",
+      "command": "C:\\Users\\Christian\\.local\\bin\\uvx.exe",
       "args": ["--from", "gget-mcp@latest", "stdio"]
     },
     "patent-mcp-server": {
-      "command": "uvx",
+      "command": "C:\\Users\\Christian\\.local\\bin\\uvx.exe",
       "args": ["--with", "mcp<2", "patent-mcp-server"]
     }
   },
+  "_comment_uvx_path": "uvx is invoked by ABSOLUTE PATH. Bare 'uvx' resolves when a shell sources the user profile, but the MCP launcher does not inherit that PATH - all three servers failed with CONNECTION_CLOSED until this was made explicit.",
   "_disabled_needs_node_24": {
     "chembl-mcp-server": {
       "command": "npx",
