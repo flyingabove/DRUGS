@@ -1368,7 +1368,7 @@ scan variant. It was corroborative, not load-bearing.
 | **"FSP1i closes the escape route"** | Withdrawn for durability; the escaping clone is ferroptosis-*incompetent* |
 | **"kG ≈ 0 is devastating"** | Costs **1.7 months**. kG only dominates *above* the kG/r threshold |
 | **"Competitive release ⇒ lower doses are better"** | Dose-response was flatly monotonic. The corollary did not follow from the mechanism |
-| **Presented "pair with an orthogonal mechanism" as a strategic discovery** | It is a **rediscovery** — ML210 + venetoclax synergy is published, including in CD34⁺CD38⁻ cells from venetoclax-resistant patients. The model reproducing it is validation, not novelty (§23) |
+| **Presented "pair with an orthogonal mechanism" as a strategic discovery** | It is a **rediscovery** — a 2025 Blood meeting abstract reports ML210 + venetoclax synergy in CD34⁺CD38⁻ cells from venetoclax-resistant patients. The model reproducing it is validation, not novelty (§23) |
 | **"M1 fits better than the positive control"** | Difference below the protocol's own 0.58 Å resolution |
 | **"TXNRD1 tail unresolved because mobile"** | Resolved in 3QFA; both structures are Sec-to-Cys mutants |
 | **Broke the user's environment** | Installed a chemistry stack into base conda; it pulled a conda `pytorch` over a pip one and broke torch |
@@ -1525,7 +1525,7 @@ already been tested, with ML210 specifically, and it works.**
 ## The published result
 
 **ML210 + venetoclax is synergistic in AML**
-([Leukemia](https://www.nature.com/articles/s41375-023-02117-2)):
+([Blood 2025 meeting abstract](https://doi.org/10.1182/blood-2025-5050)):
 
 | Cell line | Combination index |
 |---|---|
@@ -2122,3 +2122,58 @@ disease.
 
 **This does not change criterion 3's score, but it removes an escape route I had assumed existed.** If
 MRD gains acceptance in AML the calculus changes materially, and it is worth tracking.
+
+---
+
+# 31. EFFICACY RESET — the new molecules have not earned the mechanism
+
+## 31.1 Source correction
+
+Section 23 attached the ML210 + venetoclax LSC result to the wrong publication. The 2024 *Leukemia*
+paper tested ML210 in AML lines and bulk CD45⁺ primary samples. It did not test that combination in
+sorted LSCs. The reported CD34⁺CD38⁻ result is from the later 2025 *Blood* conference abstract
+(doi:10.1182/blood-2025-5050): combination index <0.5 in cells from venetoclax-resistant patients.
+
+This correction weakens certainty, not the numerical result: it is conference-abstract evidence with
+no full methods or peer-reviewed paper yet. The patient-derived xenograft result combined venetoclax
+with GPX4 inhibition, but the in-vivo GPX4 intervention was inducible knockdown, not ML210.
+
+## 31.2 Exact molecule is now Gate 1
+
+The mechanism has LSC evidence. **C4 and D4 do not.** Preserving a warhead does not prove that the new
+molecule enters the cell, forms the active electrophile, engages GPX4, and kills the functional LSC.
+
+| Molecule | Exact primary AML LSC result | Decision |
+|---|---|---|
+| ML210 + venetoclax | yes; 2025 abstract | efficacy positive control |
+| JKE-1674 | none found | translational comparator; remains yellow |
+| C4 | none | keep only for the efficacy plate |
+| D4 | none | pause property work; activity risk is larger than C4 |
+
+## 31.3 One experiment decides the molecule
+
+Test ML210, JKE-1674, C4, and D4 together in genotype-confirmed primary AML LSC-enriched cells and
+matched normal CD34⁺ cells. Deliberately include FLT3-ITD and FLT3-wild-type AML rather than selecting
+on GPX4 abundance. Measure concentration-response killing, lipid peroxidation and
+ferrostatin-1 rescue; repeat as venetoclax → GPX4-inhibitor sequence. After washout, measure colony
+formation. The winning new molecule must approach the active controls on LSC killing and durable loss
+of colonies. Confirm the winner by limiting-dilution and secondary transplantation.
+
+**Campaign consequence:** solubility is no longer the next branch. Exact-candidate LSC elimination is.
+
+## 31.4 New 2026 target evidence narrows the patients
+
+A 2026 *Nature Cell Biology* study
+([paper](https://www.nature.com/articles/s41556-026-02016-5)) provides the strongest target evidence so
+far. Conditional GPX4 deletion in established FLT3-ITD AML reduced the leukemia-initiating L-GMP
+population and delayed leukemia; ML210 preferentially killed FLT3-ITD-transformed murine AML over
+normal LSK progenitors.
+
+But the effect was not universal: GPX4 deletion in MLL-AF9 AML without FLT3-ITD did not improve
+secondary-transplant survival (P=0.4552). **The programme should therefore start in FLT3-ITD AML and
+use FLT3-wild-type samples as the negative biological control.**
+
+Baseline GPX4 abundance is not a safe substitute. Published AML cohorts disagree on whether GPX4
+protein is higher or lower than normal marrow, and one direct ML210 study found that higher GPX4
+protein correlated with *less* killing. Patient selection must use genotype plus functional response,
+not “GPX4-high” alone.

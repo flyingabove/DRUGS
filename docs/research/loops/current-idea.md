@@ -2,7 +2,7 @@
 
 **Read this plus [dead-ideas.md](dead-ideas.md) to reload full context. Nothing else needed.**
 
-Loop count: **51**. Full detail: [../../strategies/lsc-ferroptosis-hypothesis.md](../../strategies/lsc-ferroptosis-hypothesis.md)
+Loop count: **52**. Full detail: [../../strategies/lsc-ferroptosis-hypothesis.md](../../strategies/lsc-ferroptosis-hypothesis.md)
 
 ---
 
@@ -39,9 +39,9 @@ TXNRD1."*
 | Claim | Evidence |
 |---|---|
 | Target is real | **GPX4 knockdown** (genetic, no compounds) induces ferroptosis in AML; anti-leukemic in vitro and in vivo |
-| Selectivity window | GPX4 **high in most AML subtypes, lower in normal HSCs**; normal HSCs **tolerate GPX4 depletion** |
-| Right patients | High GPX4 **and** high AIFM2/FSP1 each independently predict **adverse prognosis** in AML |
-| Clinical rationale | **ML210 + venetoclax synergistic in primary AML patient cells including venetoclax-resistant ones** |
+| Selectivity window | **Strongest in FLT3-ITD AML:** genetic GPX4 deletion reduces leukemia-initiating cells, while ML210 kills transformed murine AML more than normal progenitors; the size of the human window is unmeasured |
+| Right patients | **FLT3-ITD is the best current biological selector.** Baseline GPX4 abundance is contradictory across cohorts and must not be used alone to predict response |
+| Clinical rationale | A **2025 Blood conference abstract** reports ML210 + venetoclax synergy in CD34⁺CD38⁻ cells from venetoclax-resistant AML patients; this is not yet a full peer-reviewed paper |
 | **Hits our actual target population** | **"Persister cells from multiple tumor types and treatments are vulnerable to ferroptosis, which can be induced with inhibitors of GPX4."** Dormant cancer cells are highly ferroptosis-sensitive **while normal cells are largely spared** |
 | Mechanistic throughline | Persisters preferentially depend on **OxPhos** → generates ROS → sensitizes to ferroptosis. The same OxPhos dependence this project established for AML LSCs early on |
 | Backbone sensitizes | Azacitidine independently sensitizes to ferroptosis (MAGEA6–AMPK–SLC7A11–GPX4) |
@@ -94,8 +94,9 @@ with an existing FSP1 tool compound rather than inventing both.
 Novel GPX4 agent **+ icFSP1-class partner + venetoclax + azacitidine**. Optional HDAC inhibitor
 (removes a second persister ferroptosis defense; approved).
 
-**Patient selection:** published model integrating **TfR1, GPX4, FTH1** predicts LSC ferroptosis
-susceptibility; GPX4-high/AIFM2-high adds a second axis.
+**Patient selection:** start with **FLT3-ITD**, the subgroup with functional leukemia-initiating-cell
+dependency on GPX4. Use a TfR1/GPX4/FTH1/AIFM2 panel only as an exploratory correlate; do not select
+patients on GPX4 abundance without an ex-vivo response assay.
 
 ## WHY AI UNLOCKS IT
 
@@ -168,10 +169,10 @@ ferritin.**
 So the actual LSC fraction is ferroptosis-*resistant* at baseline, not sensitive. That looked like it
 might sink the idea.
 
-**It does the opposite, and this is the key strategic insight of the run:**
+**It keeps direct GPX4 inhibition plausible, but does not by itself prove dependency:**
 
-**LSC resistance runs *through* GPX4 upregulation. That makes GPX4 their dependency, not merely a
-marker.** High expression = high reliance.
+**LSC resistance can run through GPX4 upregulation. That makes GPX4 a candidate dependency, not a
+response biomarker.** High expression can also mean that more inhibitor is required.
 
 - Attack **upstream** (SLC7A11 inhibition, iron loading, generic oxidative stress) → their elevated
   GPX4 mops up the damage. **This is why upstream ferroptosis induction underperforms against LSCs.**
@@ -187,9 +188,9 @@ as missing:**
 > **Ferroptosis-inducing nanoparticles eliminate 97% of CD34+/CD38- LSCs** through
 > ferroptosis-immune synergy.
 
-**Indication alignment:** "AML cells, **especially relapsed and refractory AML**, present high GPX4
-levels and enzyme activities." The patients with the most GPX4 are exactly the population this drug
-targets.
+**Indication alignment requires a functional test, not GPX4-high selection.** One AML cohort reported
+higher GPX4 activity in relapsed/refractory samples, but another found that higher GPX4 protein
+predicted *less* ML210 killing. These are not interchangeable measurements.
 
 **Backbone confirmed again:** low-dose decitabine + RSL3 synergistically drive ferroptosis by
 inhibiting the AMPK-SLC7A11-GPX4 axis — independent support for the hypomethylating-agent component.
@@ -205,7 +206,7 @@ Ranked by the hierarchy in the skill: serial transplant > primary patient LSC > 
 | **Eradicates leukemia-initiating capacity (serial transplant)** | **NOT DEMONSTRATED — searched directly, loop 49, genuinely absent.** No ferroptosis inducer has been shown to eliminate LIC by serial transplant or limiting-dilution assay in AML. Existing limiting-dilution work is on GADD45A (a resistance gene); existing secondary-transplant work is DOT1L. **This is the single most important experiment to run.** |
 | **Primary patient LSC killing ex vivo** | **YES — gap closed loop 51.** Ferroptosis-inducing nanoparticles **eliminate 97% of CD34+/CD38- LSCs**. Separately, GPX4 inhibitors HA344/#231 kill AML patient CD34+ cells with **blasts significantly more sensitive than non-blasts** in the same marrow. |
 | **Persister/dormant cell killing** | **YES.** Persisters across tumor types are vulnerable to ferroptosis specifically via GPX4 inhibition; dormant cells highly sensitive, normal cells largely spared |
-| **Venetoclax-resistant primary cells** | **YES.** ML210 + venetoclax synergistic in primary AML patient cells including venetoclax-resistant |
+| **Venetoclax-resistant primary cells** | **YES, ABSTRACT-ONLY.** ML210 + venetoclax gave combination index <0.5 in patient-derived CD34⁺CD38⁻ cells, reported in a 2025 Blood meeting abstract (doi:10.1182/blood-2025-5050), not the 2024 Leukemia paper previously cited. |
 | **In vivo / PDX** | **YES.** GPX4 knockdown anti-leukemic in vivo |
 
 **Verdict on the primary gate: the mechanism kills LSCs.** Evidence spans genetic knockdown, multiple
@@ -335,3 +336,95 @@ progenitors the sensitive compartment. Monitorable by CBC.
 
 psi4 1.11, OpenMM 8.6 and a TITAN Xp (OpenCL, 203 ns/day) are all available here. An earlier claim that
 Windows blocked DFT was wrong — it came from one failed `pip install pyscf`.
+
+---
+
+# LOOP 52 — EXACT-MOLECULE EFFICACY BECOMES THE FIRST GATE
+
+## Correction: the right result was attached to the wrong paper
+
+The 2024 *Leukemia* paper (doi:10.1038/s41375-023-02117-2) did **not** test ML210 + venetoclax in
+CD34⁺CD38⁻ cells. It tested ML210 in AML cell lines and bulk CD45⁺ primary samples, and used
+venetoclax + an MCL1 inhibitor only as an apoptosis control.
+
+The LSC combination result does exist, but in a later **2025 Blood conference abstract**
+(doi:10.1182/blood-2025-5050): ML210 + venetoclax showed combination index <0.5 in patient-derived
+CD34⁺CD38⁻ cells from venetoclax-resistant AML, and GPX4 inhibition + venetoclax reduced disease in a
+patient-derived xenograft. The in-vivo compound was not ML210: it was inducible GPX4 knockdown.
+
+## Exact-candidate evidence audit
+
+| Candidate | Direct GPX4/cell evidence | Primary AML LSC evidence | Gate 1 |
+|---|---|---|---|
+| **ML210** | Measured GPX4 engagement; preferential killing of FLT3-ITD murine AML over normal progenitors | **Measured with venetoclax**, but conference abstract only | 🟢 for the exact combination; strongest positive control |
+| **JKE-1674** | Active ML210 metabolite; equipotent ferroptotic killing in LOX-IMVI cancer cells; oral animal use outside AML | **None found** | 🟡 inherited, not green |
+| **GPX4-C4** | Warhead inherited; target engagement and killing not measured | **None** | 🟡 inherited, not green |
+| **D4 bis-pyridyl** | Warhead inherited; larger scaffold change than C4; target engagement and killing not measured | **None** | 🟠 until activity is shown |
+
+**Decision:** pause D4 solubility/permeability optimization. The molecule campaign has no right to
+advance a property winner while every new molecule lacks exact-candidate LSC activity.
+
+## New strongest target evidence: FLT3-ITD, not GPX4-high
+
+A 2026 *Nature Cell Biology* study conditionally deleted GPX4 from established FLT3-ITD AML. It
+reduced the leukemia-initiating L-GMP population, increased its lipid peroxidation, and delayed
+leukemia. ML210 also reduced viability of FLT3-ITD-transformed murine AML cells more than normal LSK
+progenitors. This is the strongest functional evidence found for the target.
+
+The effect was **subgroup-specific**: GPX4 deletion did not change secondary-transplant survival in
+the MLL-AF9 model without FLT3-ITD (P=0.4552). So the first efficacy assay should enrich for FLT3-ITD
+AML and include FLT3-wild-type samples as a falsification control.
+
+## Biomarker correction
+
+Baseline GPX4 quantity is not a dependable positive-selection marker:
+
+- One 2024 study reported higher transcript/protein/activity in AML than controls, based on database
+  comparisons and 4 AML versus 4 normal protein samples; activity was 10 AML versus 4 controls.
+- A separate 2024 study found lower AML GPX4 protein than normal marrow and, within 13 primary AML
+  samples, **higher GPX4 correlated with less ML210 killing**.
+
+These differences may reflect cohorts, sample composition, and protein abundance versus enzyme
+activity. They cannot be resolved into “GPX4-high responds.” Use genotype plus an ex-vivo functional
+response, not GPX4 abundance alone.
+
+## The shortest path to green
+
+Run one blinded, concentration-response experiment on the same plate:
+
+1. **Compounds:** ML210 positive control, JKE-1674 translational comparator, GPX4-C4, and D4.
+2. **Cells:** genotype-confirmed, venetoclax-resistant primary AML LSC-enriched fractions, deliberately
+   including FLT3-ITD and FLT3-wild-type samples, plus matched normal CD34⁺ hematopoietic
+   stem/progenitor cells. Do not assume CD34⁺CD38⁻ alone identifies every patient's LSCs.
+3. **Regimens:** single agent and venetoclax followed by GPX4 inhibitor, because the 2025 abstract says
+   that sequence preserves apoptosis while increasing ferroptosis.
+4. **Proof of mechanism:** viability plus lipid peroxidation, with ferrostatin-1 rescue. A compound that
+   kills without rescue is not proven to work through ferroptosis/GPX4.
+5. **Proof it hit stemness:** colony formation after washout. Advance only compounds that reduce viable
+   LSCs and durable colony output at exposures close to ML210/JKE-1674.
+6. **Strongest confirmation:** transplant surviving treated cells at limiting dilution, then secondary
+   transplant. Loss of leukemia initiation makes the Gate 1 conclusion durable rather than a marker claim.
+
+**Next molecule rule:** retain C4 and D4 only as assay candidates. Whichever new compound first matches
+ML210/JKE-1674 on LSC killing and loss of colony formation becomes the lead; only then optimize
+solubility. If neither matches, revert the scaffold to JKE-1674 and search for the smallest
+property-improving substitution that preserves its measured activity.
+
+### Drug status — GPX4-C4, 2026-08-29
+
+| # | Criterion | Status | Where it stands |
+|---|---|---|---|
+| 1 | Eliminates the target cells | 🟡 | **Inherited:** ML210 + venetoclax kills patient-derived CD34⁺CD38⁻ cells in a 2025 abstract, and GPX4 is a genetic dependency in FLT3-ITD leukemia-initiating cells; C4 itself has never been tested |
+| 2 | Doesn't kill the patient | 🟡 | **Modelled/inherited:** kidney and cardiac alerts were reduced; nitro-warhead and predicted anemia remain unverified |
+| 3 | Extends life enough | 🟡 | **Modelled:** projected delay, with no compound-level animal survival or human evidence; LSC reduction is not an accepted AML approval surrogate |
+| 4 | Hits only what it should | 🟡 | **Inherited:** ML210 selectivity plus structural rationale; no C4 proteome measurement |
+| 5 | Can be made | 🟢 | **Modelled:** accessibility 2.59, 31 heavy atoms, no stereocentres |
+| 6 | Can be delivered | 🟠 | **Modelled:** 0.005 mg/mL versus >1 mg/mL target; permeability unmeasured |
+| 7 | Can be taken forever | 🟢 | **Modelled:** no basic amine or cardiac pharmacophore; chronic exposure still unmeasured |
+| 8 | Is it new | 🟠 | **Assessed:** two edits from ML210, with JKE-1674 already occupying the improved, orally active chemotype space |
+
+**Biggest problem right now:** C4 has no direct evidence that it engages GPX4 or eliminates LSCs; every downstream advantage is conditional on that.
+
+**Next thing that would move a score:** test ML210, JKE-1674, C4, and D4 head-to-head in primary FLT3-ITD and FLT3-wild-type AML LSC-enriched cells, with normal CD34⁺ controls and ferrostatin-1 rescue; this is the shortest path to criterion 1 green.
+
+**Changed since last time:** no score improved. The top priority moved from novelty/solubility to exact-candidate LSC efficacy; the ML210 LSC citation was corrected to a 2025 conference abstract, and FLT3-ITD replaced GPX4-high as the best-supported biological selector.
